@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://ashishjha001.github.io',
-  base: '/portfolio',
+  // Update this to your new premium domain
+  site: 'https://datadecision.consulting',
+  
+  // Make sure the 'base' property is completely removed!
 });
