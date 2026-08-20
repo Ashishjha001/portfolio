@@ -2,540 +2,1148 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataDecision.consulting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>DataDecision.consulting | High-End Data & AI Strategy</title>
+    <meta name="description" content="We drive business forward with data and AI. Turning intelligence into measurable business impact." />
+    
+    <!-- Fonts: Inter for Sans, Playfair Display for elegant accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+    
     <style>
-        /* Modern reset and base styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: #0f172a; line-height: 1.6; background: #ffffff; overflow-x: hidden; }
-        html { scroll-behavior: smooth; }
-        a { text-decoration: none; color: inherit; }
+        /* 
+         * =========================================================================
+         * 1. CSS VARIABLES & THEME SYSTEM
+         * =========================================================================
+         * Defines the core aesthetic for DataDecision.consulting (Palantir/BCG vibe).
+         * Uses deep slate blues, pure blacks, and neon cyan/blue accents.
+         */
+        :root {
+            /* Core Backgrounds */
+            --bg-base: #020617;        /* Ultra dark slate/black */
+            --bg-surface: #0f172a;     /* Dark slate */
+            --bg-surface-elevated: rgba(15, 23, 42, 0.7); /* Translucent slate */
+            --bg-surface-light: rgba(255, 255, 255, 0.03);
+            --bg-surface-hover: rgba(255, 255, 255, 0.08);
+
+            /* Typography Colors */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            
+            /* Accents */
+            --accent-primary: #2563eb; /* Royal Blue */
+            --accent-secondary: #06b6d4; /* Cyan */
+            --accent-tertiary: #8b5cf6; /* Deep Purple */
+            
+            /* Glows & Shadows */
+            --glow-primary: rgba(37, 99, 235, 0.5);
+            --glow-secondary: rgba(6, 182, 212, 0.5);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px -5px var(--glow-primary);
+
+            /* Borders */
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --border-accent: rgba(37, 99, 235, 0.4);
+
+            /* Typography Families */
+            --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+            
+            /* Animation Timings */
+            --transition-fast: all 0.2s ease;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* 
+         * =========================================================================
+         * 2. RESET & BASE STYLES
+         * =========================================================================
+         */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Navbar */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 60px; background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px); z-index: 1000;
-            border-bottom: 1px solid #e2e8f0;
+        html { 
+            scroll-behavior: smooth; 
+            font-size: 16px; 
+            background-color: var(--bg-base); 
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-surface);
         }
-        .logo { font-weight: 800; font-size: 1.25rem; color: #0f172a; }
-        .nav-links { display: flex; gap: 32px; flex-wrap: wrap; }
-        .nav-links a { font-weight: 600; font-size: 0.9rem; color: #475569; transition: color 0.2s; }
-        .nav-links a:hover { color: #2563eb; }
-
-        @media (max-width: 768px) {
-            nav { padding: 16px 24px; flex-direction: column; gap: 12px; }
-            .nav-links { gap: 16px; justify-content: center; }
+        
+        body { 
+            font-family: var(--font-sans); 
+            color: var(--text-primary); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Generic Section Styles */
-        .section-wrapper { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
-        @media (max-width: 768px) { .section-wrapper { padding: 80px 24px; } }
-        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; color: #0f172a; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: #2563eb; margin-top: 16px; }
+        ::selection { background: var(--accent-primary); color: white; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-secondary); }
 
-        /* Animation Classes */
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        a { text-decoration: none; color: inherit; outline: none; }
+        a:focus-visible { box-shadow: 0 0 0 3px var(--accent-secondary); border-radius: 4px; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { font-family: inherit; }
 
-        /* 1. Who We Are (Hero with Image) */
-        .hero { 
-            position: relative; 
-            min-height: 85vh; 
-            display: flex; 
-            align-items: center; 
-            padding: 100px 60px;
-            margin-top: 0;
-            color: white;
+        /* 
+         * =========================================================================
+         * 3. LAYOUT & GRID UTILITIES
+         * =========================================================================
+         * Mobile-first responsive container system.
+         */
+        .container {
+            width: 100%;
+            padding: 0 24px;
+            margin: 0 auto;
+        }
+        @media (min-width: 640px) { .container { max-width: 640px; } }
+        @media (min-width: 768px) { .container { max-width: 768px; padding: 0 40px; } }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        @media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+        .section-padding { padding: 80px 0; }
+        @media (min-width: 768px) { .section-padding { padding: 120px 0; } }
+        @media (min-width: 1024px) { .section-padding { padding: 160px 0; } }
+
+        /* 
+         * =========================================================================
+         * 4. TYPOGRAPHY UTILITIES
+         * =========================================================================
+         */
+        h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-accent {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 4rem;
+            line-height: 1.7;
+        }
+
+        /* 
+         * =========================================================================
+         * 5. ANIMATIONS, KEYFRAMES & REVEALS
+         * =========================================================================
+         */
+        /* Reveal on Scroll */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: var(--transition-smooth); 
+            will-change: opacity, transform;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+
+        /* Floating Ambient Background Orbs */
+        .ambient-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none; overflow: hidden;
+            background: var(--bg-base);
+        }
+        /* Grid overlay for tech feel */
+        .ambient-grid {
+            position: absolute; inset: 0; z-index: -1; opacity: 0.15;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+        }
+        
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(120px);
+            opacity: 0.35; mix-blend-mode: screen;
+            animation: float 25s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 600px; height: 600px; background: rgba(37, 99, 235, 0.4); top: -10%; left: -10%; }
+        .orb-2 { width: 500px; height: 500px; background: rgba(6, 182, 212, 0.3); bottom: -10%; right: -5%; animation-delay: -7s; }
+        .orb-3 { width: 700px; height: 700px; background: rgba(139, 92, 246, 0.2); top: 30%; left: 30%; animation-delay: -14s; }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(50px, 100px) scale(1.1) rotate(10deg); }
+            100% { transform: translate(-50px, 50px) scale(0.9) rotate(-10deg); }
+        }
+
+        /* 
+         * =========================================================================
+         * 6. UI COMPONENTS (BUTTONS, CARDS)
+         * =========================================================================
+         */
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: var(--bg-surface-elevated);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
             overflow: hidden;
         }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -1;
+        .glass-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
-        .hero-bg img {
-            width: 100%; height: 100%; object-fit: cover;
-            animation: zoomIn 20s infinite alternate linear;
+
+        /* Magnetic / Glowing Button */
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 18px 36px; border-radius: 99px;
+            background: linear-gradient(135deg, var(--accent-primary), #1d4ed8);
+            color: white; font-weight: 600; letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+            transition: var(--transition-bounce);
+            position: relative; overflow: hidden;
+            box-shadow: 0 10px 25px -5px var(--glow-primary);
         }
-        @keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.1); } }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(37,99,235,0.7) 100%);
+        .btn-primary::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
-            margin: 0 auto;
-            animation: fadeIn 1s ease-out forwards;
+        .btn-primary:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 35px -5px var(--glow-primary); 
+            border-color: rgba(255,255,255,0.3);
         }
-        .hero-content h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 32px;
+        .btn-primary:hover::after { transform: translateX(100%); }
+
+        /* Secondary Link */
+        .link-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent-secondary); font-weight: 600;
+            transition: var(--transition-fast);
+        }
+        .link-secondary:hover { gap: 12px; color: white; }
+
+        /* 
+         * =========================================================================
+         * 7. NAVIGATION BAR
+         * =========================================================================
+         */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            transition: var(--transition-smooth);
+            padding: 24px 0;
+        }
+        .navbar.scrolled {
+            padding: 16px 0; background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { 
+            font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; 
+            display: flex; align-items: center; gap: 12px; z-index: 101;
             color: white;
-            line-height: 1.1;
         }
-        .hero-content .purpose {
-            font-size: 1.35rem;
-            border-left: 4px solid #60a5fa;
-            padding-left: 24px;
-            color: #e2e8f0;
-            font-style: italic;
-            line-height: 1.6;
+        .logo-icon { 
+            width: 28px; height: 28px; 
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary)); 
+            border-radius: 6px; transform: rotate(45deg); 
+            box-shadow: 0 0 20px var(--glow-primary); 
+            transition: var(--transition-bounce);
+        }
+        .logo:hover .logo-icon { transform: rotate(135deg); }
+        
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { 
+            font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); 
+            transition: color 0.3s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+            background: var(--accent-secondary); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: white; }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav-btn {
+            padding: 12px 24px; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-light); border-radius: 99px;
+            color: white; font-weight: 600; transition: var(--transition-smooth);
+        }
+        .nav-btn:hover { background: white; color: black; }
+
+        /* Mobile Menu */
+        .mobile-menu-btn { 
+            display: none; background: none; border: none; color: white; 
+            font-size: 1.8rem; cursor: pointer; z-index: 101; 
+            transition: transform 0.3s;
+        }
+        .mobile-menu-btn:active { transform: scale(0.9); }
+        
+        .mobile-overlay {
+            position: fixed; inset: 0; background: rgba(2, 6, 23, 0.98); 
+            backdrop-filter: blur(20px); z-index: 100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+        .mobile-overlay a { 
+            font-size: 2.5rem; font-weight: 700; margin: 20px 0; 
+            opacity: 0; transform: translateY(30px); 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            color: var(--text-secondary);
+        }
+        .mobile-overlay a:hover { color: white; }
+        .mobile-overlay.active a { opacity: 1; transform: translateY(0); }
+        .mobile-overlay.active a:nth-child(2) { transition-delay: 0.1s; }
+        .mobile-overlay.active a:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-overlay.active a:nth-child(4) { transition-delay: 0.2s; }
+        .mobile-overlay.active a:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-overlay.active a:nth-child(6) { transition-delay: 0.3s; }
+        
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
         }
 
-        /* Turning Data & Founder */
-        .turning-data { margin-top: 60px; background: #f8fafc; padding: 60px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
-        .turning-data h2 { font-size: 2.2rem; margin-bottom: 24px; font-weight: 800; }
-        .turning-data p { font-size: 1.15rem; color: #334155; margin-bottom: 16px; }
-        .turning-data .highlight { font-weight: 700; color: #2563eb; font-size: 1.3rem; margin-top: 24px; display: inline-block; padding: 8px 16px; background: #eff6ff; border-radius: 8px; }
-        @media (max-width: 768px) { .turning-data { padding: 32px; } }
-        
-        .founder-section { 
-            margin-top: 60px; display: flex; align-items: center; gap: 40px; 
-            padding: 40px; border: 1px solid #e2e8f0; border-radius: 16px; 
-            background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        /* 
+         * =========================================================================
+         * 8. HERO SECTION
+         * =========================================================================
+         */
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center;
+            padding-top: 100px; overflow: hidden;
         }
-        .founder-img {
-            width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
-            border: 4px solid #eff6ff; box-shadow: 0 10px 20px rgba(37,99,235,0.1);
+        .hero-bg-wrapper {
+            position: absolute; inset: 0; z-index: -1;
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         }
-        .founder-info h3 { font-size: 2rem; margin-bottom: 4px; font-weight: 800; }
-        .founder-info h4 { color: #2563eb; margin-bottom: 16px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
-        .founder-info p { font-size: 1.1rem; color: #475569; line-height: 1.7; }
-        .founder-quote { margin-top: 20px; font-weight: 700; color: #0f172a; font-size: 1.15rem; }
-         (max-width: 768px) { .founder-section { flex-direction: column; text-align: center; } }
-
-        /* 2. What We Do */
-        .slider-container { position: relative; width: 100%; overflow: hidden; margin-top: 40px; padding-bottom: 20px; }
-        .slider { display: flex; gap: 24px; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
-        .slide-card { min-width: calc(100% / 3 - 16px); background: #f8fafc; border-radius: 16px; overflow: hidden; display: block; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #e2e8f0; }
-        .slide-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #cbd5e1; }
-        .slide-image { width: 100%; height: 220px; background-color: #e2e8f0; object-fit: cover; transition: transform 0.5s; }
-        .slide-card:hover .slide-image { transform: scale(1.05); }
-        .slide-image-wrapper { overflow: hidden; }
-        .slide-content { padding: 32px 24px; }
-        .slide-content h3 { font-size: 1.35rem; margin-bottom: 12px; color: #0f172a; font-weight: 700; }
-        .slide-content p { font-size: 1rem; color: #64748b; line-height: 1.6; }
+        .hero-bg-image {
+            width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center;
+            opacity: 0.15; filter: grayscale(80%) contrast(150%) brightness(0.8);
+            transform: scale(1.05); animation: slowZoom 30s infinite alternate ease-in-out;
+        }
+        @keyframes slowZoom { from { transform: scale(1.05); } to { transform: scale(1.15); } }
         
-        .slider-controls { display: flex; justify-content: flex-end; gap: 16px; margin-top: 32px; }
-        .slider-btn { background: #f1f5f9; color: #0f172a; border: none; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.2s; font-weight: bold;}
-        .slider-btn:hover { background: #2563eb; color: white; }
-        @media (max-width: 900px) { .slide-card { min-width: calc(100% / 2 - 12px); } }
-        @media (max-width: 600px) { .slide-card { min-width: 100%; } }
+        .hero-content { max-width: 1000px; position: relative; z-index: 10; }
+        .hero-title { 
+            font-size: clamp(3.5rem, 8vw, 7rem); 
+            margin-bottom: 2.5rem; 
+            letter-spacing: -0.03em;
+        }
+        .hero-quote {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-secondary); font-style: italic;
+            font-family: var(--font-serif);
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 32px; margin-bottom: 4rem;
+            line-height: 1.6; max-width: 800px;
+        }
 
-        /* 3. Our Industries */
-        .industries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px 40px; margin-top: 40px; }
-        .industry-item { display: flex; align-items: center; font-size: 1.1rem; color: #0f172a; font-weight: 500; cursor: pointer; transition: all 0.2s; padding: 12px; border-radius: 8px; }
-        .industry-item::before { content: '›'; margin-right: 12px; font-size: 1.5rem; font-weight: 400; color: #2563eb; transition: transform 0.2s; }
-        .industry-item:hover { color: #2563eb; background: #f8fafc; }
-        .industry-item:hover::before { transform: translateX(4px); }
-
-        /* 4. Our Insights */
-        .insights-intro { font-size: 1.15rem; color: #334155; max-width: 800px; margin-bottom: 60px; line-height: 1.8; }
-        .insights-list { display: flex; flex-direction: column; gap: 48px; }
-        .insight-card { display: grid; grid-template-columns: 350px 1fr; gap: 40px; align-items: start; border-bottom: 1px solid #e2e8f0; padding-bottom: 48px; }
-        .insight-card:last-child { border-bottom: none; padding-bottom: 0; }
-        .insight-image-wrapper { overflow: hidden; border-radius: 12px; height: 240px; }
-        .insight-image { width: 100%; height: 100%; background-color: #e2e8f0; object-fit: cover; transition: transform 0.5s; }
-        .insight-card:hover .insight-image { transform: scale(1.05); }
-        .insight-content h3 { font-size: 1.8rem; margin-bottom: 16px; color: #0f172a; font-weight: 800; line-height: 1.2; transition: color 0.2s;}
-        .insight-card:hover .insight-content h3 { color: #2563eb; }
-        .insight-content p { font-size: 1.05rem; color: #475569; margin-bottom: 24px; line-height: 1.6; }
-        .insight-content .date { font-size: 0.85rem; color: #2563eb; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
-        @media (max-width: 768px) { .insight-card { grid-template-columns: 1fr; gap: 24px; } }
-
-        /* 5. Contact */
-        .contact-section { background: #f8fafc; border-top: 1px solid #e2e8f0; }
-        .contact { text-align: center; border-radius: 16px; padding: 0; margin-top: 0;}
-        .contact p { color: #64748b; margin-bottom: 28px; font-size: 1.1rem; }
-        .contact-form { max-width: 600px; margin: 0 auto; text-align: left; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;}
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group.full-width { margin-bottom: 24px; }
-        .form-group label { font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 6px; }
-        .optional { font-weight: 400; color: #94a3b8; }
-        .form-group input, .form-group textarea { padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
-        .submit-btn { border: none; cursor: pointer; font-size: 1rem; width: 100%; background: #1e3a8a; color: #fff; padding: 16px 32px; border-radius: 8px; font-weight: 600; transition: background 0.2s; }
-        .submit-btn:hover { background: #2563eb; }
-        .form-status { margin-top: 16px; font-size: 0.95rem; text-align: center; min-height: 20px; }
-        @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; gap: 0; } .contact-form { padding: 24px; } }
+        /* 
+         * =========================================================================
+         * 9. WHO WE ARE (DATA TO DECISIONS)
+         * =========================================================================
+         */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr; gap: 40px;
+        }
+        @media (min-width: 1024px) {
+            .about-grid { grid-template-columns: 1.2fr 0.8fr; align-items: stretch; gap: 40px; }
+        }
         
-        /* 6. Careers */
-        .careers-section { background: #0f172a; color: white; }
-        .careers-content { border-radius: 16px; }
-        .careers-content p { font-size: 1.15rem; margin-bottom: 24px; line-height: 1.8; color: #cbd5e1; }
-        .careers-content h3 { font-size: 1.5rem; margin: 40px 0 24px 0; color: #e2e8f0; font-weight: 700; }
-        .careers-content ul { list-style: none; margin-bottom: 40px; }
-        .careers-content ul li { font-size: 1.15rem; margin-bottom: 16px; display: flex; align-items: center; color: #cbd5e1; }
-        .careers-content ul li::before { content: '✓'; color: #3b82f6; margin-right: 16px; font-weight: bold; font-size: 1.2rem;}
-        .careers-content .highlight-box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 12px; margin-top: 40px; font-weight: 500; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .about-panel { padding: 40px; }
+        @media (min-width: 768px) { .about-panel { padding: 60px; } }
         
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.9rem; background: white; }
+        .about-text p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 1.75rem; }
+        .about-text strong { color: white; font-weight: 600;}
+        .flow-diagram { 
+            display: flex; align-items: center; flex-wrap: wrap; gap: 16px; 
+            margin-top: 40px; font-weight: 800; font-size: 1.35rem; 
+            background: rgba(0,0,0,0.3); padding: 20px 32px; border-radius: 16px;
+            border: 1px solid var(--border-light); width: max-content;
+        }
+        @media (max-width: 600px) { .flow-diagram { width: 100%; justify-content: center; } }
+        .flow-arrow { color: var(--accent-secondary); }
+        
+        .founder-card { 
+            padding: 40px; position: relative; overflow: hidden; 
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        @media (min-width: 768px) { .founder-card { padding: 60px; } }
+        
+        .founder-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80') center/cover;
+            opacity: 0.15; mix-blend-mode: color-dodge; z-index: -1;
+            filter: grayscale(50%); transition: opacity 0.5s;
+        }
+        .founder-card:hover::before { opacity: 0.25; }
+        
+        .founder-tag { 
+            display: inline-block; padding: 8px 16px; 
+            background: rgba(255,255,255,0.05); border-radius: 99px; 
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; 
+            margin-bottom: 32px; color: var(--accent-secondary); border: 1px solid var(--border-light); 
+            width: max-content;
+        }
+        .founder-card h3 { font-size: 2.5rem; margin-bottom: 24px; }
+        .founder-card p { color: var(--text-secondary); margin-bottom: 40px; font-size: 1.15rem; line-height: 1.8; }
+        .founder-mantra { 
+            font-family: var(--font-serif); font-size: 1.75rem; 
+            color: white; font-style: italic; 
+            border-top: 1px solid var(--border-light); padding-top: 24px;
+        }
+
+        /* 
+         * =========================================================================
+         * 10. WHAT WE DO (HORIZONTAL 3D CAROUSEL)
+         * =========================================================================
+         */
+        .services-section { background: rgba(0,0,0,0.3); border-block: 1px solid var(--border-light); }
+        
+        .carousel-wrapper {
+            position: relative; margin-top: 60px;
+            margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px;
+        }
+        @media (min-width: 768px) {
+            .carousel-wrapper { margin-left: -40px; margin-right: -40px; padding-left: 40px; padding-right: 40px; }
+        }
+        
+        .carousel {
+            display: flex; gap: 24px; overflow-x: auto;
+            scroll-snap-type: x mandatory; scroll-behavior: smooth;
+            padding-bottom: 60px; padding-top: 20px;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+        
+        .service-card {
+            min-width: 85vw; scroll-snap-align: center;
+            border-radius: 24px; overflow: hidden;
+            background: var(--bg-surface-elevated); border: 1px solid var(--border-light);
+            transition: var(--transition-bounce);
+            display: flex; flex-direction: column;
+            transform-style: preserve-3d; perspective: 1000px;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) { .service-card { min-width: 45vw; } }
+        @media (min-width: 1024px) { .service-card { min-width: 30vw; scroll-snap-align: start; } }
+        
+        .service-card:hover { 
+            transform: translateY(-15px); border-color: rgba(255,255,255,0.3); 
+            box-shadow: var(--shadow-lg), 0 0 40px rgba(37,99,235,0.2); 
+        }
+        
+        .service-img-wrapper { height: 260px; overflow: hidden; position: relative; }
+        .service-img-wrapper img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); 
+            filter: grayscale(40%) contrast(120%); 
+        }
+        .service-card:hover .service-img-wrapper img { transform: scale(1.12); filter: grayscale(0%) contrast(100%); }
+        .service-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-surface-elevated), transparent 80%); }
+        
+        .service-tag {
+            position: absolute; bottom: 20px; left: 32px;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+            padding: 6px 16px; border-radius: 99px; font-size: 0.8rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .service-content { padding: 40px 32px; flex-grow: 1; display: flex; flex-direction: column; position: relative; }
+        .service-icon {
+            position: absolute; top: -24px; right: 32px;
+            width: 48px; height: 48px; background: var(--bg-base);
+            border: 1px solid var(--border-light); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-secondary); transition: var(--transition-bounce);
+            font-size: 1.2rem;
+        }
+        .service-card:hover .service-icon { 
+            background: var(--accent-primary); color: white; 
+            transform: rotate(45deg) scale(1.1); border-color: transparent; 
+            box-shadow: 0 10px 20px rgba(37,99,235,0.4);
+        }
+        
+        .service-content h3 { font-size: 1.75rem; margin-bottom: 16px; }
+        .service-content p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; }
+
+        .carousel-controls { display: flex; justify-content: flex-end; gap: 16px; margin-top: 16px; padding-right: 24px;}
+        @media (max-width: 1024px) { .carousel-controls { display: none; } }
+        .ctrl-btn {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: white; font-size: 1.5rem; cursor: pointer;
+            transition: var(--transition-bounce);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ctrl-btn:hover { background: white; color: black; transform: scale(1.1); }
+
+        /* 
+         * =========================================================================
+         * 11. INDUSTRIES
+         * =========================================================================
+         */
+        .industries-grid {
+            display: grid; grid-template-columns: 1fr; gap: 16px;
+            margin-top: 60px;
+        }
+        @media (min-width: 640px) { .industries-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 992px) { .industries-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+        @media (min-width: 1280px) { .industries-grid { grid-template-columns: repeat(4, 1fr); } }
+        
+        .industry-item {
+            padding: 24px; border-radius: 16px;
+            background: var(--bg-surface-light); border: 1px solid var(--border-light);
+            display: flex; align-items: center; transition: var(--transition-smooth);
+            cursor: pointer; font-size: 1.1rem; font-weight: 500;
+        }
+        .industry-item::before {
+            content: '→'; margin-right: 20px; color: var(--accent-secondary);
+            transition: transform 0.3s ease; opacity: 0.5; font-size: 1.25rem;
+        }
+        .industry-item:hover {
+            background: var(--bg-surface-hover); border-color: rgba(255,255,255,0.3);
+            transform: translateX(10px); box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+        .industry-item:hover::before { transform: translateX(5px); opacity: 1; }
+
+        /* 
+         * =========================================================================
+         * 12. INSIGHTS
+         * =========================================================================
+         */
+        .insights-section { background: rgba(0,0,0,0.2); border-top: 1px solid var(--border-light); }
+        .insight-list { display: flex; flex-direction: column; gap: 40px; margin-top: 60px;}
+        
+        .insight-card {
+            display: grid; grid-template-columns: 1fr; gap: 0;
+            border-radius: 32px; overflow: hidden;
+            background: var(--bg-surface-elevated); border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+        }
+        @media (min-width: 992px) {
+            .insight-card { grid-template-columns: 450px 1fr; }
+        }
+        .insight-card:hover { border-color: rgba(255,255,255,0.2); box-shadow: var(--shadow-lg); transform: translateY(-5px);}
+        
+        .insight-img-wrapper { height: 300px; overflow: hidden; }
+        @media (min-width: 992px) { .insight-img-wrapper { height: 100%; } }
+        
+        .insight-img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: grayscale(40%) contrast(110%); transition: transform 0.8s ease; 
+        }
+        .insight-card:hover .insight-img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .insight-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        @media (min-width: 992px) { .insight-content { padding: 60px; } }
+        
+        .insight-tag { 
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; 
+            color: var(--accent-secondary); font-weight: 700; margin-bottom: 20px; 
+            display: inline-block; padding: 6px 16px; border: 1px solid var(--border-light);
+            border-radius: 99px; background: rgba(255,255,255,0.02);
+        }
+        .insight-content h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 20px; transition: color 0.3s; }
+        .insight-card:hover .insight-content h3 { color: var(--accent-primary); }
+        .insight-content p { color: var(--text-secondary); margin-bottom: 32px; font-size: 1.15rem; line-height: 1.7; }
+        .insight-link { font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s;}
+        .insight-link:hover { color: var(--accent-secondary); gap: 16px;}
+
+        /* 
+         * =========================================================================
+         * 13. CAREERS (REDESIGNED & DECORATIVE)
+         * =========================================================================
+         */
+        .careers-container {
+            display: grid; grid-template-columns: 1fr; gap: 60px;
+            padding: 40px 24px; border-radius: 40px;
+            background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(2,6,23,1));
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: var(--shadow-lg), inset 0 0 100px rgba(37,99,235,0.1);
+            overflow: hidden; position: relative;
+        }
+        @media (min-width: 768px) { .careers-container { padding: 80px 60px; } }
+        @media (min-width: 1024px) {
+            .careers-container { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 100px 80px; }
+        }
+        
+        /* Careers Decorative Collage */
+        .careers-collage { position: relative; height: 400px; }
+        @media (min-width: 1024px) { .careers-collage { height: 600px; } }
+        
+        .collage-img { 
+            position: absolute; border-radius: 24px; object-fit: cover; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
+            filter: grayscale(60%) sepia(20%) hue-rotate(180deg) contrast(120%); 
+            transition: var(--transition-smooth); 
+        }
+        .collage-img:hover { filter: grayscale(0%); z-index: 10; transform: scale(1.05) translateY(-10px); }
+        
+        /* Layout of the 3 collage images */
+        .img-main { width: 65%; height: 65%; top: 0; left: 0; z-index: 2; border: 1px solid rgba(255,255,255,0.1); }
+        .img-second { width: 55%; height: 60%; bottom: 0; right: 0; z-index: 3; border: 8px solid var(--bg-base); }
+        .img-abstract { width: 40%; height: 40%; top: 15%; right: 5%; z-index: 1; opacity: 0.7; filter: blur(3px) grayscale(100%); }
+
+        /* Careers Text */
+        .careers-text { position: relative; z-index: 10; }
+        .careers-text h2 { 
+            font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.15; margin-bottom: 2.5rem; 
+            font-family: var(--font-serif); font-style: italic; font-weight: 600;
+        }
+        .careers-text p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8; }
+        
+        .careers-action {
+            margin-top: 40px; padding: 40px; border-radius: 24px;
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px); position: relative; overflow: hidden;
+        }
+        .careers-action::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent-secondary), var(--accent-primary));
+        }
+        
+        .careers-action p { margin-bottom: 1rem; color: white; }
+        .careers-action-title { font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 16px; }
+        
+        .join-btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-top: 24px; font-size: 1.25rem; font-weight: 700;
+            color: var(--accent-secondary); transition: var(--transition-smooth);
+        }
+        .join-btn:hover { color: white; gap: 20px; }
+        
+        .careers-footer {
+            font-family: var(--font-serif); font-style: italic; 
+            color: var(--text-muted); margin-top: 32px; font-size: 1.1rem;
+        }
+
+        /* 
+         * =========================================================================
+         * 14. CONTACT & FOOTER
+         * =========================================================================
+         */
+        .contact-section { background: rgba(0,0,0,0.4); border-top: 1px solid var(--border-light); }
+        .contact-form {
+            max-width: 800px; margin: 0 auto;
+            background: var(--bg-surface-elevated); backdrop-filter: blur(24px);
+            padding: 40px 24px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            position: relative; overflow: hidden;
+        }
+        @media (min-width: 768px) { .contact-form { padding: 60px; } }
+        
+        .contact-form::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 300px; height: 300px; background: rgba(37,99,235,0.2);
+            filter: blur(80px); border-radius: 50%; z-index: -1;
+        }
+        
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 24px; }
+        @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+        
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 20px; border-radius: 16px;
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-family: inherit; font-size: 1.1rem;
+            transition: var(--transition-smooth); outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus { 
+            border-color: var(--accent-primary); background: rgba(0,0,0,0.6); 
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.15); 
+        }
+        .submit-btn-full { width: 100%; margin-top: 24px; font-size: 1.25rem; padding: 24px; border-radius: 16px;}
+
+        footer { 
+            text-align: center; padding: 80px 24px; color: var(--text-muted); 
+            border-top: 1px solid var(--border-light); background: var(--bg-base);
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">DataDecision.consulting</div>
-        <div class="nav-links">
-            <a href="#who-we-are">Who We Are</a>
-            <a href="#what-we-do">What We Do</a>
-            <a href="#our-industries">Our Industries</a>
-            <a href="#our-insights">Our Insights</a>
-            <a href="#contact">Contact</a>
-            <a href="#careers">Careers</a>
+    <!-- Ambient Glowing Background -->
+    <div class="ambient-bg">
+        <div class="ambient-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Interactive Custom Cursor (Added for high-end feel) -->
+    <!-- (Handled natively by CSS on elements, no JS needed to prevent lag on mobile) -->
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                DataDecision
+            </a>
+            <div class="nav-links">
+                <a href="#who-we-are">Who We Are</a>
+                <a href="#what-we-do">What We Do</a>
+                <a href="#industries">Industries</a>
+                <a href="#insights">Insights</a>
+                <a href="#careers">Careers</a>
+                <a href="#contact" class="nav-btn">Let's Talk</a>
+            </div>
+            <!-- Hamburger for Mobile -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">☰</button>
         </div>
     </nav>
 
-    <!-- 1. Who We Are -->
+    <!-- Mobile Fullscreen Menu -->
+    <div class="mobile-overlay" id="mobile-overlay">
+        <button class="mobile-menu-btn" id="mobile-close-btn" style="position: absolute; top: 32px; right: 32px;" aria-label="Close menu">✕</button>
+        <a href="#who-we-are" class="mobile-link">Who We Are</a>
+        <a href="#what-we-do" class="mobile-link">What We Do</a>
+        <a href="#industries" class="mobile-link">Industries</a>
+        <a href="#insights" class="mobile-link">Insights</a>
+        <a href="#careers" class="mobile-link">Careers</a>
+        <a href="#contact" class="mobile-link text-gradient-accent">Contact</a>
+    </div>
+
+    <!-- 1. HERO SECTION -->
     <section id="who-we-are" class="hero">
-        <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920" alt="Tech Background">
-            <div class="hero-overlay"></div>
+        <div class="hero-bg-wrapper">
+            <div class="hero-bg-image"></div>
         </div>
-        <div class="hero-content">
-            <h1>We drive business forward with data and AI</h1>
-            <div class="purpose">
-                "There is always a better way to do things. This philosophy has been our guiding light and the reason why we do what we do"
+        <div class="container relative z-10">
+            <div class="hero-content reveal">
+                <h1 class="hero-title">We drive business forward with <span class="text-gradient">data and AI.</span></h1>
+                <div class="hero-quote">
+                    "There is always a better way to do things. This philosophy has been our guiding light and the reason why we do what we do."
+                </div>
+                <a href="#contact" class="btn-primary">Start a Conversation</a>
             </div>
         </div>
     </section>
 
-    <div class="section-wrapper" style="padding-top: 40px;">
-        <div class="turning-data reveal">
-            <h2>Turning Data Into Decisions</h2>
-            <p>At <strong>DataDecision.consulting</strong>, we believe data is only valuable when it leads to better decisions.</p>
-            <p>We challenge assumptions, uncover hidden insights, simplify complex problems, and turn intelligence into measurable business impact.</p>
-            <p>We don't just analyze what happened.<br>We help organizations understand what matters, decide what’s next, and act with confidence.</p>
-            <span class="highlight">Data → Decisions → Impact.</span>
-        </div>
+    <!-- ABOUT SECTION -->
+    <section class="section-padding">
+        <div class="container about-grid">
+            <!-- Turning Data -->
+            <div class="glass-panel about-panel reveal">
+                <h2 class="text-gradient-accent text-4xl mb-8">Turning Data Into Decisions</h2>
+                <div class="about-text">
+                    <p>At <strong>DataDecision.consulting</strong>, we believe data is only valuable when it leads to better decisions.</p>
+                    <p>We challenge assumptions, uncover hidden insights, simplify complex problems, and turn intelligence into measurable business impact.</p>
+                    <p>We don't just analyze what happened. We help organizations understand what matters, decide what's next, and act with confidence.</p>
+                </div>
+                <div class="flow-diagram">
+                    Data <span class="flow-arrow">→</span> Decisions <span class="flow-arrow">→</span> Impact
+                </div>
+            </div>
 
-        <div class="founder-section reveal">
-            
-            <div class="founder-info">
+            <!-- Founder (Updated per previous instruction to remove fake photo, kept highly styled text) -->
+            <div class="glass-panel founder-card reveal reveal-delay-2">
+                <span class="founder-tag">Founder</span>
                 <h3>Ashish Jha</h3>
-                <h4>Founder</h4>
                 <p>NIT Surat alumnus passionate about turning complex data and business problems into clear, actionable decisions. At DataDecision.consulting, I bridge analytics, technology, and business thinking to create measurable impact.</p>
-                <div class="founder-quote">Think clearly. Decide better. Create impact.</div>
+                <div class="founder-mantra">Think clearly. Decide better. Create impact.</div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 2. What We Do -->
-    <div class="section-wrapper" id="what-we-do">
-        <h2 class="section-title reveal">What We Do</h2>
-        <div class="slider-container reveal">
-            <div class="slider" id="slider">
-                <!-- Card 1 -->
-                <a href="https://datadecision.consulting/case-study" class="slide-card">
-                    <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Digital" class="slide-image">
-                    </div>
-                    <div class="slide-content">
-                        <h3>Digital Transformation</h3>
-                        <p>Learn how we help our clients create value by reinventing their core business through digital solutions.</p>
-                    </div>
-                </a>
-                <!-- Card 2 -->
-                <a href="https://datadecision.consulting/case-study" class="slide-card">
-                    <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Financial Services" class="slide-image">
-                    </div>
-                    <div class="slide-content">
-                        <h3>Financial Strategy</h3>
-                        <p>Covering the full spectrum of global financial services and strategic operational planning.</p>
-                    </div>
-                </a>
-                <!-- Card 3 -->
-                <a href="https://datadecision.consulting/case-study" class="slide-card">
-                    <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800" alt="Leap" class="slide-image">
-                    </div>
-                    <div class="slide-content">
-                        <h3>Business Building</h3>
-                        <p>Works with established organizations to imagine, build, and scale new businesses from scratch.</p>
-                    </div>
-                </a>
-                <!-- Card 4 -->
-                <a href="https://datadecision.consulting/case-study" class="slide-card">
-                    <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800" alt="Sustainability" class="slide-image">
-                    </div>
-                    <div class="slide-content">
-                        <h3>Sustainability & Impact</h3>
-                        <p>Learn how we work with institutions on challenges created by growing pressure on resource systems.</p>
-                    </div>
-                </a>
-                 <!-- Card 5 -->
-                 <a href="https://datadecision.consulting/case-study" class="slide-card">
-                    <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=800" alt="Analytics" class="slide-image">
-                    </div>
-                    <div class="slide-content">
-                        <h3>Advanced Analytics</h3>
-                        <p>Transforming complex datasets into actionable strategies and measurable outcomes for growth.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-btn" id="prevBtn" aria-label="Previous">←</button>
-                <button class="slider-btn" id="nextBtn" aria-label="Next">→</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Our Industries -->
-    <div class="section-wrapper" id="our-industries">
-        <h2 class="section-title reveal">Industries</h2>
-        <div class="industries-grid reveal">
-            <div class="industry-item">Aerospace & Defense</div>
-            <div class="industry-item">Agriculture</div>
-            <div class="industry-item">Automotive & Assembly</div>
-            <div class="industry-item">Chemicals</div>
-            <div class="industry-item">Consumer Packaged Goods</div>
-            <div class="industry-item">Education</div>
-            <div class="industry-item">Electric Power & Natural Gas</div>
-            <div class="industry-item">Energy and Materials</div>
-            <div class="industry-item">Engineering, Construction</div>
-            <div class="industry-item">Financial Services</div>
-            <div class="industry-item">Healthcare</div>
-            <div class="industry-item">Industrials & Electronics</div>
-            <div class="industry-item">Infrastructure</div>
-            <div class="industry-item">Life Sciences</div>
-            <div class="industry-item">Logistics</div>
-            <div class="industry-item">Metals & Mining</div>
-            <div class="industry-item">Oil & Gas</div>
-            <div class="industry-item">Packaging & Paper</div>
-            <div class="industry-item">Private Capital</div>
-            <div class="industry-item">Public Sector</div>
-            <div class="industry-item">Real Estate</div>
-            <div class="industry-item">Retail</div>
-            <div class="industry-item">Semiconductors</div>
-            <div class="industry-item">Social Sector</div>
-            <div class="industry-item">Technology & Media</div>
-            <div class="industry-item">Travel</div>
-        </div>
-    </div>
-
-    <!-- 4. Our Insights -->
-    <div class="section-wrapper" id="our-insights">
-        <h2 class="section-title reveal">Our Insights</h2>
-        <p class="insights-intro reveal">We solve your biggest business challenges with tailored solutions that deliver real results. Using data, AI, and industry expertise, we help you make smarter decisions, streamline processes, and achieve measurable outcomes. By combining advanced technology with practical insights, we drive growth, boost efficiency, and help you navigate the competitive landscape with confidence.</p>
-        
-        <div class="insights-list">
-            <!-- Article 1 -->
-            <div class="insight-card reveal">
-                <div class="insight-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=800" alt="Insight 1" class="insight-image">
+    <!-- 2. WHAT WE DO (HORIZONTAL 3D CAROUSEL) -->
+    <section id="what-we-do" class="section-padding services-section">
+        <div class="container">
+            <h2 class="section-title text-gradient reveal">What We Do</h2>
+            <p class="section-subtitle reveal">Reinventing core businesses through advanced analytics, strategic planning, and sustainable impact.</p>
+            
+            <div class="carousel-wrapper reveal reveal-delay-1">
+                <div class="carousel" id="carousel">
+                    <!-- Card 1 -->
+                    <a href="./case-study.html" class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Digital">
+                            <div class="service-img-overlay"></div>
+                            <div class="service-tag">Strategy</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">↗</div>
+                            <h3>Digital Transformation</h3>
+                            <p>Learn how we help our clients create value by reinventing their core business through digital solutions.</p>
+                        </div>
+                    </a>
+                    <!-- Card 2 -->
+                    <a href="./case-study.html" class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80" alt="Finance">
+                            <div class="service-img-overlay"></div>
+                            <div class="service-tag">Finance</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">↗</div>
+                            <h3>Financial Strategy</h3>
+                            <p>Covering the full spectrum of global financial services and strategic operational planning.</p>
+                        </div>
+                    </a>
+                    <!-- Card 3 -->
+                    <a href="./case-study.html" class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80" alt="Leap">
+                            <div class="service-img-overlay"></div>
+                            <div class="service-tag">Growth</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">↗</div>
+                            <h3>Business Building</h3>
+                            <p>Works with established organizations to imagine, build, and scale new businesses from scratch.</p>
+                        </div>
+                    </a>
+                    <!-- Card 4 -->
+                    <a href="./case-study.html" class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80" alt="Sustainability">
+                            <div class="service-img-overlay"></div>
+                            <div class="service-tag">Impact</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">↗</div>
+                            <h3>Sustainability & Impact</h3>
+                            <p>Learn how we work with institutions on challenges created by growing pressure on resource systems.</p>
+                        </div>
+                    </a>
+                    <!-- Card 5 -->
+                    <a href="./case-study.html" class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80" alt="Analytics">
+                            <div class="service-img-overlay"></div>
+                            <div class="service-tag">AI</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-icon">↗</div>
+                            <h3>Advanced Analytics</h3>
+                            <p>Transforming complex datasets into actionable strategies and measurable outcomes for growth.</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="insight-content">
-                    <div class="date">Article</div>
-                    <h3>Wired for growth: India's electrical-equipment opportunity</h3>
-                    <p>Amid a global surge in electrification, India's scaling domestic demand and structural advantages could make it a globally competitive electrical-equipment-manufacturing powerhouse.</p>
-                </div>
-            </div>
-            <!-- Article 2 -->
-            <div class="insight-card reveal">
-                <div class="insight-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Insight 2" class="insight-image">
-                </div>
-                <div class="insight-content">
-                    <div class="date">Report</div>
-                    <h3>Strengthening the future: Steel for growth and resilience</h3>
-                    <p>The global steel industry stands at an inflection point as shifting patterns of consumption, regulatory pressures, and economic realignments converge to reshape its future.</p>
-                </div>
-            </div>
-            <!-- Article 3 -->
-            <div class="insight-card reveal">
-                <div class="insight-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Insight 3" class="insight-image">
-                </div>
-                <div class="insight-content">
-                    <div class="date">Whitepaper</div>
-                    <h3>Navigating the AI frontier in Enterprise</h3>
-                    <p>How leading organizations are moving beyond proof of concept to integrate artificial intelligence into their core operational models.</p>
+                
+                <div class="carousel-controls reveal reveal-delay-2">
+                    <button class="ctrl-btn" id="btn-prev" aria-label="Previous">←</button>
+                    <button class="ctrl-btn" id="btn-next" aria-label="Next">→</button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 5. Contact -->
-    <div class="contact-section">
-        <div class="section-wrapper" id="contact">
-            <section class="contact reveal">
-                <h2 class="section-title" style="margin-bottom: 12px; display: inline-block;">Let's Work Together</h2>
-                <p>Tell me a bit about what you need — I'll get back to you within 24 hours.</p>
+    <!-- 3. INDUSTRIES -->
+    <section id="industries" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-gradient reveal">Industries</h2>
+            <div class="industries-grid reveal reveal-delay-1">
+                <!-- Javascript populates this for clean HTML source -->
+                <script>
+                    const ind = ["Aerospace & Defense", "Agriculture", "Automotive & Assembly", "Chemicals", "Consumer Packaged Goods", "Education", "Electric Power", "Energy & Materials", "Engineering & Construction", "Financial Services", "Healthcare", "Industrials & Electronics", "Infrastructure", "Life Sciences", "Logistics", "Metals & Mining", "Oil & Gas", "Packaging & Paper", "Private Capital", "Public Sector", "Real Estate", "Retail", "Semiconductors", "Social Sector", "Tech & Media", "Travel"];
+                    ind.forEach(i => document.write(`<div class="industry-item">${i}</div>`));
+                </script>
+            </div>
+        </div>
+    </section>
 
-                <form id="contact-form" class="contact-form">
+    <!-- 4. INSIGHTS -->
+    <section id="insights" class="section-padding insights-section">
+        <div class="container">
+            <h2 class="section-title text-gradient reveal">Our Insights</h2>
+            <p class="section-subtitle reveal">We solve your biggest business challenges with tailored solutions that deliver real results. Using data, AI, and industry expertise, we help you navigate the competitive landscape with confidence.</p>
+            
+            <div class="insight-list">
+                <!-- Article 1 -->
+                <div class="insight-card reveal">
+                    <div class="insight-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80" alt="Insight 1" class="insight-img">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-tag">Article</span>
+                        <h3>Wired for growth: India's electrical-equipment opportunity</h3>
+                        <p>Amid a global surge in electrification, India's scaling domestic demand and structural advantages could make it a globally competitive manufacturing powerhouse.</p>
+                        <a href="#" class="insight-link text-gradient-accent">Read Insight →</a>
+                    </div>
+                </div>
+                <!-- Article 2 -->
+                <div class="insight-card reveal">
+                    <div class="insight-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80" alt="Insight 2" class="insight-img">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-tag">Report</span>
+                        <h3>Strengthening the future: Steel for growth and resilience</h3>
+                        <p>The global steel industry stands at an inflection point as shifting patterns of consumption, regulatory pressures, and economic realignments converge.</p>
+                        <a href="#" class="insight-link text-gradient-accent">Read Insight →</a>
+                    </div>
+                </div>
+                <!-- Article 3 -->
+                <div class="insight-card reveal">
+                    <div class="insight-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80" alt="Insight 3" class="insight-img">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-tag">Whitepaper</span>
+                        <h3>Navigating the AI frontier in Enterprise</h3>
+                        <p>How leading organizations are moving beyond proof of concept to integrate artificial intelligence into their core operational models.</p>
+                        <a href="#" class="insight-link text-gradient-accent">Read Insight →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CAREERS (COMPLETELY REDESIGNED DECORATIVE SECTION) -->
+    <section id="careers" class="section-padding">
+        <div class="container reveal">
+            <div class="careers-container">
+                <!-- Text Content -->
+                <div class="careers-text">
+                    <h2 class="text-gradient">Build what matters.<br><span style="color: var(--accent-secondary);">With people who matter.</span></h2>
+                    
+                    <p>We’re building a team of curious minds, sharp thinkers, and relentless problem-solvers who want to turn complex problems into meaningful outcomes.</p>
+                    <p>We value people who think deeply, learn fast, take ownership, and aren’t afraid to challenge the obvious.</p>
+                    <p>You don’t need to fit a traditional mould. <strong style="color: white; font-weight: 600;">You just need to bring something exceptional to the table.</strong></p>
+                    
+                    <div class="careers-action">
+                        <div class="careers-action-title">Think you belong here?</div>
+                        <p>We’re always open to meeting talented people. Send us your profile, tell us what you can bring to the table, and start a conversation.</p>
+                        
+                        <a href="mailto:careers@datadecision.consulting" class="join-btn">
+                            → Join the team
+                        </a>
+                        <br>
+                        <a href="mailto:careers@datadecision.consulting" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 8px; display: inline-block;">careers@datadecision.consulting</a>
+                    </div>
+                    
+                    <div class="careers-footer">Great companies are built by great people.</div>
+                </div>
+                
+                <!-- Decorative Collage -->
+                <div class="careers-collage">
+                    <!-- High-end architectural / office abstract -->
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80" class="collage-img img-main" alt="Corporate office">
+                    <!-- Professional sketch / blueprint aesthetic -->
+                    <img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&q=80" class="collage-img img-second" alt="Blueprint sketch">
+                    <!-- Deep tech abstract -->
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80" class="collage-img img-abstract" alt="Tech abstract">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container reveal">
+            <div class="contact-form">
+                <h2 class="text-gradient section-title" style="margin-bottom: 1rem;">Let's Work Together</h2>
+                <p class="section-subtitle" style="margin-bottom: 3rem;">Tell me a bit about what you need — I'll get back to you within 24 hours.</p>
+
+                <form id="contact-form-logic">
                     <input type="hidden" name="access_key" value="0f76b840-061b-4f83-b0d8-7212eb4897e6" />
                     <input type="hidden" name="subject" value="New Portfolio Inquiry - Ashish Jha" />
                     <input type="checkbox" name="botcheck" style="display: none;" />
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required />
+                            <label>Name *</label>
+                            <input type="text" name="name" required />
                         </div>
                         <div class="form-group">
-                            <label for="company">Company <span class="optional">(optional)</span></label>
-                            <input type="text" id="company" name="company" />
+                            <label>Company <span style="font-weight: 400; text-transform: none;">(optional)</span></label>
+                            <input type="text" name="company" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required />
+                            <label>Email *</label>
+                            <input type="email" name="email" required />
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone <span class="optional">(optional)</span></label>
-                            <input type="tel" id="phone" name="phone" />
+                            <label>Phone <span style="font-weight: 400; text-transform: none;">(optional)</span></label>
+                            <input type="tel" name="phone" />
                         </div>
                     </div>
 
-                    <div class="form-group full-width">
-                        <label for="message">What are you looking for? *</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
+                    <div class="form-group">
+                        <label>What are you looking for? *</label>
+                        <textarea name="message" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">Send Message →</button>
-                    <p id="form-status" class="form-status"></p>
+                    <button type="submit" class="btn-primary submit-btn-full">Send Message →</button>
+                    <p id="form-status" style="margin-top: 24px; text-align: center; font-weight: 600; font-size: 1.1rem;"></p>
                 </form>
-            </section>
+            </div>
         </div>
-    </div>
-
-    <!-- 6. Careers -->
-    <div class="careers-section">
-        <div class="section-wrapper" id="careers">
-            <section class="careers-content reveal">
-                <h2 class="section-title" style="color: white; margin-bottom: 20px;">Careers</h2>
-                <p style="font-size: 1.4rem; color: white;"><strong>Hiring is the most important role at Data decision consulting.</strong></p>
-                <p>Identifying, recruiting, and enabling the right people in the right teams is by far one of the highest leverage roles any of us play within the organization. We are always on the lookout for exceptional folks to join Data decision consulting, no matter their experience. If you're passionate about what we're building, we'll find a place for you. We create opportunities around great people, not the other way around.</p>
-                
-                <h3>When we meet potential team members, we ask ourselves:</h3>
-                <ul>
-                    <li>Are they smarter than us?</li>
-                    <li>Are they more ambitious than us?</li>
-                    <li>Do they take full ownership of their lives?</li>
-                    <li>Are they comfortable saying, “I don’t know”?</li>
-                </ul>
-                
-                <p>If that sounds like you, we’d love to meet...</p>
-                
-                <div class="highlight-box">
-                    ...that said, we only accept applications through <strong>employee referrals</strong><br>so find someone in our team who can vouch for you, and have a conversation with them. That's where it all starts!
-                    <br><br>
-                    <span style="color: #60a5fa; font-size: 1.2rem;">Everyone who joins Data decision consulting earns their place here.</span>
-                </div>
-            </section>
-        </div>
-    </div>
+    </section>
 
     <footer>
-        <p>© 2026 DataDecision.consulting. All rights reserved.</p>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 32px; opacity: 0.4;">
+                <div class="logo-icon" style="width: 20px; height: 20px; box-shadow: none;"></div>
+                DataDecision.consulting
+            </div>
+            <p>© 2026 DataDecision.consulting. All rights reserved.</p>
+        </div>
     </footer>
 
+    <!-- 
+      =========================================================================
+      INTERACTIVITY SCRIPTS
+      =========================================================================
+    -->
     <script>
-        // Scroll Reveal Animation
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // 1. Scroll Reveal Animation using Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
                     observer.unobserve(entry.target);
-                }
+                });
+            }, revealOptions);
+            
+            revealElements.forEach(el => revealOnScroll.observe(el));
+
+            // 2. Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
             });
-        }, { threshold: 0.1 });
-        revealEls.forEach((el) => observer.observe(el));
 
-        // Slider Logic
-        const slider = document.getElementById('slider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentIndex = 0;
-
-        function updateSlider() {
-            if (!slider.children.length) return;
-            const card = slider.children[0];
-            const gap = 24;
-            const cardWidth = card.offsetWidth + gap;
-            slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            // 3. Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('mobile-close-btn');
+            const overlay = document.getElementById('mobile-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
             
-            const maxVisible = window.innerWidth <= 600 ? 1 : (window.innerWidth <= 900 ? 2 : 3);
-            const maxIndex = Math.max(0, slider.children.length - maxVisible);
-            
-            prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
-            prevBtn.style.cursor = currentIndex === 0 ? "default" : "pointer";
-            
-            nextBtn.style.opacity = currentIndex >= maxIndex ? "0.5" : "1";
-            nextBtn.style.cursor = currentIndex >= maxIndex ? "default" : "pointer";
-        }
-
-        nextBtn.addEventListener('click', () => {
-            const maxVisible = window.innerWidth <= 600 ? 1 : (window.innerWidth <= 900 ? 2 : 3);
-            const maxIndex = Math.max(0, slider.children.length - maxVisible);
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateSlider();
+            if (menuBtn && closeBtn && overlay) {
+                menuBtn.addEventListener('click', () => overlay.classList.add('active'));
+                closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => overlay.classList.remove('active'));
+                });
             }
-        });
 
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
+            // 4. Horizontal Carousel Controls (What We Do)
+            const carousel = document.getElementById('carousel');
+            const btnNext = document.getElementById('btn-next');
+            const btnPrev = document.getElementById('btn-prev');
+            
+            if (carousel && btnNext && btnPrev) {
+                btnNext.addEventListener('click', () => {
+                    carousel.scrollBy({ left: window.innerWidth > 768 ? 400 : 300, behavior: 'smooth' });
+                });
+                btnPrev.addEventListener('click', () => {
+                    carousel.scrollBy({ left: window.innerWidth > 768 ? -400 : -300, behavior: 'smooth' });
+                });
             }
-        });
 
-        window.addEventListener('resize', () => {
-            currentIndex = 0;
-            updateSlider();
-        });
-        updateSlider();
-
-        // Contact form submission
-        const form = document.getElementById('contact-form');
-        const status = document.getElementById('form-status');
-        if (form) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(form);
-                const submitBtn = form.querySelector('.submit-btn');
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-
-                try {
-                    const res = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        body: formData,
+            // 5. 3D Tilt Effect on Service Cards
+            const cards = document.querySelectorAll('.service-card');
+            // Only apply tilt effect on non-touch devices to save performance
+            if (window.matchMedia("(pointer: fine)").matches) {
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        // Calculate rotation based on cursor position
+                        const rotateX = ((y - centerY) / centerY) * -8; // max 8 deg
+                        const rotateY = ((x - centerX) / centerX) * 8;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                     });
-                    const result = await res.json();
-                    if (result.success) {
-                        status.textContent = "Thanks! I'll get back to you soon.";
-                        status.style.color = '#16a34a';
-                        form.reset();
-                    } else {
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                    });
+                });
+            }
+
+            // 6. Web3Forms Submission Logic
+            const form = document.getElementById('contact-form-logic');
+            const status = document.getElementById('form-status');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = form.querySelector('button[type="submit"]');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = 'Sending...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+
+                    try {
+                        const res = await fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            body: new FormData(form),
+                        });
+                        const result = await res.json();
+                        if (result.success) {
+                            status.textContent = "Thanks! I'll get back to you soon.";
+                            status.style.color = 'var(--accent-secondary)'; // Cyan success
+                            form.reset();
+                        } else {
+                            status.textContent = 'Something went wrong. Please try again.';
+                            status.style.color = '#ef4444'; // Error red
+                        }
+                    } catch (err) {
                         status.textContent = 'Something went wrong. Please try again.';
-                        status.style.color = '#dc2626';
+                        status.style.color = '#ef4444';
                     }
-                } catch (err) {
-                    status.textContent = 'Something went wrong. Please try again.';
-                    status.style.color = '#dc2626';
-                }
-                submitBtn.textContent = 'Send Message →';
-                submitBtn.disabled = false;
-            });
-        }
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
+            }
+        });
     </script>
 </body>
 </html>
