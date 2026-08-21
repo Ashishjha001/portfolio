@@ -218,7 +218,20 @@
             .fi-content { padding: 28px; }
             .form-wrap { padding: 28px 24px; }
         }
-    </style>
+    
+        /* OVERRIDE FOR FULLSCREEN HERO */
+        .hero { position: relative; min-height: 90vh; display: flex; align-items: center; padding-top: 120px; padding-bottom: 80px; border-bottom: none; overflow: hidden; }
+        .hero-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+        #hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0) 100%); z-index: 1; pointer-events: none; }
+        @media (max-width: 768px) { .hero-overlay { background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.95) 55%, rgba(255,255,255,0.4) 100%); } }
+        .hero-content { position: relative; z-index: 2; width: 100%; }
+        .hero-title-block { max-width: 680px; position: relative; z-index: 3; }
+        @media (prefers-reduced-motion: reduce) {
+            #hero-video { display: none; }
+            .hero-bg-video { background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat; }
+        }
+</style>
 </head>
 <body>
 
@@ -252,27 +265,28 @@
 </div>
 
 <section class="hero">
-    <div class="container hero-grid">
+    <div class="hero-bg-video">
+        <video 
+            id="hero-video"
+            src="/videos/datadecision-hero-web.mp4" 
+            poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200"
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            preload="metadata"
+        ></video>
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
         <div class="hero-title-block fade-up">
             <div class="hero-eyebrow">Data &amp; AI Strategy Consulting</div>
             <h1 class="hero-title">We turn complex data into <em>clear decisions.</em></h1>
             <p class="hero-lead">We help businesses transform fragmented information into sharper strategy, smarter operations, and measurable growth. From data architecture to AI-driven decision systems, we make data work for the business.</p>
             <div class="hero-ctas">
-                <a href="#contact" class="btn btn-primary">Request a Brief</a>
-                <a href="#expertise" class="btn btn-outline">Explore Our Expertise</a>
+                <a href="/#contact" class="btn btn-primary">Request a Brief</a>
+                <a href="/#expertise" class="btn btn-outline" style="background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);">Explore Our Expertise</a>
             </div>
-        </div>
-        <div class="hero-video-wrap fade-up delay-2">
-            <video 
-                id="hero-video"
-                src="/videos/datadecision-hero-web.mp4" 
-                poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200"
-                autoplay 
-                loop 
-                muted 
-                playsinline
-                preload="metadata"
-            ></video>
         </div>
     </div>
 </section>
