@@ -81,7 +81,7 @@
         .mobile-nav a:hover { color: var(--ink); }
         .hero { padding-top: 180px; padding-bottom: 120px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: var(--white); }
         .hero-grid { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
-        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
         .hero-title-block { max-width: 680px; }
         .hero-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--blue); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
         .hero-eyebrow::before { content: ""; width: 20px; height: 1px; background: currentColor; }
@@ -89,17 +89,18 @@
         .hero-title em { font-style: italic; color: var(--blue); font-family: var(--font-serif); }
         .hero-lead { font-size: 1.1rem; line-height: 1.8; color: var(--ink-70); max-width: 520px; margin-bottom: 44px; }
         .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-        .hero-canvas-wrap { position: relative; border-radius: 6px; overflow: hidden; background: #0d1929; aspect-ratio: 4/5; min-height: 400px; }
-        @media (min-width: 1024px) { .hero-canvas-wrap { aspect-ratio: 3/4; } }
-        #hero-canvas { width: 100%; height: 100%; display: block; }
-        .hero-canvas-label { position: absolute; bottom: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; }
-        .hero-canvas-label span { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.4); transition: color 0.5s; }
-        .hero-canvas-label .hl-active { color: rgba(100,160,255,0.95); }
+        .hero-video-wrap { position: relative; border-radius: 6px; overflow: hidden; background: var(--stone-100); aspect-ratio: 4/5; width: 100%; transform: translateZ(0); }
+        @media (min-width: 1024px) { .hero-video-wrap { aspect-ratio: 3/4; } }
+        #hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        @media (prefers-reduced-motion: reduce) {
+            #hero-video { display: none; }
+            .hero-video-wrap { background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200'); background-size: cover; background-position: center; }
+        }
         .challenge-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
-        @media (min-width: 768px) { .challenge-grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; } }
+        @media (min-width: 768px) { .challenge-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; } }
         .expertise-header { max-width: 540px; margin-bottom: 72px; }
         .expertise-grid { display: grid; grid-template-columns: 1fr; gap: 1px; border: 1px solid var(--border); background: var(--border); }
-        @media (min-width: 768px) { .expertise-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 768px) { .expertise-grid { grid-template-columns: 1.2fr 1fr; } }
         .exp-card { background: var(--white); transition: background 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .exp-card:hover { background: var(--stone-50); }
         .exp-card-img { height: 240px; overflow: hidden; position: relative; }
@@ -111,7 +112,7 @@
         .exp-card-body p { font-size: 0.9rem; line-height: 1.7; flex: 1; }
         .exp-card-link { margin-top: 24px; font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; }
         .meth-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 1024px) { .meth-grid { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; } }
+        @media (min-width: 1024px) { .meth-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; } }
         .meth-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
         .meth-flow-btn { background: transparent; border: 1px solid var(--border); padding: 7px 14px; border-radius: 2px; font-weight: 500; cursor: pointer; transition: all 0.25s; color: var(--ink-70); font-size: 0.8rem; font-family: var(--font-sans); }
         .meth-flow-btn.active, .meth-flow-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
@@ -129,7 +130,7 @@
         .step-row h4 { font-size: 1rem; margin-bottom: 6px; }
         .step-row p { font-size: 0.875rem; }
         .if-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .if-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        @media (min-width: 768px) { .if-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
         .industry-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
         .industry-item { padding: 16px 0; border-bottom: 1px solid var(--border); font-weight: 500; font-size: 1rem; color: var(--ink-70); transition: color 0.2s, padding-left 0.2s; cursor: default; }
         .industry-item:hover { color: var(--ink); padding-left: 8px; }
@@ -139,7 +140,7 @@
         .founder-title { font-size: 0.875rem; color: var(--ink-40); }
         .cs-intro { max-width: 600px; margin-bottom: 72px; }
         .cs-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
-        @media (min-width: 768px) { .cs-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 768px) { .cs-grid { grid-template-columns: 1.2fr 1fr; } }
         .cs-card { background: var(--white); padding: 40px; display: flex; flex-direction: column; transition: background 0.2s; text-decoration: none; color: inherit; }
         .cs-card:hover { background: var(--stone-50); }
         .cs-card-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue); margin-bottom: 16px; }
@@ -173,7 +174,7 @@
         .ins-card-body p { font-size: 0.85rem; flex: 1; }
         .ins-read { margin-top: 16px; font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
         .careers-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .careers-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        @media (min-width: 768px) { .careers-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
         .careers-section { background: #0f1923; color: #f0efed; }
         .careers-section h2, .careers-section h4 { color: #f0efed; }
         .careers-section p { color: rgba(240,239,237,0.6); }
@@ -182,7 +183,7 @@
         .culture-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: rgba(100,150,255,0.8); margin-bottom: 8px; }
         .contact-section { background: #0f1923; color: #f0efed; border-top: 1px solid rgba(255,255,255,0.08); }
         .contact-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
         .contact-section h2 { color: #f0efed; font-size: clamp(2rem, 4vw, 3rem); }
         .contact-section p { color: rgba(240,239,237,0.6); }
         .contact-section .eyebrow { color: rgba(240,239,237,0.4); }
@@ -261,14 +262,17 @@
                 <a href="#expertise" class="btn btn-outline">Explore Our Expertise</a>
             </div>
         </div>
-        <div class="hero-canvas-wrap fade-up delay-2">
-            <canvas id="hero-canvas"></canvas>
-            <div class="hero-canvas-label">
-                <span id="hl-0">Data</span>
-                <span id="hl-1">Insight</span>
-                <span id="hl-2">Decision</span>
-                <span id="hl-3">Impact</span>
-            </div>
+        <div class="hero-video-wrap fade-up delay-2">
+            <video 
+                id="hero-video"
+                src="/videos/datadecision-hero-web.mp4" 
+                poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200"
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                preload="metadata"
+            ></video>
         </div>
     </div>
 </section>
@@ -590,81 +594,11 @@
 
 <script>
 (function() {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let W, H, nodes = [], mouse = {x: -999, y: -999};
-    const COLORS = ['rgba(100,160,255,', 'rgba(80,130,220,', 'rgba(150,190,255,'];
-    let animId;
-    function resize() {
-        const wrap = canvas.parentElement;
-        W = canvas.width = wrap.offsetWidth;
-        H = canvas.height = wrap.offsetHeight;
+    const video = document.getElementById('hero-video');
+    if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.removeAttribute('autoplay');
+        video.pause();
     }
-    function makeNode(i) {
-        return {
-            x: Math.random() * W, y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-            r: Math.random() * 2 + 1,
-            col: COLORS[i % COLORS.length],
-            alpha: Math.random() * 0.6 + 0.2
-        };
-    }
-    function init() { nodes = []; for (let i = 0; i < 48; i++) nodes.push(makeNode(i)); }
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const a = nodes[i], b = nodes[j];
-                const dx = a.x - b.x, dy = a.y - b.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < 140) {
-                    const mx = (a.x+b.x)/2, my = (a.y+b.y)/2;
-                    const mdx = mx-mouse.x, mdy = my-mouse.y;
-                    const mdist = Math.sqrt(mdx*mdx+mdy*mdy);
-                    const boost = mdist < 120 ? 1.8 : 1;
-                    const alpha = (1-dist/140)*0.25*boost;
-                    ctx.strokeStyle = 'rgba(100,160,255,' + alpha + ')';
-                    ctx.lineWidth = 0.5 * boost;
-                    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-                }
-            }
-        }
-        nodes.forEach(n => {
-            const dx = n.x-mouse.x, dy = n.y-mouse.y;
-            const dist = Math.sqrt(dx*dx+dy*dy);
-            const boost = dist < 80 ? 2.2 : 1;
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r*boost, 0, Math.PI*2);
-            ctx.fillStyle = n.col + (n.alpha*boost) + ')';
-            ctx.fill();
-        });
-        nodes.forEach(n => {
-            n.x += n.vx; n.y += n.vy;
-            if (n.x<0||n.x>W) n.vx*=-1;
-            if (n.y<0||n.y>H) n.vy*=-1;
-        });
-        animId = requestAnimationFrame(draw);
-    }
-    canvas.addEventListener('mousemove', e => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX-rect.left; mouse.y = e.clientY-rect.top;
-    });
-    canvas.addEventListener('mouseleave', () => { mouse.x=-999; mouse.y=-999; });
-    canvas.addEventListener('touchmove', e => {
-        const rect = canvas.getBoundingClientRect();
-        const t = e.touches[0];
-        mouse.x = t.clientX-rect.left; mouse.y = t.clientY-rect.top;
-    }, {passive:true});
-    resize(); init(); draw();
-    window.addEventListener('resize', () => { resize(); init(); });
-    let labelIdx = 0;
-    const labels = document.querySelectorAll('.hero-canvas-label span');
-    setInterval(() => {
-        labels.forEach(l => l.classList.remove('hl-active'));
-        if (labels[labelIdx]) labels[labelIdx].classList.add('hl-active');
-        labelIdx = (labelIdx+1) % labels.length;
-    }, 2000);
 })();
 
 (function() {
