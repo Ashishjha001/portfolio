@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI & Decision Intelligence Case Study | DataDecision</title>
+<meta name="description" content="AI-Driven Demand Forecasting — a DataDecision case study."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet"/>
+<style>:root{--white:#ffffff;--stone-50:#f5f4f1;--ink:#1a1a18;--ink-70:#3d3d3a;--ink-40:#767673;--blue:#1a52b8;--blue-hover:#1340a0;--border:#e2ddd8;--font-sans:'DM Sans',system-ui,sans-serif;--font-serif:'Lora',Georgia,serif;--radius:3px;}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:var(--font-sans);background:var(--white);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}a{text-decoration:none;color:inherit;}img{max-width:100%;height:auto;display:block;}body p{color:var(--ink-70);line-height:1.8;margin-bottom:1.25rem;}body p:last-child{margin-bottom:0;}h1,h2,h3,h4{color:var(--ink);line-height:1.2;letter-spacing:-0.025em;}h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;margin-bottom:1.5rem;}h2{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;margin-bottom:1rem;}h3{font-size:1.2rem;font-weight:600;margin-bottom:0.75rem;}.container{max-width:840px;margin:0 auto;padding:0 24px;}.container-wide{max-width:1200px;margin:0 auto;padding:0 32px;}.eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;font-weight:600;color:var(--ink-40);margin-bottom:16px;display:flex;align-items:center;gap:10px;}.eyebrow::before{content:"";width:20px;height:1px;background:currentColor;}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;font-size:0.875rem;font-weight:500;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;transition:all 0.2s ease;font-family:var(--font-sans);}.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue);}.btn-primary:hover{background:var(--blue-hover);}.navbar{position:fixed;top:0;left:0;width:100%;z-index:200;padding:22px 0;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}.nav-inner{display:flex;justify-content:space-between;align-items:center;}.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:1.15rem;letter-spacing:-0.03em;color:var(--ink);}.logo-mark{width:22px;height:22px;background:var(--blue);display:flex;align-items:center;justify-content:center;border-radius:2px;}.logo-mark svg{width:11px;fill:#fff;}.back-link{font-size:0.825rem;font-weight:500;color:var(--ink-70);display:flex;align-items:center;gap:6px;}.back-link:hover{color:var(--ink);}.cs-hero{padding:140px 0 80px;border-bottom:1px solid var(--border);}.cs-hero-img{width:100%;height:440px;object-fit:cover;border-radius:var(--radius);margin-bottom:48px;filter:grayscale(15%);}.cs-meta{display:flex;flex-wrap:wrap;gap:32px;margin-bottom:40px;}.cs-meta-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:4px;}.cs-meta-value{font-size:0.9rem;font-weight:500;color:var(--ink);}.cs-body{padding:80px 0;}.cs-section{margin-bottom:64px;}.cs-section-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}.cs-quote{border-left:2px solid var(--blue);padding:24px 32px;margin:40px 0;background:var(--stone-50);}.cs-quote p{font-family:var(--font-serif);font-style:italic;font-size:1.1rem;line-height:1.7;color:var(--ink);margin:0;}.cs-impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:32px 0;}.cs-impact-item{background:var(--stone-50);padding:28px 24px;}.cs-impact-num{font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-0.03em;margin-bottom:6px;}.cs-impact-label{font-size:0.8rem;color:var(--ink-40);font-weight:500;}.cs-cta{background:var(--stone-50);padding:64px;border:1px solid var(--border);margin:80px 0;text-align:center;}.cs-cta h2{font-size:clamp(1.6rem,3vw,2.25rem);margin-bottom:16px;}.cs-cta p{max-width:480px;margin:0 auto 32px;font-size:1rem;}.related{padding:80px 0;border-top:1px solid var(--border);}.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:32px;}.related-card{border:1px solid var(--border);padding:28px;transition:background 0.2s;}.related-card:hover{background:var(--stone-50);}.related-card-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:12px;}.related-card h4{font-size:1rem;margin-bottom:8px;}.related-card p{font-size:0.875rem;margin-bottom:16px;}.related-card-link{font-size:0.8rem;font-weight:600;color:var(--blue);}.footer-bar{border-top:1px solid var(--border);padding:32px 0;background:var(--stone-50);}.footer-bar-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}.footer-bar p{font-size:0.8rem;color:var(--ink-40);margin:0;}@media(max-width:768px){.cs-hero{padding:120px 0 60px;}.cs-hero-img{height:240px;}.cs-cta{padding:40px 24px;}.container{padding:0 20px;}.container-wide{padding:0 20px;}}</style>
+</head>
+<body>
+<nav class="navbar"><div class="container-wide nav-inner"><a href="/" class="logo"><div class="logo-mark"><svg viewBox="0 0 16 16"><rect x="1" y="8" width="3" height="7"/><rect x="6" y="4" width="3" height="11"/><rect x="11" y="1" width="3" height="14"/></svg></div>DataDecision</a><a href="/" class="back-link">&larr; Back to Home</a></div></nav>
+<main>
+  <div class="cs-hero">
+    <div class="container">
+      <div class="eyebrow">Case Study &middot; AI &amp; Decision Intelligence</div>
+      <h1>AI-Driven Demand Forecasting for a Retail Business</h1>
+      <div class="cs-meta">
+        <div class="cs-meta-item"><div class="cs-meta-label">Industry</div><div class="cs-meta-value">Retail &amp; Consumer</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Area</div><div class="cs-meta-value">Machine Learning, Predictive Analytics</div></div>
+        <div class="cs-meta-item"><div class="cs-meta-label">Content</div><div class="cs-meta-value">Illustrative Case Study</div></div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600" alt="AI Decision Intelligence" class="cs-hero-img" loading="eager"/>
+    </div>
+  </div>
+  <div class="cs-body"><div class="container">
+    <div class="cs-section">
+      <div class="cs-section-label">Business Challenge</div>
+      <h2>When forecasting systems generate more uncertainty than clarity.</h2>
+      <p>This illustrative case describes a situation common in retail and consumer goods businesses. A mid-size retail business was running demand forecasting using a combination of spreadsheet models and the built-in forecasting module of its ERP system. Both approaches shared a fundamental limitation: they relied primarily on historical sales averages, with limited ability to incorporate external demand signals, promotional effects, or product-level seasonality.</p>
+      <p>The consequence was systematic forecast error that cascaded through the business. Buying teams over-ordered products they expected to sell strongly, then discounted aggressively to clear excess stock. For products with genuinely rising demand, the conservative historical models consistently underestimated requirements, leading to lost sales and markdown risk during stockout events.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Situation &amp; Context</div>
+      <h2>The hidden cost of static forecasting models.</h2>
+      <p>What became clear on examination was that the forecast error was not random. It was structured. The existing models performed reasonably well for stable, low-volatility SKUs, but broke down systematically for three categories of products: items with strong seasonal demand patterns, products whose demand was sensitive to external price and trend signals, and new product introductions with limited sales history.</p>
+      <p>These categories collectively represented a disproportionate share of both revenue opportunity and margin risk. Getting forecasting right for stable products was worth relatively little. The high-value problem was forecasting accuracy for volatile and trend-sensitive products.</p>
+      <div class="cs-quote"><p>"Our best forecasters were spending most of their time manually adjusting model outputs. That told us the model was not capturing the signals that actually drove demand."</p></div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Our Approach</div>
+      <h2>Building a forecasting engine designed around signal richness, not historical averaging.</h2>
+      <p>The engagement began with a demand signal audit: a structured analysis of every data source potentially relevant to product demand, both internal and external. Internal signals included sales transaction data, promotional calendars, pricing history, and inventory data. External signals included search trend data, category market data, and macroeconomic indicators relevant to the product categories.</p>
+      <p>The core of the technical work was building a machine learning forecasting framework that could incorporate this richer signal set while remaining interpretable enough for the buying team to understand and override when necessary. The model architecture was deliberately designed to be explainable, not a black-box system that produced outputs no one could interrogate.</p>
+      <p>A critical design decision was building a separate forecasting model for each product segment identified in the demand signal audit, rather than applying a single model to all SKUs. The volatility profile and key demand drivers differed significantly across segments, and a segmented approach captured this complexity far better than a universal model.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Key Insights</div>
+      <h2>What the data revealed about demand drivers.</h2>
+      <p><strong>External signals were underweighted:</strong> For trend-sensitive product categories, external search and social data provided a materially better leading indicator of demand than internal sales history. The existing models were not incorporating these signals at all.</p>
+      <p><strong>Promotional lift was systematically underestimated:</strong> The historical models used average promotional lift factors applied across all products. In reality, promotional sensitivity varied by factor of three or more across different product categories and customer segments.</p>
+      <p><strong>Forecast granularity was insufficient:</strong> The business was forecasting at the product category level and then allocating down to SKUs using fixed ratios. For high-velocity SKUs, category-level forecasting introduced avoidable error that SKU-level modeling could eliminate.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Solution</div>
+      <h2>A segmented ML forecasting system with integrated buying workflow.</h2>
+      <p>The solution was a segmented forecasting system operating at the SKU level, with separate model architectures for stable, seasonal, trend-sensitive, and new product categories. The system produced weekly forecasts with confidence intervals, enabling the buying team to understand the uncertainty around each prediction, not just the central estimate.</p>
+      <p>The forecasting output was integrated directly into the buying workflow, with clear exception flags for SKUs where the AI forecast differed significantly from the previous model output, ensuring buyer attention was focused on the highest-uncertainty decisions.</p>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Business Impact</div>
+      <h2>From reactive buying to anticipatory inventory positioning.</h2>
+      <p>The following illustrates the type of impact achievable through a well-designed AI forecasting engagement. These are illustrative placeholders and do not represent verified client outcomes.</p>
+      <div class="cs-impact-grid">
+        <div class="cs-impact-item"><div class="cs-impact-num">Improved</div><div class="cs-impact-label">Forecast accuracy for volatile product segments</div></div>
+        <div class="cs-impact-item"><div class="cs-impact-num">Reduced</div><div class="cs-impact-label">Markdown spend through earlier demand signals</div></div>
+        <div class="cs-impact-item"><div class="cs-impact-num">Reduced</div><div class="cs-impact-label">Buyer time spent on manual forecast adjustment</div></div>
+        <div class="cs-impact-item"><div class="cs-impact-num">Better</div><div class="cs-impact-label">Inventory positioning going into peak periods</div></div>
+      </div>
+    </div>
+    <div class="cs-section">
+      <div class="cs-section-label">Key Takeaways</div>
+      <h2>What this type of engagement demonstrates.</h2>
+      <p><strong>AI adds the most value where human judgment is most constrained.</strong> Statistical models consistently outperform human judgment when signal volume is high, patterns are complex, and the decision frequency is too high for manual review. Forecasting at the SKU level across large product assortments is a natural application.</p>
+      <p><strong>Interpretability is not optional.</strong> A forecasting system that buying teams cannot understand, challenge, or override will either be ignored or blindly trusted. Neither outcome is acceptable. Explainable AI is a practical business requirement, not an academic nicety.</p>
+      <p><strong>The value of a forecast is measured in the quality of the decisions it enables.</strong> Forecast accuracy improvement is only valuable if it translates into better buying decisions. The system design must close the loop between the forecast output and the operational workflow.</p>
+    </div>
+    <div class="cs-cta">
+      <div class="eyebrow" style="justify-content:center;">Work With Us</div>
+      <h2>Looking to improve forecasting accuracy or build AI-driven decision systems?</h2>
+      <p>We help businesses apply analytics and AI to the decisions that drive the most operational and financial value.</p>
+      <a href="/#contact" class="btn btn-primary">Discuss a Similar Challenge</a>
+    </div>
+  </div></div>
+  <div class="related"><div class="container">
+    <div class="eyebrow">Related Expertise</div>
+    <h3>Explore more of our work</h3>
+    <div class="related-grid">
+      <a href="/case-study-data-analytics" class="related-card"><div class="related-card-label">Data &amp; Analytics</div><h4>Supply Chain Visibility</h4><p>Building integrated demand intelligence for manufacturing and distribution businesses.</p><span class="related-card-link">Read case study &rarr;</span></a>
+      <a href="/case-study-operations" class="related-card"><div class="related-card-label">Operations &amp; Performance</div><h4>Operational Efficiency</h4><p>Real-time operational intelligence from shop-floor data to financial performance.</p><span class="related-card-link">Read case study &rarr;</span></a>
+      <a href="/case-study-customer-growth" class="related-card"><div class="related-card-label">Customer &amp; Growth</div><h4>Customer Profitability</h4><p>Unified cost-to-serve modeling and commercial repricing strategy.</p><span class="related-card-link">Read case study &rarr;</span></a>
+    </div>
+  </div></div>
+</main>
+<footer class="footer-bar"><div class="container-wide footer-bar-inner"><p>&copy; 2026 DataDecision.consulting. All rights reserved.</p><a href="/" style="font-size:0.8rem;color:var(--ink-40);">&larr; Back to Home</a></div></footer>
+</body>
+</html>
