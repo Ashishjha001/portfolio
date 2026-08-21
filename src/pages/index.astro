@@ -45,7 +45,7 @@
         p:last-child { margin-bottom: 0; }
         .serif { font-family: var(--font-serif); font-style: italic; }
         .eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--ink-40); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .eyebrow::before { content: ""; width: 20px; height: 1px; background: currentColor; flex-shrink: 0; }
+        
         .lead { font-size: 1.15rem; line-height: 1.75; color: var(--ink-70); }
         .text-blue { color: var(--blue); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
@@ -84,7 +84,7 @@
         @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
         .hero-title-block { max-width: 680px; }
         .hero-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--blue); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-        .hero-eyebrow::before { content: ""; width: 20px; height: 1px; background: currentColor; }
+        
         .hero-title { margin-bottom: 28px; }
         .hero-title em { font-style: italic; color: var(--blue); font-family: var(--font-serif); }
         .hero-lead { font-size: 1.1rem; line-height: 1.8; color: var(--ink-70); max-width: 520px; margin-bottom: 44px; }
@@ -268,7 +268,7 @@
     <div class="hero-bg-video">
         <video 
             id="hero-video"
-            src="/videos/datadecision-hero-web.mp4" 
+            src="/hero-video-no-watermark.mp4" 
             poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200"
             autoplay 
             loop 
