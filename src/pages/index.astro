@@ -114,8 +114,9 @@
         #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; pointer-events: none; }
 
         /* Expertise Grid (Light) */
-        .expertise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 80px; }
+        
         .exp-card {
+            min-width: 400px; max-width: 400px;
             background: var(--bg-light); border: 1px solid var(--border-light);
             padding: 48px; border-radius: 2px; position: relative; overflow: hidden;
             transition: all 0.5s var(--transition);
@@ -139,7 +140,7 @@
         .exp-card:hover::before { transform: scaleX(1); }
         .exp-card:hover .exp-desc { opacity: 0; }
         .exp-card:hover .exp-tech { opacity: 1; transform: translateY(0); }
-        @media(max-width: 768px) { .expertise-grid { grid-template-columns: 1fr; } .exp-desc { opacity: 1 !important; } .exp-tech { position: relative; bottom: 0; opacity: 1; transform: none; margin-top: 20px; } }
+        @media(max-width: 768px) { .exp-card { min-width: 300px; max-width: 300px; } .exp-desc { opacity: 1 !important; } .exp-tech { position: relative; bottom: 0; opacity: 1; transform: none; margin-top: 20px; } }
 
         /* Technology Flow (Dark) */
         .tech-flow { position: relative; margin-top: 100px; padding: 80px 0; }
@@ -198,19 +199,25 @@
         /* Insight Cards (Dark) */
         .ins-card {
             min-width: 320px; max-width: 320px;
-            border-bottom: 1px solid var(--border-dark);
-            padding: 32px 0; display: block;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-dark);
+            border-radius: 4px;
+            padding-bottom: 32px; display: block;
             transition: all 0.4s var(--transition);
+            overflow: hidden;
             position: relative;
         }
+        .ins-img-wrap { height: 180px; overflow: hidden; margin-bottom: 24px; border-bottom: 1px solid var(--border-dark); }
+        .ins-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--transition); }
+        .ins-card:hover .ins-img { transform: scale(1.05); }
         .ins-card::after {
-            content: ''; position: absolute; bottom: -1px; left: 0; width: 0%; height: 1px;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
             background: var(--accent); transition: width 0.4s var(--transition);
         }
         .ins-card:hover::after { width: 100%; }
-        .ins-card:hover { transform: translateX(10px); }
-        .ins-date { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; letter-spacing: 0.05em; }
-        .ins-card h3 { font-size: 1.25rem; line-height: 1.4; color: var(--text-light); }
+        .ins-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.2); }
+        .ins-date { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; letter-spacing: 0.05em; padding: 0 24px; }
+        .ins-card h3 { font-size: 1.15rem; line-height: 1.4; color: var(--text-light); padding: 0 24px; }
 
         /* Footer */
         .footer { padding: 80px 0 40px; border-top: 1px solid var(--border-dark); }
@@ -454,53 +461,61 @@
                 <h2>ENGINEERING ARSENAL.</h2>
             </div>
             
-            <div class="expertise-grid reveal delay-1">
-                <div class="exp-card">
-                    <span class="exp-num">01</span>
-                    <h3>Data & Decision Intelligence</h3>
-                    <p class="exp-desc">Translating raw mathematical outputs into board-level strategic roadmaps. Real-time dashboards, KPI tracking, and probabilistic modeling.</p>
-                    <div class="exp-tech">
-                        <span>Decision Systems</span>
-                        <span>Forecasting</span>
-                        <span>Optimization</span>
-                        <span>Simulation</span>
+            <div class="slider-container reveal delay-1">
+                <div class="slider-track" id="exp-track" style="gap: 24px;">
+                    <div class="exp-card">
+                        <span class="exp-num">01</span>
+                        <h3>Data & Decision Intelligence</h3>
+                        <p class="exp-desc">Translating raw mathematical outputs into board-level strategic roadmaps. Real-time dashboards, KPI tracking, and probabilistic modeling.</p>
+                        <div class="exp-tech">
+                            <span>Decision Systems</span>
+                            <span>Forecasting</span>
+                            <span>Optimization</span>
+                            <span>Simulation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exp-card">
+                        <span class="exp-num">02</span>
+                        <h3>AI / ML Engineering</h3>
+                        <p class="exp-desc">Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
+                        <div class="exp-tech">
+                            <span>Machine Learning</span>
+                            <span>Deep Learning</span>
+                            <span>NLP</span>
+                            <span>Computer Vision</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card">
+                        <span class="exp-num">03</span>
+                        <h3>Data Engineering & Infrastructure</h3>
+                        <p class="exp-desc">Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
+                        <div class="exp-tech">
+                            <span>Data Platforms</span>
+                            <span>Cloud Architecture</span>
+                            <span>MLOps</span>
+                            <span>Data Products</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card">
+                        <span class="exp-num">04</span>
+                        <h3>Intelligent Operations</h3>
+                        <p class="exp-desc">Direct partnership with leadership to align technical AI capabilities with aggressive business growth, security, and acquisition targets.</p>
+                        <div class="exp-tech">
+                            <span>Demand Forecasting</span>
+                            <span>Supply Chain</span>
+                            <span>Pricing</span>
+                            <span>Customer Analytics</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="exp-card">
-                    <span class="exp-num">02</span>
-                    <h3>AI / ML Engineering</h3>
-                    <p class="exp-desc">Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
-                    <div class="exp-tech">
-                        <span>Machine Learning</span>
-                        <span>Deep Learning</span>
-                        <span>NLP</span>
-                        <span>Computer Vision</span>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <span class="exp-num">03</span>
-                    <h3>Data Engineering & Infrastructure</h3>
-                    <p class="exp-desc">Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
-                    <div class="exp-tech">
-                        <span>Data Platforms</span>
-                        <span>Cloud Architecture</span>
-                        <span>MLOps</span>
-                        <span>Data Products</span>
-                    </div>
-                </div>
-
-                <div class="exp-card">
-                    <span class="exp-num">04</span>
-                    <h3>Intelligent Operations</h3>
-                    <p class="exp-desc">Direct partnership with leadership to align technical AI capabilities with aggressive business growth, security, and acquisition targets.</p>
-                    <div class="exp-tech">
-                        <span>Demand Forecasting</span>
-                        <span>Supply Chain</span>
-                        <span>Pricing</span>
-                        <span>Customer Analytics</span>
-                    </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn" aria-label="Previous">&larr;</button>
+                    <div class="slider-progress"><div class="slider-progress-bar" id="exp-progress"></div></div>
+                    <button class="slider-btn next-btn" aria-label="Next">&rarr;</button>
                 </div>
             </div>
         </div>
@@ -618,18 +633,22 @@
             <div class="slider-container reveal delay-1">
                 <div class="slider-track" id="ins-track" style="gap: 40px;">
                     <a href="/insight-ai-enterprise" class="ins-card">
+                        <div class="ins-img-wrap"><img src="https://images.unsplash.com/photo-1620825937374-87fc7d62098d?auto=format&fit=crop&w=600&q=80" alt="Scaling AI" class="ins-img" /></div>
                         <span class="ins-date">Dec 12 &bull; 5 min read</span>
                         <h3>Scaling AI in the Modern Enterprise: Beyond the Proof of Concept</h3>
                     </a>
                     <a href="/insight-supply-chain" class="ins-card">
+                        <div class="ins-img-wrap"><img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=600&q=80" alt="Supply Chain" class="ins-img" /></div>
                         <span class="ins-date">Nov 28 &bull; 8 min read</span>
                         <h3>Resilient Supply Chains via Predictive Modeling</h3>
                     </a>
                     <a href="/insight-decision-intelligence" class="ins-card">
+                        <div class="ins-img-wrap"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Decision Intelligence" class="ins-img" /></div>
                         <span class="ins-date">Nov 15 &bull; 6 min read</span>
                         <h3>The Rise of Decision Intelligence over Dashboards</h3>
                     </a>
                     <a href="/insight-dashboard-limits" class="ins-card">
+                        <div class="ins-img-wrap"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Dashboards" class="ins-img" /></div>
                         <span class="ins-date">Oct 30 &bull; 4 min read</span>
                         <h3>Why Dashboards Are No Longer Enough for C-Suite</h3>
                     </a>
@@ -771,6 +790,7 @@
         }
 
         setupSlider('cs-track', 'cs-progress');
+        setupSlider('exp-track', 'exp-progress');
         setupSlider('ins-track', null);
 
         // 4. Hero Particle Canvas
