@@ -165,12 +165,26 @@
         @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
         @media(max-width: 1024px) { .flow-nodes { flex-direction: column; gap: 40px; } .flow-line { display: none; } }
 
-        /* Slider / Carousel System */
-        .slider-container { overflow: hidden; margin-top: 60px; padding-bottom: 40px; }
-        .slider-track { display: flex; gap: 24px; transition: transform 0.6s var(--transition); }
+        /* Slider / Carousel System (Native Scroll) */
+        .slider-container { margin-top: 60px; padding-bottom: 40px; }
+        .slider-track { 
+            display: flex; gap: 24px; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE 10+ */
+            scroll-behavior: smooth;
+            /* Allow click and drag */
+            cursor: grab;
+        }
+        .slider-track:active { cursor: grabbing; scroll-behavior: auto; }
+        .slider-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        
+        .slider-track > * { scroll-snap-align: start; flex-shrink: 0; }
+        
         .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
         .slider-progress { flex: 1; height: 2px; background: var(--border-light); margin: 0 40px; position: relative; overflow: hidden; }
-        .slider-progress-bar { position: absolute; top: 0; left: 0; height: 100%; width: 25%; background: var(--accent); transition: transform 0.6s var(--transition); }
+        .slider-progress-bar { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); transition: width 0.1s ease-out; }
         .slider-btn { background: transparent; border: 1px solid var(--border-light); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; color: var(--text-dark); }
         .theme-dark .slider-btn { border-color: var(--border-dark); color: var(--text-light); }
         .theme-dark .slider-progress { background: var(--border-dark); }
@@ -756,8 +770,8 @@
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-        // 3. Slider Logic
-        function setupSlider(trackId, progressId) {
+        // 3. Native Slider Logic with Drag
+        function setupNativeSlider(trackId, progressId) {
             const track = document.getElementById(trackId);
             if (!track) return;
             const container = track.parentElement;
@@ -765,33 +779,66 @@
             const next = container.querySelector('.next-btn');
             const progress = document.getElementById(progressId);
             
-            let index = 0;
-            const total = track.children.length;
-            const getCardsToShow = () => window.innerWidth < 768 ? 1 : (trackId === 'ins-track' ? 3 : 2);
-            
-            function update() {
-                const cardsToShow = getCardsToShow();
-                const cardWidth = track.children[0].offsetWidth + parseInt(window.getComputedStyle(track).gap || 0);
-                const maxIndex = total - cardsToShow;
-                if (index > maxIndex) index = maxIndex;
-                if (index < 0) index = 0;
+            // Update progress bar & button states
+            const updateUI = () => {
+                if(!progress && !prev && !next) return;
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                const scrollLeft = track.scrollLeft;
+                const percent = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
                 
-                track.style.transform = `translateX(-${index * cardWidth}px)`;
-                if(progress) progress.style.width = `${((index + cardsToShow) / total) * 100}%`;
-                
-                if(prev) prev.style.opacity = index === 0 ? 0.3 : 1;
-                if(next) next.style.opacity = index === maxIndex ? 0.3 : 1;
-            }
+                if(progress) progress.style.width = percent + '%';
+                if(prev) prev.style.opacity = scrollLeft <= 10 ? 0.3 : 1;
+                if(next) next.style.opacity = scrollLeft >= maxScroll - 10 ? 0.3 : 1;
+            };
 
-            if(prev) prev.addEventListener('click', () => { index--; update(); });
-            if(next) next.addEventListener('click', () => { index++; update(); });
-            window.addEventListener('resize', update);
-            setTimeout(update, 100);
+            track.addEventListener('scroll', updateUI);
+            window.addEventListener('resize', updateUI);
+            
+            // Button controls
+            const getScrollAmount = () => {
+                const card = track.children[0];
+                return card.offsetWidth + parseInt(window.getComputedStyle(track).gap || 0);
+            };
+            if(prev) prev.addEventListener('click', () => track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
+            if(next) next.addEventListener('click', () => track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }));
+
+            // Click and Drag Logic
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                track.style.scrollBehavior = 'auto'; // Disable smooth snap while dragging
+                track.style.scrollSnapType = 'none';
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+            });
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.style.scrollBehavior = 'smooth';
+                track.style.scrollSnapType = 'x mandatory';
+            });
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                track.style.scrollBehavior = 'smooth';
+                track.style.scrollSnapType = 'x mandatory';
+            });
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed multiplier
+                track.scrollLeft = scrollLeft - walk;
+            });
+
+            // Initial UI update
+            setTimeout(updateUI, 100);
         }
 
-        setupSlider('cs-track', 'cs-progress');
-        setupSlider('exp-track', 'exp-progress');
-        setupSlider('ins-track', null);
+        setupNativeSlider('cs-track', 'cs-progress');
+        setupNativeSlider('exp-track', 'exp-progress');
+        setupNativeSlider('ins-track', null);
 
         // 4. Hero Particle Canvas
         const canvas = document.getElementById('particle-canvas');
