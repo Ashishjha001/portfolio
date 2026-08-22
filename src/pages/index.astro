@@ -231,6 +231,79 @@
             #hero-video { display: none; }
             .hero-bg-video { background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat; }
         }
+
+        /* ===== EXPERTISE / CAP SYSTEM ===== */
+        .exp-new-header{margin-bottom:64px;}
+        .cap-system{display:flex;flex-direction:column;gap:0;}
+        .cap-svg-wrap{width:100%;overflow:hidden;margin-bottom:0;position:relative;height:80px;}
+        #cap-svg{width:100%;height:100%;display:block;}
+        .cap-panels{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
+        @media(min-width:768px){.cap-panels{grid-template-columns:repeat(4,1fr);}}
+        .cap-panel{background:var(--white);padding:32px 28px;cursor:pointer;transition:background 0.25s;border-top:2px solid transparent;position:relative;outline:none;}
+        .cap-panel:hover,.cap-panel.open{background:var(--stone-50);border-top-color:var(--blue);}
+        .cap-panel-num{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;color:var(--blue);margin-bottom:12px;}
+        .cap-panel-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+        .cap-panel-teaser{font-size:0.825rem;color:var(--ink-40);line-height:1.6;margin:0;}
+        .cap-panel-detail{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1),opacity 0.35s;opacity:0;}
+        .cap-panel.open .cap-panel-detail{max-height:400px;opacity:1;margin-top:20px;}
+        .cap-detail-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+        .cap-detail-tags span{font-size:0.7rem;font-weight:600;color:var(--ink-70);border:1px solid var(--border);padding:4px 10px;letter-spacing:0.02em;}
+        .cap-detail-outcome{font-size:0.875rem;line-height:1.7;color:var(--ink-70);margin-bottom:16px;}
+        .cap-detail-link{font-size:0.8rem;font-weight:600;color:var(--blue);}
+        .tech-strip{border-top:1px solid var(--border);padding:28px 0;margin-top:0;}
+        .tech-strip-inner{display:flex;flex-wrap:wrap;gap:4px 0;align-items:center;}
+        .tech-strip-inner span{font-size:0.75rem;font-weight:500;color:var(--ink-40);padding:4px 16px;transition:color 0.2s;cursor:default;}
+        .tech-strip-inner span:hover{color:var(--blue);}
+        .ts-sep{color:var(--border)!important;padding:0!important;}
+        /* ===== APPROACH / SYSTEM DIAGRAM ===== */
+        .approach-header{margin-bottom:64px;}
+        .approach-layout{display:grid;grid-template-columns:1fr;gap:48px;align-items:start;}
+        @media(min-width:900px){.approach-layout{grid-template-columns:1fr 1.2fr 1fr;gap:40px;}}
+        .approach-problem-block{border:1px solid var(--border);padding:24px;background:var(--white);}
+        .app-input-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-40);margin-bottom:12px;}
+        .app-input-examples{display:flex;flex-direction:column;gap:8px;}
+        .app-eg{font-size:0.875rem;font-weight:500;color:var(--ink-40);padding:8px 12px;border-left:2px solid var(--border);transition:all 0.3s;cursor:pointer;}
+        .app-eg.active{color:var(--ink);border-left-color:var(--blue);}
+        .approach-connector{width:1px;height:32px;background:var(--border);margin:0 auto;}
+        .app-data-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-40);text-align:center;}
+        #approach-svg{width:100%;height:auto;display:block;}
+        .asvg-label{font-family:'DM Sans',system-ui;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;fill:#9d9590;}
+        .asol-node{transition:opacity 0.3s;}
+        .approach-solutions{position:relative;min-height:220px;}
+        .app-sol-panel{display:none;padding:24px;border:1px solid var(--border);background:var(--white);}
+        .app-sol-panel.active{display:block;}
+        .app-sol-num{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;color:var(--blue);margin-bottom:8px;}
+        .app-sol-panel h4{font-size:1.05rem;font-weight:600;margin-bottom:10px;}
+        .app-sol-panel p{font-size:0.875rem;line-height:1.7;color:var(--ink-70);margin-bottom:14px;}
+        .app-sol-methods{display:flex;flex-wrap:wrap;gap:6px;}
+        .app-sol-methods span{font-size:0.7rem;font-weight:600;color:var(--blue);border:1px solid rgba(26,82,184,0.2);padding:3px 10px;}
+        .app-nav{display:flex;align-items:center;gap:16px;margin-top:16px;}
+        .app-nav-btn{background:none;border:1px solid var(--border);color:var(--ink-70);padding:8px 16px;cursor:pointer;font-size:0.875rem;font-family:var(--font-sans);transition:all 0.2s;}
+        .app-nav-btn:hover{border-color:var(--ink);color:var(--ink);}
+        .app-nav-pos{font-size:0.75rem;color:var(--ink-40);font-weight:500;}
+        /* ===== CASE STUDIES v2 ===== */
+        .cs2-header{margin-bottom:64px;}
+        .cs2-rail{display:flex;flex-direction:column;gap:0;}
+        .cs2-track{position:relative;margin-bottom:32px;display:none;}
+        @media(min-width:768px){.cs2-track{display:block;}}
+        .cs2-track-line{height:1px;background:var(--border);position:relative;margin:28px 0;}
+        .cs2-track-progress{position:absolute;left:0;top:0;height:1px;background:var(--blue);width:0%;transition:width 0.7s cubic-bezier(0.4,0,0.2,1);}
+        .cs2-track-nodes{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%) translateY(1px);}
+        .cs2-tnode{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;transition:all 0.3s;cursor:pointer;position:relative;}
+        .cs2-tnode span{font-size:0.5rem;font-weight:700;color:var(--ink-40);position:absolute;top:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;}
+        .cs2-tnode.active{border-color:var(--blue);background:var(--blue);}
+        .cs2-tnode.active span{color:var(--blue);}
+        .cs2-cards{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
+        @media(min-width:640px){.cs2-cards{grid-template-columns:repeat(2,1fr);}}
+        @media(min-width:1024px){.cs2-cards{grid-template-columns:repeat(4,1fr);}}
+        .cs2-card{background:var(--white);padding:36px 32px;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:background 0.2s,transform 0.2s;border-top:2px solid transparent;position:relative;}
+        .cs2-card:hover{background:var(--stone-50);transform:translateY(-2px);}
+        .cs2-card.active{border-top-color:var(--blue);}
+        .cs2-card-cat{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:16px;}
+        .cs2-card h3{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0;line-height:1.4;flex:1;}
+        .cs2-card-link{margin-top:24px;font-size:0.8rem;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:6px;opacity:0.6;transition:opacity 0.2s;}
+        .cs2-card:hover .cs2-card-link{opacity:1;}
+
 </style>
 </head>
 <body>
@@ -513,396 +586,536 @@
 })();
 </script>
 
-<section id="expertise" class="section border-b">
+<section id="expertise" class="section border-b" style="overflow:hidden;">
     <div class="container">
-        <div class="expertise-header fade-up">
+        <div class="exp-new-header fade-up">
             <div class="eyebrow">Our Expertise</div>
-            <h2>Capabilities focused on outcomes.</h2>
-            <p style="margin-top:16px;">We do not implement technology for its own sake. Every engagement is anchored to a specific business decision, performance improvement, or growth opportunity.</p>
+            <h2 style="max-width:680px;">Engineering intelligence for decisions that matter.</h2>
+            <p class="lead" style="max-width:620px;margin-top:16px;">We combine data engineering, advanced analytics, machine learning, and decision intelligence to build systems that solve complex business problems.</p>
         </div>
-        <div class="expertise-grid fade-up delay-1">
-            <a href="/case-study-data-analytics" class="exp-card">
-                <div class="exp-card-img"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&amp;fit=crop&amp;q=80&amp;w=900" alt="Data &amp; Analytics" loading="lazy" /></div>
-                <div class="exp-card-body">
-                    <div class="exp-card-num">01</div>
-                    <h3>Data &amp; Analytics</h3>
-                    <p>Turn fragmented information into reliable enterprise visibility. We architect data foundations that deliver accurate, decision-ready insight.</p>
-                    <span class="exp-card-link">Explore case study &rarr;</span>
-                </div>
-            </a>
-            <a href="/case-study-ai-decision" class="exp-card">
-                <div class="exp-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;q=80&amp;w=900" alt="AI &amp; Decision Intelligence" loading="lazy" /></div>
-                <div class="exp-card-body">
-                    <div class="exp-card-num">02</div>
-                    <h3>AI &amp; Decision Intelligence</h3>
-                    <p>Apply predictive analytics and AI to improve forecasting, automate routine decisions, and optimize complex business processes at scale.</p>
-                    <span class="exp-card-link">Explore case study &rarr;</span>
-                </div>
-            </a>
-            <a href="/case-study-operations" class="exp-card">
-                <div class="exp-card-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&amp;fit=crop&amp;q=80&amp;w=900" alt="Operations &amp; Performance" loading="lazy" /></div>
-                <div class="exp-card-body">
-                    <div class="exp-card-num">03</div>
-                    <h3>Operations &amp; Performance</h3>
-                    <p>Identify hidden inefficiencies and translate operational data into measurable improvements in cost, speed, quality, and capacity.</p>
-                    <span class="exp-card-link">Explore case study &rarr;</span>
-                </div>
-            </a>
-            <a href="/case-study-customer-growth" class="exp-card">
-                <div class="exp-card-img"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&amp;fit=crop&amp;q=80&amp;w=900" alt="Customer &amp; Growth" loading="lazy" /></div>
-                <div class="exp-card-body">
-                    <div class="exp-card-num">04</div>
-                    <h3>Customer &amp; Growth</h3>
-                    <p>Use commercial data to decode demand patterns, optimize pricing, improve customer retention, and build durable revenue growth.</p>
-                    <span class="exp-card-link">Explore case study &rarr;</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
 
-<section id="approach" class="section bg-stone border-b">
-    <div class="container meth-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Methodology</div>
-            <h2>How we work.</h2>
-            <p class="lead" style="margin: 16px 0 32px;">A rigorous process designed to move from ambiguity to execution, at every stage grounded in evidence.</p>
-            <div class="meth-flow" id="meth-flow">
-                <button class="meth-flow-btn active" data-idx="0">Data</button>
-                <span class="meth-flow-sep">&rarr;</span>
-                <button class="meth-flow-btn" data-idx="1">Insight</button>
-                <span class="meth-flow-sep">&rarr;</span>
-                <button class="meth-flow-btn" data-idx="2">Decision</button>
-                <span class="meth-flow-sep">&rarr;</span>
-                <button class="meth-flow-btn" data-idx="3">Action</button>
-                <span class="meth-flow-sep">&rarr;</span>
-                <button class="meth-flow-btn" data-idx="4">Impact</button>
+        <!-- Capability system -->
+        <div class="cap-system" id="cap-system">
+            <!-- SVG network connector -->
+            <div class="cap-svg-wrap">
+                <svg id="cap-svg" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                    <!-- Background grid lines -->
+                    <line x1="200" y1="0" x2="200" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
+                    <line x1="400" y1="0" x2="400" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
+                    <line x1="600" y1="0" x2="600" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
+                    <line x1="0" y1="160" x2="800" y2="160" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
+                    <!-- Connecting paths between nodes -->
+                    <path id="cp-01-02" d="M 200 160 C 280 160 320 160 400 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
+                    <path id="cp-02-03" d="M 400 160 C 480 160 520 160 600 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
+                    <path id="cp-03-04" d="M 600 160 C 680 160 720 160 800 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
+                    <!-- Cross paths -->
+                    <path id="cp-01-03" d="M 200 160 C 260 100 340 100 400 160 C 460 220 540 220 600 160" fill="none" stroke="#9d9590" stroke-width="0.6" stroke-dasharray="4 6" opacity="0"/>
+                    <path id="cp-02-04" d="M 400 160 C 460 100 540 100 600 160 C 660 220 740 220 800 160" fill="none" stroke="#9d9590" stroke-width="0.6" stroke-dasharray="4 6" opacity="0"/>
+                    <!-- Signal dots travelling -->
+                    <circle id="cpsig-1" r="3" fill="#1a52b8" opacity="0"/>
+                    <circle id="cpsig-2" r="3" fill="#1a52b8" opacity="0"/>
+                    <!-- Node halos -->
+                    <circle id="cap-halo-0" cx="200" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
+                    <circle id="cap-halo-1" cx="400" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
+                    <circle id="cap-halo-2" cx="600" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
+                    <circle id="cap-halo-3" cx="800" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
+                    <!-- Node cores -->
+                    <circle id="cap-node-0" cx="200" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
+                    <circle id="cap-node-1" cx="400" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
+                    <circle id="cap-node-2" cx="600" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
+                    <circle id="cap-node-3" cx="800" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
+                    <!-- Data stream particles (hidden by default, JS animates) -->
+                    <circle id="ds1" r="2" fill="#1a52b8" opacity="0"/>
+                    <circle id="ds2" r="1.5" fill="#9d9590" opacity="0"/>
+                    <circle id="ds3" r="2" fill="#1a52b8" opacity="0"/>
+                </svg>
             </div>
-            <div class="meth-visual">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;q=80&amp;w=1200" alt="Strategic Analytics" loading="lazy" />
-                <div class="meth-visual-overlay"></div>
-            </div>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="step-rail" id="step-rail">
-                <div class="step-rail-progress" id="step-progress"></div>
-                <div class="step-row active" data-idx="0">
-                    <span class="step-label">01</span>
-                    <h4>Understand</h4>
-                    <p>Understand the business, objectives, constraints, and which decisions actually matter to the organization.</p>
-                </div>
-                <div class="step-row" data-idx="1">
-                    <span class="step-label">02</span>
-                    <h4>Diagnose</h4>
-                    <p>Analyze data, processes, customers, operations, and performance to identify where value is being lost.</p>
-                </div>
-                <div class="step-row" data-idx="2">
-                    <span class="step-label">03</span>
-                    <h4>Decide</h4>
-                    <p>Translate evidence into clear strategic options and actionable recommendations with defined trade-offs.</p>
-                </div>
-                <div class="step-row" data-idx="3">
-                    <span class="step-label">04</span>
-                    <h4>Execute</h4>
-                    <p>Turn recommendations into practical systems, dashboards, workflows, and organizational actions.</p>
-                </div>
-                <div class="step-row" data-idx="4">
-                    <span class="step-label">05</span>
-                    <h4>Measure</h4>
-                    <p>Track outcomes against baseline metrics, continuously improve, and capture the next wave of opportunity.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section id="industries" class="section border-b">
-    <div class="container if-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Sector Coverage</div>
-            <h2 style="font-size: 2rem;">Areas we can support.</h2>
-            <ul class="industry-list">
-                <li class="industry-item">Manufacturing</li>
-                <li class="industry-item">Retail &amp; Consumer</li>
-                <li class="industry-item">Financial Services</li>
-                <li class="industry-item">Healthcare</li>
-                <li class="industry-item">Logistics &amp; Supply Chain</li>
-                <li class="industry-item">Technology</li>
-            </ul>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="eyebrow">Who We Are</div>
-            <h2 style="font-size: 2rem;">Built for depth, not scale.</h2>
-            <p>DataDecision is a focused, founder-led consulting firm. We are small enough to think deeply on each problem, and rigorous enough to solve complex organizational challenges.</p>
-            <p>We exist because too many data initiatives fail to translate into business value. We bridge analytics, technology, and business strategy to create measurable impact.</p>
-            <div class="founder-block">
-                <div class="founder-name">Ashish Jha</div>
-                <div class="founder-title">Founder &amp; Principal &nbsp;&middot;&nbsp; B.Tech, NIT Surat</div>
+            <!-- 4 Capability panels -->
+            <div class="cap-panels">
+                <div class="cap-panel" data-cap="0" tabindex="0">
+                    <div class="cap-panel-num">01</div>
+                    <h3 class="cap-panel-title">Data &amp; Decision Intelligence</h3>
+                    <p class="cap-panel-teaser">Decision systems, forecasting, optimization, simulation, business intelligence.</p>
+                    <div class="cap-panel-detail">
+                        <div class="cap-detail-tags">
+                            <span>Demand Forecasting</span><span>Decision Modeling</span><span>Optimization</span><span>Business Intelligence</span><span>Simulation</span><span>KPI Architecture</span>
+                        </div>
+                        <p class="cap-detail-outcome">We build end-to-end decision systems that connect data signals directly to operational choices, replacing gut feel with structured, evidence-based intelligence.</p>
+                        <a href="/case-study-data-analytics" class="cap-detail-link">See how we applied this &rarr;</a>
+                    </div>
+                </div>
+                <div class="cap-panel" data-cap="1" tabindex="0">
+                    <div class="cap-panel-num">02</div>
+                    <h3 class="cap-panel-title">AI / ML Engineering</h3>
+                    <p class="cap-panel-teaser">Machine learning, deep learning, NLP, computer vision, generative AI, intelligent agents.</p>
+                    <div class="cap-panel-detail">
+                        <div class="cap-detail-tags">
+                            <span>Supervised / Unsupervised ML</span><span>Deep Learning</span><span>NLP</span><span>Computer Vision</span><span>GenAI</span><span>AI Agents</span>
+                        </div>
+                        <p class="cap-detail-outcome">We design, train, and deploy production-grade ML systems tailored to specific business problems, not generic model templates applied indiscriminately.</p>
+                        <a href="/case-study-ai-decision" class="cap-detail-link">See how we applied this &rarr;</a>
+                    </div>
+                </div>
+                <div class="cap-panel" data-cap="2" tabindex="0">
+                    <div class="cap-panel-num">03</div>
+                    <h3 class="cap-panel-title">Data Engineering &amp; AI Infrastructure</h3>
+                    <p class="cap-panel-teaser">Data platforms, pipelines, cloud architecture, data products, MLOps.</p>
+                    <div class="cap-panel-detail">
+                        <div class="cap-detail-tags">
+                            <span>Data Pipelines</span><span>Cloud Architecture</span><span>Data Products</span><span>Real-time Analytics</span><span>MLOps</span><span>Data Mesh</span>
+                        </div>
+                        <p class="cap-detail-outcome">We design data infrastructure that is built for analytical use, not just storage. Systems that feed models, power dashboards, and enable rapid iteration.</p>
+                        <a href="/case-study-operations" class="cap-detail-link">See how we applied this &rarr;</a>
+                    </div>
+                </div>
+                <div class="cap-panel" data-cap="3" tabindex="0">
+                    <div class="cap-panel-num">04</div>
+                    <h3 class="cap-panel-title">Intelligent Operations</h3>
+                    <p class="cap-panel-teaser">Demand forecasting, supply chain intelligence, pricing, customer analytics, process optimization.</p>
+                    <div class="cap-panel-detail">
+                        <div class="cap-detail-tags">
+                            <span>Supply Chain Intelligence</span><span>Dynamic Pricing</span><span>Customer Analytics</span><span>Process Optimization</span><span>Operational Decision Systems</span>
+                        </div>
+                        <p class="cap-detail-outcome">We translate operational data into a continuous advantage — systems that sense change, adapt, and route the right information to the right decision at the right time.</p>
+                        <a href="/case-study-customer-growth" class="cap-detail-link">See how we applied this &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical strip -->
+            <div class="tech-strip fade-up">
+                <div class="tech-strip-inner">
+                    <span>Machine Learning</span><span class="ts-sep">·</span>
+                    <span>Deep Learning</span><span class="ts-sep">·</span>
+                    <span>Generative AI</span><span class="ts-sep">·</span>
+                    <span>NLP</span><span class="ts-sep">·</span>
+                    <span>Computer Vision</span><span class="ts-sep">·</span>
+                    <span>Forecasting</span><span class="ts-sep">·</span>
+                    <span>Optimization</span><span class="ts-sep">·</span>
+                    <span>Simulation</span><span class="ts-sep">·</span>
+                    <span>Data Engineering</span><span class="ts-sep">·</span>
+                    <span>MLOps</span><span class="ts-sep">·</span>
+                    <span>Cloud Analytics</span><span class="ts-sep">·</span>
+                    <span>Decision Intelligence</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="case-studies" class="section bg-stone border-b">
+<!-- NEW APPROACH SECTION (replaces Methodology) -->
+<section id="approach" class="section bg-stone border-b" style="overflow:hidden;">
     <div class="container">
-        <div class="cs-intro fade-up">
+        <div class="approach-header fade-up">
+            <div class="eyebrow">How We Think</div>
+            <h2 style="max-width:680px;">Every problem demands a different system.</h2>
+            <p class="lead" style="max-width:620px;margin-top:16px;">Business problems rarely arrive in predefined categories. We start with the decision that matters, understand the constraints around it, and assemble the right combination of data, models, technology, and domain expertise to solve it.</p>
+        </div>
+        <div class="approach-layout">
+            <!-- Left: Problem input column -->
+            <div class="approach-left fade-up">
+                <div class="approach-problem-block" id="app-problem">
+                    <div class="app-input-label">Business Problem</div>
+                    <div class="app-input-examples" id="app-examples">
+                        <span class="app-eg active" data-branch="0">How do we reduce inventory overstock?</span>
+                        <span class="app-eg" data-branch="1">What will demand look like next quarter?</span>
+                        <span class="app-eg" data-branch="2">Which customers are at risk of churning?</span>
+                        <span class="app-eg" data-branch="3">How do we price dynamically across segments?</span>
+                        <span class="app-eg" data-branch="4">Can we automate contract review?</span>
+                    </div>
+                </div>
+                <div class="approach-connector"></div>
+                <div class="app-data-label">Data + Context + Constraints</div>
+            </div>
+
+            <!-- Centre: SVG branching diagram -->
+            <div class="approach-svg-wrap fade-up delay-1" id="approach-svg-wrap">
+                <svg id="approach-svg" viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Trunk line down from top -->
+                    <line id="asvg-trunk" x1="170" y1="0" x2="170" y2="120" stroke="#d8d3cc" stroke-width="1.5" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <!-- Central node -->
+                    <circle id="asvg-center" cx="170" cy="120" r="8" fill="white" stroke="#d8d3cc" stroke-width="1.5"/>
+                    <!-- Branch paths (5 solutions) -->
+                    <path id="abr-0" d="M170 120 C 170 180 60 180 60 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <path id="abr-1" d="M170 120 C 170 180 115 180 115 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <path id="abr-2" d="M170 120 C 170 180 170 180 170 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <path id="abr-3" d="M170 120 C 170 180 225 180 225 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <path id="abr-4" d="M170 120 C 170 180 280 180 280 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
+                    <!-- Solution nodes -->
+                    <g id="asol-0" class="asol-node" data-branch="0" style="cursor:pointer">
+                        <circle cx="60" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
+                        <circle cx="60" cy="252" r="5" fill="#d8d3cc"/>
+                    </g>
+                    <g id="asol-1" class="asol-node" data-branch="1" style="cursor:pointer">
+                        <circle cx="115" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
+                        <circle cx="115" cy="252" r="5" fill="#d8d3cc"/>
+                    </g>
+                    <g id="asol-2" class="asol-node" data-branch="2" style="cursor:pointer">
+                        <circle cx="170" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
+                        <circle cx="170" cy="252" r="5" fill="#d8d3cc"/>
+                    </g>
+                    <g id="asol-3" class="asol-node" data-branch="3" style="cursor:pointer">
+                        <circle cx="225" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
+                        <circle cx="225" cy="252" r="5" fill="#d8d3cc"/>
+                    </g>
+                    <g id="asol-4" class="asol-node" data-branch="4" style="cursor:pointer">
+                        <circle cx="280" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
+                        <circle cx="280" cy="252" r="5" fill="#d8d3cc"/>
+                    </g>
+                    <!-- Node labels -->
+                    <text x="60" y="292" text-anchor="middle" class="asvg-label">Optimization</text>
+                    <text x="115" y="292" text-anchor="middle" class="asvg-label">Forecasting</text>
+                    <text x="170" y="292" text-anchor="middle" class="asvg-label">ML Model</text>
+                    <text x="225" y="292" text-anchor="middle" class="asvg-label">Analytics</text>
+                    <text x="280" y="292" text-anchor="middle" class="asvg-label">NLP / AI</text>
+                    <!-- Outcome line down from active node -->
+                    <line id="asvg-outcome-line" x1="170" y1="300" x2="170" y2="380" stroke="#1a52b8" stroke-width="1.5" stroke-dasharray="100" stroke-dashoffset="100" opacity="0"/>
+                    <!-- Decision outcome node -->
+                    <g id="asvg-outcome" opacity="0">
+                        <circle cx="170" cy="400" r="18" fill="none" stroke="#1a52b8" stroke-width="1.5"/>
+                        <circle cx="170" cy="400" r="6" fill="#1a52b8"/>
+                        <text x="170" y="432" text-anchor="middle" class="asvg-label" fill="#1a52b8" font-weight="600">Decision</text>
+                    </g>
+                    <!-- Signal traveller -->
+                    <circle id="asvg-signal" r="3" fill="#1a52b8" opacity="0"/>
+                </svg>
+            </div>
+
+            <!-- Right: Solution detail panel -->
+            <div class="approach-right fade-up delay-2">
+                <div class="approach-solutions">
+                    <div class="app-sol-panel active" data-branch="0">
+                        <div class="app-sol-num">Path A</div>
+                        <h4>Inventory Optimization</h4>
+                        <p>Constraint-based optimization model built on real demand signals, reducing overstock without sacrificing service levels.</p>
+                        <div class="app-sol-methods"><span>Operations Research</span><span>Mixed-Integer Programming</span><span>Demand Sensing</span></div>
+                    </div>
+                    <div class="app-sol-panel" data-branch="1">
+                        <div class="app-sol-num">Path B</div>
+                        <h4>Demand Forecasting System</h4>
+                        <p>Probabilistic forecasting engine that combines internal history with external signals for planning horizons that actually hold.</p>
+                        <div class="app-sol-methods"><span>Time-Series ML</span><span>External Signal Integration</span><span>Uncertainty Quantification</span></div>
+                    </div>
+                    <div class="app-sol-panel" data-branch="2">
+                        <div class="app-sol-num">Path C</div>
+                        <h4>Churn Prediction Model</h4>
+                        <p>Customer-level survival model scoring churn probability weekly, feeding targeted retention intervention workflows.</p>
+                        <div class="app-sol-methods"><span>Survival Analysis</span><span>Gradient Boosting</span><span>Customer Segmentation</span></div>
+                    </div>
+                    <div class="app-sol-panel" data-branch="3">
+                        <div class="app-sol-num">Path D</div>
+                        <h4>Dynamic Pricing Engine</h4>
+                        <p>Price optimization system that continuously balances margin, volume, and competitive positioning across customer segments.</p>
+                        <div class="app-sol-methods"><span>Elasticity Modeling</span><span>Reinforcement Learning</span><span>Segment Analytics</span></div>
+                    </div>
+                    <div class="app-sol-panel" data-branch="4">
+                        <div class="app-sol-num">Path E</div>
+                        <h4>Contract Intelligence Agent</h4>
+                        <p>NLP pipeline that extracts, classifies, and flags key clauses from contract documents, enabling scalable legal and commercial review.</p>
+                        <div class="app-sol-methods"><span>NLP / LLM</span><span>Information Extraction</span><span>AI Agent</span></div>
+                    </div>
+                </div>
+                <div class="app-nav">
+                    <button class="app-nav-btn" id="app-prev" aria-label="Previous">&#8592;</button>
+                    <span class="app-nav-pos" id="app-nav-pos">1 / 5</span>
+                    <button class="app-nav-btn" id="app-next" aria-label="Next">&#8594;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CASE STUDIES (redesigned) -->
+<section id="case-studies" class="section border-b" style="overflow:hidden;">
+    <div class="container">
+        <div class="cs2-header fade-up">
             <div class="eyebrow">Client Outcomes</div>
-            <h2>Structured thinking. Measurable impact.</h2>
-            <p style="margin-top:16px;">Examples of how we frame problems, structure analysis, and drive organizational decisions. All case study content is illustrative and placeholder.</p>
+            <h2>Structured thinking.<br>Measurable impact.</h2>
+            <p class="lead" style="max-width:540px;margin-top:16px;">How we frame complex problems, engineer analytical solutions, and turn data into decisions.</p>
         </div>
-        <div class="cs-grid fade-up delay-1">
-            <a href="/case-study-data-analytics" class="cs-card">
-                <div class="cs-card-label">Operations &amp; Analytics</div>
-                <h3>Supply Chain Visibility &amp; Demand Intelligence</h3>
-                <div class="cs-field"><div class="cs-field-label">Challenge</div><p>Fragmented inventory data led to overstocking and capital lock-up across regional distribution centers.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Approach</div><p>Integrated data model analyzing demand patterns and lead times at the SKU level across the network.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Outcome</div><p>Improved inventory positioning and measurable reduction in working capital requirements.</p></div>
-                <span class="cs-card-link">Read full case study &rarr;</span>
-            </a>
-            <a href="/case-study-ai-decision" class="cs-card">
-                <div class="cs-card-label">AI &amp; Decision Intelligence</div>
-                <h3>AI-Driven Demand Forecasting for a Retail Business</h3>
-                <div class="cs-field"><div class="cs-field-label">Challenge</div><p>Sales forecasts were based on spreadsheet models and historical averages, creating systematic forecast errors.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Approach</div><p>Built a machine learning forecasting engine incorporating external signals alongside internal sales history.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Outcome</div><p>Significantly improved forecast accuracy and reduced markdown spend through earlier demand signals.</p></div>
-                <span class="cs-card-link">Read full case study &rarr;</span>
-            </a>
-            <a href="/case-study-operations" class="cs-card">
-                <div class="cs-card-label">Operations &amp; Performance</div>
-                <h3>Operational Efficiency Program in Manufacturing</h3>
-                <div class="cs-field"><div class="cs-field-label">Challenge</div><p>Production efficiency was declining and leadership lacked data infrastructure to diagnose root causes.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Approach</div><p>Built a real-time operational intelligence layer connecting shop-floor data to financial performance metrics.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Outcome</div><p>Identified and addressed top efficiency drivers, improving throughput without additional capital investment.</p></div>
-                <span class="cs-card-link">Read full case study &rarr;</span>
-            </a>
-            <a href="/case-study-customer-growth" class="cs-card">
-                <div class="cs-card-label">Customer &amp; Growth</div>
-                <h3>Customer Profitability and Commercial Repricing</h3>
-                <div class="cs-field"><div class="cs-field-label">Challenge</div><p>Leadership lacked visibility into true customer profitability due to disconnected sales and cost data.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Approach</div><p>Built a unified cost-to-serve model allocating costs down to the individual account and product level.</p></div>
-                <div class="cs-field"><div class="cs-field-label">Outcome</div><p>Restructured service tiers and renegotiated contracts, improving margins through strategic repricing.</p></div>
-                <span class="cs-card-link">Read full case study &rarr;</span>
-            </a>
-        </div>
-    </div>
-</section>
 
-<section id="insights" class="section border-b">
-    <div class="container">
-        <div class="insights-header fade-up">
-            <div class="eyebrow">Thought Leadership</div>
-            <h2>Perspectives on data, strategy, and decisions.</h2>
-        </div>
-        <a href="/insight-decision-intelligence" class="featured-ins fade-up">
-            <div class="fi-img"><img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&amp;fit=crop&amp;q=80&amp;w=1200" alt="Executive Strategy" loading="lazy" /></div>
-            <div class="fi-content">
-                <div class="fi-category">Strategy &middot; Decision Intelligence &middot; AI</div>
-                <h3 class="fi-title">From reporting to reasoning: How decision intelligence changes what data actually delivers.</h3>
-                <p class="fi-desc">Organizations are shifting from retrospective reporting to proactive decision systems. The firms doing this well share a set of structural choices that others are only beginning to understand.</p>
-                <span class="btn-ghost">Read insight &rarr;</span>
+        <!-- Desktop timeline rail -->
+        <div class="cs2-rail" id="cs2-rail">
+            <div class="cs2-track">
+                <div class="cs2-track-line"><div class="cs2-track-progress" id="cs2-progress"></div></div>
+                <div class="cs2-track-nodes">
+                    <div class="cs2-tnode active" data-cs="0"><span>01</span></div>
+                    <div class="cs2-tnode" data-cs="1"><span>02</span></div>
+                    <div class="cs2-tnode" data-cs="2"><span>03</span></div>
+                    <div class="cs2-tnode" data-cs="3"><span>04</span></div>
+                </div>
             </div>
-        </a>
-        <div class="ins-grid fade-up delay-1">
-            <a href="/insight-dashboard-limits" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="Consulting Analysis" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Article &middot; Analytics</div>
-                    <h4>The limits of dashboards: Why visibility without decisions is insufficient.</h4>
-                    <p>Dashboards answer what happened. Decision intelligence answers what to do next.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-            <a href="/insight-ai-enterprise" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="AI Enterprise" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Whitepaper &middot; AI</div>
-                    <h4>Navigating the AI frontier: From proof of concept to enterprise integration.</h4>
-                    <p>Moving beyond pilots to embed AI into core operating models requires a different kind of discipline.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-            <a href="/insight-supply-chain" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="Supply Chain" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Brief &middot; Operations</div>
-                    <h4>Supply chain resilience through predictive analytics and data integration.</h4>
-                    <p>How leading firms use internal and external signals to anticipate disruptions before they become crises.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<section id="careers" class="section careers-section">
-    <div class="container careers-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Join the Firm</div>
-            <h2>A culture of rigorous thinking.</h2>
-            <p class="lead" style="margin: 16px 0 24px; color: rgba(240,239,237,0.7);">We value rigour over rank, clarity over complexity, and ownership over execution.</p>
-            <p>If you think differently about data, business, or strategy, we want to hear from you. You do not need to fit a conventional mould. You need to bring something exceptional to the table.</p>
-            <div style="margin-top: 36px;"><a href="mailto:careers@datadecision.consulting" class="btn btn-primary">Send Your Profile</a></div>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="culture-item"><div class="culture-num">01</div><h4>First-principles thinking</h4><p>We question assumptions before accepting them. The right answer is rarely the obvious one.</p></div>
-            <div class="culture-item"><div class="culture-num">02</div><h4>Direct ownership</h4><p>No layers, no bureaucracy. You own your work from problem framing to delivery.</p></div>
-            <div class="culture-item"><div class="culture-num">03</div><h4>Deliberate communication</h4><p>We write clearly, present precisely, and only say what can be substantiated with evidence.</p></div>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="section contact-section">
-    <div class="container contact-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Request a Brief</div>
-            <h2>Have a decision that deserves better data?</h2>
-            <p class="lead" style="margin: 16px 0 32px; color: rgba(240,239,237,0.65);">Let us explore what your data can tell you and what you should do next.</p>
-            <p class="contact-email">hello@datadecision.consulting</p>
-            <p style="font-size: 0.875rem;">All enquiries handled with discretion.</p>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="form-wrap">
-                <form id="contact-form">
-                    <input type="hidden" name="access_key" value="0f76b840-061b-4f83-b0d8-7212eb4897e6"/>
-                    <input type="hidden" name="subject" value="New Inquiry - DataDecision.consulting"/>
-                    <input type="checkbox" name="botcheck" style="display:none"/>
-                    <div class="form-row"><label>Name</label><input type="text" name="name" class="form-field" required/></div>
-                    <div class="form-row"><label>Email</label><input type="email" name="email" class="form-field" required/></div>
-                    <div class="form-row"><label>Area of Interest</label><select name="service" class="form-field" required><option value="" disabled selected>Select an area</option><option>Data &amp; Analytics</option><option>AI &amp; Decision Intelligence</option><option>Operations &amp; Performance</option><option>Customer &amp; Growth</option><option>Other Strategic Inquiry</option></select></div>
-                    <div class="form-row"><label>Context</label><textarea name="message" class="form-field" rows="4" placeholder="Briefly describe the challenge..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">Send Inquiry</button>
-                    <p id="form-msg" style="margin-top:14px; font-size:0.85rem; text-align:center; color: rgba(240,239,237,0.6);"></p>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <a href="/" class="logo" style="margin-bottom:0;">
-                    <div class="logo-mark"><svg viewBox="0 0 16 16"><rect x="1" y="8" width="3" height="7"/><rect x="6" y="4" width="3" height="11"/><rect x="11" y="1" width="3" height="14"/></svg></div>
-                    DataDecision
+            <div class="cs2-cards">
+                <a href="/case-study-data-analytics" class="cs2-card active" data-cs="0">
+                    <div class="cs2-card-cat">Operations &amp; Analytics</div>
+                    <h3 class="cs2-card-title">Supply Chain Visibility &amp; Demand Intelligence</h3>
+                    <span class="cs2-card-link">Explore case &rarr;</span>
                 </a>
-                <p class="footer-tagline">Data and AI strategy consulting. We turn complex data into clear decisions and measurable business impact.</p>
+                <a href="/case-study-ai-decision" class="cs2-card" data-cs="1">
+                    <div class="cs2-card-cat">AI &amp; Decision Intelligence</div>
+                    <h3 class="cs2-card-title">AI-Driven Demand Forecasting for a Retail Business</h3>
+                    <span class="cs2-card-link">Explore case &rarr;</span>
+                </a>
+                <a href="/case-study-operations" class="cs2-card" data-cs="2">
+                    <div class="cs2-card-cat">Operations &amp; Performance</div>
+                    <h3 class="cs2-card-title">Operational Efficiency Program in Manufacturing</h3>
+                    <span class="cs2-card-link">Explore case &rarr;</span>
+                </a>
+                <a href="/case-study-customer-growth" class="cs2-card" data-cs="3">
+                    <div class="cs2-card-cat">Customer &amp; Growth</div>
+                    <h3 class="cs2-card-title">Customer Profitability and Commercial Repricing</h3>
+                    <span class="cs2-card-link">Explore case &rarr;</span>
+                </a>
             </div>
-            <div>
-                <h5>Expertise</h5>
-                <ul>
-                    <li><a href="/case-study-data-analytics">Data &amp; Analytics</a></li>
-                    <li><a href="/case-study-ai-decision">AI &amp; Decision Intelligence</a></li>
-                    <li><a href="/case-study-operations">Operations &amp; Performance</a></li>
-                    <li><a href="/case-study-customer-growth">Customer &amp; Growth</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5>Firm</h5>
-                <ul>
-                    <li><a href="/#challenge">Who We Are</a></li>
-                    <li><a href="/#approach">Methodology</a></li>
-                    <li><a href="/#case-studies">Impact</a></li>
-                    <li><a href="/#careers">Careers</a></li>
-                    <li><a href="/#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 DataDecision.consulting. All rights reserved.</p>
-            <div><a href="#">Privacy</a><a href="#">Terms</a></div>
         </div>
     </div>
-</footer>
+</section>
 
+
+<section id="insights"
 <script>
-(function() {
-    const video = document.getElementById('hero-video');
-    if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        video.removeAttribute('autoplay');
-        video.pause();
-    }
-})();
+/* ===== CAPABILITY SYSTEM (Expertise) ===== */
+(function(){
+    const panels = document.querySelectorAll('.cap-panel');
+    const nodes = [
+        document.getElementById('cap-node-0'),
+        document.getElementById('cap-node-1'),
+        document.getElementById('cap-node-2'),
+        document.getElementById('cap-node-3'),
+    ];
+    const halos = [
+        document.getElementById('cap-halo-0'),
+        document.getElementById('cap-halo-1'),
+        document.getElementById('cap-halo-2'),
+        document.getElementById('cap-halo-3'),
+    ];
+    const paths = {
+        '01-02': document.getElementById('cp-01-02'),
+        '02-03': document.getElementById('cp-02-03'),
+        '03-04': document.getElementById('cp-03-04'),
+        '01-03': document.getElementById('cp-01-03'),
+        '02-04': document.getElementById('cp-02-04'),
+    };
 
-(function() {
-    const flowBtns = document.querySelectorAll('.meth-flow-btn');
-    const stepRows = document.querySelectorAll('.step-row');
-    const progress = document.getElementById('step-progress');
-    const rail = document.getElementById('step-rail');
-    let cur = 0, timer;
-    function setStep(i) {
-        flowBtns.forEach(b => b.classList.remove('active'));
-        stepRows.forEach(s => s.classList.remove('active'));
-        if (flowBtns[i]) flowBtns[i].classList.add('active');
-        if (stepRows[i]) stepRows[i].classList.add('active');
-        if (progress && rail) {
-            const totalH = rail.offsetHeight;
-            const stepH = totalH / stepRows.length;
-            progress.style.height = (i * stepH + stepH * 0.5) + 'px';
+    function activateNode(idx) {
+        nodes.forEach((n,i) => {
+            if(!n) return;
+            n.setAttribute('fill', i===idx ? '#1a52b8' : '#d8d3cc');
+            n.setAttribute('r', i===idx ? '9' : '6');
+        });
+        halos.forEach((h,i) => {
+            if(!h) return;
+            h.setAttribute('opacity', i===idx ? '0.6' : '0');
+        });
+        // Animate connecting lines
+        Object.values(paths).forEach(p => { if(p) p.setAttribute('opacity', '0.35'); });
+    }
+
+    // Animate path draws on scroll in
+    const capSvgWrap = document.querySelector('.cap-svg-wrap');
+    let capAnimated = false;
+    if(capSvgWrap) {
+        const io = new IntersectionObserver(entries => {
+            if(entries[0].isIntersecting && !capAnimated) {
+                capAnimated = true;
+                const pathEls = Object.values(paths);
+                pathEls.forEach((p, i) => {
+                    if(!p) return;
+                    setTimeout(() => {
+                        p.style.transition = 'opacity 0.5s';
+                        p.setAttribute('opacity', '0.35');
+                    }, i * 200);
+                });
+                nodes.forEach((n, i) => {
+                    if(!n) return;
+                    setTimeout(() => {
+                        n.setAttribute('fill', '#9d9590');
+                    }, i * 150);
+                });
+            }
+        }, { threshold: 0.3 });
+        io.observe(capSvgWrap);
+    }
+
+    // Data stream signal animation
+    const sig1 = document.getElementById('cpsig-1');
+    const sig2 = document.getElementById('cpsig-2');
+    let sig1t = 0, sig2t = 0.5;
+    function animSignals() {
+        sig1t = (sig1t + 0.004) % 1;
+        sig2t = (sig2t + 0.003) % 1;
+        const x1 = 200 + sig1t * 600;
+        if(sig1) { sig1.setAttribute('cx', x1); sig1.setAttribute('cy', 160); sig1.setAttribute('opacity', '0.7'); }
+        const x2 = 200 + sig2t * 600;
+        if(sig2) { sig2.setAttribute('cx', x2); sig2.setAttribute('cy', 160); sig2.setAttribute('opacity', '0.45'); }
+        requestAnimationFrame(animSignals);
+    }
+    if(sig1 || sig2) animSignals();
+
+    // Panel click / keyboard open
+    panels.forEach((panel, idx) => {
+        function toggle() {
+            const isOpen = panel.classList.contains('open');
+            panels.forEach(p => p.classList.remove('open'));
+            if(!isOpen) {
+                panel.classList.add('open');
+                activateNode(idx);
+            } else {
+                nodes.forEach(n => { if(n) n.setAttribute('fill','#d8d3cc'); n.setAttribute('r','6'); });
+                halos.forEach(h => { if(h) h.setAttribute('opacity','0'); });
+            }
         }
-        cur = i;
-    }
-    function play() { timer = setInterval(() => setStep((cur+1)%5), 4000); }
-    function stop() { clearInterval(timer); }
-    flowBtns.forEach(b => {
-        b.addEventListener('click', () => { stop(); setStep(+b.dataset.idx); });
-        b.addEventListener('mouseenter', () => { stop(); setStep(+b.dataset.idx); });
-        b.addEventListener('mouseleave', play);
+        panel.addEventListener('click', toggle);
+        panel.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); } });
     });
-    stepRows.forEach(r => {
-        r.addEventListener('mouseenter', () => { stop(); setStep(+r.dataset.idx); });
-        r.addEventListener('mouseleave', play);
-    });
-    setStep(0); play();
+
+    // Open first panel by default after a moment
+    setTimeout(() => { if(panels[0]) panels[0].click(); }, 800);
 })();
 
-(function() {
+/* ===== APPROACH / SYSTEM DIAGRAM ===== */
+(function(){
+    const examples = document.querySelectorAll('.app-eg');
+    const solPanels = document.querySelectorAll('.app-sol-panel');
+    const navPos = document.getElementById('app-nav-pos');
+    const prevBtn = document.getElementById('app-prev');
+    const nextBtn = document.getElementById('app-next');
+    const asvgNodes = document.querySelectorAll('.asol-node');
+    const branchPaths = [0,1,2,3,4].map(i => document.getElementById('abr-' + i));
+    const trunk = document.getElementById('asvg-trunk');
+    const center = document.getElementById('asvg-center');
+    const outcomeLine = document.getElementById('asvg-outcome-line');
+    const outcomeEl = document.getElementById('asvg-outcome');
+    const asvgSignal = document.getElementById('asvg-signal');
+    let current = 0;
+    const total = examples.length;
+
+    // Node positions for signal
+    const nodePos = [{x:60,y:252},{x:115,y:252},{x:170,y:252},{x:225,y:252},{x:280,y:252}];
+    let signalT = 0;
+
+    function setCurrent(idx) {
+        current = (idx + total) % total;
+        examples.forEach((e, i) => e.classList.toggle('active', i===current));
+        solPanels.forEach((p, i) => p.classList.toggle('active', i===current));
+        if(navPos) navPos.textContent = (current+1) + ' / ' + total;
+
+        // Update SVG branch highlight
+        asvgNodes.forEach((n, i) => {
+            const innerCircle = n.querySelector('circle:last-child');
+            const outerCircle = n.querySelector('circle:first-child');
+            if(innerCircle) innerCircle.setAttribute('fill', i===current ? '#1a52b8' : '#d8d3cc');
+            if(outerCircle) outerCircle.setAttribute('stroke', i===current ? '#1a52b8' : '#d8d3cc');
+        });
+        branchPaths.forEach((p, i) => {
+            if(p) p.setAttribute('stroke', i===current ? '#1a52b8' : '#9d9590');
+            if(p) p.setAttribute('stroke-width', i===current ? '1.5' : '1');
+        });
+
+        // Show outcome
+        if(outcomeLine) { outcomeLine.setAttribute('opacity','1'); outcomeLine.setAttribute('stroke-dashoffset','0'); }
+        if(outcomeEl) outcomeEl.setAttribute('opacity','1');
+        signalT = 0;
+    }
+
+    if(prevBtn) prevBtn.addEventListener('click', () => setCurrent(current-1));
+    if(nextBtn) nextBtn.addEventListener('click', () => setCurrent(current+1));
+    examples.forEach((eg, i) => eg.addEventListener('click', () => setCurrent(i)));
+    asvgNodes.forEach((n, i) => n.addEventListener('click', () => setCurrent(i)));
+
+    // Auto cycle
+    let autoTimer = setInterval(() => setCurrent(current+1), 3500);
+    [prevBtn, nextBtn].forEach(b => {
+        if(b) b.addEventListener('click', () => { clearInterval(autoTimer); });
+    });
+
+    // Scroll-trigger trunk animation
+    const aWrap = document.getElementById('approach-svg-wrap');
+    let aAnimated = false;
+    if(aWrap) {
+        const io = new IntersectionObserver(entries => {
+            if(entries[0].isIntersecting && !aAnimated) {
+                aAnimated = true;
+                if(trunk) { trunk.style.transition='stroke-dashoffset 0.8s ease'; trunk.setAttribute('stroke-dashoffset','0'); }
+                if(center) { center.setAttribute('stroke','#1a52b8'); }
+                branchPaths.forEach((p, i) => {
+                    if(p) setTimeout(() => { p.style.transition='stroke-dashoffset 0.6s ease'; p.setAttribute('stroke-dashoffset','0'); }, 400 + i*100);
+                });
+                setTimeout(() => setCurrent(0), 1200);
+            }
+        }, { threshold: 0.3 });
+        io.observe(aWrap);
+    }
+
+    // Signal dot animation along active branch
+    function animSignal(ts) {
+        if(!asvgSignal) { requestAnimationFrame(animSignal); return; }
+        signalT = (signalT + 0.012) % 1;
+        const np = nodePos[current];
+        const sx = 170 + (np.x - 170) * signalT;
+        const sy = 120 + (np.y - 120) * signalT;
+        asvgSignal.setAttribute('cx', sx);
+        asvgSignal.setAttribute('cy', sy);
+        asvgSignal.setAttribute('opacity', aAnimated ? '0.85' : '0');
+        requestAnimationFrame(animSignal);
+    }
+    requestAnimationFrame(animSignal);
+})();
+
+/* ===== CASE STUDIES TIMELINE ===== */
+(function(){
+    const cs2Rail = document.getElementById('cs2-rail');
+    const tnodes = document.querySelectorAll('.cs2-tnode');
+    const cards = document.querySelectorAll('.cs2-card');
+    const progress = document.getElementById('cs2-progress');
+    const pcts = ['0%','33%','66%','100%'];
+
+    function setActive(idx) {
+        tnodes.forEach((n,i) => n.classList.toggle('active', i<=idx));
+        cards.forEach((c,i) => c.classList.toggle('active', i===idx));
+        if(progress) progress.style.width = pcts[idx] || '0%';
+    }
+
+    // Scroll-trigger: auto-activate as user scrolls through section
+    if(cs2Rail) {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const rect = cs2Rail.getBoundingClientRect();
+                    const vh = window.innerHeight;
+                    const sectionProgress = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh)));
+                    const idx = Math.min(3, Math.floor(sectionProgress * 4));
+                    setActive(idx);
+                }
+            });
+        }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+        io.observe(cs2Rail);
+        window.addEventListener('scroll', () => {
+            if(!cs2Rail) return;
+            const rect = cs2Rail.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const sp = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh * 0.5)));
+            setActive(Math.min(3, Math.floor(sp * 4.5)));
+        }, { passive: true });
+    }
+
+    tnodes.forEach((n, i) => n.addEventListener('click', () => setActive(i)));
+    cards.forEach((c, i) => {
+        c.addEventListener('mouseenter', () => setActive(i));
+    });
+
+    // Initialize
+    setActive(0);
+})();
+
+/* ===== FADE-UP OBSERVER ===== */
+(function(){
+    if(window._fuObserver) return;
+    window._fuObserver = true;
     const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 })();
-
-(function() {
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-})();
-
-(function() {
-    const btn = document.getElementById('menu-btn');
-    const nav = document.getElementById('mobile-nav');
-    btn.addEventListener('click', () => {
-        nav.classList.toggle('open');
-        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-    });
-    document.querySelectorAll('.mob-link').forEach(l => {
-        l.addEventListener('click', () => {
-            nav.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-})();
-
-(function() {
-    const form = document.getElementById('contact-form');
-    const msg = document.getElementById('form-msg');
-    if (!form) return;
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const btn = form.querySelector('[type="submit"]');
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-        try {
-            const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
-            const data = await res.json();
-            msg.textContent = data.success ? 'Inquiry received. We will be in touch shortly.' : 'Submission failed. Please email us directly.';
-        } catch { msg.textContent = 'Submission failed. Please email us directly.'; }
-        btn.textContent = 'Send Inquiry';
-        btn.disabled = false;
-    });
-})();
 </script>
-</body>
-</html>
