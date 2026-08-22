@@ -94,16 +94,11 @@
         }
         .navbar.scrolled { padding: 16px 0; background: rgba(7, 7, 9, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-dark); }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 26px; transition: all 0.3s ease; filter: brightness(0); } /* Black logo by default */
-        .navbar.scrolled .logo-img { filter: invert(1); } /* White logo on scroll */
+        .logo-img { height: 26px; transition: all 0.3s ease; filter: invert(1); } /* Always white logo */
         .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a { font-size: 0.85rem; font-weight: 500; color: #475569; transition: color 0.3s; }
-        .nav-links a:hover { color: #0F172A; }
-        .navbar.scrolled .nav-links a { color: rgba(255,255,255,0.7); }
-        .navbar.scrolled .nav-links a:hover { color: #ffffff; }
-        
+        .nav-links a { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); transition: color 0.3s; }
+        .nav-links a:hover { color: #ffffff; }
         @media(max-width: 1024px) { .nav-links { display: none; } }
-
         /* Button */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
@@ -290,20 +285,19 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero-split">
-        <div class="hero-container">
-            <div class="hero-left">
-                <h1 class="hero-headline">Engineering decisions that matter.</h1>
-                <p class="hero-subhead">We transform complex data architectures and machine learning models into measurable business outcomes.</p>
-                <div class="hero-ctas">
-                    <a href="#contact" class="btn-cobalt">Request a brief</a>
-                    <a href="#case-studies" class="btn-outline-dark">Explore outcomes</a>
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="proof-panel">
-                    <video src="/hero-video-no-watermark.mp4" poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; border-radius: 3px; display: block;"></video>
-                </div>
+    <section class="hero-full-video">
+        <div class="hero-video-wrapper">
+            <video id="hero-video" src="/hero-video-no-watermark.mp4" poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200" autoplay loop muted playsinline preload="metadata"></video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="container hero-content reveal">
+            <span class="eyebrow" style="color: var(--accent-cyan); justify-content: center;">Intelligent Automation & Advisory</span>
+            <h1 class="hero-headline">Engineering decisions that matter.</h1>
+            <p class="hero-subhead">We transform complex data architectures and machine learning models into measurable business outcomes.</p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn-cobalt">Request a brief</a>
+                <a href="#case-studies" class="btn-outline-light">Explore outcomes</a>
             </div>
         </div>
     </section>
