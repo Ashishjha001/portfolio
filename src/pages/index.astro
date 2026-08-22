@@ -1,896 +1,430 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataDecision | Data &amp; AI Strategy Consulting</title>
-    <meta name="description" content="We turn complex data into clear decisions. Premium data and AI strategy consulting for modern businesses." />
+    <title>DataDecision | Strategic Intelligence</title>
+    <meta name="description" content="Premium data and AI strategy consulting for modern enterprises." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
+            --black: #000000;
+            --dark-1: #0A0A0A;
+            --dark-2: #141414;
             --white: #ffffff;
-            --off-white: #fafaf8;
-            --stone-50: #f5f4f1;
-            --stone-100: #ede9e4;
-            --stone-200: #d8d3cc;
-            --stone-400: #9d9590;
-            --ink: #1a1a18;
-            --ink-70: #3d3d3a;
-            --ink-40: #767673;
-            --blue: #1a52b8;
-            --blue-hover: #1340a0;
-            --blue-light: #eef2fb;
-            --border: #e2ddd8;
-            --border-dark: rgba(255,255,255,0.12);
-            --font-sans: 'DM Sans', system-ui, sans-serif;
-            --font-serif: 'Lora', Georgia, serif;
-            --section-pad: 120px;
-            --radius: 3px;
-        }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body { font-family: var(--font-sans); background: var(--white); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-        button { font-family: inherit; }
-        h1, h2, h3, h4 { color: var(--ink); line-height: 1.15; letter-spacing: -0.025em; }
-        h1 { font-family: var(--font-sans); font-size: clamp(2.6rem, 5.5vw, 4.25rem); font-weight: 700; }
-        h2 { font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 600; }
-        h3 { font-size: 1.2rem; font-weight: 600; }
-        h4 { font-size: 1rem; font-weight: 600; }
-        p { color: var(--ink-70); line-height: 1.75; margin-bottom: 1rem; }
-        p:last-child { margin-bottom: 0; }
-        .serif { font-family: var(--font-serif); font-style: italic; }
-        .eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--ink-40); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        
-        .lead { font-size: 1.15rem; line-height: 1.75; color: var(--ink-70); }
-        .text-blue { color: var(--blue); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-        .section { padding: var(--section-pad) 0; }
-        .bg-stone { background: var(--stone-50); }
-        .bg-dark { background: #0f1923; }
-        .border-b { border-bottom: 1px solid var(--border); }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 28px; font-size: 0.875rem; font-weight: 500; border-radius: var(--radius); border: 1px solid transparent; cursor: pointer; transition: all 0.2s ease; letter-spacing: 0.01em; }
-        .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
-        .btn-primary:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
-        .btn-outline { background: transparent; color: var(--ink); border-color: var(--border); }
-        .btn-outline:hover { border-color: var(--ink-70); }
-        .btn-ghost { background: transparent; color: var(--blue); border: none; padding: 0; font-weight: 600; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px; }
-        .btn-ghost:hover { color: var(--blue-hover); }
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 200; padding: 22px 0; transition: all 0.35s ease; }
-        .navbar.scrolled { padding: 14px 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.03em; color: var(--ink); }
-        .logo-mark { width: 22px; height: 22px; background: var(--blue); display: flex; align-items: center; justify-content: center; border-radius: 2px; }
-        .logo-mark svg { width: 11px; fill: #fff; }
-        .nav-links { display: none; align-items: center; gap: 36px; }
-        .nav-links a { font-size: 0.825rem; font-weight: 500; color: var(--ink-70); transition: color 0.2s; }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-cta { border: 1px solid var(--border) !important; border-radius: var(--radius) !important; padding: 9px 18px !important; font-size: 0.825rem !important; font-weight: 600 !important; color: var(--ink) !important; }
-        .nav-cta:hover { background: var(--ink) !important; color: #fff !important; border-color: var(--ink) !important; }
-        @media (min-width: 1024px) { .nav-links { display: flex; } }
-        .menu-btn { display: flex; background: none; border: none; cursor: pointer; padding: 4px; }
-        .menu-btn svg { width: 22px; height: 22px; stroke: var(--ink); }
-        @media (min-width: 1024px) { .menu-btn { display: none; } }
-        .mobile-nav { position: fixed; inset: 0; background: var(--white); z-index: 190; display: flex; flex-direction: column; padding: 96px 32px 48px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
-        .mobile-nav.open { transform: translateX(0); }
-        .mobile-nav a { font-size: 1.75rem; font-weight: 600; color: var(--ink-70); margin-bottom: 20px; display: block; }
-        .mobile-nav a:hover { color: var(--ink); }
-        .hero { padding-top: 180px; padding-bottom: 120px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; background: var(--white); }
-        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
-        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
-        .hero-title-block { max-width: 680px; }
-        .hero-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--blue); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-        
-        .hero-title { margin-bottom: 28px; }
-        .hero-title em { font-style: italic; color: var(--blue); font-family: var(--font-serif); }
-        .hero-lead { font-size: 1.1rem; line-height: 1.8; color: var(--ink-70); max-width: 520px; margin-bottom: 44px; }
-        .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-        .hero-video-wrap { position: relative; border-radius: 6px; overflow: hidden; background: var(--stone-100); aspect-ratio: 4/5; width: 100%; transform: translateZ(0); }
-        @media (min-width: 1024px) { .hero-video-wrap { aspect-ratio: 3/4; } }
-        #hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
-        @media (prefers-reduced-motion: reduce) {
-            #hero-video { display: none; }
-            .hero-video-wrap { background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200'); background-size: cover; background-position: center; }
-        }
-        .challenge-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
-        @media (min-width: 768px) { .challenge-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; } }
-        .expertise-header { max-width: 540px; margin-bottom: 72px; }
-        .expertise-grid { display: grid; grid-template-columns: 1fr; gap: 1px; border: 1px solid var(--border); background: var(--border); }
-        @media (min-width: 768px) { .expertise-grid { grid-template-columns: 1.2fr 1fr; } }
-        .exp-card { background: var(--white); transition: background 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
-        .exp-card:hover { background: var(--stone-50); }
-        .exp-card-img { height: 240px; overflow: hidden; position: relative; }
-        .exp-card-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: filter 0.5s, transform 0.6s; }
-        .exp-card:hover .exp-card-img img { filter: grayscale(0%); transform: scale(1.03); }
-        .exp-card-body { padding: 32px; flex: 1; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
-        .exp-card-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 12px; }
-        .exp-card-body h3 { margin-bottom: 12px; font-size: 1.15rem; }
-        .exp-card-body p { font-size: 0.9rem; line-height: 1.7; flex: 1; }
-        .exp-card-link { margin-top: 24px; font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; }
-        .meth-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 1024px) { .meth-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; } }
-        .meth-flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-        .meth-flow-btn { background: transparent; border: 1px solid var(--border); padding: 7px 14px; border-radius: 2px; font-weight: 500; cursor: pointer; transition: all 0.25s; color: var(--ink-70); font-size: 0.8rem; font-family: var(--font-sans); }
-        .meth-flow-btn.active, .meth-flow-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-        .meth-flow-sep { color: var(--stone-200); font-size: 0.9rem; }
-        .meth-visual { border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/9; position: relative; background: #0d1929; }
-        .meth-visual img { width: 100%; height: 100%; object-fit: cover; }
-        .meth-visual-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,25,41,0.3) 0%, transparent 60%); }
-        .step-rail { border-left: 1px solid var(--border); padding-left: 32px; display: flex; flex-direction: column; gap: 36px; position: relative; }
-        .step-rail-progress { position: absolute; left: -1px; top: 0; width: 1px; background: var(--blue); transition: height 0.5s cubic-bezier(0.4,0,0.2,1); height: 0; }
-        .step-row { position: relative; cursor: pointer; transition: opacity 0.25s; opacity: 0.4; }
-        .step-row::before { content: ""; position: absolute; left: -36px; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--white); border: 1.5px solid var(--border); transition: all 0.25s; z-index: 1; }
-        .step-row.active, .step-row:hover { opacity: 1; }
-        .step-row.active::before, .step-row:hover::before { border-color: var(--blue); background: var(--blue); }
-        .step-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 4px; display: block; }
-        .step-row h4 { font-size: 1rem; margin-bottom: 6px; }
-        .step-row p { font-size: 0.875rem; }
-        .if-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .if-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
-        .industry-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
-        .industry-item { padding: 16px 0; border-bottom: 1px solid var(--border); font-weight: 500; font-size: 1rem; color: var(--ink-70); transition: color 0.2s, padding-left 0.2s; cursor: default; }
-        .industry-item:hover { color: var(--ink); padding-left: 8px; }
-        .industry-item:first-child { border-top: 1px solid var(--border); }
-        .founder-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
-        .founder-name { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-        .founder-title { font-size: 0.875rem; color: var(--ink-40); }
-        .cs-intro { max-width: 600px; margin-bottom: 72px; }
-        .cs-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); }
-        @media (min-width: 768px) { .cs-grid { grid-template-columns: 1.2fr 1fr; } }
-        .cs-card { background: var(--white); padding: 40px; display: flex; flex-direction: column; transition: background 0.2s; text-decoration: none; color: inherit; }
-        .cs-card:hover { background: var(--stone-50); }
-        .cs-card-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue); margin-bottom: 16px; }
-        .cs-card h3 { font-size: 1.2rem; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .cs-field-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); }
-        .cs-field { margin-bottom: 18px; }
-        .cs-field p { margin-top: 4px; font-size: 0.875rem; line-height: 1.65; margin-bottom: 0; }
-        .cs-card-link { margin-top: auto; padding-top: 28px; font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; }
-        .insights-header { max-width: 540px; margin-bottom: 64px; }
-        .featured-ins { display: grid; grid-template-columns: 1fr; border: 1px solid var(--border); margin-bottom: 1px; overflow: hidden; transition: background 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
-        @media (min-width: 900px) { .featured-ins { display: grid; grid-template-columns: 1.1fr 0.9fr; } }
-        .featured-ins:hover { background: var(--stone-50); }
-        .fi-img { overflow: hidden; min-height: 280px; }
-        @media (min-width: 900px) { .fi-img { min-height: 360px; } }
-        .fi-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: filter 0.4s, transform 0.5s; }
-        .featured-ins:hover .fi-img img { filter: grayscale(0%); transform: scale(1.03); }
-        .fi-content { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
-        .fi-category { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue); margin-bottom: 16px; }
-        .fi-title { font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.3; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.02em; }
-        .fi-desc { font-size: 0.95rem; color: var(--ink-70); margin-bottom: 24px; }
-        .ins-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-        @media (min-width: 640px) { .ins-grid { grid-template-columns: repeat(3, 1fr); } }
-        .ins-card { background: var(--white); display: flex; flex-direction: column; cursor: pointer; transition: background 0.2s; overflow: hidden; text-decoration: none; color: inherit; }
-        .ins-card:hover { background: var(--stone-50); }
-        .ins-card-img { height: 200px; overflow: hidden; }
-        .ins-card-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: filter 0.4s, transform 0.5s; }
-        .ins-card:hover .ins-card-img img { filter: grayscale(0%); transform: scale(1.03); }
-        .ins-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
-        .ins-card-cat { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 10px; }
-        .ins-card-body h4 { font-size: 1rem; line-height: 1.4; margin-bottom: 10px; }
-        .ins-card-body p { font-size: 0.85rem; flex: 1; }
-        .ins-read { margin-top: 16px; font-size: 0.8rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
-        .careers-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .careers-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
-        .careers-section { background: #0f1923; color: #f0efed; }
-        .careers-section h2, .careers-section h4 { color: #f0efed; }
-        .careers-section p { color: rgba(240,239,237,0.6); }
-        .careers-section .eyebrow { color: rgba(240,239,237,0.4); }
-        .culture-item { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-bottom: 24px; }
-        .culture-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: rgba(100,150,255,0.8); margin-bottom: 8px; }
-        .contact-section { background: #0f1923; color: #f0efed; border-top: 1px solid rgba(255,255,255,0.08); }
-        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1.2fr 1fr; gap: 80px; } }
-        .contact-section h2 { color: #f0efed; font-size: clamp(2rem, 4vw, 3rem); }
-        .contact-section p { color: rgba(240,239,237,0.6); }
-        .contact-section .eyebrow { color: rgba(240,239,237,0.4); }
-        .contact-email { font-size: 1rem; color: #f0efed !important; margin-bottom: 6px !important; }
-        .form-wrap { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 40px; }
-        .form-row { margin-bottom: 20px; }
-        .form-row label { display: block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(240,239,237,0.4); margin-bottom: 8px; }
-        .form-field { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #f0efed; font-family: var(--font-sans); font-size: 0.9rem; border-radius: 2px; outline: none; transition: border-color 0.2s; }
-        .form-field:focus { border-color: var(--blue); }
-        select.form-field option { background: #0f1923; }
-        .footer { padding: 80px 0 40px; background: var(--stone-50); border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 64px; }
-        @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; } }
-        .footer h5 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: var(--ink-40); margin-bottom: 20px; }
-        .footer ul { display: flex; flex-direction: column; gap: 12px; }
-        .footer ul li a { font-size: 0.875rem; color: var(--ink-70); transition: color 0.2s; }
-        .footer ul li a:hover { color: var(--ink); }
-        .footer-tagline { font-size: 0.875rem; color: var(--ink-40); max-width: 280px; margin-top: 16px; line-height: 1.6; margin-bottom: 0; }
-        .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-bottom p { font-size: 0.8rem; color: var(--ink-40); margin-bottom: 0; }
-        .footer-bottom a { font-size: 0.8rem; color: var(--ink-40); margin-left: 24px; }
-        .footer-bottom a:hover { color: var(--ink); }
-        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
-        .fade-up.visible { opacity: 1; transform: none; }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        @media (max-width: 768px) {
-            :root { --section-pad: 80px; }
-            .hero { padding-top: 140px; padding-bottom: 80px; }
-            .container { padding: 0 20px; }
-            .fi-content { padding: 28px; }
-            .form-wrap { padding: 28px 24px; }
-        }
-    
-        /* OVERRIDE FOR FULLSCREEN HERO */
-        .hero { position: relative; min-height: 90vh; display: flex; align-items: center; padding-top: 120px; padding-bottom: 80px; border-bottom: none; overflow: hidden; }
-        .hero-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-        #hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0) 100%); z-index: 1; pointer-events: none; }
-        @media (max-width: 768px) { .hero-overlay { background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.95) 55%, rgba(255,255,255,0.4) 100%); } }
-        .hero-content { position: relative; z-index: 2; width: 100%; }
-        .hero-title-block { max-width: 680px; position: relative; z-index: 3; }
-        @media (prefers-reduced-motion: reduce) {
-            #hero-video { display: none; }
-            .hero-bg-video { background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat; }
+            --gray-1: #f3f4f6;
+            --gray-2: #9ca3af;
+            --gray-3: #4b5563;
+            --accent: #FF003C; /* Dangerous Red */
+            --accent-hover: #CC0030;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 0, 60, 0.5);
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --radius: 0px; /* Sharp edges */
+            --section-pad: 140px;
         }
 
-        /* ===== ADVANCED EXPERTISE GRID ===== */
-.adv-split {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 60px;
-    align-items: center;
-}
-@media (min-width: 900px) {
-    .adv-split {
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-    }
-}
-.adv-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-}
-@media (min-width: 640px) {
-    .adv-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-}
-@media (min-width: 1024px) {
-    .adv-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
-}
-.adv-card {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-}
-.adv-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-}
-.adv-card-img {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-    background: var(--stone-50);
-}
-.adv-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.adv-card:hover .adv-card-img img {
-    transform: scale(1.08);
-}
-.adv-card-content {
-    padding: 24px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-.adv-card-content h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 12px;
-    line-height: 1.3;
-}
-.adv-card-content p {
-    font-size: 0.95rem;
-    color: var(--ink-70);
-    line-height: 1.55;
-    margin: 0;
-}
-/* ===== CASE STUDIES HORIZONTAL SCROLL ===== */
-.cs-horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 24px;
-    padding-bottom: 32px;
-    margin-top: 40px;
-    scrollbar-width: none;
-}
-.cs-horizontal-scroll::-webkit-scrollbar { display: none; }
-.csh-card {
-    flex: 0 0 85%;
-    min-width: 300px;
-    scroll-snap-align: start;
-    position: relative;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--ink);
-    display: flex;
-    flex-direction: column;
-    min-height: 200px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
-}
-.csh-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-}
-@media (min-width: 768px) {
-    .csh-card { flex: 0 0 calc(33.333% - 16px); }
-}
-@media (min-width: 1024px) {
-    .csh-card { flex: 0 0 calc(25% - 18px); }
-}
-.csh-bg {
-    position: relative;
-    width: 100%;
-    height: 160px;
-    opacity: 1;
-    overflow: hidden;
-    background: var(--stone-50);
-}
-.csh-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: none;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.csh-card:hover .csh-bg img {
-    transform: scale(1.08);
-}
-.csh-content {
-    position: relative;
-    z-index: 2;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    background: var(--white);
-}
-.csh-cat {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--blue);
-    margin-bottom: 16px;
-}
-.csh-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.35;
-    margin-bottom: 0;
-}
-</style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-body); 
+            background-color: var(--black); 
+            color: var(--gray-1); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--accent); color: var(--white); }
+
+        h1, h2, h3, h4, h5 { font-family: var(--font-head); color: var(--white); text-transform: uppercase; line-height: 1.1; }
+        
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .section { padding: var(--section-pad) 0; }
+
+        /* BRUTALIST BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+        .btn:hover { color: var(--black); border-color: var(--accent); }
+        .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+
+        .btn-solid { background: var(--white); color: var(--black); border-color: var(--white); }
+        .btn-solid::before { background: var(--accent); }
+        .btn-solid:hover { color: var(--white); border-color: var(--accent); }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 24px 0; z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-img {
+            height: 28px;
+            filter: invert(1);
+            mix-blend-mode: screen;
+        }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-2); }
+        .nav-links a:hover { color: var(--white); }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            background: radial-gradient(circle at 50% 0%, rgba(255,0,60,0.08) 0%, rgba(0,0,0,1) 50%);
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        }
+        .hero-title {
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .hero-title span { color: var(--accent); }
+        .hero-lead {
+            font-size: 1.25rem; color: var(--gray-2); max-width: 500px; margin-bottom: 40px;
+        }
+        .hero-stats {
+            display: flex; gap: 40px; margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border);
+        }
+        .stat-num { font-family: var(--font-head); font-size: 2.5rem; color: var(--white); font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 0.85rem; color: var(--gray-3); text-transform: uppercase; letter-spacing: 2px; }
+
+        .hero-image-wrapper {
+            position: relative;
+            height: 700px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .hero-image-wrapper::after {
+            content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+        }
+        .hero-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); }
+
+        /* SECTION HEADERS */
+        .section-header { margin-bottom: 80px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .section-header h2 { font-size: 4rem; letter-spacing: -1px; max-width: 700px; }
+        .section-eyebrow { 
+            font-family: var(--font-body); font-weight: 700; color: var(--accent); 
+            text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; margin-bottom: 20px; display: block;
+        }
+
+        /* EXPERTISE GRID */
+        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        .expertise-card {
+            background: var(--dark-1);
+            padding: 60px 40px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .expertise-card:hover { background: var(--black); box-shadow: inset 0 0 0 1px var(--accent); }
+        .expertise-num { font-family: var(--font-head); font-size: 1.5rem; color: var(--gray-3); margin-bottom: 30px; font-weight: 700; }
+        .expertise-card:hover .expertise-num { color: var(--accent); }
+        .expertise-card h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .expertise-card p { color: var(--gray-2); font-size: 0.95rem; }
+
+        /* BUSINESS CHALLENGE */
+        .challenge { background: var(--dark-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .challenge-wrapper { display: grid; grid-template-columns: 1fr 1fr; }
+        .challenge-content { padding: 100px 80px 100px 0; }
+        .challenge-image {
+            background: url('/business-challenge-photo.jpg') center/cover;
+            filter: grayscale(100%) contrast(1.2);
+            border-left: 1px solid var(--border);
+            position: relative;
+        }
+        .challenge-image::before {
+            content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--dark-1), transparent);
+        }
+        .challenge-list { margin-top: 60px; }
+        .challenge-item { padding: 30px 0; border-bottom: 1px solid var(--border); display: flex; gap: 30px; }
+        .challenge-item-icon { color: var(--accent); font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; }
+        .challenge-item-text h4 { font-size: 1.25rem; margin-bottom: 10px; }
+        .challenge-item-text p { color: var(--gray-2); }
+
+        /* CASE STUDIES */
+        .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .cs-card {
+            display: block;
+            border: 1px solid var(--border);
+            background: var(--dark-1);
+            overflow: hidden;
+            position: relative;
+        }
+        .cs-card:hover { border-color: var(--accent); }
+        .cs-img-wrap { height: 400px; overflow: hidden; position: relative; }
+        .cs-img-wrap::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); transition: background 0.3s; }
+        .cs-card:hover .cs-img-wrap::after { background: rgba(255,0,60,0.2); }
+        .cs-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.7s ease; }
+        .cs-card:hover .cs-img { transform: scale(1.05); }
+        
+        .cs-content { padding: 40px; position: absolute; bottom: 0; left: 0; width: 100%; z-index: 10; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+        .cs-metric { font-family: var(--font-head); font-size: 3rem; color: var(--accent); font-weight: 700; margin-bottom: 10px; line-height: 1; }
+        .cs-title { font-size: 1.75rem; margin-bottom: 10px; }
+        .cs-desc { color: var(--gray-1); font-size: 0.95rem; }
+
+        /* FOOTER */
+        .footer { background: var(--black); padding: 100px 0 40px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; margin-bottom: 80px; }
+        .footer h2 { font-size: 2.5rem; margin-bottom: 30px; }
+        .footer-links h4 { font-size: 0.85rem; color: var(--gray-3); margin-bottom: 20px; letter-spacing: 2px; }
+        .footer-links ul li { margin-bottom: 15px; }
+        .footer-links a { color: var(--gray-1); font-weight: 500; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border); color: var(--gray-3); font-size: 0.85rem; }
+
+        @media (max-width: 1024px) {
+            .hero-grid, .challenge-wrapper, .cs-grid { grid-template-columns: 1fr; }
+            .hero-image-wrapper { height: 400px; display: none; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .hero-title { font-size: 3.5rem; }
+            .challenge-content { padding: 60px 0; }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar" id="navbar">
-    <div class="container nav-inner">
-        <a href="/" class="logo">
-            <img src="/datadecision-logo.png" alt="DataDecision" style="height: 44px; mix-blend-mode: multiply; margin-left: -8px;" />
-        </a>
-        <nav class="nav-links">
-            <a href="#challenge">Who We Are</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#industries">Industries</a>
-            <a href="#insights">Insights</a>
-            <a href="#careers">Careers</a>
-            <a href="#contact" class="nav-cta">Request a Brief</a>
-        </nav>
-        <button class="menu-btn" id="menu-btn" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        </button>
-    </div>
-</nav>
-
-<div class="mobile-nav" id="mobile-nav">
-    <a href="#challenge" class="mob-link">Who We Are</a>
-    <a href="#expertise" class="mob-link">Expertise</a>
-    <a href="#industries" class="mob-link">Industries</a>
-    <a href="#insights" class="mob-link">Insights</a>
-    <a href="#careers" class="mob-link">Careers</a>
-    <a href="#contact" class="mob-link text-blue">Request a Brief</a>
-</div>
-
-<section class="hero">
-    <div class="hero-bg-video">
-        <video 
-            id="hero-video"
-            src="/hero-video-no-watermark.mp4" 
-            poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200"
-            autoplay 
-            loop 
-            muted 
-            playsinline
-            preload="metadata"
-        ></video>
-        <div class="hero-overlay"></div>
-    </div>
-    <div class="container hero-content">
-        <div class="hero-title-block fade-up">
-            <div class="hero-eyebrow">Data &amp; AI Strategy Consulting</div>
-            <h1 class="hero-title">We turn complex data into <em>clear decisions.</em></h1>
-            <p class="hero-lead">We help businesses transform fragmented information into sharper strategy, smarter operations, and measurable growth. From data architecture to AI-driven decision systems, we make data work for the business.</p>
-            <div class="hero-ctas">
-                <a href="/#contact" class="btn btn-primary">Request a Brief</a>
-                <a href="/#expertise" class="btn btn-outline" style="background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);">Explore Our Expertise</a>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="logo">
+                <img src="/datadecision-logo.png" alt="DataDecision" class="logo-img" />
+            </a>
+            <div class="nav-links">
+                <a href="#expertise">Expertise</a>
+                <a href="#work">Work</a>
+                <a href="#challenge">Methodology</a>
+                <a href="mailto:contact@datadecision.consulting" class="btn btn-solid" style="padding: 10px 20px;">Engage</a>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
-<section id="challenge" class="section bg-stone-50 border-b" style="padding: 120px 0; overflow:hidden;">
-    <div class="container">
-        <div class="adv-split">
-            <div class="fade-up">
-                <div class="eyebrow" style="color: var(--blue);">The Business Challenge</div>
-                <h2 style="font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--ink); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em;">Data alone is not the outcome.</h2>
-                <p class="lead" style="color: var(--ink-70); font-size: 1.15rem; line-height: 1.7;">Organizations have more data than ever. Yet reporting is slow, KPIs are contested, forecasts are unreliable, and decisions remain gut-driven.</p>
-                <p class="lead" style="color: var(--ink-70); font-size: 1.15rem; line-height: 1.7; margin-top: 16px;">Insight without a clear decision pathway is just noise. We bridge the gap between technical infrastructure and strategic execution.</p>
-            </div>
-            <div class="fade-up delay-1" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 48px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04);">
-                <img src="/business-challenge-photo.jpg" alt="Data visualization" style="width:100%; height:auto; display:block;" />
-                <div style="position: absolute; bottom: 24px; left: 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 20px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom: 4px;">
-                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px var(--blue);"></div>
-                        <div style="font-weight: 700; color: var(--ink); font-size: 1.05rem; letter-spacing: -0.01em;">Clear Decision Pathway</div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">ENGINEERING<br>DECISIONS<br><span>THAT MATTER.</span></h1>
+                <p class="hero-lead">We turn complex data pipelines and AI models into ruthless competitive advantages. Elite strategy consulting for the modern enterprise.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#work" class="btn btn-solid">View Outcomes</a>
+                    <a href="mailto:contact@datadecision.consulting" class="btn">Request Audit</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-num">$2B+</div>
+                        <div class="stat-label">Value Unlocked</div>
                     </div>
-                    <div style="color: var(--ink-70); font-size: 0.9rem; padding-left: 20px;">From fragmented data to execution</div>
+                    <div>
+                        <div class="stat-num">45%</div>
+                        <div class="stat-label">Avg. Efficiency Gain</div>
+                    </div>
                 </div>
             </div>
+            <div class="hero-image-wrapper">
+                <img src="/operation-manufacturing-efficiency.jpg" alt="AI Server" class="hero-img" />
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- EXPERTISE (ADVANCED LIGHT THEME) -->
-<section id="expertise" class="section border-b" style="background: var(--white); padding: 120px 0;">
-    <div class="container">
-        <div class="expertise-header fade-up" style="margin-bottom: 64px; text-align: center;">
-            <div class="eyebrow" style="color: var(--blue); justify-content: center;">Our Expertise</div>
-            <h2 style="color: var(--ink); font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.15; margin: 0 auto 24px; max-width: 800px; letter-spacing: -0.02em;">Engineering intelligence for decisions that matter.</h2>
-            <p class="lead" style="max-width: 650px; color: var(--ink-70); font-size: 1.15rem; line-height: 1.6; margin: 0 auto;">We combine data engineering, advanced analytics, machine learning, AI, and decision intelligence to build technology-driven solutions for complex business problems.</p>
+    <!-- EXPERTISE -->
+    <section id="expertise" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <span class="section-eyebrow">Capabilities</span>
+                    <h2>PRECISION DATA ARCHITECTURE.</h2>
+                </div>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-num">01</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-num">02</div>
+                    <h3>Data Engineering</h3>
+                    <p>Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-num">03</div>
+                    <h3>Decision Intelligence</h3>
+                    <p>Translating raw mathematical outputs into board-level strategic roadmaps. Real-time dashboards, KPI tracking, and probabilistic modeling.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-num">04</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Secure, multi-cloud deployments (AWS, GCP, Azure) optimized for high-performance computing, cost-efficiency, and strict regulatory compliance.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-num">05</div>
+                    <h3>Governance & Security</h3>
+                    <p>Zero-trust data architecture. Ensuring your proprietary intelligence is heavily fortified, compliant, and accessible only to authorized entities.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-num">06</div>
+                    <h3>Executive Advisory</h3>
+                    <p>Direct partnership with C-suite leadership to align technical AI capabilities with aggressive business growth and acquisition targets.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="adv-grid">
-            <div class="adv-card fade-up delay-1">
-                <div class="adv-card-img"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800" alt="Data & Decision Intelligence" /></div>
-                <div class="adv-card-content">
-                    <h3>Data &amp; Decision Intelligence</h3>
-                    <p>Forecasting, optimization, simulation, business intelligence, decision systems.</p>
+    <!-- CHALLENGE -->
+    <section id="challenge" class="section challenge">
+        <div class="container challenge-wrapper">
+            <div class="challenge-content">
+                <span class="section-eyebrow">The Method</span>
+                <h2>FROM CHAOS TO CLARITY.</h2>
+                <p style="color: var(--gray-2); font-size: 1.1rem; margin-top: 20px;">Most enterprises fail at AI because they lack a clean data foundation. We deploy a brutal, systematic approach to audit, fix, and scale your intelligence.</p>
+                
+                <div class="challenge-list">
+                    <div class="challenge-item">
+                        <div class="challenge-item-icon">01</div>
+                        <div class="challenge-item-text">
+                            <h4>Tactical Audit</h4>
+                            <p>We analyze your current pipelines, identifying data silos, security flaws, and bottlenecks in decision velocity.</p>
+                        </div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-item-icon">02</div>
+                        <div class="challenge-item-text">
+                            <h4>Infrastructure Overhaul</h4>
+                            <p>Re-engineering your data lakes and warehousing to ensure pristine, real-time data flows ready for machine learning.</p>
+                        </div>
+                    </div>
+                    <div class="challenge-item">
+                        <div class="challenge-item-icon">03</div>
+                        <div class="challenge-item-text">
+                            <h4>Algorithmic Deployment</h4>
+                            <p>Implementing custom AI agents and predictive models specifically trained on your proprietary data.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="adv-card fade-up delay-2">
-                <div class="adv-card-img"><img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80" alt="AI Engineering" /></div>
-                <div class="adv-card-content">
-                    <h3>AI / ML Engineering</h3>
-                    <p>Machine learning, deep learning, NLP, computer vision, generative AI, agents.</p>
-                </div>
-            </div>
-            <div class="adv-card fade-up delay-3">
-                <div class="adv-card-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Data Infrastructure" /></div>
-                <div class="adv-card-content">
-                    <h3>Data Engineering &amp; Infra</h3>
-                    <p>Data platforms, pipelines, cloud architecture, data products, MLOps.</p>
-                </div>
-            </div>
-            <div class="adv-card fade-up delay-4">
-                <div class="adv-card-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Intelligent Operations" /></div>
-                <div class="adv-card-content">
-                    <h3>Intelligent Operations</h3>
-                    <p>Demand forecasting, supply chain intelligence, pricing, process optimization.</p>
-                </div>
-            </div>
+            <div class="challenge-image"></div>
         </div>
-    </div>
-</section>
-<section id="case-studies" class="section border-b" style="overflow:hidden; background: var(--white);">
-    <div class="container">
-        <div class="cs2-header fade-up">
-            <div class="eyebrow">Client Outcomes</div>
-            <h2>Structured thinking.<br>Measurable impact.</h2>
-            <p class="lead" style="max-width:540px;margin-top:16px;">How we frame complex problems, engineer analytical solutions, and turn data into decisions.</p>
-        </div>
+    </section>
 
-        <div class="cs-horizontal-scroll fade-up delay-1">
-            <a href="/case-study-data-analytics" class="csh-card">
-                <div class="csh-bg"><img src="/supply-chain-visibility.jpg" alt="Supply Chain Visibility"/></div>
-                <div class="csh-content">
-                    <div class="csh-cat">Operations &amp; Analytics</div>
-                    <h3 class="csh-title">Supply Chain Visibility &amp; Demand Intelligence</h3>
+    <!-- WORK -->
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <span class="section-eyebrow">Outcomes</span>
+                    <h2>PROVEN IMPACT.</h2>
                 </div>
-            </a>
-            <a href="/case-study-ai-decision" class="csh-card">
-                <div class="csh-bg"><img src="/ai-driven-retail-demand.jpg" alt="AI Driven Retail Demand"/></div>
-                <div class="csh-content">
-                    <div class="csh-cat">AI &amp; Decision Intelligence</div>
-                    <h3 class="csh-title">AI-Driven Demand Forecasting for a Retail Business</h3>
-                </div>
-            </a>
-            <a href="/case-study-operations" class="csh-card">
-                <div class="csh-bg"><img src="/operation-manufacturing-efficiency.jpg" alt="Operation Manufacturing Efficiency"/></div>
-                <div class="csh-content">
-                    <div class="csh-cat">Operations &amp; Performance</div>
-                    <h3 class="csh-title">Operational Efficiency Program in Manufacturing</h3>
-                </div>
-            </a>
-            <a href="/case-study-customer-growth" class="csh-card">
-                <div class="csh-bg"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Customer Profitability"/></div>
-                <div class="csh-content">
-                    <div class="csh-cat">Customer &amp; Growth</div>
-                    <h3 class="csh-title">Customer Profitability and Commercial Repricing</h3>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-<section id="insights" class="section border-b">
-    <div class="container">
-        <div class="insights-header fade-up">
-            <div class="eyebrow">Thought Leadership</div>
-            <h2>Perspectives on data, strategy, and decisions.</h2>
-        </div>
-        <a href="/insight-decision-intelligence" class="featured-ins fade-up">
-            <div class="fi-img"><img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&amp;fit=crop&amp;q=80&amp;w=1200" alt="Executive Strategy" loading="lazy" /></div>
-            <div class="fi-content">
-                <div class="fi-category">Strategy &middot; Decision Intelligence &middot; AI</div>
-                <h3 class="fi-title">From reporting to reasoning: How decision intelligence changes what data actually delivers.</h3>
-                <p class="fi-desc">Organizations are shifting from retrospective reporting to proactive decision systems. The firms doing this well share a set of structural choices that others are only beginning to understand.</p>
-                <span class="btn-ghost">Read insight &rarr;</span>
+                <a href="mailto:contact@datadecision.consulting" class="btn">View All Case Studies</a>
             </div>
-        </a>
-        <div class="ins-grid fade-up delay-1">
-            <a href="/insight-dashboard-limits" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="Consulting Analysis" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Article &middot; Analytics</div>
-                    <h4>The limits of dashboards: Why visibility without decisions is insufficient.</h4>
-                    <p>Dashboards answer what happened. Decision intelligence answers what to do next.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-            <a href="/insight-ai-enterprise" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1507099985932-87a4520ed1d5?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="AI Enterprise" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Whitepaper &middot; AI</div>
-                    <h4>Navigating the AI frontier: From proof of concept to enterprise integration.</h4>
-                    <p>Moving beyond pilots to embed AI into core operating models requires a different kind of discipline.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-            <a href="/insight-supply-chain" class="ins-card">
-                <div class="ins-card-img"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;q=80&amp;w=700" alt="Supply Chain" loading="lazy" /></div>
-                <div class="ins-card-body">
-                    <div class="ins-card-cat">Brief &middot; Operations</div>
-                    <h4>Supply chain resilience through predictive analytics and data integration.</h4>
-                    <p>How leading firms use internal and external signals to anticipate disruptions before they become crises.</p>
-                    <span class="ins-read">Read &rarr;</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
 
-<section id="careers" class="section careers-section">
-    <div class="container careers-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Join the Firm</div>
-            <h2>A culture of rigorous thinking.</h2>
-            <p class="lead" style="margin: 16px 0 24px; color: rgba(240,239,237,0.7);">We value rigour over rank, clarity over complexity, and ownership over execution.</p>
-            <p>If you think differently about data, business, or strategy, we want to hear from you. You do not need to fit a conventional mould. You need to bring something exceptional to the table.</p>
-            <div style="margin-top: 36px;"><a href="mailto:contact@datadecision.consulting" class="btn btn-primary">Send Your Profile</a></div>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="culture-item"><div class="culture-num">01</div><h4>First-principles thinking</h4><p>We question assumptions before accepting them. The right answer is rarely the obvious one.</p></div>
-            <div class="culture-item"><div class="culture-num">02</div><h4>Direct ownership</h4><p>No layers, no bureaucracy. You own your work from problem framing to delivery.</p></div>
-            <div class="culture-item"><div class="culture-num">03</div><h4>Deliberate communication</h4><p>We write clearly, present precisely, and only say what can be substantiated with evidence.</p></div>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="section contact-section">
-    <div class="container contact-grid">
-        <div class="fade-up">
-            <div class="eyebrow">Request a Brief</div>
-            <h2>Have a decision that deserves better data?</h2>
-            <p class="lead" style="margin: 16px 0 32px; color: rgba(240,239,237,0.65);">Let us explore what your data can tell you and what you should do next.</p>
-            <p class="contact-email">contact@datadecision.consulting</p>
-            <p style="font-size: 0.875rem;">All enquiries handled with discretion.</p>
-        </div>
-        <div class="fade-up delay-1">
-            <div class="form-wrap">
-                <form id="contact-form">
-                    <input type="hidden" name="access_key" value="0f76b840-061b-4f83-b0d8-7212eb4897e6"/>
-                    <input type="hidden" name="subject" value="New Inquiry - DataDecision.consulting"/>
-                    <input type="checkbox" name="botcheck" style="display:none"/>
-                    <div class="form-row"><label>Name</label><input type="text" name="name" class="form-field" required/></div>
-                    <div class="form-row"><label>Email</label><input type="email" name="email" class="form-field" required/></div>
-                    <div class="form-row"><label>Area of Interest</label><select name="service" class="form-field" required><option value="" disabled selected>Select an area</option><option>Data &amp; Analytics</option><option>AI &amp; Decision Intelligence</option><option>Operations &amp; Performance</option><option>Customer &amp; Growth</option><option>Other Strategic Inquiry</option></select></div>
-                    <div class="form-row"><label>Context</label><textarea name="message" class="form-field" rows="4" placeholder="Briefly describe the challenge..." required></textarea></div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">Send Inquiry</button>
-                    <p id="form-msg" style="margin-top:14px; font-size:0.85rem; text-align:center; color: rgba(240,239,237,0.6);"></p>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <a href="/" class="logo" style="margin-bottom:0;">
-                    <img src="/datadecision-logo.png" alt="DataDecision" style="height: 54px; mix-blend-mode: multiply; margin-left: -12px;" />
+            <div class="cs-grid">
+                <a href="/case-study-supply-chain" class="cs-card">
+                    <div class="cs-img-wrap">
+                        <img src="/supply-chain-visibility.jpg" alt="Supply Chain" class="cs-img" />
+                    </div>
+                    <div class="cs-content">
+                        <div class="cs-metric">40%</div>
+                        <h3 class="cs-title">Global Supply Chain Optimization</h3>
+                        <p class="cs-desc">Reduced logistics overhead via predictive anomaly detection for a Fortune 500 retailer.</p>
+                    </div>
                 </a>
-                <p class="footer-tagline">Data and AI strategy consulting. We turn complex data into clear decisions and measurable business impact.</p>
-            </div>
-            <div>
-                <h5>Expertise</h5>
-                <ul>
-                    <li><a href="/case-study-data-analytics">Data &amp; Analytics</a></li>
-                    <li><a href="/case-study-ai-decision">AI &amp; Decision Intelligence</a></li>
-                    <li><a href="/case-study-operations">Operations &amp; Performance</a></li>
-                    <li><a href="/case-study-customer-growth">Customer &amp; Growth</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5>Firm</h5>
-                <ul>
-                    <li><a href="/#challenge">Who We Are</a></li>
-                    <li><a href="/#approach">Methodology</a></li>
-                    <li><a href="/#case-studies">Impact</a></li>
-                    <li><a href="/#careers">Careers</a></li>
-                    <li><a href="/#contact">Contact</a></li>
-                </ul>
+                
+                <a href="/case-study-retail-demand" class="cs-card">
+                    <div class="cs-img-wrap">
+                        <img src="/ai-driven-retail-demand.jpg" alt="Retail AI" class="cs-img" />
+                    </div>
+                    <div class="cs-content">
+                        <div class="cs-metric">$12M</div>
+                        <h3 class="cs-title">AI-Driven Retail Demand</h3>
+                        <p class="cs-desc">Recouped lost revenue by deploying real-time inventory forecasting models.</p>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 DataDecision.consulting. All rights reserved.</p>
-            <div><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="/datadecision-logo.png" alt="DataDecision" style="height: 32px; filter: invert(1); mix-blend-mode: screen; margin-bottom: 30px;" />
+                    <p style="color: var(--gray-2); max-width: 400px;">DataDecision Consulting provides elite, uncompromised technical strategy for enterprises ready to dominate their sectors using AI.</p>
+                    <a href="mailto:contact@datadecision.consulting" class="btn" style="margin-top: 30px;">contact@datadecision.consulting</a>
+                </div>
+                <div class="footer-links">
+                    <h4>SERVICES</h4>
+                    <ul>
+                        <li><a href="#expertise">AI & Machine Learning</a></li>
+                        <li><a href="#expertise">Data Engineering</a></li>
+                        <li><a href="#expertise">Cloud Infrastructure</a></li>
+                        <li><a href="#expertise">Executive Advisory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="#work">Case Studies</a></li>
+                        <li><a href="#challenge">Methodology</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DataDecision Consulting. All rights reserved.</p>
+                <p>Designed for Dominance.</p>
+            </div>
         </div>
-    </div>
-</footer>
-
-<script>
-(function() {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let W, H, nodes = [], mouse = {x: -999, y: -999};
-    const COLORS = ['rgba(100,160,255,', 'rgba(80,130,220,', 'rgba(150,190,255,'];
-    let animId;
-    function resize() {
-        const wrap = canvas.parentElement;
-        W = canvas.width = wrap.offsetWidth;
-        H = canvas.height = wrap.offsetHeight;
-    }
-    function makeNode(i) {
-        return {
-            x: Math.random() * W, y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-            r: Math.random() * 2 + 1,
-            col: COLORS[i % COLORS.length],
-            alpha: Math.random() * 0.6 + 0.2
-        };
-    }
-    function init() { nodes = []; for (let i = 0; i < 48; i++) nodes.push(makeNode(i)); }
-    function draw() {
-        ctx.clearRect(0, 0, W, H);
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const a = nodes[i], b = nodes[j];
-                const dx = a.x - b.x, dy = a.y - b.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < 140) {
-                    const mx = (a.x+b.x)/2, my = (a.y+b.y)/2;
-                    const mdx = mx-mouse.x, mdy = my-mouse.y;
-                    const mdist = Math.sqrt(mdx*mdx+mdy*mdy);
-                    const boost = mdist < 120 ? 1.8 : 1;
-                    const alpha = (1-dist/140)*0.25*boost;
-                    ctx.strokeStyle = 'rgba(100,160,255,' + alpha + ')';
-                    ctx.lineWidth = 0.5 * boost;
-                    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-                }
-            }
-        }
-        nodes.forEach(n => {
-            const dx = n.x-mouse.x, dy = n.y-mouse.y;
-            const dist = Math.sqrt(dx*dx+dy*dy);
-            const boost = dist < 80 ? 2.2 : 1;
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r*boost, 0, Math.PI*2);
-            ctx.fillStyle = n.col + (n.alpha*boost) + ')';
-            ctx.fill();
-        });
-        nodes.forEach(n => {
-            n.x += n.vx; n.y += n.vy;
-            if (n.x<0||n.x>W) n.vx*=-1;
-            if (n.y<0||n.y>H) n.vy*=-1;
-        });
-        animId = requestAnimationFrame(draw);
-    }
-    canvas.addEventListener('mousemove', e => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX-rect.left; mouse.y = e.clientY-rect.top;
-    });
-    canvas.addEventListener('mouseleave', () => { mouse.x=-999; mouse.y=-999; });
-    canvas.addEventListener('touchmove', e => {
-        const rect = canvas.getBoundingClientRect();
-        const t = e.touches[0];
-        mouse.x = t.clientX-rect.left; mouse.y = t.clientY-rect.top;
-    }, {passive:true});
-    resize(); init(); draw();
-    window.addEventListener('resize', () => { resize(); init(); });
-    let labelIdx = 0;
-    const labels = document.querySelectorAll('.hero-canvas-label span');
-    setInterval(() => {
-        labels.forEach(l => l.classList.remove('hl-active'));
-        if (labels[labelIdx]) labels[labelIdx].classList.add('hl-active');
-        labelIdx = (labelIdx+1) % labels.length;
-    }, 2000);
-})();
-
-(function() {
-    const flowBtns = document.querySelectorAll('.meth-flow-btn');
-    const stepRows = document.querySelectorAll('.step-row');
-    const progress = document.getElementById('step-progress');
-    const rail = document.getElementById('step-rail');
-    let cur = 0, timer;
-    function setStep(i) {
-        flowBtns.forEach(b => b.classList.remove('active'));
-        stepRows.forEach(s => s.classList.remove('active'));
-        if (flowBtns[i]) flowBtns[i].classList.add('active');
-        if (stepRows[i]) stepRows[i].classList.add('active');
-        if (progress && rail) {
-            const totalH = rail.offsetHeight;
-            const stepH = totalH / stepRows.length;
-            progress.style.height = (i * stepH + stepH * 0.5) + 'px';
-        }
-        cur = i;
-    }
-    function play() { timer = setInterval(() => setStep((cur+1)%5), 4000); }
-    function stop() { clearInterval(timer); }
-    flowBtns.forEach(b => {
-        b.addEventListener('click', () => { stop(); setStep(+b.dataset.idx); });
-        b.addEventListener('mouseenter', () => { stop(); setStep(+b.dataset.idx); });
-        b.addEventListener('mouseleave', play);
-    });
-    stepRows.forEach(r => {
-        r.addEventListener('mouseenter', () => { stop(); setStep(+r.dataset.idx); });
-        r.addEventListener('mouseleave', play);
-    });
-    setStep(0); play();
-})();
-
-(function() {
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
-})();
-
-(function() {
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-})();
-
-(function() {
-    const btn = document.getElementById('menu-btn');
-    const nav = document.getElementById('mobile-nav');
-    btn.addEventListener('click', () => {
-        nav.classList.toggle('open');
-        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-    });
-    document.querySelectorAll('.mob-link').forEach(l => {
-        l.addEventListener('click', () => {
-            nav.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-})();
-
-(function() {
-    const form = document.getElementById('contact-form');
-    const msg = document.getElementById('form-msg');
-    if (!form) return;
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const btn = form.querySelector('[type="submit"]');
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-        try {
-            const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
-            const data = await res.json();
-            msg.textContent = data.success ? 'Inquiry received. We will be in touch shortly.' : 'Submission failed. Please email us directly.';
-        } catch { msg.textContent = 'Submission failed. Please email us directly.'; }
-        btn.textContent = 'Send Inquiry';
-        btn.disabled = false;
-    });
-})();
-</script>
-
-<script>
-/* ===== CASE STUDIES TIMELINE ===== */
-(function(){
-    const cs2Rail = document.getElementById('cs2-rail');
-    const tnodes = document.querySelectorAll('.cs2-tnode');
-    const cards = document.querySelectorAll('.cs2-card');
-    const progress = document.getElementById('cs2-progress');
-    const pcts = ['0%','33%','66%','100%'];
-
-    function setActive(idx) {
-        tnodes.forEach((n,i) => n.classList.toggle('active', i<=idx));
-        cards.forEach((c,i) => c.classList.toggle('active', i===idx));
-        if(progress) progress.style.width = pcts[idx] || '0%';
-    }
-
-    // Scroll-trigger: auto-activate as user scrolls through section
-    if(cs2Rail) {
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    const rect = cs2Rail.getBoundingClientRect();
-                    const vh = window.innerHeight;
-                    const sectionProgress = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh)));
-                    const idx = Math.min(3, Math.floor(sectionProgress * 4));
-                    setActive(idx);
-                }
-            });
-        }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-        io.observe(cs2Rail);
-        window.addEventListener('scroll', () => {
-            if(!cs2Rail) return;
-            const rect = cs2Rail.getBoundingClientRect();
-            const vh = window.innerHeight;
-            const sp = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh * 0.5)));
-            setActive(Math.min(3, Math.floor(sp * 4.5)));
-        }, { passive: true });
-    }
-
-    tnodes.forEach((n, i) => n.addEventListener('click', () => setActive(i)));
-    cards.forEach((c, i) => {
-        c.addEventListener('mouseenter', () => setActive(i));
-    });
-
-    // Initialize
-    setActive(0);
-})();
-
-/* ===== FADE-UP OBSERVER ===== */
-(function(){
-    if(window._fuObserver) return;
-    window._fuObserver = true;
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
-})();
-</script>
-
+    </footer>
 </body>
 </html>
