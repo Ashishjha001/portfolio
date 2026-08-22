@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DataDecision | Premium Data & AI Strategy Consulting</title>
-    <meta name="description" content="We turn complex data into clear decisions. Engineering advanced AI and machine learning systems for modern enterprises." />
+    <meta name="description" content="Engineering decisions that matter. We transform complex data architectures and machine learning models into measurable business outcomes." />
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -243,25 +243,210 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero theme-dark">
-        <div class="hero-video-wrapper">
-            <video id="hero-video" src="/hero-video-no-watermark.mp4" poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200" autoplay loop muted playsinline preload="metadata"></video>
-        </div>
-        <canvas id="particle-canvas"></canvas>
-        <div class="container">
-            <div class="hero-content reveal">
-                <span class="eyebrow" style="color: var(--accent-cyan);">Intelligent Automation & Advisory</span>
-                <h1 class="hero-title">ENGINEERING DECISIONS <em>THAT MATTER.</em></h1>
-                <p>We transform complex data architectures and machine learning models into measurable business outcomes. Advanced technology consulting for the modern enterprise.</p>
-                <div style="display: flex; gap: 16px; justify-content: center;">
-                    <a href="#case-studies" class="btn btn-primary">Explore Outcomes</a>
-                    <a href="#contact" class="btn btn-outline">Request a Brief</a>
+    <section class="hero-split">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 class="hero-headline">Engineering decisions that matter.</h1>
+                <p class="hero-subhead">We transform complex data architectures and machine learning models into measurable business outcomes.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn-cobalt">Request a brief</a>
+                    <a href="#case-studies" class="btn-outline-dark">Explore outcomes</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-viz-container" id="hero-viz">
+                    
+                    <!-- Raw Data Layer (Before) -->
+                    <div class="raw-data-layer">
+                        <div class="viz-top-bar">
+                            <span class="mono-text">query_exec: select * from raw_events limit 6</span>
+                        </div>
+                        <table class="raw-table">
+                            <thead>
+                                <tr><th>timestamp</th><th>event_id</th><th>sensor_val</th><th>conf</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1708560012</td><td>evt_8x92a</td><td>0.003921</td><td>0.12</td></tr>
+                                <tr><td>1708560013</td><td>evt_8x92b</td><td>-0.01423</td><td>0.08</td></tr>
+                                <tr><td>1708560014</td><td>evt_8x92c</td><td>0.008412</td><td>0.15</td></tr>
+                                <tr><td>1708560015</td><td>evt_8x92d</td><td>0.892144</td><td>0.94</td></tr>
+                                <tr><td>1708560016</td><td>evt_8x92e</td><td>0.910232</td><td>0.96</td></tr>
+                                <tr><td>1708560017</td><td>evt_8x92f</td><td>0.941011</td><td>0.98</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Clean Chart Layer (After / Fallback) -->
+                    <div class="clean-chart-layer">
+                        <div class="chart-header">
+                            <div class="chart-title-group">
+                                <span class="chart-label">Decision Confidence</span>
+                                <span class="chart-status"><span class="status-dot"></span> Signal Locked</span>
+                            </div>
+                            <span class="chart-value">96.8%</span>
+                        </div>
+                        <div class="chart-body">
+                            <svg viewBox="0 0 400 120" preserveAspectRatio="none" class="chart-svg">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#4338ca" stop-opacity="0.2"/>
+                                        <stop offset="100%" stop-color="#4338ca" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,100 L40,95 L80,98 L120,80 L160,85 L200,40 L240,45 L280,20 L320,25 L360,10 L400,5 L400,120 L0,120 Z" fill="url(#chartGradient)" />
+                                <path d="M0,100 L40,95 L80,98 L120,80 L160,85 L200,40 L240,45 L280,20 L320,25 L360,10 L400,5" fill="none" stroke="#4338ca" stroke-width="2" stroke-linejoin="round" />
+                                <circle cx="400" cy="5" r="4" fill="#4338ca" />
+                            </svg>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERTISE (Light) -->
+    <style>
+        /* HERO SPLIT STYLES */
+        body { background: #FAFAFA; color: #0F172A; }
+        .hero-split {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: #FAFAFA;
+        }
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .hero-headline {
+            font-size: clamp(2.5rem, 5vw, 4.25rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+        .hero-subhead {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
+        .hero-ctas { display: flex; gap: 16px; }
+        
+        .btn-cobalt {
+            background: #4338ca;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background 0.2s ease;
+        }
+        .btn-cobalt:hover { background: #3730a3; }
+        
+        .btn-outline-dark {
+            background: transparent;
+            color: #0F172A;
+            border: 1px solid #E2E8F0;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .btn-outline-dark:hover { border-color: #CBD5E1; background: #F1F5F9; }
+
+        /* VIZ CONTAINER */
+        .hero-viz-container {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 2px;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        
+        /* LAYERS */
+        .raw-data-layer {
+            position: absolute;
+            inset: 0;
+            padding: 24px;
+            background: #ffffff;
+            z-index: 1;
+            opacity: 0; /* Default hidden */
+        }
+        .clean-chart-layer {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            background: #ffffff;
+            z-index: 2;
+            opacity: 1; /* Default visible (fallback) */
+        }
+
+        /* RAW TABLE STYLES */
+        .viz-top-bar { border-bottom: 1px solid #F1F5F9; padding-bottom: 12px; margin-bottom: 16px; }
+        .mono-text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.75rem; color: #64748B; }
+        .raw-table { width: 100%; border-collapse: collapse; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.7rem; color: #475569; }
+        .raw-table th { text-align: left; padding: 8px 4px; color: #94A3B8; font-weight: 500; border-bottom: 1px solid #F1F5F9; }
+        .raw-table td { padding: 8px 4px; border-bottom: 1px solid #F8FAFC; }
+
+        /* CHART STYLES */
+        .chart-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+        .chart-title-group { display: flex; flex-direction: column; gap: 8px; }
+        .chart-label { font-size: 0.85rem; font-weight: 600; color: #475569; letter-spacing: 0.05em; text-transform: uppercase; }
+        .chart-status { font-size: 0.75rem; color: #4338ca; display: flex; align-items: center; gap: 6px; font-weight: 500; }
+        .status-dot { width: 6px; height: 6px; background: #4338ca; border-radius: 50%; }
+        .chart-value { font-size: 2.5rem; font-weight: 700; color: #0F172A; letter-spacing: -0.02em; line-height: 1; }
+        
+        .chart-body { flex: 1; position: relative; }
+        .chart-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        /* ANIMATION LOGIC */
+        .run-animation .raw-data-layer {
+            opacity: 1;
+            animation: fadeOutData 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+        }
+        .run-animation .clean-chart-layer {
+            opacity: 0;
+            animation: fadeInChart 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+        }
+
+        @keyframes fadeOutData {
+            0% { opacity: 1; transform: translateY(0); filter: blur(0); }
+            100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+        }
+        @keyframes fadeInChart {
+            0% { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @media(max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; padding-top: 40px; }
+            .hero-split { padding-top: 100px; min-height: auto; }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.getElementById('hero-viz').classList.add('run-animation');
+            }
+        });
+    </script>
+<!-- EXPERTISE (Light) -->
     <section id="expertise" class="section theme-light">
         <div class="container">
             <div class="reveal">
@@ -458,8 +643,8 @@
         <div class="container text-center reveal" style="text-align: center;">
             <span class="eyebrow">Join Us</span>
             <h2>BUILD THE FUTURE.</h2>
-            <p style="margin: 1.5rem auto 3rem; max-width: 600px; color: var(--text-dark-muted); font-size: 1.15rem;">We are an engineering laboratory disguised as a consulting firm. Join a team of researchers, data engineers, and strategists solving the world's most complex business problems.</p>
-            <a href="#careers" class="btn btn-outline" style="border-color: var(--text-dark); color: var(--text-dark);">View Open Positions</a>
+            <p style="margin: 1.5rem auto 2rem; max-width: 600px; color: var(--text-dark-muted); font-size: 1.15rem;">We are an engineering laboratory disguised as a consulting firm. Join a team of researchers, data engineers, and strategists solving the world's most complex business problems.</p>
+            <p style="margin: 0 auto 3rem; max-width: 500px; font-weight: 500; color: var(--accent);">Note: Our hiring is very selective. We only hire from top colleges or highly experienced industry professionals.</p>
         </div>
     </section>
 
@@ -468,7 +653,14 @@
             <span class="eyebrow">Engage</span>
             <h2>HAVE A PROBLEM WORTH SOLVING?</h2>
             <p style="margin: 1.5rem auto 3rem; max-width: 600px; color: var(--text-muted); font-size: 1.15rem;">Tell us what you're trying to solve. We'll bring the right combination of data, intelligence, and engineering to the table.</p>
-            <a href="mailto:contact@datadecision.consulting" class="btn btn-primary">Request a Brief</a>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; text-align: left;">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="email" name="email" placeholder="Your Email" required style="padding: 14px; border-radius: 4px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color: white;">
+                <textarea name="message" placeholder="Tell us about your data challenge..." required rows="4" style="padding: 14px; border-radius: 4px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color: white;"></textarea>
+                <button type="submit" class="btn-cobalt" style="width: 100%; border:none; margin-top: 8px;">Request a Brief</button>
+            </form>
+            <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">Or email us directly at <a href="mailto:contact@datadecision.consulting" style="color: var(--accent-cyan);">contact@datadecision.consulting</a></p>
         </div>
     </section>
 
