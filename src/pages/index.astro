@@ -13,6 +13,81 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
     <style>
+
+        /* HERO (Direction 1: Split Proof) */
+        .hero-split { background: #FAFAFA; padding: 160px 0 100px; min-height: 100vh; display: flex; align-items: center; }
+        .hero-container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .hero-headline { color: #0F172A; font-size: clamp(3.2rem, 5vw, 4.8rem); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px; font-weight: 700; }
+        .hero-subhead { color: #475569; font-size: 1.25rem; line-height: 1.6; margin-bottom: 40px; max-width: 500px; }
+        .btn-cobalt { background: #4338ca; color: white; padding: 16px 32px; border-radius: 4px; font-weight: 600; text-decoration: none; display: inline-flex; transition: background 0.2s; }
+        .btn-cobalt:hover { background: #3730a3; color: white; }
+        .btn-outline-dark { border: 1px solid #CBD5E1; color: #0F172A; padding: 16px 32px; border-radius: 4px; font-weight: 600; text-decoration: none; display: inline-flex; margin-left: 16px; transition: all 0.2s; }
+        .btn-outline-dark:hover { background: #F1F5F9; }
+
+        .proof-panel {
+            background: #FAFAFA;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            height: 420px;
+            position: relative;
+        }
+
+        .chaos-layer {
+            position: absolute; inset: 0; padding: 48px;
+            color: #64748B;
+            font-family: monospace; font-size: 0.95rem; line-height: 1.6;
+        }
+
+        .resolved-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #FAFAFA;
+            overflow: hidden;
+        }
+
+        .scanner-line {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background: #4338ca;
+            box-shadow: 0 -4px 12px rgba(67, 56, 202, 0.4);
+            display: none;
+        }
+
+        .flow-diagram { padding: 48px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .flow-step {
+            position: relative; padding-left: 36px; color: #0F172A; font-weight: 600; font-size: 1.1rem;
+        }
+        .flow-step::before {
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 12px; height: 12px; border: 2px solid #94A3B8; border-radius: 50%; background: #FAFAFA; z-index: 2;
+        }
+        .flow-step:not(:last-child)::after {
+            content: ''; position: absolute; left: 5px; top: 24px;
+            width: 2px; height: calc(100% + 24px); background: #E2E8F0; z-index: 1;
+        }
+        .flow-step.final-step { color: #4338ca; font-size: 1.25rem; }
+        .flow-step.final-step::before { border-color: #4338ca; background: #4338ca; }
+
+        /* ANIMATION LOGIC */
+        @media (prefers-reduced-motion: no-preference) {
+            .run-animation .resolved-layer {
+                height: 0%;
+                animation: scanDown 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.8s forwards;
+            }
+            .run-animation .scanner-line {
+                display: block;
+                animation: fadeOutScanner 0.1s linear 2.3s forwards;
+            }
+            @keyframes scanDown { 0% { height: 0%; } 100% { height: 100%; } }
+            @keyframes fadeOutScanner { to { opacity: 0; display: none; } }
+        }
+
+        @media(max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            .hero-split { padding-top: 120px; }
+            .hero-ctas { display: flex; flex-direction: column; gap: 16px; }
+            .btn-outline-dark { margin-left: 0; text-align: center; justify-content: center; }
+            .btn-cobalt { text-align: center; justify-content: center; }
+        }
+
         :root {
             --bg-dark: #070709;
             --bg-darker: #040405;
