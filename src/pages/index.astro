@@ -275,199 +275,35 @@
                 </div>
             </div>
             <div class="hero-right">
-                <div class="hero-viz-container" id="hero-viz">
+                <div class="proof-panel">
+                    <div class="chaos-layer">
+<pre><code>[STREAM_IN] 0x00A1F
+sys.log.err: unmapped_schema
+>> cluster_771 offline
+WAITING...
+[UNSTRUCTURED_POOL]
+JOIN table_a, table_b ON (null)
+val = NaN
+01001100 01101111 01100111
+>> END_STREAM</code></pre>
+                    </div>
                     
-                    <!-- Raw Data Layer (Before) -->
-                    <div class="raw-data-layer">
-                        <div class="viz-top-bar">
-                            <span class="mono-text">query_exec: select * from raw_events limit 6</span>
-                        </div>
-                        <table class="raw-table">
-                            <thead>
-                                <tr><th>timestamp</th><th>event_id</th><th>sensor_val</th><th>conf</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>1708560012</td><td>evt_8x92a</td><td>0.003921</td><td>0.12</td></tr>
-                                <tr><td>1708560013</td><td>evt_8x92b</td><td>-0.01423</td><td>0.08</td></tr>
-                                <tr><td>1708560014</td><td>evt_8x92c</td><td>0.008412</td><td>0.15</td></tr>
-                                <tr><td>1708560015</td><td>evt_8x92d</td><td>0.892144</td><td>0.94</td></tr>
-                                <tr><td>1708560016</td><td>evt_8x92e</td><td>0.910232</td><td>0.96</td></tr>
-                                <tr><td>1708560017</td><td>evt_8x92f</td><td>0.941011</td><td>0.98</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Clean Chart Layer (After / Fallback) -->
-                    <div class="clean-chart-layer">
-                        <div class="chart-header">
-                            <div class="chart-title-group">
-                                <span class="chart-label">Decision Confidence</span>
-                                <span class="chart-status"><span class="status-dot"></span> Signal Locked</span>
-                            </div>
-                            <span class="chart-value">96.8%</span>
-                        </div>
-                        <div class="chart-body">
-                            <svg viewBox="0 0 400 120" preserveAspectRatio="none" class="chart-svg">
-                                <defs>
-                                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#4338ca" stop-opacity="0.2"/>
-                                        <stop offset="100%" stop-color="#4338ca" stop-opacity="0"/>
-                                    </linearGradient>
-                                </defs>
-                                <path d="M0,100 L40,95 L80,98 L120,80 L160,85 L200,40 L240,45 L280,20 L320,25 L360,10 L400,5 L400,120 L0,120 Z" fill="url(#chartGradient)" />
-                                <path d="M0,100 L40,95 L80,98 L120,80 L160,85 L200,40 L240,45 L280,20 L320,25 L360,10 L400,5" fill="none" stroke="#4338ca" stroke-width="2" stroke-linejoin="round" />
-                                <circle cx="400" cy="5" r="4" fill="#4338ca" />
-                            </svg>
+                    <div class="resolved-layer">
+                        <div class="scanner-line"></div>
+                        <div class="flow-diagram">
+                            <div class="flow-step">Business Problem</div>
+                            <div class="flow-step">Data Architecture</div>
+                            <div class="flow-step">ML Models</div>
+                            <div class="flow-step">Intelligence</div>
+                            <div class="flow-step final-step">Measurable Decision</div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
-    <style>
-        /* HERO SPLIT STYLES */
-        body { background: #FAFAFA; color: #0F172A; }
-        .hero-split {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            background: #FAFAFA;
-        }
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .hero-headline {
-            font-size: clamp(2.5rem, 5vw, 4.25rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            color: #0F172A;
-            margin-bottom: 24px;
-        }
-        .hero-subhead {
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
-            line-height: 1.6;
-            color: #475569;
-            margin-bottom: 40px;
-            max-width: 540px;
-        }
-        .hero-ctas { display: flex; gap: 16px; }
-        
-        .btn-cobalt {
-            background: #4338ca;
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: background 0.2s ease;
-        }
-        .btn-cobalt:hover { background: #3730a3; }
-        
-        .btn-outline-dark {
-            background: transparent;
-            color: #0F172A;
-            border: 1px solid #E2E8F0;
-            padding: 14px 28px;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
-        .btn-outline-dark:hover { border-color: #CBD5E1; background: #F1F5F9; }
-
-        /* VIZ CONTAINER */
-        .hero-viz-container {
-            position: relative;
-            background: #ffffff;
-            border: 1px solid #E2E8F0;
-            border-radius: 2px;
-            aspect-ratio: 4/3;
-            overflow: hidden;
-        }
-        
-        /* LAYERS */
-        .raw-data-layer {
-            position: absolute;
-            inset: 0;
-            padding: 24px;
-            background: #ffffff;
-            z-index: 1;
-            opacity: 0; /* Default hidden */
-        }
-        .clean-chart-layer {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            padding: 32px;
-            background: #ffffff;
-            z-index: 2;
-            opacity: 1; /* Default visible (fallback) */
-        }
-
-        /* RAW TABLE STYLES */
-        .viz-top-bar { border-bottom: 1px solid #F1F5F9; padding-bottom: 12px; margin-bottom: 16px; }
-        .mono-text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.75rem; color: #64748B; }
-        .raw-table { width: 100%; border-collapse: collapse; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.7rem; color: #475569; }
-        .raw-table th { text-align: left; padding: 8px 4px; color: #94A3B8; font-weight: 500; border-bottom: 1px solid #F1F5F9; }
-        .raw-table td { padding: 8px 4px; border-bottom: 1px solid #F8FAFC; }
-
-        /* CHART STYLES */
-        .chart-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
-        .chart-title-group { display: flex; flex-direction: column; gap: 8px; }
-        .chart-label { font-size: 0.85rem; font-weight: 600; color: #475569; letter-spacing: 0.05em; text-transform: uppercase; }
-        .chart-status { font-size: 0.75rem; color: #4338ca; display: flex; align-items: center; gap: 6px; font-weight: 500; }
-        .status-dot { width: 6px; height: 6px; background: #4338ca; border-radius: 50%; }
-        .chart-value { font-size: 2.5rem; font-weight: 700; color: #0F172A; letter-spacing: -0.02em; line-height: 1; }
-        
-        .chart-body { flex: 1; position: relative; }
-        .chart-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-        /* ANIMATION LOGIC */
-        .run-animation .raw-data-layer {
-            opacity: 1;
-            animation: fadeOutData 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
-        }
-        .run-animation .clean-chart-layer {
-            opacity: 0;
-            animation: fadeInChart 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
-        }
-
-        @keyframes fadeOutData {
-            0% { opacity: 1; transform: translateY(0); filter: blur(0); }
-            100% { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
-        }
-        @keyframes fadeInChart {
-            0% { opacity: 0; transform: translateY(20px); filter: blur(4px); }
-            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-
-        @media(max-width: 1024px) {
-            .hero-container { grid-template-columns: 1fr; padding-top: 40px; }
-            .hero-split { padding-top: 100px; min-height: auto; }
-        }
-    </style>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.getElementById('hero-viz').classList.add('run-animation');
-            }
-        });
-    </script>
-<!-- EXPERTISE (Light) -->
+    <!-- EXPERTISE (Light) -->
     <section id="expertise" class="section theme-light">
         <div class="container">
             <div class="reveal">
@@ -839,6 +675,11 @@
         setupNativeSlider('cs-track', 'cs-progress');
         setupNativeSlider('exp-track', 'exp-progress');
         setupNativeSlider('ins-track', null);
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            document.querySelector('.hero-split').classList.add('run-animation');
+        }
 
         // 4. Hero Particle Canvas
         const canvas = document.getElementById('particle-canvas');
