@@ -232,56 +232,165 @@
             .hero-bg-video { background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat; }
         }
 
-        /* ===== EXPERTISE / CAP SYSTEM ===== */
-        .exp-new-header{margin-bottom:64px;}
-        .cap-system{display:flex;flex-direction:column;gap:0;}
-        .cap-svg-wrap{width:100%;overflow:hidden;margin-bottom:0;position:relative;height:80px;}
-        #cap-svg{width:100%;height:100%;display:block;}
-        .cap-panels{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
-        @media(min-width:768px){.cap-panels{grid-template-columns:repeat(4,1fr);}}
-        .cap-panel{background:var(--white);padding:32px 28px;cursor:pointer;transition:background 0.25s;border-top:2px solid transparent;position:relative;outline:none;}
-        .cap-panel:hover,.cap-panel.open{background:var(--stone-50);border-top-color:var(--blue);}
-        .cap-panel-num{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;color:var(--blue);margin-bottom:12px;}
-        .cap-panel-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3;}
-        .cap-panel-teaser{font-size:0.825rem;color:var(--ink-40);line-height:1.6;margin:0;}
-        .cap-panel-detail{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1),opacity 0.35s;opacity:0;}
-        .cap-panel.open .cap-panel-detail{max-height:400px;opacity:1;margin-top:20px;}
-        .cap-detail-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-        .cap-detail-tags span{font-size:0.7rem;font-weight:600;color:var(--ink-70);border:1px solid var(--border);padding:4px 10px;letter-spacing:0.02em;}
-        .cap-detail-outcome{font-size:0.875rem;line-height:1.7;color:var(--ink-70);margin-bottom:16px;}
-        .cap-detail-link{font-size:0.8rem;font-weight:600;color:var(--blue);}
-        .tech-strip{border-top:1px solid var(--border);padding:28px 0;margin-top:0;}
-        .tech-strip-inner{display:flex;flex-wrap:wrap;gap:4px 0;align-items:center;}
-        .tech-strip-inner span{font-size:0.75rem;font-weight:500;color:var(--ink-40);padding:4px 16px;transition:color 0.2s;cursor:default;}
-        .tech-strip-inner span:hover{color:var(--blue);}
-        .ts-sep{color:var(--border)!important;padding:0!important;}
-        /* ===== APPROACH / SYSTEM DIAGRAM ===== */
-        .approach-header{margin-bottom:64px;}
-        .approach-layout{display:grid;grid-template-columns:1fr;gap:48px;align-items:start;}
-        @media(min-width:900px){.approach-layout{grid-template-columns:1fr 1.2fr 1fr;gap:40px;}}
-        .approach-problem-block{border:1px solid var(--border);padding:24px;background:var(--white);}
-        .app-input-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-40);margin-bottom:12px;}
-        .app-input-examples{display:flex;flex-direction:column;gap:8px;}
-        .app-eg{font-size:0.875rem;font-weight:500;color:var(--ink-40);padding:8px 12px;border-left:2px solid var(--border);transition:all 0.3s;cursor:pointer;}
-        .app-eg.active{color:var(--ink);border-left-color:var(--blue);}
-        .approach-connector{width:1px;height:32px;background:var(--border);margin:0 auto;}
-        .app-data-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-40);text-align:center;}
-        #approach-svg{width:100%;height:auto;display:block;}
-        .asvg-label{font-family:'DM Sans',system-ui;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;fill:#9d9590;}
-        .asol-node{transition:opacity 0.3s;}
-        .approach-solutions{position:relative;min-height:220px;}
-        .app-sol-panel{display:none;padding:24px;border:1px solid var(--border);background:var(--white);}
-        .app-sol-panel.active{display:block;}
-        .app-sol-num{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;color:var(--blue);margin-bottom:8px;}
-        .app-sol-panel h4{font-size:1.05rem;font-weight:600;margin-bottom:10px;}
-        .app-sol-panel p{font-size:0.875rem;line-height:1.7;color:var(--ink-70);margin-bottom:14px;}
-        .app-sol-methods{display:flex;flex-wrap:wrap;gap:6px;}
-        .app-sol-methods span{font-size:0.7rem;font-weight:600;color:var(--blue);border:1px solid rgba(26,82,184,0.2);padding:3px 10px;}
-        .app-nav{display:flex;align-items:center;gap:16px;margin-top:16px;}
-        .app-nav-btn{background:none;border:1px solid var(--border);color:var(--ink-70);padding:8px 16px;cursor:pointer;font-size:0.875rem;font-family:var(--font-sans);transition:all 0.2s;}
-        .app-nav-btn:hover{border-color:var(--ink);color:var(--ink);}
-        .app-nav-pos{font-size:0.75rem;color:var(--ink-40);font-weight:500;}
-        /* ===== CASE STUDIES v2 ===== */
+        /* ===== EXPERTISE (BENTO GRID) ===== */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 64px;
+}
+@media (min-width: 900px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-wide {
+        grid-column: 1 / -1;
+    }
+}
+.bento-card {
+    position: relative;
+    border-radius: 6px;
+    background: #0d141c;
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
+}
+@media (min-width: 900px) {
+    .bento-wide {
+        min-height: 420px;
+    }
+}
+.bento-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(26,82,184,0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(26,82,184,0.1);
+}
+.bento-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    mix-blend-mode: luminosity;
+    transition: opacity 0.6s, transform 6s linear;
+}
+.bento-card:hover .bento-bg-img {
+    opacity: 0.3;
+    transform: scale(1.05);
+}
+.bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(7,11,16,0.4) 0%, rgba(7,11,16,0.95) 100%);
+}
+.bento-content {
+    position: relative;
+    z-index: 2;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.bento-num {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--blue);
+    margin-bottom: 24px;
+}
+.bento-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+.bento-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 0;
+    max-width: 85%;
+}
+.bento-link {
+    margin-top: auto;
+    padding-top: 32px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.bento-card:hover .bento-link {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--blue);
+}
+
+/* Visuals */
+.bento-viz {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.4;
+    transition: opacity 0.5s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+.bento-wide .bento-viz {
+    width: 320px;
+    height: 180px;
+}
+.bento-card:hover .bento-viz {
+    opacity: 0.9;
+    transform: scale(1.05) translate(-5px, 5px);
+}
+.viz-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Hover Animations */
+.bento-card:hover .layer {
+    animation: floatLayer 3s ease-in-out infinite alternate;
+}
+.bento-card:hover .l2 { animation-delay: 0.2s; stroke: #1a52b8; fill: rgba(26,82,184,0.15); }
+.bento-card:hover .l3 { animation-delay: 0.4s; stroke: #fff; }
+@keyframes floatLayer {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+.bento-card:hover .pipe-active {
+    fill: rgba(26,82,184,0.25);
+    stroke: #1a52b8;
+}
+.bento-card:hover .chart-line {
+    transition: stroke-dashoffset 1.5s ease-out;
+    stroke-dashoffset: 0;
+}
+.bento-card:hover .chart-dot {
+    opacity: 1;
+    transition: opacity 0.3s 1.2s;
+}
+@media (prefers-reduced-motion: reduce) {
+    .bento-card:hover, .bento-card:hover .bento-viz, .bento-card:hover .bento-bg-img { transform: none; }
+    .bento-card:hover .chart-line { stroke-dashoffset: 0; transition: none; }
+    .layer { animation: none !important; }
+    .viz-signal { display: none; }
+}
+/* ===== CASE STUDIES v2 ===== */
         .cs2-header{margin-bottom:64px;}
         .cs2-rail{display:flex;flex-direction:column;gap:0;}
         .cs2-track{position:relative;margin-bottom:32px;display:none;}
@@ -586,247 +695,109 @@
 })();
 </script>
 
-<section id="expertise" class="section border-b" style="overflow:hidden;">
-    <div class="container">
-        <div class="exp-new-header fade-up">
-            <div class="eyebrow">Our Expertise</div>
-            <h2 style="max-width:680px;">Engineering intelligence for decisions that matter.</h2>
-            <p class="lead" style="max-width:620px;margin-top:16px;">We combine data engineering, advanced analytics, machine learning, and decision intelligence to build systems that solve complex business problems.</p>
+<!-- EXPERTISE (REDESIGNED) -->
+<section id="expertise" class="section border-b" style="background: #070b10; color: #fff; overflow:hidden; position: relative;">
+    <!-- Abstract dark grid background -->
+    <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events:none;"></div>
+    
+    <!-- Ambient glowing orbs -->
+    <div style="position:absolute; top:-20%; left:-10%; width:60%; height:60%; background: radial-gradient(circle, rgba(26,82,184,0.12) 0%, transparent 70%); filter:blur(80px); pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-20%; right:-10%; width:60%; height:60%; background: radial-gradient(circle, rgba(26,82,184,0.08) 0%, transparent 70%); filter:blur(80px); pointer-events:none;"></div>
+
+    <div class="container" style="position:relative; z-index:2; padding-top:20px;">
+        <div class="expertise-header fade-up">
+            <div class="eyebrow" style="color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.15);">Our Expertise</div>
+            <h2 style="color: #fff; max-width: 800px; font-size: clamp(2rem, 4vw, 3.2rem); line-height:1.15; margin-bottom: 24px; letter-spacing: -0.02em;">Engineering intelligence for decisions that matter.</h2>
+            <p class="lead" style="max-width: 650px; color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.6;">We combine data engineering, advanced analytics, machine learning, AI, and decision intelligence to build technology-driven solutions for complex business problems.</p>
         </div>
 
-        <!-- Capability system -->
-        <div class="cap-system" id="cap-system">
-            <!-- SVG network connector -->
-            <div class="cap-svg-wrap">
-                <svg id="cap-svg" viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-                    <!-- Background grid lines -->
-                    <line x1="200" y1="0" x2="200" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
-                    <line x1="400" y1="0" x2="400" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
-                    <line x1="600" y1="0" x2="600" y2="320" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
-                    <line x1="0" y1="160" x2="800" y2="160" stroke="#e2ddd8" stroke-width="0.5" opacity="0.4"/>
-                    <!-- Connecting paths between nodes -->
-                    <path id="cp-01-02" d="M 200 160 C 280 160 320 160 400 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
-                    <path id="cp-02-03" d="M 400 160 C 480 160 520 160 600 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
-                    <path id="cp-03-04" d="M 600 160 C 680 160 720 160 800 160" fill="none" stroke="#9d9590" stroke-width="1" opacity="0"/>
-                    <!-- Cross paths -->
-                    <path id="cp-01-03" d="M 200 160 C 260 100 340 100 400 160 C 460 220 540 220 600 160" fill="none" stroke="#9d9590" stroke-width="0.6" stroke-dasharray="4 6" opacity="0"/>
-                    <path id="cp-02-04" d="M 400 160 C 460 100 540 100 600 160 C 660 220 740 220 800 160" fill="none" stroke="#9d9590" stroke-width="0.6" stroke-dasharray="4 6" opacity="0"/>
-                    <!-- Signal dots travelling -->
-                    <circle id="cpsig-1" r="3" fill="#1a52b8" opacity="0"/>
-                    <circle id="cpsig-2" r="3" fill="#1a52b8" opacity="0"/>
-                    <!-- Node halos -->
-                    <circle id="cap-halo-0" cx="200" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
-                    <circle id="cap-halo-1" cx="400" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
-                    <circle id="cap-halo-2" cx="600" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
-                    <circle id="cap-halo-3" cx="800" cy="160" r="32" fill="none" stroke="#1a52b8" stroke-width="1" opacity="0"/>
-                    <!-- Node cores -->
-                    <circle id="cap-node-0" cx="200" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
-                    <circle id="cap-node-1" cx="400" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
-                    <circle id="cap-node-2" cx="600" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
-                    <circle id="cap-node-3" cx="800" cy="160" r="6" fill="#d8d3cc" stroke="none"/>
-                    <!-- Data stream particles (hidden by default, JS animates) -->
-                    <circle id="ds1" r="2" fill="#1a52b8" opacity="0"/>
-                    <circle id="ds2" r="1.5" fill="#9d9590" opacity="0"/>
-                    <circle id="ds3" r="2" fill="#1a52b8" opacity="0"/>
-                </svg>
-            </div>
+        <div class="bento-grid">
+            <!-- 01: DATA & DECISION INTELLIGENCE (Large spanning card) -->
+            <a href="/case-study-data-analytics" class="bento-card bento-wide fade-up delay-1">
+                <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1600');"></div>
+                <div class="bento-overlay"></div>
+                <div class="bento-viz">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-network">
+                        <path d="M50 100 Q 150 20 200 100 T 350 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+                        <path d="M50 100 Q 150 180 200 100 T 350 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+                        <circle cx="50" cy="100" r="4" fill="#1a52b8" />
+                        <circle cx="200" cy="100" r="6" fill="#fff" />
+                        <circle cx="350" cy="100" r="4" fill="#1a52b8" />
+                        <!-- animated signals -->
+                        <circle r="3" fill="#fff" class="viz-signal sig-1"><animateMotion dur="4s" repeatCount="indefinite" path="M50 100 Q 150 20 200 100 T 350 100"/></circle>
+                        <circle r="3" fill="#fff" class="viz-signal sig-2"><animateMotion dur="5s" repeatCount="indefinite" path="M50 100 Q 150 180 200 100 T 350 100"/></circle>
+                    </svg>
+                </div>
+                <div class="bento-content">
+                    <div class="bento-num">01</div>
+                    <h3 class="bento-title">Data &amp; Decision Intelligence</h3>
+                    <p class="bento-desc">Forecasting, optimization, simulation, business intelligence, decision systems.</p>
+                    <span class="bento-link">Explore expertise &rarr;</span>
+                </div>
+            </a>
 
-            <!-- 4 Capability panels -->
-            <div class="cap-panels">
-                <div class="cap-panel" data-cap="0" tabindex="0">
-                    <div class="cap-panel-num">01</div>
-                    <h3 class="cap-panel-title">Data &amp; Decision Intelligence</h3>
-                    <p class="cap-panel-teaser">Decision systems, forecasting, optimization, simulation, business intelligence.</p>
-                    <div class="cap-panel-detail">
-                        <div class="cap-detail-tags">
-                            <span>Demand Forecasting</span><span>Decision Modeling</span><span>Optimization</span><span>Business Intelligence</span><span>Simulation</span><span>KPI Architecture</span>
-                        </div>
-                        <p class="cap-detail-outcome">We build end-to-end decision systems that connect data signals directly to operational choices, replacing gut feel with structured, evidence-based intelligence.</p>
-                        <a href="/case-study-data-analytics" class="cap-detail-link">See how we applied this &rarr;</a>
-                    </div>
+            <!-- 02: AI / ML ENGINEERING -->
+            <a href="/case-study-ai-decision" class="bento-card fade-up delay-2">
+                <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1620825937374-87fc7d6aaf22?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="bento-overlay"></div>
+                <div class="bento-viz">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-layers">
+                        <polygon points="100,60 160,85 100,110 40,85" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" class="layer l1"/>
+                        <polygon points="100,85 160,110 100,135 40,110" fill="rgba(26,82,184,0.05)" stroke="rgba(26,82,184,0.5)" stroke-width="1.5" class="layer l2"/>
+                        <polygon points="100,110 160,135 100,160 40,135" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" class="layer l3"/>
+                    </svg>
                 </div>
-                <div class="cap-panel" data-cap="1" tabindex="0">
-                    <div class="cap-panel-num">02</div>
-                    <h3 class="cap-panel-title">AI / ML Engineering</h3>
-                    <p class="cap-panel-teaser">Machine learning, deep learning, NLP, computer vision, generative AI, intelligent agents.</p>
-                    <div class="cap-panel-detail">
-                        <div class="cap-detail-tags">
-                            <span>Supervised / Unsupervised ML</span><span>Deep Learning</span><span>NLP</span><span>Computer Vision</span><span>GenAI</span><span>AI Agents</span>
-                        </div>
-                        <p class="cap-detail-outcome">We design, train, and deploy production-grade ML systems tailored to specific business problems, not generic model templates applied indiscriminately.</p>
-                        <a href="/case-study-ai-decision" class="cap-detail-link">See how we applied this &rarr;</a>
-                    </div>
+                <div class="bento-content">
+                    <div class="bento-num">02</div>
+                    <h3 class="bento-title">AI / ML Engineering</h3>
+                    <p class="bento-desc">Machine learning, deep learning, NLP, computer vision, generative AI, intelligent agents.</p>
+                    <span class="bento-link">Explore expertise &rarr;</span>
                 </div>
-                <div class="cap-panel" data-cap="2" tabindex="0">
-                    <div class="cap-panel-num">03</div>
-                    <h3 class="cap-panel-title">Data Engineering &amp; AI Infrastructure</h3>
-                    <p class="cap-panel-teaser">Data platforms, pipelines, cloud architecture, data products, MLOps.</p>
-                    <div class="cap-panel-detail">
-                        <div class="cap-detail-tags">
-                            <span>Data Pipelines</span><span>Cloud Architecture</span><span>Data Products</span><span>Real-time Analytics</span><span>MLOps</span><span>Data Mesh</span>
-                        </div>
-                        <p class="cap-detail-outcome">We design data infrastructure that is built for analytical use, not just storage. Systems that feed models, power dashboards, and enable rapid iteration.</p>
-                        <a href="/case-study-operations" class="cap-detail-link">See how we applied this &rarr;</a>
-                    </div>
-                </div>
-                <div class="cap-panel" data-cap="3" tabindex="0">
-                    <div class="cap-panel-num">04</div>
-                    <h3 class="cap-panel-title">Intelligent Operations</h3>
-                    <p class="cap-panel-teaser">Demand forecasting, supply chain intelligence, pricing, customer analytics, process optimization.</p>
-                    <div class="cap-panel-detail">
-                        <div class="cap-detail-tags">
-                            <span>Supply Chain Intelligence</span><span>Dynamic Pricing</span><span>Customer Analytics</span><span>Process Optimization</span><span>Operational Decision Systems</span>
-                        </div>
-                        <p class="cap-detail-outcome">We translate operational data into a continuous advantage — systems that sense change, adapt, and route the right information to the right decision at the right time.</p>
-                        <a href="/case-study-customer-growth" class="cap-detail-link">See how we applied this &rarr;</a>
-                    </div>
-                </div>
-            </div>
+            </a>
 
-            <!-- Technical strip -->
-            <div class="tech-strip fade-up">
-                <div class="tech-strip-inner">
-                    <span>Machine Learning</span><span class="ts-sep">·</span>
-                    <span>Deep Learning</span><span class="ts-sep">·</span>
-                    <span>Generative AI</span><span class="ts-sep">·</span>
-                    <span>NLP</span><span class="ts-sep">·</span>
-                    <span>Computer Vision</span><span class="ts-sep">·</span>
-                    <span>Forecasting</span><span class="ts-sep">·</span>
-                    <span>Optimization</span><span class="ts-sep">·</span>
-                    <span>Simulation</span><span class="ts-sep">·</span>
-                    <span>Data Engineering</span><span class="ts-sep">·</span>
-                    <span>MLOps</span><span class="ts-sep">·</span>
-                    <span>Cloud Analytics</span><span class="ts-sep">·</span>
-                    <span>Decision Intelligence</span>
+            <!-- 03: DATA ENGINEERING & AI INFRASTRUCTURE -->
+            <a href="/case-study-operations" class="bento-card fade-up delay-2">
+                <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="bento-overlay"></div>
+                <div class="bento-viz">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-pipes">
+                        <rect x="40" y="60" width="120" height="16" rx="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                        <rect x="40" y="100" width="120" height="16" rx="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                        <rect x="40" y="140" width="120" height="16" rx="3" fill="none" stroke="rgba(26,82,184,0.6)" stroke-width="1.5" class="pipe-active"/>
+                        <line x1="60" y1="76" x2="60" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                        <line x1="140" y1="116" x2="140" y2="140" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                    </svg>
                 </div>
-            </div>
+                <div class="bento-content">
+                    <div class="bento-num">03</div>
+                    <h3 class="bento-title">Data Engineering &amp; Infrastructure</h3>
+                    <p class="bento-desc">Data platforms, pipelines, cloud architecture, data products, MLOps.</p>
+                    <span class="bento-link">Explore expertise &rarr;</span>
+                </div>
+            </a>
+
+            <!-- 04: INTELLIGENT OPERATIONS (Wide bottom card) -->
+            <a href="/case-study-customer-growth" class="bento-card bento-wide fade-up delay-3">
+                <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600');"></div>
+                <div class="bento-overlay"></div>
+                <div class="bento-viz">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-chart">
+                        <polyline points="0,150 50,130 100,135 150,90 200,105 250,55 300,65 350,20 400,25" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
+                        <polyline points="0,150 50,130 100,135 150,90 200,105 250,55 300,65 350,20 400,25" fill="none" stroke="#1a52b8" stroke-width="2" class="chart-line" stroke-dasharray="600" stroke-dashoffset="600"/>
+                        <circle cx="350" cy="20" r="4" fill="#fff" class="chart-dot" opacity="0"/>
+                    </svg>
+                </div>
+                <div class="bento-content">
+                    <div class="bento-num">04</div>
+                    <h3 class="bento-title">Intelligent Operations</h3>
+                    <p class="bento-desc">Demand forecasting, supply chain intelligence, pricing, process optimization, operational analytics.</p>
+                    <span class="bento-link">Explore expertise &rarr;</span>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- NEW APPROACH SECTION (replaces Methodology) -->
-<section id="approach" class="section bg-stone border-b" style="overflow:hidden;">
-    <div class="container">
-        <div class="approach-header fade-up">
-            <div class="eyebrow">How We Think</div>
-            <h2 style="max-width:680px;">Every problem demands a different system.</h2>
-            <p class="lead" style="max-width:620px;margin-top:16px;">Business problems rarely arrive in predefined categories. We start with the decision that matters, understand the constraints around it, and assemble the right combination of data, models, technology, and domain expertise to solve it.</p>
-        </div>
-        <div class="approach-layout">
-            <!-- Left: Problem input column -->
-            <div class="approach-left fade-up">
-                <div class="approach-problem-block" id="app-problem">
-                    <div class="app-input-label">Business Problem</div>
-                    <div class="app-input-examples" id="app-examples">
-                        <span class="app-eg active" data-branch="0">How do we reduce inventory overstock?</span>
-                        <span class="app-eg" data-branch="1">What will demand look like next quarter?</span>
-                        <span class="app-eg" data-branch="2">Which customers are at risk of churning?</span>
-                        <span class="app-eg" data-branch="3">How do we price dynamically across segments?</span>
-                        <span class="app-eg" data-branch="4">Can we automate contract review?</span>
-                    </div>
-                </div>
-                <div class="approach-connector"></div>
-                <div class="app-data-label">Data + Context + Constraints</div>
-            </div>
-
-            <!-- Centre: SVG branching diagram -->
-            <div class="approach-svg-wrap fade-up delay-1" id="approach-svg-wrap">
-                <svg id="approach-svg" viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <!-- Trunk line down from top -->
-                    <line id="asvg-trunk" x1="170" y1="0" x2="170" y2="120" stroke="#d8d3cc" stroke-width="1.5" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <!-- Central node -->
-                    <circle id="asvg-center" cx="170" cy="120" r="8" fill="white" stroke="#d8d3cc" stroke-width="1.5"/>
-                    <!-- Branch paths (5 solutions) -->
-                    <path id="abr-0" d="M170 120 C 170 180 60 180 60 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <path id="abr-1" d="M170 120 C 170 180 115 180 115 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <path id="abr-2" d="M170 120 C 170 180 170 180 170 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <path id="abr-3" d="M170 120 C 170 180 225 180 225 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <path id="abr-4" d="M170 120 C 170 180 280 180 280 240" fill="none" stroke="#9d9590" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200"/>
-                    <!-- Solution nodes -->
-                    <g id="asol-0" class="asol-node" data-branch="0" style="cursor:pointer">
-                        <circle cx="60" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
-                        <circle cx="60" cy="252" r="5" fill="#d8d3cc"/>
-                    </g>
-                    <g id="asol-1" class="asol-node" data-branch="1" style="cursor:pointer">
-                        <circle cx="115" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
-                        <circle cx="115" cy="252" r="5" fill="#d8d3cc"/>
-                    </g>
-                    <g id="asol-2" class="asol-node" data-branch="2" style="cursor:pointer">
-                        <circle cx="170" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
-                        <circle cx="170" cy="252" r="5" fill="#d8d3cc"/>
-                    </g>
-                    <g id="asol-3" class="asol-node" data-branch="3" style="cursor:pointer">
-                        <circle cx="225" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
-                        <circle cx="225" cy="252" r="5" fill="#d8d3cc"/>
-                    </g>
-                    <g id="asol-4" class="asol-node" data-branch="4" style="cursor:pointer">
-                        <circle cx="280" cy="252" r="22" fill="white" stroke="#d8d3cc" stroke-width="1.2"/>
-                        <circle cx="280" cy="252" r="5" fill="#d8d3cc"/>
-                    </g>
-                    <!-- Node labels -->
-                    <text x="60" y="292" text-anchor="middle" class="asvg-label">Optimization</text>
-                    <text x="115" y="292" text-anchor="middle" class="asvg-label">Forecasting</text>
-                    <text x="170" y="292" text-anchor="middle" class="asvg-label">ML Model</text>
-                    <text x="225" y="292" text-anchor="middle" class="asvg-label">Analytics</text>
-                    <text x="280" y="292" text-anchor="middle" class="asvg-label">NLP / AI</text>
-                    <!-- Outcome line down from active node -->
-                    <line id="asvg-outcome-line" x1="170" y1="300" x2="170" y2="380" stroke="#1a52b8" stroke-width="1.5" stroke-dasharray="100" stroke-dashoffset="100" opacity="0"/>
-                    <!-- Decision outcome node -->
-                    <g id="asvg-outcome" opacity="0">
-                        <circle cx="170" cy="400" r="18" fill="none" stroke="#1a52b8" stroke-width="1.5"/>
-                        <circle cx="170" cy="400" r="6" fill="#1a52b8"/>
-                        <text x="170" y="432" text-anchor="middle" class="asvg-label" fill="#1a52b8" font-weight="600">Decision</text>
-                    </g>
-                    <!-- Signal traveller -->
-                    <circle id="asvg-signal" r="3" fill="#1a52b8" opacity="0"/>
-                </svg>
-            </div>
-
-            <!-- Right: Solution detail panel -->
-            <div class="approach-right fade-up delay-2">
-                <div class="approach-solutions">
-                    <div class="app-sol-panel active" data-branch="0">
-                        <div class="app-sol-num">Path A</div>
-                        <h4>Inventory Optimization</h4>
-                        <p>Constraint-based optimization model built on real demand signals, reducing overstock without sacrificing service levels.</p>
-                        <div class="app-sol-methods"><span>Operations Research</span><span>Mixed-Integer Programming</span><span>Demand Sensing</span></div>
-                    </div>
-                    <div class="app-sol-panel" data-branch="1">
-                        <div class="app-sol-num">Path B</div>
-                        <h4>Demand Forecasting System</h4>
-                        <p>Probabilistic forecasting engine that combines internal history with external signals for planning horizons that actually hold.</p>
-                        <div class="app-sol-methods"><span>Time-Series ML</span><span>External Signal Integration</span><span>Uncertainty Quantification</span></div>
-                    </div>
-                    <div class="app-sol-panel" data-branch="2">
-                        <div class="app-sol-num">Path C</div>
-                        <h4>Churn Prediction Model</h4>
-                        <p>Customer-level survival model scoring churn probability weekly, feeding targeted retention intervention workflows.</p>
-                        <div class="app-sol-methods"><span>Survival Analysis</span><span>Gradient Boosting</span><span>Customer Segmentation</span></div>
-                    </div>
-                    <div class="app-sol-panel" data-branch="3">
-                        <div class="app-sol-num">Path D</div>
-                        <h4>Dynamic Pricing Engine</h4>
-                        <p>Price optimization system that continuously balances margin, volume, and competitive positioning across customer segments.</p>
-                        <div class="app-sol-methods"><span>Elasticity Modeling</span><span>Reinforcement Learning</span><span>Segment Analytics</span></div>
-                    </div>
-                    <div class="app-sol-panel" data-branch="4">
-                        <div class="app-sol-num">Path E</div>
-                        <h4>Contract Intelligence Agent</h4>
-                        <p>NLP pipeline that extracts, classifies, and flags key clauses from contract documents, enabling scalable legal and commercial review.</p>
-                        <div class="app-sol-methods"><span>NLP / LLM</span><span>Information Extraction</span><span>AI Agent</span></div>
-                    </div>
-                </div>
-                <div class="app-nav">
-                    <button class="app-nav-btn" id="app-prev" aria-label="Previous">&#8592;</button>
-                    <span class="app-nav-pos" id="app-nav-pos">1 / 5</span>
-                    <button class="app-nav-btn" id="app-next" aria-label="Next">&#8594;</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CASE STUDIES (redesigned) -->
 <section id="case-studies" class="section border-b" style="overflow:hidden;">
     <div class="container">
         <div class="cs2-header fade-up">
@@ -1161,194 +1132,6 @@
 </script>
 
 <script>
-/* ===== CAPABILITY SYSTEM (Expertise) ===== */
-(function(){
-    const panels = document.querySelectorAll('.cap-panel');
-    const nodes = [
-        document.getElementById('cap-node-0'),
-        document.getElementById('cap-node-1'),
-        document.getElementById('cap-node-2'),
-        document.getElementById('cap-node-3'),
-    ];
-    const halos = [
-        document.getElementById('cap-halo-0'),
-        document.getElementById('cap-halo-1'),
-        document.getElementById('cap-halo-2'),
-        document.getElementById('cap-halo-3'),
-    ];
-    const paths = {
-        '01-02': document.getElementById('cp-01-02'),
-        '02-03': document.getElementById('cp-02-03'),
-        '03-04': document.getElementById('cp-03-04'),
-        '01-03': document.getElementById('cp-01-03'),
-        '02-04': document.getElementById('cp-02-04'),
-    };
-
-    function activateNode(idx) {
-        nodes.forEach((n,i) => {
-            if(!n) return;
-            n.setAttribute('fill', i===idx ? '#1a52b8' : '#d8d3cc');
-            n.setAttribute('r', i===idx ? '9' : '6');
-        });
-        halos.forEach((h,i) => {
-            if(!h) return;
-            h.setAttribute('opacity', i===idx ? '0.6' : '0');
-        });
-        // Animate connecting lines
-        Object.values(paths).forEach(p => { if(p) p.setAttribute('opacity', '0.35'); });
-    }
-
-    // Animate path draws on scroll in
-    const capSvgWrap = document.querySelector('.cap-svg-wrap');
-    let capAnimated = false;
-    if(capSvgWrap) {
-        const io = new IntersectionObserver(entries => {
-            if(entries[0].isIntersecting && !capAnimated) {
-                capAnimated = true;
-                const pathEls = Object.values(paths);
-                pathEls.forEach((p, i) => {
-                    if(!p) return;
-                    setTimeout(() => {
-                        p.style.transition = 'opacity 0.5s';
-                        p.setAttribute('opacity', '0.35');
-                    }, i * 200);
-                });
-                nodes.forEach((n, i) => {
-                    if(!n) return;
-                    setTimeout(() => {
-                        n.setAttribute('fill', '#9d9590');
-                    }, i * 150);
-                });
-            }
-        }, { threshold: 0.3 });
-        io.observe(capSvgWrap);
-    }
-
-    // Data stream signal animation
-    const sig1 = document.getElementById('cpsig-1');
-    const sig2 = document.getElementById('cpsig-2');
-    let sig1t = 0, sig2t = 0.5;
-    function animSignals() {
-        sig1t = (sig1t + 0.004) % 1;
-        sig2t = (sig2t + 0.003) % 1;
-        const x1 = 200 + sig1t * 600;
-        if(sig1) { sig1.setAttribute('cx', x1); sig1.setAttribute('cy', 160); sig1.setAttribute('opacity', '0.7'); }
-        const x2 = 200 + sig2t * 600;
-        if(sig2) { sig2.setAttribute('cx', x2); sig2.setAttribute('cy', 160); sig2.setAttribute('opacity', '0.45'); }
-        requestAnimationFrame(animSignals);
-    }
-    if(sig1 || sig2) animSignals();
-
-    // Panel click / keyboard open
-    panels.forEach((panel, idx) => {
-        function toggle() {
-            const isOpen = panel.classList.contains('open');
-            panels.forEach(p => p.classList.remove('open'));
-            if(!isOpen) {
-                panel.classList.add('open');
-                activateNode(idx);
-            } else {
-                nodes.forEach(n => { if(n) n.setAttribute('fill','#d8d3cc'); n.setAttribute('r','6'); });
-                halos.forEach(h => { if(h) h.setAttribute('opacity','0'); });
-            }
-        }
-        panel.addEventListener('click', toggle);
-        panel.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); } });
-    });
-
-    // Open first panel by default after a moment
-    setTimeout(() => { if(panels[0]) panels[0].click(); }, 800);
-})();
-
-/* ===== APPROACH / SYSTEM DIAGRAM ===== */
-(function(){
-    const examples = document.querySelectorAll('.app-eg');
-    const solPanels = document.querySelectorAll('.app-sol-panel');
-    const navPos = document.getElementById('app-nav-pos');
-    const prevBtn = document.getElementById('app-prev');
-    const nextBtn = document.getElementById('app-next');
-    const asvgNodes = document.querySelectorAll('.asol-node');
-    const branchPaths = [0,1,2,3,4].map(i => document.getElementById('abr-' + i));
-    const trunk = document.getElementById('asvg-trunk');
-    const center = document.getElementById('asvg-center');
-    const outcomeLine = document.getElementById('asvg-outcome-line');
-    const outcomeEl = document.getElementById('asvg-outcome');
-    const asvgSignal = document.getElementById('asvg-signal');
-    let current = 0;
-    const total = examples.length;
-
-    // Node positions for signal
-    const nodePos = [{x:60,y:252},{x:115,y:252},{x:170,y:252},{x:225,y:252},{x:280,y:252}];
-    let signalT = 0;
-
-    function setCurrent(idx) {
-        current = (idx + total) % total;
-        examples.forEach((e, i) => e.classList.toggle('active', i===current));
-        solPanels.forEach((p, i) => p.classList.toggle('active', i===current));
-        if(navPos) navPos.textContent = (current+1) + ' / ' + total;
-
-        // Update SVG branch highlight
-        asvgNodes.forEach((n, i) => {
-            const innerCircle = n.querySelector('circle:last-child');
-            const outerCircle = n.querySelector('circle:first-child');
-            if(innerCircle) innerCircle.setAttribute('fill', i===current ? '#1a52b8' : '#d8d3cc');
-            if(outerCircle) outerCircle.setAttribute('stroke', i===current ? '#1a52b8' : '#d8d3cc');
-        });
-        branchPaths.forEach((p, i) => {
-            if(p) p.setAttribute('stroke', i===current ? '#1a52b8' : '#9d9590');
-            if(p) p.setAttribute('stroke-width', i===current ? '1.5' : '1');
-        });
-
-        // Show outcome
-        if(outcomeLine) { outcomeLine.setAttribute('opacity','1'); outcomeLine.setAttribute('stroke-dashoffset','0'); }
-        if(outcomeEl) outcomeEl.setAttribute('opacity','1');
-        signalT = 0;
-    }
-
-    if(prevBtn) prevBtn.addEventListener('click', () => setCurrent(current-1));
-    if(nextBtn) nextBtn.addEventListener('click', () => setCurrent(current+1));
-    examples.forEach((eg, i) => eg.addEventListener('click', () => setCurrent(i)));
-    asvgNodes.forEach((n, i) => n.addEventListener('click', () => setCurrent(i)));
-
-    // Auto cycle
-    let autoTimer = setInterval(() => setCurrent(current+1), 3500);
-    [prevBtn, nextBtn].forEach(b => {
-        if(b) b.addEventListener('click', () => { clearInterval(autoTimer); });
-    });
-
-    // Scroll-trigger trunk animation
-    const aWrap = document.getElementById('approach-svg-wrap');
-    let aAnimated = false;
-    if(aWrap) {
-        const io = new IntersectionObserver(entries => {
-            if(entries[0].isIntersecting && !aAnimated) {
-                aAnimated = true;
-                if(trunk) { trunk.style.transition='stroke-dashoffset 0.8s ease'; trunk.setAttribute('stroke-dashoffset','0'); }
-                if(center) { center.setAttribute('stroke','#1a52b8'); }
-                branchPaths.forEach((p, i) => {
-                    if(p) setTimeout(() => { p.style.transition='stroke-dashoffset 0.6s ease'; p.setAttribute('stroke-dashoffset','0'); }, 400 + i*100);
-                });
-                setTimeout(() => setCurrent(0), 1200);
-            }
-        }, { threshold: 0.3 });
-        io.observe(aWrap);
-    }
-
-    // Signal dot animation along active branch
-    function animSignal(ts) {
-        if(!asvgSignal) { requestAnimationFrame(animSignal); return; }
-        signalT = (signalT + 0.012) % 1;
-        const np = nodePos[current];
-        const sx = 170 + (np.x - 170) * signalT;
-        const sy = 120 + (np.y - 120) * signalT;
-        asvgSignal.setAttribute('cx', sx);
-        asvgSignal.setAttribute('cy', sy);
-        asvgSignal.setAttribute('opacity', aAnimated ? '0.85' : '0');
-        requestAnimationFrame(animSignal);
-    }
-    requestAnimationFrame(animSignal);
-})();
-
 /* ===== CASE STUDIES TIMELINE ===== */
 (function(){
     const cs2Rail = document.getElementById('cs2-rail');
