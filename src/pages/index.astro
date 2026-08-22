@@ -5,390 +5,502 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataDecision | Strategic Intelligence</title>
-    <meta name="description" content="Premium data and AI strategy consulting for modern enterprises." />
+    <title>DataDecision | Engineered Intelligence</title>
+    <meta name="description" content="AI engineering laboratory and premium data consulting firm." />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
     <style>
         :root {
-            --black: #000000;
-            --dark-1: #0A0A0A;
-            --dark-2: #141414;
-            --white: #ffffff;
-            --gray-1: #f3f4f6;
-            --gray-2: #9ca3af;
-            --gray-3: #4b5563;
-            --accent: #FF003C; /* Dangerous Red */
-            --accent-hover: #CC0030;
-            --border: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(255, 0, 60, 0.5);
-            --font-head: 'Syne', sans-serif;
-            --font-body: 'Space Grotesk', sans-serif;
-            --radius: 0px; /* Sharp edges */
-            --section-pad: 140px;
+            /* Color System */
+            --graphite: #0a0a0c;
+            --graphite-light: #121215;
+            --graphite-border: #1f1f24;
+            --off-white: #f8f9fa;
+            --warm-white: #f1f3f5;
+            --electric-blue: #0055FF;
+            --electric-blue-glow: rgba(0, 85, 255, 0.2);
+            --cyan-accent: #00E5FF;
+            
+            /* Typography */
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            
+            /* Animation */
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { 
-            font-family: var(--font-body); 
-            background-color: var(--black); 
-            color: var(--gray-1); 
-            line-height: 1.6; 
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--graphite);
+            color: var(--off-white);
+            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        ::selection { background: var(--accent); color: var(--white); }
-
-        h1, h2, h3, h4, h5 { font-family: var(--font-head); color: var(--white); text-transform: uppercase; line-height: 1.1; }
+        /* Typography */
+        h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+        h1 { font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -0.04em; }
+        h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h3 { font-size: 1.5rem; }
+        p { color: #a1a1aa; font-weight: 400; }
         
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--electric-blue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-        .section { padding: var(--section-pad) 0; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Layout */
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
+        .section { padding: 160px 0; position: relative; }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--transition-smooth); filter: blur(4px); }
+        .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
 
-        /* BRUTALIST BUTTONS */
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 32px;
-            font-family: var(--font-head);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border: 1px solid var(--accent);
-            background: transparent;
-            color: var(--accent);
+            padding: 14px 28px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-radius: 2px;
+            transition: all 0.3s var(--transition-smooth);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1;
         }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+        .btn-primary {
+            background: var(--electric-blue);
+            color: white;
+            border: 1px solid var(--electric-blue);
+            box-shadow: 0 0 20px var(--electric-blue-glow);
         }
-        .btn:hover { color: var(--black); border-color: var(--accent); }
-        .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+        .btn-primary:hover {
+            background: transparent;
+            box-shadow: 0 0 30px var(--electric-blue-glow);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--off-white);
+            border: 1px solid var(--graphite-border);
+        }
+        .btn-outline:hover {
+            border-color: var(--electric-blue);
+            color: var(--electric-blue);
+        }
 
-        .btn-solid { background: var(--white); color: var(--black); border-color: var(--white); }
-        .btn-solid::before { background: var(--accent); }
-        .btn-solid:hover { color: var(--white); border-color: var(--accent); }
-
-        /* NAVBAR */
+        /* Navigation */
         .navbar {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 24px 0; z-index: 100;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--graphite-border);
+            padding: 20px 0;
+            transition: all 0.3s ease;
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 24px; filter: invert(1); mix-blend-mode: screen; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { font-size: 0.85rem; font-weight: 500; color: #a1a1aa; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--off-white); }
         
-        .logo-img {
-            height: 28px;
-            filter: invert(1);
-            mix-blend-mode: screen;
+        @media(max-width: 1024px) {
+            .nav-links { display: none; }
         }
 
-        .nav-links { display: flex; gap: 40px; align-items: center; }
-        .nav-links a { font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-2); }
-        .nav-links a:hover { color: var(--white); }
-        
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 100px;
-            background: radial-gradient(circle at 50% 0%, rgba(255,0,60,0.08) 0%, rgba(0,0,0,1) 50%);
+        /* Technical Background (Hero) */
+        .tech-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.4;
         }
-        .hero-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-        }
-        .hero-title {
-            font-size: clamp(3.5rem, 7vw, 6.5rem);
-            letter-spacing: -2px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .hero-title span { color: var(--accent); }
-        .hero-lead {
-            font-size: 1.25rem; color: var(--gray-2); max-width: 500px; margin-bottom: 40px;
-        }
-        .hero-stats {
-            display: flex; gap: 40px; margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border);
-        }
-        .stat-num { font-family: var(--font-head); font-size: 2.5rem; color: var(--white); font-weight: 700; margin-bottom: 5px; }
-        .stat-label { font-size: 0.85rem; color: var(--gray-3); text-transform: uppercase; letter-spacing: 2px; }
 
-        .hero-image-wrapper {
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; }
+        .hero-content { max-width: 800px; }
+        .hero p { font-size: 1.25rem; line-height: 1.7; margin-top: 2rem; margin-bottom: 3rem; max-width: 600px; }
+        
+        /* Technology Section (Dark) */
+        .tech-section { background: var(--graphite-light); border-top: 1px solid var(--graphite-border); border-bottom: 1px solid var(--graphite-border); }
+        .flow-container {
+            display: flex; justify-content: space-between; align-items: center; margin-top: 80px;
             position: relative;
-            height: 700px;
-            border: 1px solid var(--border);
+        }
+        .flow-node {
+            background: var(--graphite);
+            border: 1px solid var(--graphite-border);
+            padding: 30px;
+            border-radius: 2px;
+            z-index: 2;
+            width: 22%;
+            position: relative;
+            transition: all 0.5s var(--transition-smooth);
+        }
+        .flow-node:hover {
+            border-color: var(--electric-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--electric-blue-glow);
+        }
+        .flow-node h4 { color: var(--electric-blue); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+        .flow-node p { font-size: 0.9rem; color: #a1a1aa; margin:0; }
+        
+        .flow-line {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 1px;
+            background: var(--graphite-border); z-index: 1;
+        }
+        .flow-line-active {
+            position: absolute; top: 50%; left: 0; height: 1px;
+            background: var(--electric-blue); z-index: 1;
+            width: 0%;
+            box-shadow: 0 0 10px var(--electric-blue);
+            animation: pulse-line 3s infinite linear;
+        }
+        @keyframes pulse-line {
+            0% { width: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { width: 100%; opacity: 0; }
+        }
+        @media(max-width: 768px) {
+            .flow-container { flex-direction: column; gap: 20px; }
+            .flow-node { width: 100%; }
+            .flow-line, .flow-line-active { display: none; }
+        }
+
+        /* Expertise Section (Light/Technical) */
+        .expertise-section { background: var(--warm-white); color: var(--graphite); }
+        .expertise-section p { color: #52525b; }
+        .expertise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #e4e4e7; border: 1px solid #e4e4e7; margin-top: 80px; }
+        .exp-card {
+            background: var(--white); padding: 60px 40px; position: relative; overflow: hidden;
+            transition: all 0.4s var(--transition-smooth);
+        }
+        .exp-num { font-size: 0.85rem; font-weight: 600; color: #a1a1aa; margin-bottom: 20px; display: block; }
+        .exp-card h3 { color: var(--graphite); margin-bottom: 15px; }
+        .exp-card p { opacity: 0; transform: translateY(10px); transition: all 0.4s var(--transition-smooth); height: 0; }
+        .exp-explore { margin-top: 20px; font-size: 0.85rem; font-weight: 600; color: var(--electric-blue); display: flex; align-items: center; gap: 5px; opacity: 1; transition: all 0.3s; }
+        
+        .exp-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); z-index: 10; border-bottom: 2px solid var(--electric-blue); }
+        .exp-card:hover p { opacity: 1; transform: translateY(0); height: auto; margin-top: 15px; }
+        
+        @media(max-width: 768px) { .expertise-grid { grid-template-columns: 1fr; } .exp-card p { opacity: 1; height: auto; transform: none; } }
+
+        /* Industries Section */
+        .industries-section { background: var(--graphite); }
+        .ind-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 80px; }
+        .ind-card {
+            border: 1px solid var(--graphite-border);
+            padding: 40px;
+            background: var(--graphite-light);
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
             overflow: hidden;
         }
-        .hero-image-wrapper::after {
-            content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+        .ind-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
+            background: var(--cyan-accent); transition: width 0.4s var(--transition-smooth);
         }
-        .hero-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); }
+        .ind-card:hover { border-color: var(--electric-blue); transform: translateY(-5px); }
+        .ind-card:hover::after { width: 100%; }
+        .ind-card h4 { font-size: 1.25rem; margin-bottom: 10px; }
+        @media(max-width: 768px) { .ind-grid { grid-template-columns: 1fr; } }
 
-        /* SECTION HEADERS */
-        .section-header { margin-bottom: 80px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .section-header h2 { font-size: 4rem; letter-spacing: -1px; max-width: 700px; }
-        .section-eyebrow { 
-            font-family: var(--font-body); font-weight: 700; color: var(--accent); 
-            text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; margin-bottom: 20px; display: block;
-        }
-
-        /* EXPERTISE GRID */
-        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-        .expertise-card {
-            background: var(--dark-1);
-            padding: 60px 40px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .expertise-card:hover { background: var(--black); box-shadow: inset 0 0 0 1px var(--accent); }
-        .expertise-num { font-family: var(--font-head); font-size: 1.5rem; color: var(--gray-3); margin-bottom: 30px; font-weight: 700; }
-        .expertise-card:hover .expertise-num { color: var(--accent); }
-        .expertise-card h3 { font-size: 1.5rem; margin-bottom: 20px; }
-        .expertise-card p { color: var(--gray-2); font-size: 0.95rem; }
-
-        /* BUSINESS CHALLENGE */
-        .challenge { background: var(--dark-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .challenge-wrapper { display: grid; grid-template-columns: 1fr 1fr; }
-        .challenge-content { padding: 100px 80px 100px 0; }
-        .challenge-image {
-            background: url('/business-challenge-photo.jpg') center/cover;
-            filter: grayscale(100%) contrast(1.2);
-            border-left: 1px solid var(--border);
-            position: relative;
-        }
-        .challenge-image::before {
-            content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--dark-1), transparent);
-        }
-        .challenge-list { margin-top: 60px; }
-        .challenge-item { padding: 30px 0; border-bottom: 1px solid var(--border); display: flex; gap: 30px; }
-        .challenge-item-icon { color: var(--accent); font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; }
-        .challenge-item-text h4 { font-size: 1.25rem; margin-bottom: 10px; }
-        .challenge-item-text p { color: var(--gray-2); }
-
-        /* CASE STUDIES */
-        .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        /* Case Studies Section (Warm Light) */
+        .case-studies { background: var(--off-white); color: var(--graphite); }
+        .case-studies h2 { color: var(--graphite); }
+        .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 80px; }
         .cs-card {
             display: block;
-            border: 1px solid var(--border);
-            background: var(--dark-1);
-            overflow: hidden;
-            position: relative;
+            border: 1px solid #e4e4e7;
+            background: var(--white);
+            padding: 40px;
+            transition: all 0.4s var(--transition-smooth);
         }
-        .cs-card:hover { border-color: var(--accent); }
-        .cs-img-wrap { height: 400px; overflow: hidden; position: relative; }
-        .cs-img-wrap::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); transition: background 0.3s; }
-        .cs-card:hover .cs-img-wrap::after { background: rgba(255,0,60,0.2); }
-        .cs-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.7s ease; }
-        .cs-card:hover .cs-img { transform: scale(1.05); }
+        .cs-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--electric-blue); }
+        .cs-card .eyebrow { margin-bottom: 10px; }
+        .cs-card h3 { color: var(--graphite); margin-bottom: 15px; font-size: 1.75rem; }
+        .cs-card p { color: #52525b; margin-bottom: 30px; }
+        .cs-explore { font-size: 0.85rem; font-weight: 600; color: var(--electric-blue); display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
+        .cs-card:hover .cs-explore { gap: 12px; }
+        @media(max-width: 768px) { .cs-grid { grid-template-columns: 1fr; } }
+
+        /* Insights */
+        .insights { background: var(--graphite); border-top: 1px solid var(--graphite-border); }
+        .ins-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
+        .ins-card {
+            border: 1px solid var(--graphite-border);
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        .ins-card:hover { border-color: var(--electric-blue); background: var(--graphite-light); }
+        .ins-card .date { font-size: 0.75rem; color: #71717a; margin-bottom: 15px; display: block; }
+        .ins-card h4 { font-size: 1.1rem; line-height: 1.4; }
+        @media(max-width: 1024px) { .ins-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 768px) { .ins-grid { grid-template-columns: 1fr; } }
+
+        /* Careers & Contact */
+        .careers { background: var(--graphite-light); }
+        .contact-section { background: var(--graphite); border-top: 1px solid var(--graphite-border); text-align: center; }
+        .contact-section h2 { margin-bottom: 20px; }
+        .contact-section p { margin: 0 auto 40px; max-width: 600px; }
+
+        /* Footer */
+        .footer { background: #050505; padding: 80px 0 40px; border-top: 1px solid var(--graphite-border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-links h4 { font-size: 0.85rem; color: var(--off-white); margin-bottom: 20px; letter-spacing: 1px; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links a { color: #a1a1aa; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--electric-blue); }
+        .footer-bottom { border-top: 1px solid var(--graphite-border); padding-top: 30px; display: flex; justify-content: space-between; font-size: 0.8rem; color: #71717a; }
         
-        .cs-content { padding: 40px; position: absolute; bottom: 0; left: 0; width: 100%; z-index: 10; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
-        .cs-metric { font-family: var(--font-head); font-size: 3rem; color: var(--accent); font-weight: 700; margin-bottom: 10px; line-height: 1; }
-        .cs-title { font-size: 1.75rem; margin-bottom: 10px; }
-        .cs-desc { color: var(--gray-1); font-size: 0.95rem; }
-
-        /* FOOTER */
-        .footer { background: var(--black); padding: 100px 0 40px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; margin-bottom: 80px; }
-        .footer h2 { font-size: 2.5rem; margin-bottom: 30px; }
-        .footer-links h4 { font-size: 0.85rem; color: var(--gray-3); margin-bottom: 20px; letter-spacing: 2px; }
-        .footer-links ul li { margin-bottom: 15px; }
-        .footer-links a { color: var(--gray-1); font-weight: 500; font-size: 0.95rem; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid var(--border); color: var(--gray-3); font-size: 0.85rem; }
-
-        @media (max-width: 1024px) {
-            .hero-grid, .challenge-wrapper, .cs-grid { grid-template-columns: 1fr; }
-            .hero-image-wrapper { height: 400px; display: none; }
-            .expertise-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .hero-title { font-size: 3.5rem; }
-            .challenge-content { padding: 60px 0; }
-        }
+        @media(max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
         <div class="container nav-inner">
             <a href="/" class="logo">
                 <img src="/datadecision-logo.png" alt="DataDecision" class="logo-img" />
             </a>
             <div class="nav-links">
+                <a href="#challenge">Who We Are</a>
                 <a href="#expertise">Expertise</a>
-                <a href="#work">Work</a>
-                <a href="#challenge">Methodology</a>
-                <a href="mailto:contact@datadecision.consulting" class="btn btn-solid" style="padding: 10px 20px;">Engage</a>
+                <a href="#industries">Industries</a>
+                <a href="#insights">Insights</a>
+                <a href="#careers">Careers</a>
+                <a href="#contact" class="btn btn-outline" style="padding: 8px 16px;">Request a Brief</a>
             </div>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1 class="hero-title">ENGINEERING<br>DECISIONS<br><span>THAT MATTER.</span></h1>
-                <p class="hero-lead">We turn complex data pipelines and AI models into ruthless competitive advantages. Elite strategy consulting for the modern enterprise.</p>
-                <div style="display: flex; gap: 20px;">
-                    <a href="#work" class="btn btn-solid">View Outcomes</a>
-                    <a href="mailto:contact@datadecision.consulting" class="btn">Request Audit</a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div>
-                        <div class="stat-num">$2B+</div>
-                        <div class="stat-label">Value Unlocked</div>
-                    </div>
-                    <div>
-                        <div class="stat-num">45%</div>
-                        <div class="stat-label">Avg. Efficiency Gain</div>
-                    </div>
+        <canvas id="hero-canvas" class="tech-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content reveal">
+                <span class="eyebrow">Engineered Intelligence</span>
+                <h1>WE BUILD DECISION SYSTEMS THAT MATTER.</h1>
+                <p>We transform complex data architectures and machine learning models into measurable business outcomes. Advanced technology consulting for the modern enterprise.</p>
+                <div style="display: flex; gap: 16px;">
+                    <a href="#case-studies" class="btn btn-primary">Explore Outcomes</a>
+                    <a href="#contact" class="btn btn-outline">Request a Brief</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <img src="/operation-manufacturing-efficiency.jpg" alt="AI Server" class="hero-img" />
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY (Replaced Methodology/How We Think) -->
+    <section id="challenge" class="section tech-section">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow">Intelligence Architecture</span>
+                <h2>DIFFERENT PROBLEMS.<br>DIFFERENT INTELLIGENCE.</h2>
+                <p style="max-width: 600px; margin-top: 20px;">From predictive models to decision systems, we assemble the right combination of data, algorithms, engineering, and domain expertise for the problem at hand.</p>
+            </div>
+            
+            <div class="flow-container reveal delay-1">
+                <div class="flow-line"></div>
+                <div class="flow-line-active"></div>
+                
+                <div class="flow-node">
+                    <h4>01 / Data</h4>
+                    <p>Pipelines, Lakes, Warehousing & Governance</p>
+                </div>
+                <div class="flow-node">
+                    <h4>02 / Models</h4>
+                    <p>Machine Learning, Deep Learning & NLP</p>
+                </div>
+                <div class="flow-node">
+                    <h4>03 / Intelligence</h4>
+                    <p>Optimization, Forecasting & Computer Vision</p>
+                </div>
+                <div class="flow-node" style="border-color: var(--electric-blue);">
+                    <h4 style="color: var(--white);">04 / Decision</h4>
+                    <p style="color: var(--off-white);">Automated Actions & Strategic Clarity</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- EXPERTISE -->
-    <section id="expertise" class="section">
+    <section id="expertise" class="section expertise-section">
         <div class="container">
-            <div class="section-header">
-                <div>
-                    <span class="section-eyebrow">Capabilities</span>
-                    <h2>PRECISION DATA ARCHITECTURE.</h2>
-                </div>
+            <div class="reveal">
+                <span class="eyebrow">Capabilities</span>
+                <h2 style="color: var(--graphite);">ENGINEERING ARSENAL.</h2>
             </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-num">01</div>
-                    <h3>AI & Machine Learning</h3>
-                    <p>Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-num">02</div>
-                    <h3>Data Engineering</h3>
-                    <p>Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-num">03</div>
-                    <h3>Decision Intelligence</h3>
+            
+            <div class="expertise-grid reveal delay-1">
+                <div class="exp-card">
+                    <span class="exp-num">01</span>
+                    <h3>Data & Decision Intelligence</h3>
+                    <div class="exp-explore">Explore →</div>
                     <p>Translating raw mathematical outputs into board-level strategic roadmaps. Real-time dashboards, KPI tracking, and probabilistic modeling.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-num">04</div>
-                    <h3>Cloud Infrastructure</h3>
-                    <p>Secure, multi-cloud deployments (AWS, GCP, Azure) optimized for high-performance computing, cost-efficiency, and strict regulatory compliance.</p>
+                <div class="exp-card">
+                    <span class="exp-num">02</span>
+                    <h3>AI / ML Engineering</h3>
+                    <div class="exp-explore">Explore →</div>
+                    <p>Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-num">05</div>
-                    <h3>Governance & Security</h3>
-                    <p>Zero-trust data architecture. Ensuring your proprietary intelligence is heavily fortified, compliant, and accessible only to authorized entities.</p>
+                <div class="exp-card">
+                    <span class="exp-num">03</span>
+                    <h3>Data Engineering & AI Infrastructure</h3>
+                    <div class="exp-explore">Explore →</div>
+                    <p>Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
                 </div>
-                <div class="expertise-card">
-                    <div class="expertise-num">06</div>
-                    <h3>Executive Advisory</h3>
-                    <p>Direct partnership with C-suite leadership to align technical AI capabilities with aggressive business growth and acquisition targets.</p>
+                <div class="exp-card">
+                    <span class="exp-num">04</span>
+                    <h3>Intelligent Operations</h3>
+                    <div class="exp-explore">Explore →</div>
+                    <p>Direct partnership with leadership to align technical AI capabilities with aggressive business growth, security, and acquisition targets.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CHALLENGE -->
-    <section id="challenge" class="section challenge">
-        <div class="container challenge-wrapper">
-            <div class="challenge-content">
-                <span class="section-eyebrow">The Method</span>
-                <h2>FROM CHAOS TO CLARITY.</h2>
-                <p style="color: var(--gray-2); font-size: 1.1rem; margin-top: 20px;">Most enterprises fail at AI because they lack a clean data foundation. We deploy a brutal, systematic approach to audit, fix, and scale your intelligence.</p>
-                
-                <div class="challenge-list">
-                    <div class="challenge-item">
-                        <div class="challenge-item-icon">01</div>
-                        <div class="challenge-item-text">
-                            <h4>Tactical Audit</h4>
-                            <p>We analyze your current pipelines, identifying data silos, security flaws, and bottlenecks in decision velocity.</p>
-                        </div>
-                    </div>
-                    <div class="challenge-item">
-                        <div class="challenge-item-icon">02</div>
-                        <div class="challenge-item-text">
-                            <h4>Infrastructure Overhaul</h4>
-                            <p>Re-engineering your data lakes and warehousing to ensure pristine, real-time data flows ready for machine learning.</p>
-                        </div>
-                    </div>
-                    <div class="challenge-item">
-                        <div class="challenge-item-icon">03</div>
-                        <div class="challenge-item-text">
-                            <h4>Algorithmic Deployment</h4>
-                            <p>Implementing custom AI agents and predictive models specifically trained on your proprietary data.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="challenge-image"></div>
-        </div>
-    </section>
-
-    <!-- WORK -->
-    <section id="work" class="section">
+    <!-- CASE STUDIES -->
+    <section id="case-studies" class="section case-studies">
         <div class="container">
-            <div class="section-header">
-                <div>
-                    <span class="section-eyebrow">Outcomes</span>
-                    <h2>PROVEN IMPACT.</h2>
-                </div>
-                <a href="mailto:contact@datadecision.consulting" class="btn">View All Case Studies</a>
+            <div class="reveal">
+                <span class="eyebrow">Client Outcomes</span>
+                <h2>PROVEN IMPACT.</h2>
             </div>
-
-            <div class="cs-grid">
-                <a href="/case-study-supply-chain" class="cs-card">
-                    <div class="cs-img-wrap">
-                        <img src="/supply-chain-visibility.jpg" alt="Supply Chain" class="cs-img" />
-                    </div>
-                    <div class="cs-content">
-                        <div class="cs-metric">40%</div>
-                        <h3 class="cs-title">Global Supply Chain Optimization</h3>
-                        <p class="cs-desc">Reduced logistics overhead via predictive anomaly detection for a Fortune 500 retailer.</p>
-                    </div>
+            
+            <div class="cs-grid reveal delay-1">
+                <a href="/case-study-data-analytics" class="cs-card">
+                    <span class="eyebrow">Data Analytics</span>
+                    <h3>Predictive Churn Infrastructure</h3>
+                    <p>Deployed machine learning models to identify at-risk enterprise accounts with 94% accuracy.</p>
+                    <div class="cs-explore">Explore case &rarr;</div>
                 </a>
                 
-                <a href="/case-study-retail-demand" class="cs-card">
-                    <div class="cs-img-wrap">
-                        <img src="/ai-driven-retail-demand.jpg" alt="Retail AI" class="cs-img" />
-                    </div>
-                    <div class="cs-content">
-                        <div class="cs-metric">$12M</div>
-                        <h3 class="cs-title">AI-Driven Retail Demand</h3>
-                        <p class="cs-desc">Recouped lost revenue by deploying real-time inventory forecasting models.</p>
-                    </div>
+                <a href="/case-study-operations" class="cs-card">
+                    <span class="eyebrow">Intelligent Operations</span>
+                    <h3>Manufacturing Efficiency</h3>
+                    <p>Automated quality control using computer vision, reducing defect rates by 40% globally.</p>
+                    <div class="cs-explore">Explore case &rarr;</div>
+                </a>
+
+                <a href="/case-study-ai-decision" class="cs-card">
+                    <span class="eyebrow">Decision Intelligence</span>
+                    <h3>Dynamic Pricing Engine</h3>
+                    <p>Built a reinforcement learning system to optimize pricing in real-time across 50,000 SKUs.</p>
+                    <div class="cs-explore">Explore case &rarr;</div>
+                </a>
+
+                <a href="/case-study-customer-growth" class="cs-card">
+                    <span class="eyebrow">AI Engineering</span>
+                    <h3>Customer Growth Automation</h3>
+                    <p>Integrated NLP models into the sales pipeline, scoring inbound leads and accelerating conversions.</p>
+                    <div class="cs-explore">Explore case &rarr;</div>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries" class="section industries-section">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow">Sectors</span>
+                <h2>APPLIED ACROSS INDUSTRIES.</h2>
+            </div>
+            
+            <div class="ind-grid reveal delay-1">
+                <div class="ind-card">
+                    <h4>Manufacturing</h4>
+                    <p>Yield optimization and predictive maintenance.</p>
+                </div>
+                <div class="ind-card">
+                    <h4>Retail & E-commerce</h4>
+                    <p>Demand forecasting and hyper-personalization.</p>
+                </div>
+                <div class="ind-card">
+                    <h4>Supply Chain</h4>
+                    <p>Network optimization and real-time routing.</p>
+                </div>
+                <div class="ind-card">
+                    <h4>Financial Services</h4>
+                    <p>Fraud detection and algorithmic risk assessment.</p>
+                </div>
+                <div class="ind-card">
+                    <h4>Healthcare</h4>
+                    <p>Resource allocation and diagnostic modeling.</p>
+                </div>
+                <div class="ind-card">
+                    <h4>Technology (SaaS)</h4>
+                    <p>User behavior prediction and automated scaling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section id="insights" class="section insights">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow">Research & Insights</span>
+                <h2>LATEST THINKING.</h2>
+            </div>
+            
+            <div class="ins-grid reveal delay-1">
+                <a href="/insight-ai-enterprise" class="ins-card">
+                    <span class="date">Oct 12, 2026 &bull; 5 min read</span>
+                    <h4>Scaling AI in the Modern Enterprise</h4>
+                </a>
+                <a href="/insight-supply-chain" class="ins-card">
+                    <span class="date">Sep 28, 2026 &bull; 8 min read</span>
+                    <h4>Resilient Supply Chains via Predictive Modeling</h4>
+                </a>
+                <a href="/insight-decision-intelligence" class="ins-card">
+                    <span class="date">Sep 15, 2026 &bull; 6 min read</span>
+                    <h4>The Rise of Decision Intelligence</h4>
+                </a>
+                <a href="/insight-dashboard-limits" class="ins-card">
+                    <span class="date">Aug 30, 2026 &bull; 4 min read</span>
+                    <h4>Why Dashboards Are No Longer Enough</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREERS -->
+    <section id="careers" class="section careers">
+        <div class="container text-center" style="text-align: center; position: relative;">
+            <div class="reveal">
+                <span class="eyebrow">Join Us</span>
+                <h2>BUILD THE FUTURE.</h2>
+                <p style="margin: 20px auto 40px; max-width: 600px;">We are an engineering laboratory disguised as a consulting firm. Join a team of researchers, data engineers, and strategists solving the world's most complex business problems.</p>
+                <a href="#careers" class="btn btn-outline">View Open Positions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="section contact-section">
+        <div class="container reveal">
+            <span class="eyebrow">Engage</span>
+            <h2>HAVE A PROBLEM WORTH SOLVING?</h2>
+            <p>Tell us what you're trying to solve. We'll bring the right combination of data, intelligence, and engineering to the table.</p>
+            <a href="mailto:contact@datadecision.consulting" class="btn btn-primary">Request a Brief</a>
         </div>
     </section>
 
@@ -397,34 +509,106 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <img src="/datadecision-logo.png" alt="DataDecision" style="height: 32px; filter: invert(1); mix-blend-mode: screen; margin-bottom: 30px;" />
-                    <p style="color: var(--gray-2); max-width: 400px;">DataDecision Consulting provides elite, uncompromised technical strategy for enterprises ready to dominate their sectors using AI.</p>
-                    <a href="mailto:contact@datadecision.consulting" class="btn" style="margin-top: 30px;">contact@datadecision.consulting</a>
+                    <img src="/datadecision-logo.png" alt="DataDecision" style="height: 24px; filter: invert(1); mix-blend-mode: screen; margin-bottom: 24px;" />
+                    <p style="font-size: 0.85rem; max-width: 300px;">Technology-first data and AI strategy consulting.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>SERVICES</h4>
+                    <h4>EXPERTISE</h4>
                     <ul>
-                        <li><a href="#expertise">AI & Machine Learning</a></li>
-                        <li><a href="#expertise">Data Engineering</a></li>
-                        <li><a href="#expertise">Cloud Infrastructure</a></li>
-                        <li><a href="#expertise">Executive Advisory</a></li>
+                        <li><a href="#expertise">Data Intelligence</a></li>
+                        <li><a href="#expertise">AI Engineering</a></li>
+                        <li><a href="#expertise">Infrastructure</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>COMPANY</h4>
                     <ul>
-                        <li><a href="#work">Case Studies</a></li>
-                        <li><a href="#challenge">Methodology</a></li>
+                        <li><a href="#challenge">Who We Are</a></li>
+                        <li><a href="#case-studies">Work</a></li>
+                        <li><a href="#insights">Insights</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>LEGAL</h4>
+                    <ul>
                         <li><a href="/privacy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Use</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 DataDecision Consulting. All rights reserved.</p>
-                <p>Designed for Dominance.</p>
+                <div>&copy; 2026 DataDecision Consulting.</div>
+                <div>Engineered for Impact.</div>
             </div>
         </div>
     </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Technical Canvas Animation (Lightweight Nodes)
+        const canvas = document.getElementById('hero-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const nodes = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for(let i=0; i<40; i++) {
+                nodes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.strokeStyle = 'rgba(0, 85, 255, 0.15)';
+                ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
+
+                nodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    if(node.x < 0 || node.x > width) node.vx *= -1;
+                    if(node.y < 0 || node.y > height) node.vy *= -1;
+                    
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    nodes.forEach(other => {
+                        const dist = Math.hypot(node.x - other.x, node.y - other.y);
+                        if(dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(node.x, node.y);
+                            ctx.lineTo(other.x, other.y);
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
 </body>
 </html>
