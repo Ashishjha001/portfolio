@@ -291,18 +291,227 @@
     </div>
 </section>
 
-<section id="challenge" class="section bg-stone border-b">
-    <div class="container challenge-grid">
-        <div class="fade-up">
-            <div class="eyebrow">The Business Challenge</div>
-            <h2>Data alone is not the outcome.</h2>
-        </div>
-        <div class="fade-up delay-1">
-            <p class="lead">Organizations have more data than ever. Yet reporting is slow, KPIs are contested, forecasts are unreliable, and decisions remain gut-driven.</p>
-            <p class="lead">Insight without a clear decision pathway is just noise. We bridge the gap between technical infrastructure and strategic execution, so data actually drives the business forward.</p>
+<section id="challenge" class="section bg-stone border-b" style="overflow:hidden;">
+    <div class="container">
+        <div class="challenge-layout">
+            <!-- LEFT: Copy -->
+            <div class="challenge-copy fade-up">
+                <div class="eyebrow">The Business Challenge</div>
+                <h2>Data alone is not the outcome.</h2>
+                <p class="lead" style="margin-top:20px;">Organizations have more data than ever. Yet reporting is slow, KPIs are contested, forecasts are unreliable, and decisions remain gut-driven.</p>
+                <p class="lead">Insight without a clear decision pathway is just noise. We bridge the gap between technical infrastructure and strategic execution, so data actually drives the business forward.</p>
+                <div class="challenge-stages">
+                    <div class="cstage" id="cs-stage-0"><span class="cstage-num">01</span><span class="cstage-label">Fragmented Data</span></div>
+                    <div class="cstage-arrow">↓</div>
+                    <div class="cstage" id="cs-stage-1"><span class="cstage-num">02</span><span class="cstage-label">Patterns Emerge</span></div>
+                    <div class="cstage-arrow">↓</div>
+                    <div class="cstage" id="cs-stage-2"><span class="cstage-num">03</span><span class="cstage-label">Insight</span></div>
+                    <div class="cstage-arrow">↓</div>
+                    <div class="cstage" id="cs-stage-3"><span class="cstage-num">04</span><span class="cstage-label">Clear Decision</span></div>
+                </div>
+            </div>
+            <!-- RIGHT: Animated SVG -->
+            <div class="challenge-viz fade-up delay-1" id="challenge-viz-wrap">
+                <svg id="challenge-svg" viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <g id="cviz-lines"></g>
+                    <g id="cviz-nodes"></g>
+                    <text id="cviz-label-0" x="260" y="30" text-anchor="middle" class="cviz-stage-text" opacity="0">FRAGMENTED DATA</text>
+                    <text id="cviz-label-2" x="260" y="248" text-anchor="middle" class="cviz-stage-text" opacity="0">INSIGHT</text>
+                    <g id="cviz-decision" opacity="0">
+                        <circle cx="260" cy="400" r="28" fill="none" stroke="#1a52b8" stroke-width="1.5"/>
+                        <circle cx="260" cy="400" r="20" fill="#1a52b8" fill-opacity="0.07"/>
+                        <circle id="cviz-decision-core" cx="260" cy="400" r="5" fill="#1a52b8"/>
+                        <text x="260" y="444" text-anchor="middle" class="cviz-stage-text" fill="#1a52b8" font-weight="600">DECISION</text>
+                    </g>
+                    <circle id="cviz-signal" cx="-20" cy="-20" r="3.5" fill="#1a52b8" opacity="0"/>
+                </svg>
+            </div>
         </div>
     </div>
 </section>
+<style>
+    .challenge-layout{display:grid;grid-template-columns:1fr;gap:64px;align-items:center;}
+    @media(min-width:900px){.challenge-layout{grid-template-columns:1fr 1fr;gap:80px;}}
+    .challenge-stages{margin-top:40px;display:flex;flex-direction:column;gap:0;}
+    .cstage{display:flex;align-items:center;gap:14px;padding:12px 0;opacity:0.25;transition:opacity 0.6s ease;}
+    .cstage.active{opacity:1;}
+    .cstage-num{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;color:var(--blue);min-width:22px;}
+    .cstage-label{font-size:0.875rem;font-weight:600;color:var(--ink);}
+    .cstage-arrow{font-size:0.75rem;color:var(--stone-200);padding-left:8px;line-height:1;}
+    .challenge-viz{position:relative;width:100%;max-width:520px;margin:0 auto;}
+    #challenge-svg{width:100%;height:auto;display:block;}
+    .cviz-stage-text{font-family:'DM Sans',system-ui,sans-serif;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;fill:#9d9590;}
+    @media(prefers-reduced-motion:reduce){.cstage{opacity:1!important;}#cviz-decision{opacity:1!important;}#cviz-label-0,#cviz-label-2{opacity:0.7!important;}}
+</style>
+<script>
+(function(){
+    const svg=document.getElementById('challenge-svg');
+    const linesG=document.getElementById('cviz-lines');
+    const nodesG=document.getElementById('cviz-nodes');
+    const wrap=document.getElementById('challenge-viz-wrap');
+    if(!svg||!wrap)return;
+    const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const W=520,H=460;
+    let progress=0,animStarted=false,signalT=0;
+    let mouse={x:-999,y:-999};
+
+    const pts=[
+        {id:0,cx:70,cy:55,tx:130,ty:75,r:3.5,group:'frag'},
+        {id:1,cx:430,cy:35,tx:195,ty:55,r:2.5,group:'frag'},
+        {id:2,cx:40,cy:155,tx:260,ty:48,r:3,group:'frag'},
+        {id:3,cx:465,cy:115,tx:325,ty:78,r:2.5,group:'frag'},
+        {id:4,cx:175,cy:18,tx:385,ty:58,r:2,group:'frag'},
+        {id:5,cx:375,cy:175,tx:168,ty:108,r:3,group:'frag'},
+        {id:6,cx:115,cy:195,tx:352,ty:108,r:2,group:'frag'},
+        {id:7,cx:480,cy:28,tx:260,ty:128,r:2.5,group:'frag'},
+        {id:8,cx:55,cy:240,tx:155,ty:198,r:4,group:'pattern'},
+        {id:9,cx:445,cy:198,tx:362,ty:198,r:4,group:'pattern'},
+        {id:10,cx:98,cy:312,tx:218,ty:228,r:3,group:'pattern'},
+        {id:11,cx:402,cy:318,tx:302,ty:228,r:3,group:'pattern'},
+        {id:12,cx:148,cy:252,tx:260,ty:258,r:8,group:'insight',isInsight:true},
+        {id:13,cx:260,cy:400,tx:260,ty:400,r:5,group:'decision',isDecision:true},
+    ];
+    const conns=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[0,8],[1,9],[5,10],[6,11],[8,12],[9,12],[10,12],[11,12],[12,13]];
+
+    const lineEls={};
+    conns.forEach(([a,b])=>{
+        const el=document.createElementNS('http://www.w3.org/2000/svg','path');
+        el.setAttribute('fill','none');
+        el.setAttribute('stroke','#9d9590');
+        el.setAttribute('stroke-width','0.8');
+        el.setAttribute('opacity','0');
+        linesG.appendChild(el);
+        lineEls[`${a}-${b}`]=el;
+    });
+    const nodeEls={};
+    pts.forEach(p=>{
+        const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+        const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('r',p.r);
+        c.setAttribute('fill',p.isInsight?'#1a52b8':'#9d9590');
+        c.setAttribute('fill-opacity',p.isInsight?'0.12':'0.55');
+        if(p.isInsight){c.setAttribute('stroke','#1a52b8');c.setAttribute('stroke-width','1.2');}
+        g.appendChild(c);
+        nodesG.appendChild(g);
+        nodeEls[p.id]={g,c};
+    });
+
+    function lerp(a,b,t){return a+(b-a)*t;}
+    function eio(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
+    function ease3(t){return 1-Math.pow(1-t,3);}
+
+    function getXY(id){
+        const tr=nodeEls[id].g.getAttribute('transform')||'translate(0,0)';
+        const m=tr.match(/translate\(([^,]+),([^)]+)\)/);
+        return m?{x:parseFloat(m[1]),y:parseFloat(m[2])}:{x:0,y:0};
+    }
+
+    function draw(p){
+        const e=eio(Math.min(p,1));
+        pts.forEach(pt=>{
+            if(pt.isDecision)return;
+            let x=lerp(pt.cx,pt.tx,e);
+            let y=lerp(pt.cy,pt.ty,e);
+            const dx=x-mouse.x,dy=y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+            if(d<55&&d>0){const rep=(55-d)/55*9;x+=dx/d*rep;y+=dy/d*rep;}
+            nodeEls[pt.id].g.setAttribute('transform',`translate(${x},${y})`);
+            let op;
+            if(pt.group==='frag')op=Math.max(0.15,1-e*0.35);
+            else if(pt.group==='pattern')op=Math.min(1,e*2.2);
+            else if(pt.isInsight)op=Math.min(1,(e-0.38)*3);
+            else op=1;
+            nodeEls[pt.id].g.setAttribute('opacity',Math.max(0,op));
+            if(pt.isInsight){const bl=Math.min(1,(e-0.5)*3);nodeEls[pt.id].c.setAttribute('r',pt.r*(1+bl*0.45));}
+        });
+        // Decision node stays fixed
+        nodeEls[13].g.setAttribute('transform','translate(260,400)');
+
+        conns.forEach(([a,b])=>{
+            const key=`${a}-${b}`;
+            const el=lineEls[key];
+            const pa=pts[a],pb=pts[b];
+            const pa_pos=getXY(a),pb_pos=getXY(b);
+            const len=Math.sqrt((pb_pos.x-pa_pos.x)**2+(pb_pos.y-pa_pos.y)**2);
+            el.setAttribute('d',`M ${pa_pos.x} ${pa_pos.y} L ${pb_pos.x} ${pb_pos.y}`);
+            const isInsL=pb.isInsight||pa.isInsight;
+            const isDecL=pb.isDecision||pa.isDecision;
+            const isPatL=pa.group==='pattern'||pb.group==='pattern';
+            let lp;
+            if(pa.group==='frag'&&pb.group==='frag')lp=Math.min(1,e*3.5);
+            else if(isPatL&&!isInsL)lp=Math.min(1,(e-0.18)*3);
+            else if(isInsL)lp=Math.min(1,(e-0.44)*4);
+            else if(isDecL)lp=Math.min(1,(e-0.7)*6);
+            else lp=0;
+            lp=Math.max(0,lp);
+            el.setAttribute('stroke-dasharray',`${lp*len} ${len}`);
+            el.setAttribute('opacity',lp>0?Math.min(0.5,lp*0.5):0);
+            if(isInsL||isDecL){el.setAttribute('stroke','#1a52b8');el.setAttribute('stroke-width','1.2');}
+            else{el.setAttribute('stroke','#9d9590');el.setAttribute('stroke-width','0.8');}
+        });
+
+        const l0=document.getElementById('cviz-label-0');
+        const l2=document.getElementById('cviz-label-2');
+        if(l0)l0.setAttribute('opacity',Math.min(0.65,e*2.5));
+        if(l2)l2.setAttribute('opacity',Math.min(0.65,Math.max(0,(e-0.48)*3)));
+
+        const decG=document.getElementById('cviz-decision');
+        if(decG){
+            const dop=Math.min(1,Math.max(0,(e-0.74)*5));
+            decG.setAttribute('opacity',dop);
+            if(dop>0.5){
+                const pulse=1+Math.sin(Date.now()/700)*0.28;
+                const core=document.getElementById('cviz-decision-core');
+                if(core)core.setAttribute('r',5*pulse);
+            }
+        }
+        const stages=[0,0.22,0.48,0.74];
+        stages.forEach((thr,i)=>{
+            const el=document.getElementById(`cs-stage-${i}`);
+            if(el)el.classList.toggle('active',e>=thr);
+        });
+    }
+
+    function animateSignal(){
+        if(progress<0.78)return;
+        const sig=document.getElementById('cviz-signal');
+        if(!sig)return;
+        const ins=getXY(12),dec={x:260,y:400};
+        signalT=(signalT+0.009)%1;
+        const t=ease3(signalT);
+        sig.setAttribute('cx',lerp(ins.x,dec.x,t));
+        sig.setAttribute('cy',lerp(ins.y,dec.y,t));
+        sig.setAttribute('opacity',0.9);
+    }
+
+    let lastT=null;
+    function loop(ts){
+        if(!lastT)lastT=ts;
+        const dt=(ts-lastT)/1000;
+        lastT=ts;
+        if(progress<1)progress=Math.min(1,progress+dt*0.2);
+        draw(progress);
+        animateSignal();
+        requestAnimationFrame(loop);
+    }
+
+    if(prefersReduced){draw(1);document.querySelectorAll('.cstage').forEach(e=>e.classList.add('active'));return;}
+
+    svg.addEventListener('mousemove',ev=>{
+        const r=svg.getBoundingClientRect();
+        mouse.x=(ev.clientX-r.left)*(W/r.width);
+        mouse.y=(ev.clientY-r.top)*(H/r.height);
+    });
+    svg.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999;});
+
+    function checkScroll(){
+        if(animStarted)return;
+        const r=wrap.getBoundingClientRect();
+        if(r.top<window.innerHeight*0.8){animStarted=true;requestAnimationFrame(loop);}
+    }
+    window.addEventListener('scroll',checkScroll,{passive:true});
+    checkScroll();
+})();
+</script>
 
 <section id="expertise" class="section border-b">
     <div class="container">
