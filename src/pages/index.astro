@@ -32,53 +32,7 @@
             position: relative;
         }
 
-        .chaos-layer {
-            position: absolute; inset: 0; padding: 48px;
-            color: #64748B;
-            font-family: monospace; font-size: 0.95rem; line-height: 1.6;
-        }
-
-        .resolved-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #FAFAFA;
-            overflow: hidden;
-        }
-
-        .scanner-line {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-            background: #4338ca;
-            box-shadow: 0 -4px 12px rgba(67, 56, 202, 0.4);
-            display: none;
-        }
-
-        .flow-diagram { padding: 48px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-        .flow-step {
-            position: relative; padding-left: 36px; color: #0F172A; font-weight: 600; font-size: 1.1rem;
-        }
-        .flow-step::before {
-            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-            width: 12px; height: 12px; border: 2px solid #94A3B8; border-radius: 50%; background: #FAFAFA; z-index: 2;
-        }
-        .flow-step:not(:last-child)::after {
-            content: ''; position: absolute; left: 5px; top: 24px;
-            width: 2px; height: calc(100% + 24px); background: #E2E8F0; z-index: 1;
-        }
-        .flow-step.final-step { color: #4338ca; font-size: 1.25rem; }
-        .flow-step.final-step::before { border-color: #4338ca; background: #4338ca; }
-
-        /* ANIMATION LOGIC */
-        @media (prefers-reduced-motion: no-preference) {
-            .run-animation .resolved-layer {
-                height: 0%;
-                animation: scanDown 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.8s forwards;
-            }
-            .run-animation .scanner-line {
-                display: block;
-                animation: fadeOutScanner 0.1s linear 2.3s forwards;
-            }
-            @keyframes scanDown { 0% { height: 0%; } 100% { height: 100%; } }
-            @keyframes fadeOutScanner { to { opacity: 0; display: none; } }
-        }
+        
 
         @media(max-width: 1024px) {
             .hero-container { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
@@ -348,28 +302,7 @@
             </div>
             <div class="hero-right">
                 <div class="proof-panel">
-                    <div class="chaos-layer">
-<pre><code>[STREAM_IN] 0x00A1F
-sys.log.err: unmapped_schema
->> cluster_771 offline
-WAITING...
-[UNSTRUCTURED_POOL]
-JOIN table_a, table_b ON (null)
-val = NaN
-01001100 01101111 01100111
->> END_STREAM</code></pre>
-                    </div>
-                    
-                    <div class="resolved-layer">
-                        <div class="scanner-line"></div>
-                        <div class="flow-diagram">
-                            <div class="flow-step">Business Problem</div>
-                            <div class="flow-step">Data Architecture</div>
-                            <div class="flow-step">ML Models</div>
-                            <div class="flow-step">Intelligence</div>
-                            <div class="flow-step final-step">Measurable Decision</div>
-                        </div>
-                    </div>
+                    <video src="/hero-video-no-watermark.mp4" poster="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; border-radius: 3px; display: block;"></video>
                 </div>
             </div>
         </div>
@@ -749,11 +682,7 @@ val = NaN
         setupNativeSlider('exp-track', 'exp-progress');
         setupNativeSlider('ins-track', null);
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReducedMotion) {
-            document.querySelector('.hero-split').classList.add('run-animation');
-        }
-
+        
         // 4. Hero Particle Canvas
         const canvas = document.getElementById('particle-canvas');
         if (canvas) {
