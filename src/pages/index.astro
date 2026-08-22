@@ -679,13 +679,13 @@
         
         
         // 4. Hero Network Canvas (Midway)
-        const canvas = document.getElementById('hero-network-canvas');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
+        const netCanvas = document.getElementById('hero-network-canvas');
+        if (netCanvas) {
+            const ctx = netCanvas.getContext('2d');
             let w, h, particles = [];
             const init = () => {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
+                w = netCanvas.width = window.innerWidth;
+                h = netCanvas.height = window.innerHeight;
                 // Add more particles on wider screens
                 const pCount = window.innerWidth > 1024 ? 120 : 60;
                 particles = Array.from({length: pCount}, () => ({
@@ -734,11 +734,11 @@
         // 4. Old Canvas (Removed)
         const canvas = document.getElementById('particle-canvas');
         if (canvas) {
-            const ctx = canvas.getContext('2d');
+            const ctx = netCanvas.getContext('2d');
             let w, h, particles = [];
             const init = () => {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
+                w = netCanvas.width = window.innerWidth;
+                h = netCanvas.height = window.innerHeight;
                 particles = Array.from({length: 50}, () => ({
                     x: Math.random() * w, y: Math.random() * h,
                     vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5
