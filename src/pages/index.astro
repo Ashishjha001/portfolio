@@ -31,13 +31,13 @@
             width: 100%; height: 100%;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 1.0;
         }
         
         .hero-gradient-mask {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, #FAFAFA 0%, #FAFAFA 40%, rgba(250,250,250,0) 100%);
+            background: linear-gradient(90deg, #FAFAFA 0%, #FAFAFA 30%, rgba(250,250,250,0) 80%);
             z-index: 1;
             pointer-events: none;
         }
@@ -223,7 +223,7 @@
         .hero p { font-size: 1.25rem; color: var(--text-muted); margin: 2rem auto 3rem; max-width: 650px; }
         
         /* Particle Canvas */
-        #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; pointer-events: none; }
+        #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 1.0; pointer-events: none; }
 
         /* Expertise Grid (Light) */
         
@@ -796,7 +796,7 @@
                     
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(15, 23, 42, 0.12)';
+                    ctx.fillStyle = 'rgba(15, 23, 42, 0.4)';
                     ctx.fill();
                 });
                 
