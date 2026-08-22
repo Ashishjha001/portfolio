@@ -250,25 +250,17 @@
 .bento-card {
     position: relative;
     border-radius: 6px;
-    background: #0d141c;
-    border: 1px solid rgba(255,255,255,0.06);
+    background: var(--white);
+    border: 1px solid var(--border);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 380px;
-    text-decoration: none;
-    color: #fff;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
 }
 @media (min-width: 900px) {
     .bento-wide {
         min-height: 420px;
     }
-}
-.bento-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(26,82,184,0.5);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(26,82,184,0.1);
 }
 .bento-bg-img {
     position: absolute;
@@ -276,17 +268,12 @@
     background-size: cover;
     background-position: center;
     opacity: 0.15;
-    mix-blend-mode: luminosity;
-    transition: opacity 0.6s, transform 6s linear;
-}
-.bento-card:hover .bento-bg-img {
-    opacity: 0.3;
-    transform: scale(1.05);
+    mix-blend-mode: multiply;
 }
 .bento-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(7,11,16,0.4) 0%, rgba(7,11,16,0.95) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.7) 100%);
 }
 .bento-content {
     position: relative;
@@ -296,123 +283,86 @@
     flex-direction: column;
     height: 100%;
 }
-.bento-num {
-    font-family: var(--font-sans);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--blue);
-    margin-bottom: 24px;
-}
 .bento-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #fff;
+    color: var(--ink);
     margin-bottom: 16px;
     line-height: 1.3;
 }
 .bento-desc {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.65);
+    font-size: 1.1rem;
+    color: var(--ink-70);
     line-height: 1.6;
     margin-bottom: 0;
     max-width: 85%;
 }
-.bento-link {
-    margin-top: auto;
-    padding-top: 32px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+/* ===== CASE STUDIES HORIZONTAL SCROLL ===== */
+.cs-horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 24px;
+    padding-bottom: 32px;
+    margin-top: 40px;
+    scrollbar-width: none;
 }
-.bento-card:hover .bento-link {
-    opacity: 1;
-    transform: translateX(0);
-    color: var(--blue);
+.cs-horizontal-scroll::-webkit-scrollbar { display: none; }
+.csh-card {
+    flex: 0 0 85%;
+    min-width: 300px;
+    scroll-snap-align: start;
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
 }
-
-/* Visuals */
-.bento-viz {
+@media (min-width: 768px) {
+    .csh-card { flex: 0 0 calc(50% - 12px); }
+}
+@media (min-width: 1024px) {
+    .csh-card { flex: 0 0 calc(33.333% - 16px); }
+}
+.csh-bg {
     position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 180px;
-    height: 180px;
-    opacity: 0.4;
-    transition: opacity 0.5s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    pointer-events: none;
-    z-index: 1;
+    inset: 0;
+    opacity: 0.08;
 }
-.bento-wide .bento-viz {
-    width: 320px;
-    height: 180px;
-}
-.bento-card:hover .bento-viz {
-    opacity: 0.9;
-    transform: scale(1.05) translate(-5px, 5px);
-}
-.viz-svg {
+.csh-bg img {
     width: 100%;
     height: 100%;
-    overflow: visible;
+    object-fit: cover;
+    filter: grayscale(100%);
 }
-
-/* Hover Animations */
-.bento-card:hover .layer {
-    animation: floatLayer 3s ease-in-out infinite alternate;
+.csh-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 100%);
 }
-.bento-card:hover .l2 { animation-delay: 0.2s; stroke: #1a52b8; fill: rgba(26,82,184,0.15); }
-.bento-card:hover .l3 { animation-delay: 0.4s; stroke: #fff; }
-@keyframes floatLayer {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-8px); }
+.csh-cat {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--blue);
+    margin-bottom: 16px;
 }
-.bento-card:hover .pipe-active {
-    fill: rgba(26,82,184,0.25);
-    stroke: #1a52b8;
+.csh-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 0;
 }
-.bento-card:hover .chart-line {
-    transition: stroke-dashoffset 1.5s ease-out;
-    stroke-dashoffset: 0;
-}
-.bento-card:hover .chart-dot {
-    opacity: 1;
-    transition: opacity 0.3s 1.2s;
-}
-@media (prefers-reduced-motion: reduce) {
-    .bento-card:hover, .bento-card:hover .bento-viz, .bento-card:hover .bento-bg-img { transform: none; }
-    .bento-card:hover .chart-line { stroke-dashoffset: 0; transition: none; }
-    .layer { animation: none !important; }
-    .viz-signal { display: none; }
-}
-/* ===== CASE STUDIES v2 ===== */
-        .cs2-header{margin-bottom:64px;}
-        .cs2-rail{display:flex;flex-direction:column;gap:0;}
-        .cs2-track{position:relative;margin-bottom:32px;display:none;}
-        @media(min-width:768px){.cs2-track{display:block;}}
-        .cs2-track-line{height:1px;background:var(--border);position:relative;margin:28px 0;}
-        .cs2-track-progress{position:absolute;left:0;top:0;height:1px;background:var(--blue);width:0%;transition:width 0.7s cubic-bezier(0.4,0,0.2,1);}
-        .cs2-track-nodes{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%) translateY(1px);}
-        .cs2-tnode{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;transition:all 0.3s;cursor:pointer;position:relative;}
-        .cs2-tnode span{font-size:0.5rem;font-weight:700;color:var(--ink-40);position:absolute;top:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;}
-        .cs2-tnode.active{border-color:var(--blue);background:var(--blue);}
-        .cs2-tnode.active span{color:var(--blue);}
-        .cs2-cards{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
-        @media(min-width:640px){.cs2-cards{grid-template-columns:repeat(2,1fr);}}
-        @media(min-width:1024px){.cs2-cards{grid-template-columns:repeat(4,1fr);}}
-        .cs2-card{background:var(--white);padding:36px 32px;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:background 0.2s,transform 0.2s;border-top:2px solid transparent;position:relative;}
-        .cs2-card:hover{background:var(--stone-50);transform:translateY(-2px);}
-        .cs2-card.active{border-top-color:var(--blue);}
-        .cs2-card-cat{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:16px;}
-        .cs2-card h3{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0;line-height:1.4;flex:1;}
-        .cs2-card-link{margin-top:24px;font-size:0.8rem;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:6px;opacity:0.6;transition:opacity 0.2s;}
-        .cs2-card:hover .cs2-card-link{opacity:1;}
-
 </style>
 </head>
 <body>
@@ -473,332 +423,74 @@
     </div>
 </section>
 
-<section id="challenge" class="section bg-stone border-b" style="overflow:hidden;">
-    <div class="container">
-        <div class="challenge-layout">
-            <!-- LEFT: Copy -->
-            <div class="challenge-copy fade-up">
-                <div class="eyebrow">The Business Challenge</div>
-                <h2>Data alone is not the outcome.</h2>
-                <p class="lead" style="margin-top:20px;">Organizations have more data than ever. Yet reporting is slow, KPIs are contested, forecasts are unreliable, and decisions remain gut-driven.</p>
-                <p class="lead">Insight without a clear decision pathway is just noise. We bridge the gap between technical infrastructure and strategic execution, so data actually drives the business forward.</p>
-                <div class="challenge-stages">
-                    <div class="cstage" id="cs-stage-0"><span class="cstage-num">01</span><span class="cstage-label">Fragmented Data</span></div>
-                    <div class="cstage-arrow">↓</div>
-                    <div class="cstage" id="cs-stage-1"><span class="cstage-num">02</span><span class="cstage-label">Patterns Emerge</span></div>
-                    <div class="cstage-arrow">↓</div>
-                    <div class="cstage" id="cs-stage-2"><span class="cstage-num">03</span><span class="cstage-label">Insight</span></div>
-                    <div class="cstage-arrow">↓</div>
-                    <div class="cstage" id="cs-stage-3"><span class="cstage-num">04</span><span class="cstage-label">Clear Decision</span></div>
-                </div>
-            </div>
-            <!-- RIGHT: Animated SVG -->
-            <div class="challenge-viz fade-up delay-1" id="challenge-viz-wrap">
-                <svg id="challenge-svg" viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <g id="cviz-lines"></g>
-                    <g id="cviz-nodes"></g>
-                    <text id="cviz-label-0" x="260" y="30" text-anchor="middle" class="cviz-stage-text" opacity="0">FRAGMENTED DATA</text>
-                    <text id="cviz-label-2" x="260" y="248" text-anchor="middle" class="cviz-stage-text" opacity="0">INSIGHT</text>
-                    <g id="cviz-decision" opacity="0">
-                        <circle cx="260" cy="400" r="28" fill="none" stroke="#1a52b8" stroke-width="1.5"/>
-                        <circle cx="260" cy="400" r="20" fill="#1a52b8" fill-opacity="0.07"/>
-                        <circle id="cviz-decision-core" cx="260" cy="400" r="5" fill="#1a52b8"/>
-                        <text x="260" y="444" text-anchor="middle" class="cviz-stage-text" fill="#1a52b8" font-weight="600">DECISION</text>
-                    </g>
-                    <circle id="cviz-signal" cx="-20" cy="-20" r="3.5" fill="#1a52b8" opacity="0"/>
-                </svg>
+<section id="challenge" style="padding:0; position:relative; background:#000; overflow:hidden;">
+    <div style="position:relative; width:100%; height:100vh; min-height:600px;">
+        <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; opacity:0.65;">
+            <source src="/video-business-challenge.mp4" type="video/mp4" />
+        </video>
+        <div class="container" style="position:absolute; inset:0; display:flex; align-items:center; z-index:2;">
+            <div class="fade-up" style="max-width:850px;">
+                <div class="eyebrow" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.3);">The Business Challenge</div>
+                <h2 style="color:#fff; font-size:clamp(2.5rem, 5vw, 4.5rem); line-height:1.1; margin-bottom:24px;">Data alone is not the outcome.</h2>
+                <p class="lead" style="color:rgba(255,255,255,0.85); font-size:1.25rem;">Organizations have more data than ever. Yet reporting is slow, KPIs are contested, forecasts are unreliable, and decisions remain gut-driven.</p>
+                <p class="lead" style="color:rgba(255,255,255,0.85); font-size:1.25rem; margin-top:20px;">Insight without a clear decision pathway is just noise. We bridge the gap between technical infrastructure and strategic execution, so data actually drives the business forward.</p>
             </div>
         </div>
     </div>
 </section>
-<style>
-    .challenge-layout{display:grid;grid-template-columns:1fr;gap:64px;align-items:center;}
-    @media(min-width:900px){.challenge-layout{grid-template-columns:1fr 1fr;gap:80px;}}
-    .challenge-stages{margin-top:40px;display:flex;flex-direction:column;gap:0;}
-    .cstage{display:flex;align-items:center;gap:14px;padding:12px 0;opacity:0.25;transition:opacity 0.6s ease;}
-    .cstage.active{opacity:1;}
-    .cstage-num{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;color:var(--blue);min-width:22px;}
-    .cstage-label{font-size:0.875rem;font-weight:600;color:var(--ink);}
-    .cstage-arrow{font-size:0.75rem;color:var(--stone-200);padding-left:8px;line-height:1;}
-    .challenge-viz{position:relative;width:100%;max-width:520px;margin:0 auto;}
-    #challenge-svg{width:100%;height:auto;display:block;}
-    .cviz-stage-text{font-family:'DM Sans',system-ui,sans-serif;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;fill:#9d9590;}
-    @media(prefers-reduced-motion:reduce){.cstage{opacity:1!important;}#cviz-decision{opacity:1!important;}#cviz-label-0,#cviz-label-2{opacity:0.7!important;}}
-</style>
-<script>
-(function(){
-    const svg=document.getElementById('challenge-svg');
-    const linesG=document.getElementById('cviz-lines');
-    const nodesG=document.getElementById('cviz-nodes');
-    const wrap=document.getElementById('challenge-viz-wrap');
-    if(!svg||!wrap)return;
-    const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    const W=520,H=460;
-    let progress=0,animStarted=false,signalT=0;
-    let mouse={x:-999,y:-999};
-
-    const pts=[
-        {id:0,cx:70,cy:55,tx:130,ty:75,r:3.5,group:'frag'},
-        {id:1,cx:430,cy:35,tx:195,ty:55,r:2.5,group:'frag'},
-        {id:2,cx:40,cy:155,tx:260,ty:48,r:3,group:'frag'},
-        {id:3,cx:465,cy:115,tx:325,ty:78,r:2.5,group:'frag'},
-        {id:4,cx:175,cy:18,tx:385,ty:58,r:2,group:'frag'},
-        {id:5,cx:375,cy:175,tx:168,ty:108,r:3,group:'frag'},
-        {id:6,cx:115,cy:195,tx:352,ty:108,r:2,group:'frag'},
-        {id:7,cx:480,cy:28,tx:260,ty:128,r:2.5,group:'frag'},
-        {id:8,cx:55,cy:240,tx:155,ty:198,r:4,group:'pattern'},
-        {id:9,cx:445,cy:198,tx:362,ty:198,r:4,group:'pattern'},
-        {id:10,cx:98,cy:312,tx:218,ty:228,r:3,group:'pattern'},
-        {id:11,cx:402,cy:318,tx:302,ty:228,r:3,group:'pattern'},
-        {id:12,cx:148,cy:252,tx:260,ty:258,r:8,group:'insight',isInsight:true},
-        {id:13,cx:260,cy:400,tx:260,ty:400,r:5,group:'decision',isDecision:true},
-    ];
-    const conns=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[0,8],[1,9],[5,10],[6,11],[8,12],[9,12],[10,12],[11,12],[12,13]];
-
-    const lineEls={};
-    conns.forEach(([a,b])=>{
-        const el=document.createElementNS('http://www.w3.org/2000/svg','path');
-        el.setAttribute('fill','none');
-        el.setAttribute('stroke','#9d9590');
-        el.setAttribute('stroke-width','0.8');
-        el.setAttribute('opacity','0');
-        linesG.appendChild(el);
-        lineEls[`${a}-${b}`]=el;
-    });
-    const nodeEls={};
-    pts.forEach(p=>{
-        const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-        const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-        c.setAttribute('r',p.r);
-        c.setAttribute('fill',p.isInsight?'#1a52b8':'#9d9590');
-        c.setAttribute('fill-opacity',p.isInsight?'0.12':'0.55');
-        if(p.isInsight){c.setAttribute('stroke','#1a52b8');c.setAttribute('stroke-width','1.2');}
-        g.appendChild(c);
-        nodesG.appendChild(g);
-        nodeEls[p.id]={g,c};
-    });
-
-    function lerp(a,b,t){return a+(b-a)*t;}
-    function eio(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
-    function ease3(t){return 1-Math.pow(1-t,3);}
-
-    function getXY(id){
-        const tr=nodeEls[id].g.getAttribute('transform')||'translate(0,0)';
-        const m=tr.match(/translate\(([^,]+),([^)]+)\)/);
-        return m?{x:parseFloat(m[1]),y:parseFloat(m[2])}:{x:0,y:0};
-    }
-
-    function draw(p){
-        const e=eio(Math.min(p,1));
-        pts.forEach(pt=>{
-            if(pt.isDecision)return;
-            let x=lerp(pt.cx,pt.tx,e);
-            let y=lerp(pt.cy,pt.ty,e);
-            const dx=x-mouse.x,dy=y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
-            if(d<55&&d>0){const rep=(55-d)/55*9;x+=dx/d*rep;y+=dy/d*rep;}
-            nodeEls[pt.id].g.setAttribute('transform',`translate(${x},${y})`);
-            let op;
-            if(pt.group==='frag')op=Math.max(0.15,1-e*0.35);
-            else if(pt.group==='pattern')op=Math.min(1,e*2.2);
-            else if(pt.isInsight)op=Math.min(1,(e-0.38)*3);
-            else op=1;
-            nodeEls[pt.id].g.setAttribute('opacity',Math.max(0,op));
-            if(pt.isInsight){const bl=Math.min(1,(e-0.5)*3);nodeEls[pt.id].c.setAttribute('r',pt.r*(1+bl*0.45));}
-        });
-        // Decision node stays fixed
-        nodeEls[13].g.setAttribute('transform','translate(260,400)');
-
-        conns.forEach(([a,b])=>{
-            const key=`${a}-${b}`;
-            const el=lineEls[key];
-            const pa=pts[a],pb=pts[b];
-            const pa_pos=getXY(a),pb_pos=getXY(b);
-            const len=Math.sqrt((pb_pos.x-pa_pos.x)**2+(pb_pos.y-pa_pos.y)**2);
-            el.setAttribute('d',`M ${pa_pos.x} ${pa_pos.y} L ${pb_pos.x} ${pb_pos.y}`);
-            const isInsL=pb.isInsight||pa.isInsight;
-            const isDecL=pb.isDecision||pa.isDecision;
-            const isPatL=pa.group==='pattern'||pb.group==='pattern';
-            let lp;
-            if(pa.group==='frag'&&pb.group==='frag')lp=Math.min(1,e*3.5);
-            else if(isPatL&&!isInsL)lp=Math.min(1,(e-0.18)*3);
-            else if(isInsL)lp=Math.min(1,(e-0.44)*4);
-            else if(isDecL)lp=Math.min(1,(e-0.7)*6);
-            else lp=0;
-            lp=Math.max(0,lp);
-            el.setAttribute('stroke-dasharray',`${lp*len} ${len}`);
-            el.setAttribute('opacity',lp>0?Math.min(0.5,lp*0.5):0);
-            if(isInsL||isDecL){el.setAttribute('stroke','#1a52b8');el.setAttribute('stroke-width','1.2');}
-            else{el.setAttribute('stroke','#9d9590');el.setAttribute('stroke-width','0.8');}
-        });
-
-        const l0=document.getElementById('cviz-label-0');
-        const l2=document.getElementById('cviz-label-2');
-        if(l0)l0.setAttribute('opacity',Math.min(0.65,e*2.5));
-        if(l2)l2.setAttribute('opacity',Math.min(0.65,Math.max(0,(e-0.48)*3)));
-
-        const decG=document.getElementById('cviz-decision');
-        if(decG){
-            const dop=Math.min(1,Math.max(0,(e-0.74)*5));
-            decG.setAttribute('opacity',dop);
-            if(dop>0.5){
-                const pulse=1+Math.sin(Date.now()/700)*0.28;
-                const core=document.getElementById('cviz-decision-core');
-                if(core)core.setAttribute('r',5*pulse);
-            }
-        }
-        const stages=[0,0.22,0.48,0.74];
-        stages.forEach((thr,i)=>{
-            const el=document.getElementById(`cs-stage-${i}`);
-            if(el)el.classList.toggle('active',e>=thr);
-        });
-    }
-
-    function animateSignal(){
-        if(progress<0.78)return;
-        const sig=document.getElementById('cviz-signal');
-        if(!sig)return;
-        const ins=getXY(12),dec={x:260,y:400};
-        signalT=(signalT+0.009)%1;
-        const t=ease3(signalT);
-        sig.setAttribute('cx',lerp(ins.x,dec.x,t));
-        sig.setAttribute('cy',lerp(ins.y,dec.y,t));
-        sig.setAttribute('opacity',0.9);
-    }
-
-    let lastT=null;
-    function loop(ts){
-        if(!lastT)lastT=ts;
-        const dt=(ts-lastT)/1000;
-        lastT=ts;
-        if(progress<1)progress=Math.min(1,progress+dt*0.2);
-        draw(progress);
-        animateSignal();
-        requestAnimationFrame(loop);
-    }
-
-    if(prefersReduced){draw(1);document.querySelectorAll('.cstage').forEach(e=>e.classList.add('active'));return;}
-
-    svg.addEventListener('mousemove',ev=>{
-        const r=svg.getBoundingClientRect();
-        mouse.x=(ev.clientX-r.left)*(W/r.width);
-        mouse.y=(ev.clientY-r.top)*(H/r.height);
-    });
-    svg.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999;});
-
-    function checkScroll(){
-        if(animStarted)return;
-        const r=wrap.getBoundingClientRect();
-        if(r.top<window.innerHeight*0.8){animStarted=true;requestAnimationFrame(loop);}
-    }
-    window.addEventListener('scroll',checkScroll,{passive:true});
-    checkScroll();
-})();
-</script>
-
 <!-- EXPERTISE (REDESIGNED) -->
-<section id="expertise" class="section border-b" style="background: #070b10; color: #fff; overflow:hidden; position: relative;">
-    <!-- Abstract dark grid background -->
-    <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events:none;"></div>
-    
-    <!-- Ambient glowing orbs -->
-    <div style="position:absolute; top:-20%; left:-10%; width:60%; height:60%; background: radial-gradient(circle, rgba(26,82,184,0.12) 0%, transparent 70%); filter:blur(80px); pointer-events:none;"></div>
-    <div style="position:absolute; bottom:-20%; right:-10%; width:60%; height:60%; background: radial-gradient(circle, rgba(26,82,184,0.08) 0%, transparent 70%); filter:blur(80px); pointer-events:none;"></div>
-
+<section id="expertise" class="section border-b" style="background: var(--stone-50); color: var(--ink); overflow:hidden; position: relative;">
     <div class="container" style="position:relative; z-index:2; padding-top:20px;">
         <div class="expertise-header fade-up">
-            <div class="eyebrow" style="color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.15);">Our Expertise</div>
-            <h2 style="color: #fff; max-width: 800px; font-size: clamp(2rem, 4vw, 3.2rem); line-height:1.15; margin-bottom: 24px; letter-spacing: -0.02em;">Engineering intelligence for decisions that matter.</h2>
-            <p class="lead" style="max-width: 650px; color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.6;">We combine data engineering, advanced analytics, machine learning, AI, and decision intelligence to build technology-driven solutions for complex business problems.</p>
+            <div class="eyebrow">Our Expertise</div>
+            <h2 style="color: var(--ink); max-width: 800px; font-size: clamp(2rem, 4vw, 3.2rem); line-height:1.15; margin-bottom: 24px; letter-spacing: -0.02em;">Engineering intelligence for decisions that matter.</h2>
+            <p class="lead" style="max-width: 650px; color: var(--ink-70); font-size: 1.1rem; line-height: 1.6;">We combine data engineering, advanced analytics, machine learning, AI, and decision intelligence to build technology-driven solutions for complex business problems.</p>
         </div>
 
         <div class="bento-grid">
-            <!-- 01: DATA & DECISION INTELLIGENCE (Large spanning card) -->
-            <a href="/case-study-data-analytics" class="bento-card bento-wide fade-up delay-1">
+            <!-- 01 -->
+            <div class="bento-card bento-wide fade-up delay-1">
                 <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1600');"></div>
                 <div class="bento-overlay"></div>
-                <div class="bento-viz">
-                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-network">
-                        <path d="M50 100 Q 150 20 200 100 T 350 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
-                        <path d="M50 100 Q 150 180 200 100 T 350 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
-                        <circle cx="50" cy="100" r="4" fill="#1a52b8" />
-                        <circle cx="200" cy="100" r="6" fill="#fff" />
-                        <circle cx="350" cy="100" r="4" fill="#1a52b8" />
-                        <!-- animated signals -->
-                        <circle r="3" fill="#fff" class="viz-signal sig-1"><animateMotion dur="4s" repeatCount="indefinite" path="M50 100 Q 150 20 200 100 T 350 100"/></circle>
-                        <circle r="3" fill="#fff" class="viz-signal sig-2"><animateMotion dur="5s" repeatCount="indefinite" path="M50 100 Q 150 180 200 100 T 350 100"/></circle>
-                    </svg>
-                </div>
                 <div class="bento-content">
-                    <div class="bento-num">01</div>
                     <h3 class="bento-title">Data &amp; Decision Intelligence</h3>
                     <p class="bento-desc">Forecasting, optimization, simulation, business intelligence, decision systems.</p>
-                    <span class="bento-link">Explore expertise &rarr;</span>
                 </div>
-            </a>
+            </div>
 
-            <!-- 02: AI / ML ENGINEERING -->
-            <a href="/case-study-ai-decision" class="bento-card fade-up delay-2">
+            <!-- 02 -->
+            <div class="bento-card fade-up delay-2">
                 <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1620825937374-87fc7d6aaf22?auto=format&fit=crop&q=80&w=800');"></div>
                 <div class="bento-overlay"></div>
-                <div class="bento-viz">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-layers">
-                        <polygon points="100,60 160,85 100,110 40,85" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" class="layer l1"/>
-                        <polygon points="100,85 160,110 100,135 40,110" fill="rgba(26,82,184,0.05)" stroke="rgba(26,82,184,0.5)" stroke-width="1.5" class="layer l2"/>
-                        <polygon points="100,110 160,135 100,160 40,135" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" class="layer l3"/>
-                    </svg>
-                </div>
                 <div class="bento-content">
-                    <div class="bento-num">02</div>
                     <h3 class="bento-title">AI / ML Engineering</h3>
                     <p class="bento-desc">Machine learning, deep learning, NLP, computer vision, generative AI, intelligent agents.</p>
-                    <span class="bento-link">Explore expertise &rarr;</span>
                 </div>
-            </a>
+            </div>
 
-            <!-- 03: DATA ENGINEERING & AI INFRASTRUCTURE -->
-            <a href="/case-study-operations" class="bento-card fade-up delay-2">
+            <!-- 03 -->
+            <div class="bento-card fade-up delay-2">
                 <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800');"></div>
                 <div class="bento-overlay"></div>
-                <div class="bento-viz">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-pipes">
-                        <rect x="40" y="60" width="120" height="16" rx="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                        <rect x="40" y="100" width="120" height="16" rx="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                        <rect x="40" y="140" width="120" height="16" rx="3" fill="none" stroke="rgba(26,82,184,0.6)" stroke-width="1.5" class="pipe-active"/>
-                        <line x1="60" y1="76" x2="60" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                        <line x1="140" y1="116" x2="140" y2="140" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                    </svg>
-                </div>
                 <div class="bento-content">
-                    <div class="bento-num">03</div>
                     <h3 class="bento-title">Data Engineering &amp; Infrastructure</h3>
                     <p class="bento-desc">Data platforms, pipelines, cloud architecture, data products, MLOps.</p>
-                    <span class="bento-link">Explore expertise &rarr;</span>
                 </div>
-            </a>
+            </div>
 
-            <!-- 04: INTELLIGENT OPERATIONS (Wide bottom card) -->
-            <a href="/case-study-customer-growth" class="bento-card bento-wide fade-up delay-3">
+            <!-- 04 -->
+            <div class="bento-card bento-wide fade-up delay-3">
                 <div class="bento-bg-img" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600');"></div>
                 <div class="bento-overlay"></div>
-                <div class="bento-viz">
-                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="viz-svg viz-chart">
-                        <polyline points="0,150 50,130 100,135 150,90 200,105 250,55 300,65 350,20 400,25" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
-                        <polyline points="0,150 50,130 100,135 150,90 200,105 250,55 300,65 350,20 400,25" fill="none" stroke="#1a52b8" stroke-width="2" class="chart-line" stroke-dasharray="600" stroke-dashoffset="600"/>
-                        <circle cx="350" cy="20" r="4" fill="#fff" class="chart-dot" opacity="0"/>
-                    </svg>
-                </div>
                 <div class="bento-content">
-                    <div class="bento-num">04</div>
                     <h3 class="bento-title">Intelligent Operations</h3>
                     <p class="bento-desc">Demand forecasting, supply chain intelligence, pricing, process optimization, operational analytics.</p>
-                    <span class="bento-link">Explore expertise &rarr;</span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>
-
-<section id="case-studies" class="section border-b" style="overflow:hidden;">
+<section id="case-studies" class="section border-b" style="overflow:hidden; background: var(--white);">
     <div class="container">
         <div class="cs2-header fade-up">
             <div class="eyebrow">Client Outcomes</div>
@@ -806,43 +498,38 @@
             <p class="lead" style="max-width:540px;margin-top:16px;">How we frame complex problems, engineer analytical solutions, and turn data into decisions.</p>
         </div>
 
-        <!-- Desktop timeline rail -->
-        <div class="cs2-rail" id="cs2-rail">
-            <div class="cs2-track">
-                <div class="cs2-track-line"><div class="cs2-track-progress" id="cs2-progress"></div></div>
-                <div class="cs2-track-nodes">
-                    <div class="cs2-tnode active" data-cs="0"><span>01</span></div>
-                    <div class="cs2-tnode" data-cs="1"><span>02</span></div>
-                    <div class="cs2-tnode" data-cs="2"><span>03</span></div>
-                    <div class="cs2-tnode" data-cs="3"><span>04</span></div>
+        <div class="cs-horizontal-scroll fade-up delay-1">
+            <a href="/case-study-data-analytics" class="csh-card">
+                <div class="csh-bg"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800" alt="bg"/></div>
+                <div class="csh-content">
+                    <div class="csh-cat">Operations &amp; Analytics</div>
+                    <h3 class="csh-title">Supply Chain Visibility &amp; Demand Intelligence</h3>
                 </div>
-            </div>
-            <div class="cs2-cards">
-                <a href="/case-study-data-analytics" class="cs2-card active" data-cs="0">
-                    <div class="cs2-card-cat">Operations &amp; Analytics</div>
-                    <h3 class="cs2-card-title">Supply Chain Visibility &amp; Demand Intelligence</h3>
-                    <span class="cs2-card-link">Explore case &rarr;</span>
-                </a>
-                <a href="/case-study-ai-decision" class="cs2-card" data-cs="1">
-                    <div class="cs2-card-cat">AI &amp; Decision Intelligence</div>
-                    <h3 class="cs2-card-title">AI-Driven Demand Forecasting for a Retail Business</h3>
-                    <span class="cs2-card-link">Explore case &rarr;</span>
-                </a>
-                <a href="/case-study-operations" class="cs2-card" data-cs="2">
-                    <div class="cs2-card-cat">Operations &amp; Performance</div>
-                    <h3 class="cs2-card-title">Operational Efficiency Program in Manufacturing</h3>
-                    <span class="cs2-card-link">Explore case &rarr;</span>
-                </a>
-                <a href="/case-study-customer-growth" class="cs2-card" data-cs="3">
-                    <div class="cs2-card-cat">Customer &amp; Growth</div>
-                    <h3 class="cs2-card-title">Customer Profitability and Commercial Repricing</h3>
-                    <span class="cs2-card-link">Explore case &rarr;</span>
-                </a>
-            </div>
+            </a>
+            <a href="/case-study-ai-decision" class="csh-card">
+                <div class="csh-bg"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="bg"/></div>
+                <div class="csh-content">
+                    <div class="csh-cat">AI &amp; Decision Intelligence</div>
+                    <h3 class="csh-title">AI-Driven Demand Forecasting for a Retail Business</h3>
+                </div>
+            </a>
+            <a href="/case-study-operations" class="csh-card">
+                <div class="csh-bg"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="bg"/></div>
+                <div class="csh-content">
+                    <div class="csh-cat">Operations &amp; Performance</div>
+                    <h3 class="csh-title">Operational Efficiency Program in Manufacturing</h3>
+                </div>
+            </a>
+            <a href="/case-study-customer-growth" class="csh-card">
+                <div class="csh-bg"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="bg"/></div>
+                <div class="csh-content">
+                    <div class="csh-cat">Customer &amp; Growth</div>
+                    <h3 class="csh-title">Customer Profitability and Commercial Repricing</h3>
+                </div>
+            </a>
         </div>
     </div>
 </section>
-
 <section id="insights" class="section border-b">
     <div class="container">
         <div class="insights-header fade-up">
