@@ -533,6 +533,14 @@ h3 {
   margin-bottom: 0;
 }
 
+.visual-inset {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.visual-followup {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
 .rule-list {
   border-top: 2px solid currentColor;
 }

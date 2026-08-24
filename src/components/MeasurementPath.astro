@@ -1,0 +1,508 @@
+---
+import LedgerVisualMotion from './LedgerVisualMotion.astro';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'measurement-path' } = Astro.props;
+
+const stages = [
+  { x: 25, index: '01', lines: ['Discovery'] },
+  { x: 195, index: '02', lines: ['Referral'] },
+  { x: 365, index: '03', lines: ['Website', 'session'] },
+  { x: 535, index: '04', lines: ['Form', 'submission'] },
+  { x: 705, index: '05', lines: ['CRM', 'record'] },
+  { x: 875, index: '06', lines: ['Qualified', 'opportunity'] },
+  { x: 1045, index: '07', lines: ['Pipeline'] },
+];
+
+const breaks = [
+  'Referrer absent',
+  'Source detail grouped',
+  'Event blocked',
+  'Identifiers dropped',
+  'Source overwritten',
+  'Stage definition differs',
+];
+
+const stageTimes = [0, 900, 1650, 3700, 4450, 5200, 5950];
+const connectorTimes = [250, 1050, 3000, 3850, 4600, 5350];
+const connectorDurations = [550, 500, 650, 500, 500, 500];
+---
+
+<figure
+  id={id}
+  class="measurement-path ledger-visual"
+  data-ledger-visual
+  data-sequence-duration="6500"
+>
+  <div class="measurement-path__header">
+    <span class="evidence-label">Measurement spine / possible breaks</span>
+    <div class="ledger-visual__actions">
+      <span class="measurement-path__legend"><i aria-hidden="true"></i> Break to test</span>
+      <button class="ledger-visual__replay" type="button" data-visual-replay aria-controls={id}
+        >Replay path</button
+      >
+    </div>
+    <span class="sr-only" aria-live="polite" data-visual-status>Path animation ready.</span>
+  </div>
+
+  <svg
+    class="measurement-path__desktop"
+    viewBox="0 0 1210 400"
+    role="img"
+    aria-labelledby={`${id}-title ${id}-description`}
+    data-motion-svg
+  >
+    <title id={`${id}-title`}>Measurement path from discovery to pipeline</title>
+    <desc id={`${id}-description`}>
+      Seven stages connect discovery, referral, website session, form submission, CRM record,
+      qualified opportunity and pipeline. Six amber markers identify possible measurement breaks
+      that should be tested rather than assumed.
+    </desc>
+    <defs>
+      <marker
+        id={`${id}-arrow`}
+        viewBox="0 0 8 8"
+        refX="7"
+        refY="4"
+        markerWidth="7"
+        markerHeight="7"
+        orient="auto"
+      >
+        <path d="M 0 0 L 8 4 L 0 8 Z" class="measurement-path__arrow"></path>
+      </marker>
+    </defs>
+
+    <text class="measurement-path__axis-label" x="25" y="52">OBSERVABLE RECORDS</text>
+    <text class="measurement-path__axis-label" x="1185" y="52" text-anchor="end">
+      COMMERCIAL DECISION
+    </text>
+    <line class="measurement-path__axis" x1="25" x2="1185" y1="66" y2="66"></line>
+
+    {
+      stages.slice(0, -1).map((stage, index) => {
+        const path = `M ${stage.x + 140} 205 H ${stages[index + 1]!.x}`;
+        const breakX = stage.x + 155;
+        const labelY = index % 2 === 0 ? 126 : 304;
+        const lineEndY = index % 2 === 0 ? 138 : 270;
+
+        return (
+          <g
+            class="measurement-path__connection"
+            data-connector-start={connectorTimes[index]}
+            data-connector-duration={connectorDurations[index]}
+          >
+            <path
+              class="measurement-path__line"
+              d={path}
+              pathLength="1"
+              marker-end={`url(#${id}-arrow)`}
+              data-visual-path
+            />
+            <circle class="measurement-path__signal" r="4" aria-hidden="true" data-visual-signal />
+            <g
+              class="measurement-path__break"
+              data-break-start={index === 2 ? 1900 : undefined}
+              data-break-end={index === 2 ? 3000 : undefined}
+            >
+              <line x1={breakX} x2={breakX} y1="194" y2="216" />
+              <line x1={breakX + 7} x2={breakX + 7} y1="194" y2="216" />
+              <line
+                class="measurement-path__break-leader"
+                x1={breakX + 3.5}
+                x2={breakX + 3.5}
+                y1={index % 2 === 0 ? 190 : 220}
+                y2={lineEndY}
+              />
+              <text
+                class="measurement-path__break-label"
+                x={breakX + 3.5}
+                y={labelY}
+                text-anchor="middle"
+              >
+                {breaks[index]}
+              </text>
+            </g>
+          </g>
+        );
+      })
+    }
+
+    {
+      stages.map((stage, index) => (
+        <g class="measurement-path__stage" data-activate-at={stageTimes[index]}>
+          <rect x={stage.x} y="150" width="140" height="110" />
+          <text class="measurement-path__kicker" x={stage.x + 12} y="173">
+            STAGE {stage.index}
+          </text>
+          <line x1={stage.x} x2={stage.x + 140} y1="184" y2="184" />
+          <text class="measurement-path__label" x={stage.x + 12} y="215">
+            {stage.lines.map((line, lineIndex) => (
+              <tspan x={stage.x + 12} dy={lineIndex === 0 ? 0 : 19}>
+                {line}
+              </tspan>
+            ))}
+          </text>
+        </g>
+      ))
+    }
+
+    <g class="measurement-path__note">
+      <rect x="25" y="342" width="1160" height="38"></rect>
+      <text x="40" y="366">POSSIBLE BREAK ≠ CONFIRMED FAILURE</text>
+      <text x="1170" y="366" text-anchor="end">TEST FIELD PRESENCE, OWNERSHIP + DEFINITION</text>
+    </g>
+  </svg>
+
+  <ol class="measurement-path__mobile" aria-label="Measurement path and possible breaks">
+    {
+      stages.map((stage, index) => (
+        <li data-activate-at={stageTimes[index]}>
+          <div class="measurement-path__mobile-stage">
+            <span class="measurement-path__mobile-index">{stage.index}</span>
+            <strong>{stage.lines.join(' ')}</strong>
+          </div>
+          {index < breaks.length && (
+            <div
+              class="measurement-path__mobile-break"
+              data-connector-start={connectorTimes[index]}
+              data-connector-duration={connectorDurations[index]}
+              data-break-start={index === 2 ? 1900 : undefined}
+              data-break-end={index === 2 ? 3000 : undefined}
+            >
+              <span aria-hidden="true">Ⅱ</span>
+              <div>
+                <small>Possible break</small>
+                <strong>{breaks[index]}</strong>
+              </div>
+              <i class="measurement-path__mobile-signal" aria-hidden="true" data-visual-signal />
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+
+  <figcaption>
+    <span class="evidence-label">Interpretation</span>
+    The amber labels are test hypotheses, not findings about a particular stack. A measurement audit verifies
+    field presence, ownership and definition at each handoff.
+  </figcaption>
+</figure>
+<LedgerVisualMotion />
+
+<style>
+  .measurement-path {
+    margin: 0;
+    border-block: 2px solid var(--ink);
+    background: var(--paper-bright);
+  }
+
+  .measurement-path__header,
+  .measurement-path figcaption {
+    display: flex;
+    padding: 0.8rem 0.9rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .measurement-path__header {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .measurement-path__legend {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+    color: var(--graphite);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .measurement-path__legend i {
+    width: 1.5rem;
+    height: 0.65rem;
+    border-inline: 2px solid var(--amber);
+  }
+
+  .measurement-path__desktop {
+    width: 100%;
+    height: auto;
+  }
+
+  .measurement-path__axis {
+    stroke: var(--rule);
+    stroke-width: 1;
+  }
+
+  .measurement-path__axis-label,
+  .measurement-path__kicker,
+  .measurement-path__break-label,
+  .measurement-path__note text {
+    fill: var(--graphite);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .measurement-path__line {
+    fill: none;
+    stroke: var(--green);
+    stroke-width: 1.5;
+  }
+
+  .measurement-path__signal {
+    fill: var(--green);
+    opacity: 0;
+    transition: opacity 100ms linear;
+  }
+
+  .measurement-path__arrow {
+    fill: var(--green);
+  }
+
+  .measurement-path__stage rect {
+    fill: var(--paper-bright);
+    stroke: var(--ink);
+    stroke-width: 1;
+    transition:
+      fill 220ms ease,
+      stroke 220ms ease;
+  }
+
+  .measurement-path__stage line {
+    stroke: var(--rule);
+    stroke-width: 1;
+  }
+
+  .measurement-path__label {
+    fill: var(--ink);
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .measurement-path__break line {
+    stroke: var(--amber);
+    stroke-width: 2;
+  }
+
+  .measurement-path__break .measurement-path__break-leader {
+    stroke-dasharray: 2 3;
+    stroke-width: 1;
+  }
+
+  .measurement-path__break-label {
+    fill: var(--amber);
+    font-size: 9px;
+  }
+
+  .measurement-path__note rect {
+    fill: var(--amber-pale);
+    stroke: var(--amber);
+    stroke-width: 1;
+  }
+
+  .measurement-path__note text {
+    fill: var(--amber);
+  }
+
+  .measurement-path__mobile {
+    display: none;
+  }
+
+  .measurement-path figcaption {
+    border-top: 1px solid var(--rule);
+    color: var(--graphite);
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .measurement-path figcaption .evidence-label {
+    flex: 0 0 auto;
+    color: var(--amber);
+  }
+
+  .measurement-path.has-motion .measurement-path__stage {
+    opacity: 0.27;
+    transition: opacity 220ms ease;
+  }
+
+  .measurement-path.has-motion .measurement-path__stage.is-active {
+    opacity: 1;
+  }
+
+  .measurement-path.has-motion .measurement-path__stage.is-active rect {
+    fill: var(--green-pale);
+    stroke: var(--green-dark);
+  }
+
+  .measurement-path__break {
+    transition: opacity 180ms ease;
+  }
+
+  .measurement-path__break.is-break-active {
+    opacity: 1;
+  }
+
+  .measurement-path__break.is-break-active line {
+    stroke-width: 3;
+  }
+
+  .measurement-path__break.is-break-active .measurement-path__break-label {
+    font-weight: 700;
+  }
+
+  .measurement-path__break.is-reconciled line,
+  .measurement-path__break.is-reconciled .measurement-path__break-label {
+    stroke: var(--green);
+    fill: var(--green-dark);
+  }
+
+  @media (max-width: 680px) {
+    .measurement-path__header,
+    .measurement-path figcaption {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .measurement-path__desktop {
+      display: none;
+    }
+
+    .measurement-path__mobile {
+      display: block;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .measurement-path__mobile li {
+      padding: 0 0.9rem;
+      transition: opacity 220ms ease;
+    }
+
+    .measurement-path__mobile-stage {
+      display: grid;
+      min-height: 4.7rem;
+      padding-block: 1rem;
+      grid-template-columns: 2.2rem minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .measurement-path__mobile-index {
+      color: var(--green-dark);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+    }
+
+    .measurement-path__mobile-stage strong {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      line-height: 1.2;
+    }
+
+    .measurement-path__mobile-break {
+      --connector-progress: 1;
+      position: relative;
+      display: grid;
+      padding: 0.65rem 0 0.65rem 2.95rem;
+      grid-template-columns: 1rem minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: center;
+      color: var(--amber);
+    }
+
+    .measurement-path__mobile-break::after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 3.43rem;
+      width: 1px;
+      background: var(--green);
+      content: '';
+      transform: scaleY(var(--connector-progress));
+      transform-origin: top;
+    }
+
+    .measurement-path__mobile-signal {
+      position: absolute;
+      top: calc(var(--connector-progress) * 100%);
+      left: 3.43rem;
+      z-index: 1;
+      width: 0.38rem;
+      height: 0.38rem;
+      border-radius: 50%;
+      background: var(--green);
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .measurement-path__mobile-break > span {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      letter-spacing: -0.2em;
+    }
+
+    .measurement-path__mobile-break small,
+    .measurement-path__mobile-break strong {
+      display: block;
+    }
+
+    .measurement-path__mobile-break small {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .measurement-path__mobile-break strong {
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .measurement-path.has-motion .measurement-path__mobile li {
+      opacity: 0.3;
+    }
+
+    .measurement-path.has-motion .measurement-path__mobile li.is-active {
+      opacity: 1;
+    }
+
+    .measurement-path.has-motion
+      .measurement-path__mobile
+      li.is-active
+      .measurement-path__mobile-stage {
+      border-left: 2px solid var(--green-dark);
+      background: color-mix(in srgb, var(--green-pale) 46%, var(--paper-bright));
+    }
+
+    .measurement-path__mobile-break.is-break-active {
+      background: var(--amber-pale);
+      color: var(--amber);
+    }
+
+    .measurement-path__mobile-break.is-reconciled {
+      color: var(--green-dark);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .measurement-path *,
+    .measurement-path *::before,
+    .measurement-path *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+    }
+  }
+</style>

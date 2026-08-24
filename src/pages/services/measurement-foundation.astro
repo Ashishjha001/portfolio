@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import MeasurementPath from '../../components/MeasurementPath.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 
@@ -94,30 +95,37 @@ const schema = [
   </header>
 
   <section class="section">
-    <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">The gap</p><h2>
-          A dashboard can be precise and still answer the wrong question.
-        </h2>
-      </div><div>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro">
+          <p class="eyebrow">The gap</p><h2>
+            A dashboard can be precise and still answer the wrong question.
+          </h2>
+        </div>
         <p class="lede">
           Session attribution, first-user source, form submission and CRM opportunity source are
           different records. Treating them as interchangeable creates arguments that formatting
           cannot solve.
-        </p><div class="comparison" style="margin-top:3rem;">
-          <div>
-            <span class="evidence-label">Observed</span><h3>What the systems record</h3><ul>
-              <li>Traffic-source and campaign dimensions.</li><li>
-                Events and form submissions.
-              </li><li>CRM source, stage and revenue fields.</li>
-            </ul>
-          </div><div class="comparison__rule"></div><div>
-            <span class="evidence-label">Interpreted</span><h3>What the report assumes</h3><ul>
-              <li>Which touch receives credit.</li><li>
-                How anonymous activity joins to a lead.
-              </li><li>Which field survives later updates.</li>
-            </ul>
-          </div>
+        </p>
+      </div>
+      <div class="visual-inset">
+        <MeasurementPath />
+      </div>
+      <div class="comparison visual-followup">
+        <div>
+          <span class="evidence-label">Observed</span><h3>What the systems record</h3><ul>
+            <li>Traffic-source and campaign dimensions.</li><li>Events and form submissions.</li><li
+            >
+              CRM source, stage and revenue fields.
+            </li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Interpreted</span><h3>What the report assumes</h3><ul>
+            <li>Which touch receives credit.</li><li>How anonymous activity joins to a lead.</li><li
+            >
+              Which field survives later updates.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
