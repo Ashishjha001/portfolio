@@ -48,7 +48,7 @@
   "components": {
     "installed": [],
     "preferredPrimitives": [],
-    "patterns": []
+    "patterns": ["Semantic desktop SVG with a record-led mobile sequence"]
   },
   "constraints": {
     "must": [
@@ -73,6 +73,22 @@
       "choice": "Ledger Column",
       "alternatives": ["Audit Dossier"],
       "reason": "The open editorial column system supports long-form evidence, premium restraint and mobile reflow. Folio labels, marginal annotations and framed scope tables are retained from Audit Dossier without its rigid document-shell density."
+    },
+    {
+      "date": "2026-08-24",
+      "choice": "Code-native Ledger evidence maps",
+      "alternatives": ["Third-party design-kit assets", "Raster diagrams"],
+      "reason": "Original inline SVG preserves the Ledger rules and evidence labels at desktop sizes, while a record-led mobile sequence keeps text readable without shrinking the desktop diagram. Motion is sequential, finite, viewport-aware and reduced-motion safe."
+    },
+    {
+      "date": "2026-08-24",
+      "choice": "Compact text-first page hierarchy",
+      "alternatives": [
+        "Oversized display headings",
+        "Raster hero imagery",
+        "Dense evidence callout boxes"
+      ],
+      "reason": "The selected direction keeps the original Ledger composition while using smaller headings and tighter sections. Redundant homepage explanation, annotation boxes and the detailed homepage scope table are removed to reduce page length and visual density."
     }
   ],
   "evidence": [
