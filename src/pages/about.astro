@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+---
+
+<BaseLayout
+  title="About DataDecision and founder Ashish Jha"
+  description="DataDecision is a founder-led, measurement-first consultancy. Meet founder Ashish Jha and read the principles behind its AI-search visibility work."
+  path="/about/"
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About DataDecision',
+      url: 'https://datadecision.consulting/about/',
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'DataDecision',
+        email: 'contact@datadecision.consulting',
+        founder: { '@type': 'Person', name: 'Ashish Jha' },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Ashish Jha',
+      jobTitle: 'Founder',
+      url: 'https://datadecision.consulting/about/',
+      email: 'contact@datadecision.consulting',
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
+      worksFor: {
+        '@type': 'Organization',
+        name: 'DataDecision',
+        url: 'https://datadecision.consulting/',
+      },
+    },
+  ]}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy">
+      <p class="eyebrow">About DataDecision</p><h1>A measurement practice built for scrutiny.</h1><p
+        class="lede"
+      >
+        A focused consultancy for B2B SaaS teams that need a defensible view of AI-search visibility
+        and the measurement path into pipeline.
+      </p>
+    </div><aside class="page-hero__aside">
+      <div class="folio"><span>Company description</span><span>01 line</span></div><p
+        class="lede"
+        style="font-family:var(--font-display);font-size:1.8rem;"
+      >
+        Focused on AI-search visibility, measurement foundations and scoped implementation.
+      </p>
+    </aside>
+  </header>
+  <section class="section" aria-labelledby="founder-heading">
+    <div class="shell founder-record">
+      <div class="founder-record__identity">
+        <p class="eyebrow">Founder</p>
+        <h2 id="founder-heading">Ashish Jha</h2>
+        <p class="small">Founder, DataDecision<br />Graduate, NIT Surat</p>
+        <a class="text-link" href="mailto:contact@datadecision.consulting">
+          contact@datadecision.consulting
+        </a>
+      </div>
+      <div class="founder-record__body">
+        <p class="lede">
+          Ashish Jha founded DataDecision to build a measurement-first practice for AI-search
+          visibility and the path into pipeline.
+        </p>
+        <p class="measure">
+          His public operating standard is straightforward: define the observation frame before
+          interpreting the output, publish limitations beside conclusions, and recommend only work
+          the evidence can support. DataDecision’s focused launch scope reflects that standard.
+        </p>
+        <dl class="founder-record__facts">
+          <div>
+            <dt>Education</dt>
+            <dd>NIT Surat</dd>
+          </div>
+          <div>
+            <dt>Credential boundary</dt>
+            <dd class="small">Identification only; no institutional endorsement is claimed.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="shell editorial-grid editorial-grid--reverse">
+      <div class="section-intro">
+        <p class="eyebrow">Why this exists</p><h2>Evidence should survive the handoff.</h2>
+      </div><div>
+        <p class="lede">
+          DataDecision begins with a simple operating belief: the method, assumptions and limits
+          should travel with every marketing number. That matters more as discovery moves across
+          search pages, generated answers, review sources and private conversations that no single
+          dashboard can fully observe.
+        </p><p class="measure">
+          The firm is being built from the measurement layer outward. Its launch offer is
+          intentionally narrower than a full-service growth agency, because capability should be
+          demonstrated before it is advertised.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Operating principles</p><h2>How the work is judged.</h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">01</span><div>
+            <h3>Evidence over adjectives</h3><p>
+              Describe the method and observation before describing the outcome.
+            </p>
+          </div><span class="rule-row__meta">Claim discipline</span>
+        </div><div class="rule-row">
+          <span class="mono">02</span><div>
+            <h3>Baselines before bravado</h3><p>
+              Define the starting record before proposing a change.
+            </p>
+          </div><span class="rule-row__meta">Comparability</span>
+        </div><div class="rule-row">
+          <span class="mono">03</span><div>
+            <h3>Method in public</h3><p>
+              Publish the rules needed to interrogate a number without disclosing private client
+              data.
+            </p>
+          </div><span class="rule-row__meta">Transparency</span>
+        </div><div class="rule-row">
+          <span class="mono">04</span><div>
+            <h3>Uncertainty stays visible</h3><p>
+              Unknown, unavailable and ambiguous are separate states—not inconvenient zeros.
+            </p>
+          </div><span class="rule-row__meta">Honesty</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--ink">
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro">
+        <p class="eyebrow" style="color:#9fd2bc;">Claim boundaries</p><h2>
+          Credibility starts with restraint.
+        </h2>
+      </div><div>
+        <p class="lede" style="color:#d3d6d1;">
+          The launch site does not claim clients, logos, testimonials, partners, offices, headcount,
+          awards, proprietary datasets or guaranteed placements. Its founder record contains the
+          facts supplied and approved for publication, without an invented biography, portrait or
+          experience claim.
+        </p><div class="annotation" style="margin-top:2rem;color:var(--ink);">
+          <span class="evidence-label">Current truth</span><p>
+            Ashish Jha leads the work. The launch scope is focused, the method is public and
+            demonstration research is clearly labelled.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FinalCTA heading="Start with a question the evidence can answer." />
+</BaseLayout>

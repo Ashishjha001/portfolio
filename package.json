@@ -1,5 +1,5 @@
 {
-  "name": "profile",
+  "name": "datadecision-consulting",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,10 +9,24 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "node scripts/validate-site.mjs",
+    "check:external": "node scripts/check-external-links.mjs",
+    "qa": "npm run format:check && npm run check && npm run build && npm run validate && npm run check:external",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.2",
-    "three": "^0.185.1"
+    "@fontsource-variable/newsreader": "^5.2.6",
+    "@fontsource/ibm-plex-mono": "^5.2.6",
+    "@fontsource/ibm-plex-sans": "^5.2.6",
+    "astro": "^7.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.2"
   }
 }

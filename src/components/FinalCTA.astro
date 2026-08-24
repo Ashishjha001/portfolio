@@ -1,0 +1,23 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  label?: string;
+}
+
+const {
+  heading = 'Build the baseline before you fund the fix.',
+  body = 'Ashish reviews the question for fit. If the published method can answer it, you receive a written scope covering inputs, timing, fee and limitations before work begins.',
+  label = 'Request a visibility diagnostic',
+} = Astro.props;
+---
+
+<section class="section--green">
+  <div class="shell cta-band">
+    <h2>{heading}</h2>
+    <div class="cta-band__action">
+      <p>{body}</p>
+      <a class="button" href="/contact/" data-event="cta_primary_click">{label}</a>
+    </div>
+  </div>
+</section>

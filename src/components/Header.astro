@@ -1,0 +1,60 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const links = [
+  { href: '/services/ai-search-visibility/', label: 'AI-search visibility' },
+  { href: '/services/measurement-foundation/', label: 'Measurement' },
+  { href: '/methodology/', label: 'Methodology' },
+  { href: '/work/', label: 'Work' },
+  { href: '/insights/', label: 'Insights' },
+  { href: '/about/', label: 'About' },
+];
+
+const isCurrent = (href: string) =>
+  href === '/' ? currentPath === href : currentPath.startsWith(href);
+---
+
+<div class="utility-bar">
+  <div class="shell utility-bar__inner">
+    <p>Method note / sampled visibility, dated observations</p>
+    <p>Founded by Ashish Jha · NIT Surat graduate</p>
+  </div>
+</div>
+<header class="site-header">
+  <nav class="shell nav" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label="DataDecision home">
+      DataDecision
+      <small>Growth you can prove.</small>
+    </a>
+    <div class="nav__links">
+      {
+        links.map((link) => (
+          <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+    <a class="button button--primary" href="/contact/" data-event="cta_primary_click">
+      Request a diagnostic
+    </a>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <div class="mobile-nav__panel">
+        {
+          links.map((link) => (
+            <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+              {link.label}
+            </a>
+          ))
+        }
+        <a class="button button--primary" href="/contact/" data-event="cta_primary_click">
+          Request a diagnostic
+        </a>
+      </div>
+    </details>
+  </nav>
+</header>

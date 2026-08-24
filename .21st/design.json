@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "project": {
+    "name": "DataDecision",
+    "productType": "premium B2B consultancy website",
+    "stack": ["astro"]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": ["src/assets"],
+    "instructions": ["AGENTS.md", "CLAUDE.md"]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "paper": "#F4F0E7",
+      "paperBright": "#FBFAF6",
+      "ink": "#161815",
+      "graphite": "#52584F",
+      "evidenceGreen": "#175F49",
+      "caveatAmber": "#8B5B19",
+      "rule": "#C9C3B7"
+    },
+    "typography": {
+      "display": "Newsreader, Iowan Old Style, Georgia, serif",
+      "body": "IBM Plex Sans, Arial, sans-serif",
+      "evidence": "IBM Plex Mono, Consolas, monospace"
+    },
+    "spacing": {
+      "base": "8px",
+      "sectionDesktop": "112px",
+      "sectionMobile": "72px"
+    },
+    "radius": {
+      "control": "2px",
+      "surface": "0px"
+    },
+    "shadows": {
+      "default": "none"
+    },
+    "motion": {
+      "duration": "160ms",
+      "preference": "reduced-motion safe"
+    },
+    "density": "editorial"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Editorial asymmetric composition",
+      "Evidence labels, dates, samples and limitations beside claims",
+      "Visible rules, tables, folios and purposeful whitespace",
+      "Responsive four/eight/twelve-column grid",
+      "WCAG AA-conscious contrast and keyboard-complete interactions"
+    ],
+    "avoid": [
+      "Generic SaaS card grids",
+      "Gradients, glass, glow and heavy shadows",
+      "Decorative dashboards or fabricated metrics",
+      "Stock photography and AI visual cliches",
+      "Inter, Geist and Space Grotesk",
+      "Animated evidence numbers"
+    ]
+  },
+  "decisions": [
+    {
+      "date": "2026-08-24",
+      "choice": "Ledger Column",
+      "alternatives": ["Audit Dossier"],
+      "reason": "The open editorial column system supports long-form evidence, premium restraint and mobile reflow. Folio labels, marginal annotations and framed scope tables are retained from Audit Dossier without its rigid document-shell density."
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "CLAUDE.md"
+    },
+    {
+      "fact": "project.stack:astro",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-08-23T23:24:22.330Z"
+}

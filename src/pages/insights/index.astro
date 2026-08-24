@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+const insights = (await getCollection('insights')).sort(
+  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
+);
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
+    date,
+  );
+---
+
+<BaseLayout
+  title="Insights on AI-search visibility and measurement — DataDecision"
+  description="Research notes, implementation guides and reusable templates for teams measuring AI-search visibility, referrals and pipeline evidence."
+  path="/insights/"
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Research ledger</p><h1>Field notes from the measurement frontier.</h1><p
+        class="lede"
+      >
+        Answer-first guides with dated platform evidence, practical templates and the limitations
+        kept in view.
+      </p>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio">
+        <span>Launch library</span><span
+          >{insights.length.toString().padStart(2, '0')} complete</span
+        >
+      </div><div class="caveat">
+        <span class="evidence-label">Publishing rule</span>New material ships only when it adds
+        research, a reusable artifact or a decision method. No thin placeholder articles.
+      </div>
+    </aside>
+  </header>
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Launch notes</p><h2>Three resources, complete enough to use.</h2><p
+          class="small"
+        >
+          The codebase also includes reusable article, benchmark and demonstration structures for
+          the week-one plan.
+        </p>
+      </div><div class="insight-index">
+        {
+          insights.map((entry, index) => (
+            <a class="insight-row" href={`/insights/${entry.id}/`}>
+              <span class="mono">
+                {String(index + 1).padStart(2, '0')} / {entry.data.category}
+              </span>
+              <div>
+                <>
+                  <h2>{entry.data.title}</h2>
+                  <p>{entry.data.description}</p>
+                </>
+              </div>
+              <span class="small">
+                Updated {formatDate(entry.data.updatedDate)}
+                <br />
+                {entry.data.readingMinutes} min read
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Week-one capacity</p><h2>
+          Built to publish up to 20 genuine artifacts.
+        </h2>
+      </div><div>
+        <p class="lede">
+          The production plan supports articles, checklists, templates, annotated teardowns and
+          demonstration runs. Publishing volume is permitted only when each artifact carries
+          original analysis, a date, visible sources, methodology links and an honest label.
+        </p><div class="button-row">
+          <a
+            class="button"
+            href="/downloads/ai-visibility-baseline-template.csv"
+            data-event="template_download">Download baseline template</a
+          ><a class="text-link" href="/methodology/">Read the method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FinalCTA heading="Turn a research question into a measured brief." />
+</BaseLayout>

@@ -1,857 +1,443 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MethodBadge from '../components/MethodBadge.astro';
+import DecisionBoard from '../components/DecisionBoard.astro';
+import FAQList from '../components/FAQList.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const faqs = [
+  {
+    question: 'Can you guarantee placement or citations in AI answers?',
+    answer:
+      'No. AI answers are nondeterministic and change with the engine, query, session and time. We document what appeared within the sampled window, repeat runs where the method calls for it, and never sell a ranking promise.',
+  },
+  {
+    question: 'Which surfaces does the diagnostic cover?',
+    answer:
+      'The default scope covers up to four approved search and AI surfaces where access permits. The final engine set, access conditions and observation protocol are written into the methodology record before collection begins.',
+  },
+  {
+    question: 'Is this SEO with a new name?',
+    answer:
+      'Some foundations overlap: crawl access, useful content, technical clarity and external authority still matter. The additional work is a sampled answer-layer baseline, source observation, prompt-frame design and a measurement path into conversion and pipeline.',
+  },
+  {
+    question: 'What is included in the standard scope?',
+    answer:
+      'Fifty buying-intent queries, one market, one language, up to four surfaces where access permits, two documented runs where methodologically appropriate, a technical access review, measurement-gap review and prioritized 90-day action plan.',
+  },
+  {
+    question: 'How long does it take?',
+    answer:
+      'The standard delivery window is 15 business days after the required inputs are complete and the written scope is confirmed.',
+  },
+  {
+    question: 'Do you manage paid media?',
+    answer:
+      'The launch focus is AI-search visibility, measurement foundations and tightly scoped post-diagnostic implementation. Paid channels may appear in a recommendation when the evidence makes them relevant, but paid-media management is outside the current service scope.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataDecision | Premium Data & AI Strategy Consulting</title>
-    <meta name="description" content="Engineering decisions that matter. We transform complex data architectures and machine learning models into measurable business outcomes." />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    
-    <style>
 
-        /* HERO (Midway: Light Network) */
-        .hero-midway {
-            position: relative;
-            min-height: 100vh;
-            background: #FAFAFA;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-        
-        #hero-network-canvas {
-            position: absolute;
-            top: 0; right: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.75;
-        }
-        
-        .hero-gradient-mask {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, #FAFAFA 0%, #FAFAFA 30%, rgba(250,250,250,0) 80%);
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .hero-container-midway {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        .hero-content-midway {
-            max-width: 680px;
-        }
-        
-        .midway-eyebrow {
-            color: #0055FF;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            display: block;
-            margin-bottom: 24px;
-        }
-        
-        .hero-headline-midway {
-            font-size: clamp(3.5rem, 5vw, 5.2rem);
-            color: #0F172A;
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-        }
-        
-        .hero-headline-midway em {
-            color: #0055FF;
-            font-style: italic;
-            font-weight: 700;
-        }
-        
-        .hero-subhead-midway {
-            font-size: 1.15rem;
-            color: #475569;
-            line-height: 1.65;
-            margin-bottom: 40px;
-            max-width: 580px;
-        }
-        
-        .hero-ctas-midway {
-            display: flex;
-            gap: 16px;
-        }
-        
-        .btn-blue {
-            background: #0055FF;
-            color: white;
-            padding: 16px 32px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-        }
-        .btn-blue:hover { background: #0044CC; color: white; }
-        
-        .btn-outline-midway {
-            background: transparent;
-            color: #0F172A;
-            border: 1px solid #E2E8F0;
-            padding: 16px 32px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-        }
-        .btn-outline-midway:hover { background: #F1F5F9; border-color: #CBD5E1; }
+<BaseLayout
+  title="DataDecision — Measurement-first AI-search visibility for B2B SaaS"
+  description="See how your SaaS appears across search and AI answers. Build a sampled visibility baseline, repair measurement gaps and decide what to fix next—with the method and limitations attached."
+  path="/"
+  schema={schema}
+>
+  <div class="shell">
+    <section class="page-hero">
+      <div class="page-hero__copy">
+        <p class="eyebrow">For B2B SaaS growth teams</p>
+        <h1>See how your SaaS appears across search and AI answers.</h1>
+        <p class="lede">
+          Build a repeatable visibility baseline, repair the measurement gaps between discovery and
+          pipeline, and decide what to fix next—with the evidence and limitations attached.
+        </p>
+        <div class="button-row">
+          <a class="button button--primary" href="/contact/" data-event="cta_primary_click">
+            Request a visibility diagnostic
+          </a>
+          <a class="text-link" href="/methodology/" data-event="methodology_cta_click">
+            See how we measure
+          </a>
+        </div>
+      </div>
+      <aside class="page-hero__aside" aria-label="Default diagnostic scope">
+        <div class="folio"><span>Diagnostic / default scope</span><span>01—04</span></div>
+        <dl class="evidence-list">
+          <div class="evidence-line">
+            <dt class="evidence-line__number">50</dt>
+            <dd>
+              <strong>Buying-intent queries</strong><small
+                >One market · one language · dated observations</small
+              >
+            </dd>
+          </div>
+          <div class="evidence-line">
+            <dt class="evidence-line__number">04</dt>
+            <dd>
+              <strong>Approved answer surfaces</strong><small
+                >Where access permits; collection conditions recorded</small
+              >
+            </dd>
+          </div>
+          <div class="evidence-line">
+            <dt class="evidence-line__number">02</dt>
+            <dd>
+              <strong>Documented runs</strong><small
+                >Where repetition is methodologically appropriate</small
+              >
+            </dd>
+          </div>
+        </dl>
+        <div class="caveat">
+          <span class="evidence-label">Caveat / sampled visibility</span>
+          Outputs describe the measurement window. They are not placement, citation or revenue promises.
+        </div>
+      </aside>
+    </section>
 
-        @media(max-width: 1024px) {
-            .hero-gradient-mask { background: linear-gradient(180deg, #FAFAFA 0%, #FAFAFA 60%, rgba(250,250,250,0.4) 100%); }
-            .hero-headline-midway { font-size: clamp(2.8rem, 8vw, 3.5rem); }
-        }
-        @media(max-width: 768px) {
-            .hero-container-midway { padding: 0 24px; }
-            .hero-ctas-midway { flex-direction: column; }
-            .btn-blue, .btn-outline-midway { width: 100%; justify-content: center; }
-        }
+    <section class="credibility-strip" aria-label="How DataDecision establishes credibility">
+      <div class="credibility-strip__item">
+        <strong>Evidence that can be inspected.</strong>
+        <span>The method carries the argument.</span>
+      </div>
+      <div class="credibility-strip__item">
+        <span class="evidence-label">Published method</span>
+        <span>Versioned, linked and explicit about limitations.</span>
+      </div>
+      <div class="credibility-strip__item">
+        <span class="evidence-label">Honest labels</span>
+        <span>Demonstration research is never presented as client work.</span>
+      </div>
+      <div class="credibility-strip__item">
+        <span class="evidence-label">Founder</span>
+        <span>Ashish Jha · NIT Surat graduate · method-first delivery.</span>
+      </div>
+    </section>
+  </div>
 
-        :root {
-            --bg-dark: #070709;
-            --bg-darker: #040405;
-            --bg-light: #ffffff;
-            --bg-light-alt: #f8f9fa;
-            
-            --text-light: #ffffff;
-            --text-muted: #a1a1aa;
-            --text-dark: #0a0a0c;
-            --text-dark-muted: #52525b;
-            
-            --accent: #0055FF;
-            --accent-glow: rgba(0, 85, 255, 0.3);
-            --accent-cyan: #00E5FF;
-            
-            --border-dark: rgba(255, 255, 255, 0.1);
-            --border-light: rgba(0, 0, 0, 0.08);
-            
-            --font-sans: 'Inter', system-ui, sans-serif;
-            --transition: cubic-bezier(0.16, 1, 0.3, 1);
-        }
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">The measurement gap</p>
+        <h2>Search visibility is no longer one dashboard.</h2>
+        <p class="small">
+          Conventional search remains important. Discovery now spans more surfaces than most
+          reporting systems were designed to observe.
+        </p>
+      </div>
+      <div>
+        <div class="comparison">
+          <div>
+            <span class="evidence-label">What teams can usually see</span>
+            <h3>Rankings, sessions, forms and CRM stages.</h3>
+            <ul>
+              <li>Useful records, but often separated by scope and ownership.</li>
+              <li>Referral detail can be incomplete or grouped too broadly.</li>
+              <li>Attribution models describe assumptions, not full causality.</li>
+            </ul>
+          </div>
+          <div class="comparison__rule" aria-hidden="true"></div>
+          <div>
+            <span class="evidence-label">What needs a separate baseline</span>
+            <h3>How products appear inside generated answers.</h3>
+            <ul>
+              <li>Which sampled questions produced a mention or citation.</li>
+              <li>Which sources were visible during the observation window.</li>
+              <li>Whether a resulting visit can survive the path into pipeline.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="annotation" style="margin-top: 2.5rem;">
+          <span class="evidence-label">Evidence rule</span>
+          <p>
+            A single answer is one observation. A baseline is a documented frame that can be
+            repeated without quietly changing the question.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-sans); color: var(--text-dark); background: var(--bg-light); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img, video { max-width: 100%; display: block; }
-        
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
-        .section { padding: 140px 0; position: relative; overflow: hidden; }
-        
-        /* Typography */
-        h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
-        h1 { font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -0.05em; }
-        h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
-        h3 { font-size: 1.5rem; letter-spacing: -0.02em; }
-        .eyebrow { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-weight: 600; margin-bottom: 1.5rem; }
-        
-        /* Layouts & Backgrounds */
-        .theme-dark { background: var(--bg-dark); color: var(--text-light); }
-        .theme-darker { background: var(--bg-darker); color: var(--text-light); }
-        .theme-light { background: var(--bg-light); color: var(--text-dark); }
-        .theme-light-alt { background: var(--bg-light-alt); color: var(--text-dark); }
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">The Ledger method</p>
+        <h2>Four moves. Every inference traceable.</h2>
+        <MethodBadge />
+      </div>
+      <div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">01</span>
+          <div>
+            <h3>Frame the query set</h3><p>
+              Define buying intent, market, language, competitors and collection conditions before
+              checking any result.
+            </p>
+          </div>
+          <span class="rule-row__meta">Inputs locked</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">02</span>
+          <div>
+            <h3>Observe the surfaces</h3><p>
+              Record dated answers, mentions and sources across the approved engine set without
+              pretending the sample is universal.
+            </p>
+          </div>
+          <span class="rule-row__meta">Windowed</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">03</span>
+          <div>
+            <h3>Audit the measurement path</h3><p>
+              Test whether referral, conversion and CRM records can connect discovery to
+              pipeline—and name where they cannot.
+            </p>
+          </div>
+          <span class="rule-row__meta">Assumptions shown</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">04</span>
+          <div>
+            <h3>Rank the next decisions</h3><p>
+              Attach an owner, effort, expected signal, confidence label and stopping rule to each
+              recommended action.
+            </p>
+          </div>
+          <span class="rule-row__meta">90-day horizon</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        /* Navigation */
-        .navbar {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 24px 0; transition: all 0.4s ease;
-        }
-        .navbar.scrolled { padding: 16px 0; background: rgba(250, 250, 250, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid #E2E8F0; }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 26px; transition: all 0.3s ease; filter: invert(0); } /* Dark logo */
-        .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a { font-size: 0.85rem; font-weight: 500; color: #475569; transition: color 0.3s; }
-        .nav-links a:hover { color: #0F172A; }
-        @media(max-width: 1024px) { .nav-links { display: none; } }
-        /* Button */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 14px 28px; font-size: 0.875rem; font-weight: 600;
-            border-radius: 40px; cursor: pointer; transition: all 0.4s var(--transition);
-        }
-        .btn-primary { background: var(--accent); color: white; box-shadow: 0 4px 15px var(--accent-glow); border: 1px solid var(--accent); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-glow); }
-        .btn-outline { background: transparent; color: inherit; border: 1px solid currentColor; opacity: 0.8; }
-        .btn-outline:hover { opacity: 1; background: var(--text-light); color: var(--bg-dark); border-color: transparent; }
-        .navbar.light-mode .btn-outline:hover { background: var(--text-dark); color: var(--bg-light); }
+  <section class="section section--ink">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow" style="color:#9fd2bc;">Launch capabilities</p>
+        <h2>Focused enough to show the work.</h2>
+        <p class="small" style="color:#c8cac5;">
+          The launch scope covers AI-search visibility, measurement foundations and defined
+          implementation work.
+        </p>
+      </div>
+      <div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">A</span>
+          <div>
+            <h3>AI-search visibility diagnostic</h3><p>
+              A dated, sampled baseline across approved surfaces, with a source map, competitor
+              comparison and prioritized actions.
+            </p>
+          </div>
+          <a class="rule-row__meta" href="/services/ai-search-visibility/">Read capability ↗</a>
+        </div>
+        <div class="rule-row">
+          <span class="mono">B</span>
+          <div>
+            <h3>Measurement foundation</h3><p>
+              Tracking plan, referral visibility, CRM linkage and an assumption register that makes
+              reporting easier to challenge.
+            </p>
+          </div>
+          <a class="rule-row__meta" href="/services/measurement-foundation/">Read capability ↗</a>
+        </div>
+        <div class="rule-row">
+          <span class="mono">C</span>
+          <div>
+            <h3>Conversion and visibility recommendations</h3><p>
+              Audit-grade recommendations inside every engagement, ordered by evidence, effort and
+              expected signal.
+            </p>
+          </div>
+          <span class="rule-row__meta">Diagnostic output</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">D</span>
+          <div>
+            <h3>Scoped implementation sprint</h3><p>
+              A fixed post-diagnostic sprint for a defined measurement or answer-readiness problem,
+              with its own boundaries and acceptance criteria.
+            </p>
+          </div>
+          <span class="rule-row__meta">Post-diagnostic only</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        /* Motion System */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--transition), transform 1s var(--transition), filter 1s var(--transition); filter: blur(8px); }
-        .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Evidence format</p>
+        <h2>Evidence is complete when its limits are visible.</h2>
+        <p class="small">
+          This board shows the shape of the deliverable. It contains no simulated result, invented
+          client or hidden benchmark.
+        </p>
+      </div>
+      <div>
+        <DecisionBoard />
+        <div class="button-row">
+          <a class="text-link" href="/work/" data-event="benchmark_view">Open the work ledger</a>
+          <a class="text-link" href="/methodology/">Read the evidence standard</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        /* Hero (Dark) */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding-top: 100px; text-align: center; }
-        .hero-video-wrapper {
-            position: absolute; inset: 0; z-index: -2; overflow: hidden;
-        }
-        .hero-video-wrapper::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(7,7,9,0.5), rgba(7,7,9,0.9));
-        }
-        #hero-video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); }
-        
-        .hero-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
-        .hero-title { background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-title em { font-family: 'Geist', serif; font-style: italic; font-weight: 500; color: var(--accent-cyan); -webkit-text-fill-color: var(--accent-cyan); }
-        .hero p { font-size: 1.25rem; color: var(--text-muted); margin: 2rem auto 3rem; max-width: 650px; }
-        
-        /* Particle Canvas */
-        #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.75; pointer-events: none; }
-
-        /* Expertise Grid (Light) */
-        
-        .exp-card {
-            min-width: 400px; max-width: 400px;
-            background: var(--bg-light); border: 1px solid var(--border-light);
-            padding: 48px; border-radius: 2px; position: relative; overflow: hidden;
-            transition: all 0.5s var(--transition);
-            cursor: default;
-        }
-        .exp-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--transition);
-        }
-        .exp-num { font-size: 0.85rem; font-weight: 600; color: var(--text-dark-muted); margin-bottom: 24px; display: block; font-family: monospace; }
-        .exp-card h3 { color: var(--text-dark); margin-bottom: 16px; font-size: 1.75rem; }
-        .exp-desc { color: var(--text-dark-muted); font-size: 1rem; margin-bottom: 30px; transition: opacity 0.3s ease; }
-        
-        .exp-tech {
-            display: flex; flex-wrap: wrap; gap: 8px; opacity: 0; transform: translateY(20px);
-            transition: all 0.5s var(--transition); position: absolute; bottom: 48px;
-        }
-        .exp-tech span { font-size: 0.75rem; padding: 4px 12px; background: rgba(0,85,255,0.08); color: var(--accent); border-radius: 20px; font-weight: 600; }
-        
-        .exp-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.06); }
-        .exp-card:hover::before { transform: scaleX(1); }
-        .exp-card:hover .exp-desc { opacity: 0; }
-        .exp-card:hover .exp-tech { opacity: 1; transform: translateY(0); }
-        @media(max-width: 768px) { .exp-card { min-width: 300px; max-width: 300px; } .exp-desc { opacity: 1 !important; } .exp-tech { position: relative; bottom: 0; opacity: 1; transform: none; margin-top: 20px; } }
-
-        /* Technology Flow (Dark) */
-        .tech-flow { position: relative; margin-top: 100px; padding: 80px 0; }
-        .flow-nodes { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-        .node { width: 180px; text-align: center; }
-        .node-circle {
-            width: 80px; height: 80px; border-radius: 50%; background: var(--bg-darker);
-            border: 1px solid var(--border-dark); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: 700; color: var(--accent); position: relative; z-index: 3;
-            transition: all 0.5s var(--transition);
-        }
-        .node:hover .node-circle { transform: scale(1.1); box-shadow: 0 0 30px var(--accent-glow); border-color: var(--accent); }
-        .node h4 { font-size: 1rem; color: var(--text-light); }
-        .node p { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; }
-        
-        .flow-line { position: absolute; top: 40px; left: 10%; right: 10%; height: 1px; background: var(--border-dark); z-index: 1; }
-        .flow-particle {
-            position: absolute; top: -3px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan);
-            box-shadow: 0 0 10px var(--accent-cyan);
-            animation: flow 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
-        @media(max-width: 1024px) { .flow-nodes { flex-direction: column; gap: 40px; } .flow-line { display: none; } }
-
-        /* Slider / Carousel System (Native Scroll) */
-        .slider-container { margin-top: 60px; padding-bottom: 40px; }
-        .slider-track { 
-            display: flex; gap: 24px; 
-            overflow-x: auto; 
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE 10+ */
-            scroll-behavior: smooth;
-            /* Allow click and drag */
-            cursor: grab;
-        }
-        .slider-track:active { cursor: grabbing; scroll-behavior: auto; }
-        .slider-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-        
-        .slider-track > * { scroll-snap-align: start; flex-shrink: 0; }
-        
-        .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
-        .slider-progress { flex: 1; height: 2px; background: var(--border-light); margin: 0 40px; position: relative; overflow: hidden; }
-        .slider-progress-bar { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); transition: width 0.1s ease-out; }
-        .slider-btn { background: transparent; border: 1px solid var(--border-light); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; color: var(--text-dark); }
-        .theme-dark .slider-btn { border-color: var(--border-dark); color: var(--text-light); }
-        .theme-dark .slider-progress { background: var(--border-dark); }
-        .slider-btn:hover { background: var(--text-dark); color: var(--bg-light); }
-        .theme-dark .slider-btn:hover { background: var(--text-light); color: var(--bg-dark); }
-
-        /* Case Study Cards (Light) */
-        .cs-card {
-            min-width: 400px; max-width: 400px;
-            display: flex; flex-direction: column;
-            border: 1px solid var(--border-light);
-            background: var(--bg-light); border-radius: 2px; overflow: hidden;
-            transition: all 0.5s var(--transition);
-        }
-        .cs-img-wrap { height: 240px; overflow: hidden; position: relative; }
-        .cs-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--transition); }
-        .cs-card:hover .cs-img { transform: scale(1.05); }
-        .cs-content { padding: 32px; flex: 1; display: flex; flex-direction: column; }
-        .cs-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
-        .cs-card p { color: var(--text-dark-muted); margin-bottom: 24px; font-size: 0.95rem; }
-        .cs-cta { margin-top: auto; font-size: 0.85rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 8px; transition: gap 0.3s; }
-        .cs-card:hover .cs-cta { gap: 12px; }
-        .cs-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: rgba(0,85,255,0.3); }
-        @media(max-width: 768px) { .cs-card { min-width: 300px; max-width: 300px; } }
-
-        /* Insight Cards (Dark) */
-        .ins-card {
-            min-width: 320px; max-width: 320px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-dark);
-            border-radius: 4px;
-            padding: 32px 24px; display: block;
-            transition: all 0.4s var(--transition);
-            overflow: hidden;
-            position: relative;
-        }
-        .ins-card::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
-            background: var(--accent); transition: width 0.4s var(--transition);
-        }
-        .ins-card:hover::after { width: 100%; }
-        .ins-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.2); }
-        .ins-date { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; display: block; letter-spacing: 0.05em; }
-        .ins-card h3 { font-size: 1.15rem; line-height: 1.4; color: var(--text-light); }
-
-        /* Footer */
-        .footer { padding: 80px 0 40px; border-top: 1px solid var(--border-dark); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
-        .footer-links h4 { font-size: 0.8rem; color: var(--text-light); margin-bottom: 24px; letter-spacing: 0.1em; text-transform: uppercase; }
-        .footer-links ul li { margin-bottom: 12px; }
-        .footer-links a { color: var(--text-muted); font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-bottom { padding-top: 32px; border-top: 1px solid var(--border-dark); display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
-        @media(max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
-    </style>
-</head>
-<body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-inner">
-            <a href="/" class="logo">
-                <img src="/datadecision-logo.png" alt="DataDecision" class="logo-img" />
+  <section class="section section--bright" aria-labelledby="demonstration-title">
+    <div class="shell demonstration-record">
+      <div class="demonstration-record__head">
+        <span class="evidence-label">DEMONSTRATION RUN</span>
+        <span class="mono">Self-audit · observed 24 Aug 2026</span>
+      </div>
+      <div class="demonstration-record__body">
+        <div class="demonstration-record__lead">
+          <p class="eyebrow">Published evidence</p>
+          <h2 id="demonstration-title">DataDecision launch evidence baseline.</h2>
+          <p>
+            A genuine audit of this website’s route coverage, claim controls, content completeness
+            and technical evidence files. It is DataDecision self-measurement, not client work or a
+            commercial-outcome claim.
+          </p>
+          <div class="button-row">
+            <a class="text-link" href="/work/datadecision-launch-evidence-baseline/">
+              Inspect the full record
             </a>
-            <div class="nav-links">
-                <a href="#challenge">Who We Are</a>
-                <a href="#expertise">Expertise</a>
-                <a href="#case-studies">Work</a>
-                <a href="#insights">Insights</a>
-                <a href="#careers">Careers</a>
-                <a href="#contact" class="btn btn-outline" style="padding: 8px 20px; margin-left: 20px;">Request a Brief</a>
-            </div>
+          </div>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero-midway">
-        <canvas id="hero-network-canvas"></canvas>
-        <div class="hero-gradient-mask"></div>
-        
-        <div class="container hero-container-midway">
-            <div class="hero-content-midway reveal">
-                <span class="eyebrow midway-eyebrow">DATA & AI STRATEGY CONSULTING</span>
-                <h1 class="hero-headline-midway">We turn complex data<br/>into <em>clear decisions.</em></h1>
-                <p class="hero-subhead-midway">We are an engineering laboratory disguised as a consulting firm.<br/><br/><span style="color: #0F172A; font-weight: 600;">Core capability pillars:</span> Data & Decision Intelligence, AI/ML Engineering, Data Engineering & Infrastructure, Intelligent Operations.</p>
-                <div class="hero-ctas-midway">
-                    <a href="#contact" class="btn-blue">Request a Brief</a>
-                    <a href="#expertise" class="btn-outline-midway">Explore Our Expertise</a>
-                </div>
-            </div>
+        <div class="demonstration-record__cell">
+          <span class="evidence-label">Result</span>
+          <strong>17 of 17 routes</strong>
+          <p>Passed the published structural build validation on the observation date.</p>
         </div>
-    </section>
-
-    <!-- EXPERTISE (Light) -->
-    <section id="expertise" class="section theme-light">
-        <div class="container">
-            <div class="reveal">
-                <span class="eyebrow">Capabilities</span>
-                <h2>ENGINEERING ARSENAL.</h2>
-            </div>
-            
-            <div class="slider-container reveal delay-1">
-                <div class="slider-track" id="exp-track" style="gap: 24px;">
-                    <div class="exp-card">
-                        <span class="exp-num">01</span>
-                        <h3>Data & Decision Intelligence</h3>
-                        <p class="exp-desc">Translating raw mathematical outputs into board-level strategic roadmaps. Real-time dashboards, KPI tracking, and probabilistic modeling.</p>
-                        <div class="exp-tech">
-                            <span>Decision Systems</span>
-                            <span>Forecasting</span>
-                            <span>Optimization</span>
-                            <span>Simulation</span>
-                        </div>
-                    </div>
-                    
-                    <div class="exp-card">
-                        <span class="exp-num">02</span>
-                        <h3>AI / ML Engineering</h3>
-                        <p class="exp-desc">Production-grade predictive models and Generative AI workflows designed to automate complex decision-making and reduce operational overhead.</p>
-                        <div class="exp-tech">
-                            <span>Machine Learning</span>
-                            <span>Deep Learning</span>
-                            <span>NLP</span>
-                            <span>Computer Vision</span>
-                        </div>
-                    </div>
-
-                    <div class="exp-card">
-                        <span class="exp-num">03</span>
-                        <h3>Data Engineering & Infrastructure</h3>
-                        <p class="exp-desc">Scalable, fault-tolerant data pipelines and warehouse modernization. We transform messy, siloed data into highly structured intelligence.</p>
-                        <div class="exp-tech">
-                            <span>Data Platforms</span>
-                            <span>Cloud Architecture</span>
-                            <span>MLOps</span>
-                            <span>Data Products</span>
-                        </div>
-                    </div>
-
-                    <div class="exp-card">
-                        <span class="exp-num">04</span>
-                        <h3>Intelligent Operations</h3>
-                        <p class="exp-desc">Direct partnership with leadership to align technical AI capabilities with aggressive business growth, security, and acquisition targets.</p>
-                        <div class="exp-tech">
-                            <span>Demand Forecasting</span>
-                            <span>Supply Chain</span>
-                            <span>Pricing</span>
-                            <span>Customer Analytics</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-btn prev-btn" aria-label="Previous">&larr;</button>
-                    <div class="slider-progress"><div class="slider-progress-bar" id="exp-progress"></div></div>
-                    <button class="slider-btn next-btn" aria-label="Next">&rarr;</button>
-                </div>
-            </div>
+        <div class="demonstration-record__cell">
+          <span class="evidence-label">Method / sample</span>
+          <strong>Launch evidence audit v1.0</strong>
+          <p>
+            17 HTML routes, three launch articles, three CSV templates and discovery-policy files.
+          </p>
         </div>
-    </section>
-
-    <!-- TECHNOLOGY ARCHITECTURE (Dark) -->
-    <section id="challenge" class="section theme-darker">
-        <div class="container">
-            <div class="reveal">
-                <span class="eyebrow">Intelligence Architecture</span>
-                <h2>DIFFERENT PROBLEMS.<br>DIFFERENT INTELLIGENCE.</h2>
-                <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 600px; margin-top: 1.5rem;">From predictive models to decision systems, we assemble the right combination of data, algorithms, engineering, and domain expertise for the problem at hand.</p>
-            </div>
-            
-            <div class="tech-flow reveal delay-2">
-                <div class="flow-line"><div class="flow-particle"></div></div>
-                <div class="flow-nodes">
-                    <div class="node">
-                        <div class="node-circle">01</div>
-                        <h4>Business Problem</h4>
-                        <p>Strategic Definition</p>
-                    </div>
-                    <div class="node">
-                        <div class="node-circle">02</div>
-                        <h4>Data</h4>
-                        <p>Pipelines & Infrastructure</p>
-                    </div>
-                    <div class="node">
-                        <div class="node-circle">03</div>
-                        <h4>Models</h4>
-                        <p>ML & Generative AI</p>
-                    </div>
-                    <div class="node">
-                        <div class="node-circle">04</div>
-                        <h4>Intelligence</h4>
-                        <p>Optimization & Forecasting</p>
-                    </div>
-                    <div class="node">
-                        <div class="node-circle" style="border-color: var(--accent); box-shadow: 0 0 20px rgba(0,85,255,0.2);">05</div>
-                        <h4 style="color: var(--accent);">Decision</h4>
-                        <p>Automated Impact</p>
-                    </div>
-                </div>
-            </div>
+        <div class="demonstration-record__cell">
+          <span class="evidence-label">Limitations</span>
+          <strong>Local build evidence</strong>
+          <p>
+            Does not prove live crawler access, form delivery, AI visibility, conversion or field
+            performance.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- CASE STUDIES (Light/Warm) -->
-    <section id="case-studies" class="section theme-light-alt">
-        <div class="container">
-            <div class="reveal" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                <div>
-                    <span class="eyebrow">Proven Impact</span>
-                    <h2>CLIENT OUTCOMES.</h2>
-                </div>
-            </div>
-            
-            <div class="slider-container reveal delay-1">
-                <div class="slider-track" id="cs-track">
-                    <!-- Cards -->
-                    <a href="/case-study-data-analytics" class="cs-card">
-                        <div class="cs-img-wrap"><img src="/ai-driven-retail-demand.jpg" alt="Data Analytics" class="cs-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'" /></div>
-                        <div class="cs-content">
-                            <h3>Predictive Churn Infrastructure</h3>
-                            <p>Deployed machine learning models to identify at-risk enterprise accounts with 94% accuracy.</p>
-                            <span class="cs-cta">Explore case &rarr;</span>
-                        </div>
-                    </a>
-                    
-                    <a href="/case-study-operations" class="cs-card">
-                        <div class="cs-img-wrap"><img src="/operation-manufacturing-efficiency.jpg" alt="Manufacturing" class="cs-img" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'" /></div>
-                        <div class="cs-content">
-                            <h3>Manufacturing Efficiency</h3>
-                            <p>Automated quality control using computer vision, reducing defect rates by 40% globally.</p>
-                            <span class="cs-cta">Explore case &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a href="/case-study-ai-decision" class="cs-card">
-                        <div class="cs-img-wrap"><img src="/supply-chain-visibility.jpg" alt="Pricing" class="cs-img" onerror="this.src='https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&w=800&q=80'" /></div>
-                        <div class="cs-content">
-                            <h3>Dynamic Pricing Engine</h3>
-                            <p>Built a reinforcement learning system to optimize pricing in real-time across 50,000 SKUs.</p>
-                            <span class="cs-cta">Explore case &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a href="/case-study-customer-growth" class="cs-card">
-                        <div class="cs-img-wrap"><img src="/business-challenge-photo.jpg" alt="Growth" class="cs-img" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80'" /></div>
-                        <div class="cs-content">
-                            <h3>Customer Growth Automation</h3>
-                            <p>Integrated NLP models into the sales pipeline, scoring inbound leads and accelerating conversions.</p>
-                            <span class="cs-cta">Explore case &rarr;</span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-btn prev-btn" aria-label="Previous">&larr;</button>
-                    <div class="slider-progress"><div class="slider-progress-bar" id="cs-progress"></div></div>
-                    <button class="slider-btn next-btn" aria-label="Next">&rarr;</button>
-                </div>
-            </div>
+  <section class="section">
+    <div class="shell">
+      <div class="editorial-grid editorial-grid--balanced" style="margin-bottom: 3.25rem;">
+        <div class="section-intro">
+          <p class="eyebrow">Process and scope</p>
+          <h2>Known boundaries before kickoff.</h2>
         </div>
-    </section>
-
-    <!-- INSIGHTS (Dark) -->
-    <section id="insights" class="section theme-dark">
-        <div class="container">
-            <div class="reveal">
-                <span class="eyebrow">Latest Thinking</span>
-                <h2>RESEARCH & INSIGHTS.</h2>
-            </div>
-            
-            <div class="slider-container reveal delay-1">
-                <div class="slider-track" id="ins-track" style="gap: 40px;">
-                    <a href="/insight-ai-enterprise" class="ins-card">
-                        <span class="ins-date">Dec 12 &bull; 5 min read</span>
-                        <h3>Scaling AI in the Modern Enterprise: Beyond the Proof of Concept</h3>
-                    </a>
-                    <a href="/insight-supply-chain" class="ins-card">
-                        <span class="ins-date">Nov 28 &bull; 8 min read</span>
-                        <h3>Resilient Supply Chains via Predictive Modeling</h3>
-                    </a>
-                    <a href="/insight-decision-intelligence" class="ins-card">
-                        <span class="ins-date">Nov 15 &bull; 6 min read</span>
-                        <h3>The Rise of Decision Intelligence over Dashboards</h3>
-                    </a>
-                    <a href="/insight-dashboard-limits" class="ins-card">
-                        <span class="ins-date">Oct 30 &bull; 4 min read</span>
-                        <h3>Why Dashboards Are No Longer Enough for C-Suite</h3>
-                    </a>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-btn prev-btn" aria-label="Previous">&larr;</button>
-                    <button class="slider-btn next-btn" aria-label="Next">&rarr;</button>
-                </div>
-            </div>
+        <div>
+          <p class="lede">
+            The default diagnostic is deliberately narrow enough to repeat. Additions such as larger
+            query sets, more markets, more languages or more runs require a written scope change.
+          </p>
         </div>
-    </section>
-
-    <!-- CAREERS / CTA (Light) -->
-    <section id="careers" class="section theme-light" style="border-bottom: 1px solid var(--border-light);">
-        <div class="container text-center reveal" style="text-align: center;">
-            <span class="eyebrow">Join Us</span>
-            <h2>BUILD THE FUTURE.</h2>
-            <p style="margin: 1.5rem auto 2rem; max-width: 600px; color: var(--text-dark-muted); font-size: 1.15rem;">We are an engineering laboratory disguised as a consulting firm. Join a team of researchers, data engineers, and strategists solving the world's most complex business problems.</p>
-            <p style="margin: 0 auto 3rem; max-width: 500px; font-weight: 500; color: var(--accent);">Contact us at <a href="mailto:hr@datadecision.consulting" style="color: inherit; text-decoration: underline;">hr@datadecision.consulting</a></p>
+      </div>
+      <div class="process-rail">
+        <div class="process-rail__step">
+          <span class="mono">01 / 15 business days</span><h3>Diagnostic</h3><p>
+            Begins after required inputs and the written scope are complete.
+          </p>
         </div>
-    </section>
-
-    <section id="contact" class="section theme-darker text-center" style="text-align: center; padding: 120px 0;">
-        <div class="container reveal">
-            <span class="eyebrow">Engage</span>
-            <h2>HAVE A PROBLEM WORTH SOLVING?</h2>
-            <p style="margin: 1.5rem auto 3rem; max-width: 600px; color: var(--text-muted); font-size: 1.15rem;">Tell us what you're trying to solve. We'll bring the right combination of data, intelligence, and engineering to the table.</p>
-            
-            <form action="https://api.web3forms.com/submit" method="POST" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; text-align: left;">
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                <input type="email" name="email" placeholder="Your Email" required style="padding: 14px; border-radius: 4px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color: white;">
-                <textarea name="message" placeholder="Tell us about your data challenge..." required rows="4" style="padding: 14px; border-radius: 4px; border: 1px solid var(--border-dark); background: rgba(255,255,255,0.05); color: white;"></textarea>
-                <button type="submit" class="btn-cobalt" style="width: 100%; border:none; margin-top: 8px;">Request a Brief</button>
-            </form>
-            <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">Or email us directly at <a href="mailto:contact@datadecision.consulting" style="color: var(--accent-cyan);">contact@datadecision.consulting</a></p>
+        <div class="process-rail__step">
+          <span class="mono">02 / optional</span><h3>Implementation sprint</h3><p>
+            Fixed scope selected from the diagnostic. No silent expansion.
+          </p>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer theme-darker">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <img src="/datadecision-logo.png" alt="DataDecision" style="height: 26px; filter: invert(1); mix-blend-mode: screen; margin-bottom: 24px;" />
-                    <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 250px;">Technology-first data and AI strategy consulting. Engineered for impact.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>EXPERTISE</h4>
-                    <ul>
-                        <li><a href="#expertise">Decision Systems</a></li>
-                        <li><a href="#expertise">AI Engineering</a></li>
-                        <li><a href="#expertise">Infrastructure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="#challenge">Who We Are</a></li>
-                        <li><a href="#case-studies">Work</a></li>
-                        <li><a href="#insights">Insights</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>LEGAL</h4>
-                    <ul>
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/terms">Terms of Use</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div>&copy; 2026 DataDecision Consulting.</div>
-                <div>All rights reserved.</div>
-            </div>
+        <div class="process-rail__step">
+          <span class="mono">03 / optional</span><h3>Measurement cadence</h3><p>
+            Repeat observation and decision review only when the signal warrants it.
+          </p>
         </div>
-    </footer>
+      </div>
+      <div class="scope-wrap" style="margin-top: 3rem;">
+        <table class="scope-table">
+          <thead
+            ><tr
+              ><th>Scope item</th><th>Default</th><th>Boundary</th><th>Commercial treatment</th></tr
+            ></thead
+          >
+          <tbody>
+            <tr
+              ><td>Query frame</td><td>50 buying-intent queries</td><td
+                >One market · one language</td
+              ><td>Written fixed fee before kickoff</td></tr
+            >
+            <tr
+              ><td>Observation</td><td>Up to four surfaces; two runs where appropriate</td><td
+                >Access and methodology can narrow the final set</td
+              ><td>Additional markets, languages or repetitions are add-ons</td></tr
+            >
+            <tr
+              ><td>Outputs</td><td
+                >Baseline, source map, comparison, technical review, gaps, 90-day plan</td
+              ><td>Recommendations are not placement guarantees</td><td
+                >Exact fee and any add-ons are stated in the written scope</td
+              ></tr
+            >
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <!-- INTERACTIVITY SCRIPTS -->
-    <script>
-        // 1. Navigation Scroll Effect
-        const nav = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-                // Check if passing through light sections
-                const expertiseTop = document.getElementById('expertise').offsetTop;
-                if(window.scrollY >= expertiseTop - 50 && window.scrollY < document.getElementById('challenge').offsetTop) {
-                    nav.classList.add('light-mode');
-                } else if(window.scrollY >= document.getElementById('case-studies').offsetTop - 50 && window.scrollY < document.getElementById('insights').offsetTop) {
-                    nav.classList.add('light-mode');
-                } else {
-                    nav.classList.remove('light-mode');
-                }
-            } else {
-                nav.classList.remove('scrolled');
-                nav.classList.remove('light-mode');
-            }
-        });
+  <section class="section section--bright" aria-labelledby="homepage-founder">
+    <div class="shell editorial-grid editorial-grid--reverse">
+      <div class="section-intro">
+        <p class="eyebrow">Founder</p>
+        <h2 id="homepage-founder">Accountability has a name.</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Ashish Jha founded DataDecision. He is a graduate of NIT Surat and leads a focused,
+          method-first practice for AI-search visibility and measurement.
+        </p>
+        <p class="measure">
+          The public standard is the same standard used in the work: define the observation frame,
+          keep assumptions and limitations visible, and recommend only what the evidence can
+          support. This education reference identifies the founder; it does not imply institutional
+          endorsement.
+        </p>
+        <a class="text-link" href="/about/">Read about Ashish and the operating principles</a>
+      </div>
+    </div>
+  </section>
 
-        // 2. Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Essential questions</p><h2>What a cautious buyer should ask.</h2>
+      </div>
+      <FAQList items={faqs} />
+    </div>
+  </section>
 
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // 3. Native Slider Logic with Drag
-        function setupNativeSlider(trackId, progressId) {
-            const track = document.getElementById(trackId);
-            if (!track) return;
-            const container = track.parentElement;
-            const prev = container.querySelector('.prev-btn');
-            const next = container.querySelector('.next-btn');
-            const progress = document.getElementById(progressId);
-            
-            // Update progress bar & button states
-            const updateUI = () => {
-                if(!progress && !prev && !next) return;
-                const maxScroll = track.scrollWidth - track.clientWidth;
-                const scrollLeft = track.scrollLeft;
-                const percent = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
-                
-                if(progress) progress.style.width = percent + '%';
-                if(prev) prev.style.opacity = scrollLeft <= 10 ? 0.3 : 1;
-                if(next) next.style.opacity = scrollLeft >= maxScroll - 10 ? 0.3 : 1;
-            };
-
-            track.addEventListener('scroll', updateUI);
-            window.addEventListener('resize', updateUI);
-            
-            // Button controls
-            const getScrollAmount = () => {
-                const card = track.children[0];
-                return card.offsetWidth + parseInt(window.getComputedStyle(track).gap || 0);
-            };
-            if(prev) prev.addEventListener('click', () => track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
-            if(next) next.addEventListener('click', () => track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }));
-
-            // Click and Drag Logic
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            track.addEventListener('mousedown', (e) => {
-                isDown = true;
-                track.style.scrollBehavior = 'auto'; // Disable smooth snap while dragging
-                track.style.scrollSnapType = 'none';
-                startX = e.pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-            });
-            track.addEventListener('mouseleave', () => {
-                isDown = false;
-                track.style.scrollBehavior = 'smooth';
-                track.style.scrollSnapType = 'x mandatory';
-            });
-            track.addEventListener('mouseup', () => {
-                isDown = false;
-                track.style.scrollBehavior = 'smooth';
-                track.style.scrollSnapType = 'x mandatory';
-            });
-            track.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2; // Scroll speed multiplier
-                track.scrollLeft = scrollLeft - walk;
-            });
-
-            // Initial UI update
-            setTimeout(updateUI, 100);
-        }
-
-        setupNativeSlider('cs-track', 'cs-progress');
-        setupNativeSlider('exp-track', 'exp-progress');
-        setupNativeSlider('ins-track', null);
-
-        
-        
-        // 4. Hero Network Canvas (Midway)
-        const netCanvas = document.getElementById('hero-network-canvas');
-        if (netCanvas) {
-            const ctx = netCanvas.getContext('2d');
-            let w, h, particles = [];
-            const init = () => {
-                w = netCanvas.width = window.innerWidth;
-                h = netCanvas.height = window.innerHeight;
-                // Add more particles on wider screens
-                const pCount = window.innerWidth > 1024 ? 120 : 60;
-                particles = Array.from({length: pCount}, () => ({
-                    // Start particles mostly on the right side for the gradient effect
-                    x: Math.random() * w, 
-                    y: Math.random() * h,
-                    vx: (Math.random()-0.5)*0.6, 
-                    vy: (Math.random()-0.5)*0.6
-                }));
-            };
-            init();
-            window.addEventListener('resize', init);
-            
-            const animate = () => {
-                ctx.clearRect(0, 0, w, h);
-                particles.forEach(p => {
-                    p.x += p.vx; p.y += p.vy;
-                    if (p.x < 0 || p.x > w) p.vx *= -1;
-                    if (p.y < 0 || p.y > h) p.vy *= -1;
-                    
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(15, 23, 42, 0.4)';
-                    ctx.fill();
-                });
-                
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx*dx + dy*dy);
-                        if (dist < 150) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = `rgba(15, 23, 42, ${0.1 - dist/1500})`;
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate);
-            };
-            animate();
-        }
-
-        // 4. Old Canvas (Removed)
-        const canvas = document.getElementById('particle-canvas');
-        if (canvas) {
-            const ctx = netCanvas.getContext('2d');
-            let w, h, particles = [];
-            const init = () => {
-                w = netCanvas.width = window.innerWidth;
-                h = netCanvas.height = window.innerHeight;
-                particles = Array.from({length: 50}, () => ({
-                    x: Math.random() * w, y: Math.random() * h,
-                    vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5
-                }));
-            };
-            init();
-            window.addEventListener('resize', init);
-
-            const draw = () => {
-                ctx.clearRect(0,0,w,h);
-                ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
-                ctx.strokeStyle = 'rgba(0, 85, 255, 0.15)';
-                particles.forEach(p => {
-                    p.x += p.vx; p.y += p.vy;
-                    if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1;
-                    ctx.beginPath(); ctx.arc(p.x, p.y, 1.5, 0, Math.PI*2); ctx.fill();
-                    particles.forEach(p2 => {
-                        const d = Math.hypot(p.x-p2.x, p.y-p2.y);
-                        if(d < 150) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke(); }
-                    });
-                });
-                requestAnimationFrame(draw);
-            };
-            draw();
-        }
-    </script>
-</body>
-</html>
+  <FinalCTA />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/">Request a visibility diagnostic</a>
+  </div>
+</BaseLayout>

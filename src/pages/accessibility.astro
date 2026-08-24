@@ -1,0 +1,51 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+
+<LegalLayout
+  title="Accessibility statement"
+  description="The accessibility target, implemented features, known limits and review path for DataDecision."
+  path="/accessibility/"
+  updated="24 Aug 2026"
+>
+  <h2>Commitment</h2>
+  <p>
+    DataDecision aims for a website that can be understood and operated across keyboard, screen
+    reader, zoom and reduced-motion preferences. The production target is WCAG 2.2 Level
+    AA-conscious implementation, followed by real-user and assistive-technology review where
+    available.
+  </p>
+
+  <h2>Implemented in this build</h2>
+  <ul>
+    <li>Semantic landmarks and one main heading per page.</li><li>
+      A skip link and keyboard-accessible navigation.
+    </li><li>Visible focus indicators and native disclosure elements for FAQs.</li><li>
+      Labels, required-state communication and status messages on the contact form.
+    </li><li>High-contrast text and non-color evidence labels.</li><li>
+      Responsive layouts tested at 375, 768 and 1440 CSS pixels.
+    </li><li>Reduced-motion support and no animated evidence numbers.</li><li>
+      Tables with header cells and horizontal overflow on small screens.
+    </li>
+  </ul>
+
+  <h2>Known limits</h2>
+  <p>
+    The site requires a final assistive-technology pass and production form-provider test. Generated
+    legal copy is not a substitute for an independent accessibility audit.
+  </p>
+
+  <h2>Reporting a barrier</h2>
+  <p>
+    Email <a href="mailto:contact@datadecision.consulting">contact@datadecision.consulting</a> with the
+    page, browser or assistive technology involved and a description of the barrier. A response-time promise
+    will be added only after the operating process is confirmed.
+  </p>
+
+  <h2>Assessment record</h2>
+  <p>
+    The rebuild includes automated checks, keyboard review, reduced-motion inspection and
+    representative desktop/mobile screenshots. Automated tools identify only part of accessibility
+    quality; human review remains required before production approval.
+  </p>
+</LegalLayout>

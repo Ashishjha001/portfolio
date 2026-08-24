@@ -1,0 +1,173 @@
+---
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+---
+
+<form
+  id="diagnostic-form"
+  class="contact-form"
+  action={endpoint || undefined}
+  method="post"
+  novalidate
+  data-endpoint={endpoint}
+>
+  <input type="hidden" name="started_at" id="started-at" value="" />
+  <input type="hidden" name="utm_source" id="utm-source" value="" />
+  <input type="hidden" name="utm_medium" id="utm-medium" value="" />
+  <input type="hidden" name="utm_campaign" id="utm-campaign" value="" />
+  <input type="hidden" name="referrer" id="referrer" value="" />
+  <div class="honeypot" aria-hidden="true">
+    <label for="company-fax">Leave this field empty</label>
+    <input id="company-fax" name="company_fax" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="name">Name <span aria-hidden="true">*</span></label>
+      <input id="name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="form-field">
+      <label for="email">Work email <span aria-hidden="true">*</span></label>
+      <input id="email" name="email" type="email" autocomplete="email" required />
+    </div>
+    <div class="form-field">
+      <label for="company">Company or website <span aria-hidden="true">*</span></label>
+      <input id="company" name="company" type="text" autocomplete="organization" required />
+    </div>
+    <div class="form-field">
+      <label for="role">Role <span aria-hidden="true">*</span></label>
+      <input id="role" name="role" type="text" autocomplete="organization-title" required />
+    </div>
+    <div class="form-field form-field--full">
+      <label for="problem">Primary problem <span aria-hidden="true">*</span></label>
+      <textarea id="problem" name="problem" required aria-describedby="problem-help"></textarea>
+      <small id="problem-help">What is difficult to see, measure or decide today?</small>
+    </div>
+    <div class="form-field form-field--full">
+      <label for="timeline">Preferred timeline <span aria-hidden="true">*</span></label>
+      <select id="timeline" name="timeline" required>
+        <option value="">Select a timeline</option>
+        <option value="within-30-days">Within 30 days</option>
+        <option value="this-quarter">This quarter</option>
+        <option value="exploring">Exploring options</option>
+      </select>
+    </div>
+    <div class="form-field form-field--full">
+      <label for="budget">Project budget <span class="small">(optional)</span></label>
+      <select id="budget" name="budget">
+        <option value="">Prefer not to say</option>
+        <option value="under-50k">Under ₹50,000</option>
+        <option value="50k-100k">₹50,000–₹1,00,000</option>
+        <option value="100k-300k">₹1,00,000–₹3,00,000</option>
+        <option value="over-300k">Above ₹3,00,000</option>
+      </select>
+    </div>
+    <div class="form-field form-field--full">
+      <label class="form-check" for="consent">
+        <input id="consent" name="consent" type="checkbox" required />
+        <span
+          >I agree that DataDecision may use this information to respond to this enquiry, as
+          described in the <a href="/privacy/">privacy notice</a>. <span aria-hidden="true">*</span
+          ></span
+        >
+      </label>
+    </div>
+  </div>
+
+  <div id="form-errors" class="form-status" role="alert" tabindex="-1"></div>
+  <div class="button-row">
+    <button class="button button--primary" type="submit">Send diagnostic brief</button>
+    <p class="small">
+      A configured provider must confirm receipt before the interface reports success.
+    </p>
+  </div>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#diagnostic-form');
+  const status = document.querySelector<HTMLElement>('#form-errors');
+  const startedAt = Date.now();
+
+  if (form && status) {
+    const params = new URLSearchParams(window.location.search);
+    const values: Record<string, string> = {
+      'started-at': new Date(startedAt).toISOString(),
+      'utm-source': params.get('utm_source') || '',
+      'utm-medium': params.get('utm_medium') || '',
+      'utm-campaign': params.get('utm_campaign') || '',
+      referrer: document.referrer,
+    };
+
+    Object.entries(values).forEach(([id, value]) => {
+      const input = document.getElementById(id) as HTMLInputElement | null;
+      if (input) input.value = value;
+    });
+
+    let started = false;
+    form.addEventListener('input', () => {
+      if (!started) {
+        started = true;
+        window.ddTrack?.('form_start', { path: window.location.pathname });
+      }
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.dataset.visible = 'false';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        status.textContent = 'Please complete the required fields and correct any invalid values.';
+        status.dataset.tone = 'error';
+        status.dataset.visible = 'true';
+        status.focus();
+        return;
+      }
+
+      const data = new FormData(form);
+      if (String(data.get('company_fax') || '').trim()) return;
+      if (Date.now() - startedAt < 2500) {
+        status.textContent = 'Please take a moment to review your brief before sending it.';
+        status.dataset.tone = 'error';
+        status.dataset.visible = 'true';
+        status.focus();
+        return;
+      }
+
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        status.textContent =
+          'This preview is not connected to a form provider yet. Your information has not been sent.';
+        status.dataset.tone = 'error';
+        status.dataset.visible = 'true';
+        status.focus();
+        return;
+      }
+
+      const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submit) submit.disabled = true;
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`Submission failed with ${response.status}`);
+        form.reset();
+        status.textContent =
+          'Your brief was received. A person will review it before any follow-up.';
+        status.dataset.tone = 'success';
+        status.dataset.visible = 'true';
+        window.ddTrack?.('form_submit_success', { path: window.location.pathname });
+      } catch {
+        status.textContent =
+          'The form provider did not confirm receipt. Please try again later; no success event was recorded.';
+        status.dataset.tone = 'error';
+        status.dataset.visible = 'true';
+      } finally {
+        if (submit) submit.disabled = false;
+        status.focus();
+      }
+    });
+  }
+</script>

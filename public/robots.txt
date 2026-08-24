@@ -1,0 +1,31 @@
+# DataDecision crawler policy — reviewed 2026-08-24
+# Search discovery, user-requested retrieval and model-training collection are separate choices.
+
+User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+Sitemap: https://datadecision.consulting/sitemap.xml
