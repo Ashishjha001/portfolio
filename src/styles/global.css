@@ -357,7 +357,7 @@ h3 {
   display: flex;
   padding: clamp(2.4rem, 4.3vw, 3.7rem) clamp(1.8rem, 3.5vw, 3.2rem) clamp(2.3rem, 4vw, 3.5rem) 0;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   border-right: 1px solid var(--rule);
 }
 
@@ -379,9 +379,9 @@ h3 {
 
 .page-hero__aside {
   display: flex;
-  padding: clamp(2.5rem, 5vw, 4.1rem) 0 clamp(2.5rem, 5vw, 4.1rem) clamp(1.75rem, 3.5vw, 3rem);
+  padding: clamp(1.5rem, 2.8vw, 2.3rem) 0 clamp(1.5rem, 2.8vw, 2.3rem) clamp(1.5rem, 2.8vw, 2.4rem);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .folio {
@@ -398,7 +398,7 @@ h3 {
 
 .evidence-line {
   display: grid;
-  padding: 1.45rem 0;
+  padding: 1rem 0;
   grid-template-columns: minmax(4rem, 0.8fr) 2fr;
   gap: 1.25rem;
   border-bottom: 1px solid var(--rule);
@@ -412,7 +412,7 @@ h3 {
 .evidence-line__number {
   color: var(--green);
   font-family: var(--font-mono);
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
   line-height: 1;
 }
 
@@ -420,7 +420,7 @@ h3 {
   display: block;
   margin-bottom: 0.3rem;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -433,8 +433,8 @@ h3 {
 }
 
 .caveat {
-  padding: 1rem 0 0 1rem;
-  margin-top: 1.7rem;
+  padding: 0.75rem 0 0 0.85rem;
+  margin-top: 1rem;
   border-left: 3px solid var(--amber);
   color: var(--graphite);
   font-size: 0.78rem;
@@ -1430,7 +1430,12 @@ h3 {
   }
 
   .page-hero__aside {
-    padding: 3rem 0;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .page-hero__visual {
+    padding: 1.5rem 0 2.2rem;
     border-top: 1px solid var(--rule);
   }
 
