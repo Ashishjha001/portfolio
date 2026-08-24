@@ -22,6 +22,15 @@ DataDecision publishes sampled visibility methods, dated research notes and scop
 - [Track ChatGPT referrals to revenue](https://datadecision.consulting/insights/track-chatgpt-referral-revenue/): Connect observable AI referrals to CRM opportunity and revenue records.
 - [UTM governance for B2B teams](https://datadecision.consulting/insights/utm-governance-b2b/): Define ownership, naming and pre-launch campaign checks.
 
+## B2B SaaS Demo-Funnel Diagnosis
+
+- [Traffic up, demo bookings down](https://datadecision.consulting/insights/traffic-up-demo-bookings-down/): Foundational framework for tracing qualified demand through a held meeting.
+- [Demo requests down, rankings flat](https://datadecision.consulting/insights/demo-requests-dropped-rankings-flat/): Check discovery, persuasion and capture when rankings alone do not explain the decline.
+- [B2B SaaS demo show-up rate](https://datadecision.consulting/insights/b2b-saas-demo-show-up-rate/): Define a trustworthy denominator and segment meeting outcomes before benchmarking.
+- [Demo request routing](https://datadecision.consulting/insights/demo-request-routing-sales-vs-sdr/): Route high-intent requests by readiness and fit rather than one permanent rule.
+- [B2B SaaS demo-funnel dashboard](https://datadecision.consulting/insights/b2b-saas-demo-funnel-dashboard/): Monitor the transitions where qualified buying intent can disappear.
+- [Pricing visits up, demos flat](https://datadecision.consulting/insights/pricing-page-visits-up-demos-flat/): Diagnose intent, value, fit, action and measurement gaps on pricing journeys.
+
 ## Contact
 
 - [Request a diagnostic](https://datadecision.consulting/contact/): Scoped enquiry form.

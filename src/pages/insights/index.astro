@@ -7,13 +7,22 @@ import FinalCTA from '../../components/FinalCTA.astro';
 const insights = (await getCollection('insights')).sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
 );
-const clusterName = 'Measurement & Lead-Source Truth';
-const clusterEntries = insights.filter((entry) => entry.data.cluster === clusterName);
-const pillar = clusterEntries.find((entry) => entry.data.pillar);
-const supporting = clusterEntries
+const measurementClusterName = 'Measurement & Lead-Source Truth';
+const measurementClusterEntries = insights.filter(
+  (entry) => entry.data.cluster === measurementClusterName,
+);
+const measurementPillar = measurementClusterEntries.find((entry) => entry.data.pillar);
+const measurementSupporting = measurementClusterEntries
   .filter((entry) => !entry.data.pillar)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
-const otherInsights = insights.filter((entry) => entry.data.cluster !== clusterName);
+const demoClusterName = 'B2B SaaS Demo-Funnel Diagnosis';
+const demoClusterEntries = insights.filter((entry) => entry.data.cluster === demoClusterName);
+const demoPillar = demoClusterEntries.find((entry) => entry.data.pillar);
+const demoSupporting = demoClusterEntries
+  .filter((entry) => !entry.data.pillar)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const clusteredNames = new Set([measurementClusterName, demoClusterName]);
+const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.cluster ?? ''));
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
     date,
@@ -52,7 +61,7 @@ const formatDate = (date: Date) =>
   <section class="section">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">{clusterName}</p>
+        <p class="eyebrow">{measurementClusterName}</p>
         <h2>Start with the reconciliation problem.</h2>
         <p class="small">
           One foundational guide and five focused checks connect website activity to CRM records,
@@ -61,14 +70,14 @@ const formatDate = (date: Date) =>
       </div>
       <div>
         {
-          pillar && (
-            <a class="cluster-pillar" href={`/insights/${pillar.id}/`}>
+          measurementPillar && (
+            <a class="cluster-pillar" href={`/insights/${measurementPillar.id}/`}>
               <span class="evidence-label">Foundational guide / 01</span>
-              <h2>{pillar.data.title}</h2>
-              <p>{pillar.data.description}</p>
+              <h2>{measurementPillar.data.title}</h2>
+              <p>{measurementPillar.data.description}</p>
               <span class="cluster-pillar__meta">
-                Published {formatDate(pillar.data.publishedDate)} · {pillar.data.readingMinutes} min
-                read
+                Published {formatDate(measurementPillar.data.publishedDate)} ·{' '}
+                {measurementPillar.data.readingMinutes} min read
               </span>
             </a>
           )
@@ -78,7 +87,56 @@ const formatDate = (date: Date) =>
           aria-label="Measurement and Lead-Source Truth supporting insights"
         >
           {
-            supporting.map((entry, index) => (
+            measurementSupporting.map((entry, index) => (
+              <a class="insight-row" href={`/insights/${entry.id}/`}>
+                <span class="mono">{String(index + 2).padStart(2, '0')} / Supporting insight</span>
+                <div>
+                  <h3>{entry.data.title}</h3>
+                  <p>{entry.data.description}</p>
+                </div>
+                <span class="small">
+                  {formatDate(entry.data.publishedDate)}
+                  <br />
+                  {entry.data.readingMinutes} min read
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">{demoClusterName}</p>
+        <h2>Find the first break between demand and a held meeting.</h2>
+        <p class="small">
+          One diagnostic framework and five focused checks connect qualified visits to requests,
+          routing, booked meetings and pipeline.
+        </p>
+      </div>
+      <div>
+        {
+          demoPillar && (
+            <a class="cluster-pillar" href={`/insights/${demoPillar.id}/`}>
+              <span class="evidence-label">Foundational guide / 01</span>
+              <h2>{demoPillar.data.title}</h2>
+              <p>{demoPillar.data.description}</p>
+              <span class="cluster-pillar__meta">
+                Published {formatDate(demoPillar.data.publishedDate)} ·{' '}
+                {demoPillar.data.readingMinutes} min read
+              </span>
+            </a>
+          )
+        }
+        <div
+          class="insight-index cluster-support-list"
+          aria-label="B2B SaaS Demo-Funnel Diagnosis supporting insights"
+        >
+          {
+            demoSupporting.map((entry, index) => (
               <a class="insight-row" href={`/insights/${entry.id}/`}>
                 <span class="mono">{String(index + 2).padStart(2, '0')} / Supporting insight</span>
                 <div>
@@ -100,7 +158,7 @@ const formatDate = (date: Date) =>
 
   {
     otherInsights.length > 0 && (
-      <section class="section section--bright">
+      <section class="section">
         <div class="shell editorial-grid">
           <div class="section-intro">
             <p class="eyebrow">More research notes</p>

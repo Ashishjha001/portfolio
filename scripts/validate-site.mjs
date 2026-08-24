@@ -1,8 +1,9 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { extname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const root = new URL('../dist/', import.meta.url);
-const rootPath = root.pathname.replace(/^\/(.:\/)/, '$1');
+const rootPath = fileURLToPath(root);
 
 if (!existsSync(rootPath)) {
   throw new Error('dist/ is missing. Run npm run build before validation.');
@@ -34,6 +35,12 @@ const required = [
   'insights/ga4-or-crm-source-of-truth/index.html',
   'insights/track-chatgpt-referral-revenue/index.html',
   'insights/utm-governance-b2b/index.html',
+  'insights/traffic-up-demo-bookings-down/index.html',
+  'insights/demo-requests-dropped-rankings-flat/index.html',
+  'insights/b2b-saas-demo-show-up-rate/index.html',
+  'insights/demo-request-routing-sales-vs-sdr/index.html',
+  'insights/b2b-saas-demo-funnel-dashboard/index.html',
+  'insights/pricing-page-visits-up-demos-flat/index.html',
   'about/index.html',
   'contact/index.html',
   'privacy/index.html',

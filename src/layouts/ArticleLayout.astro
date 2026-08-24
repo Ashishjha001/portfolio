@@ -151,6 +151,14 @@ const schema = [
     <article class="prose">
       <slot />
       {
+        data.authorNote && (
+          <aside class="article-author-note" aria-label="About the publisher">
+            <p class="evidence-label">About DataDecision</p>
+            <p>{data.authorNote}</p>
+          </aside>
+        )
+      }
+      {
         data.sources.length > 0 && (
           <section class="article-sources" aria-labelledby="article-sources-heading">
             <p class="eyebrow">Primary references</p>
@@ -169,9 +177,7 @@ const schema = [
         data.cluster && pillarEntry && (
           <section class="cluster-explore" aria-labelledby="cluster-explore-heading">
             <p class="eyebrow">{data.cluster}</p>
-            <h2 id="cluster-explore-heading">
-              Continue exploring Measurement &amp; Lead-Source Truth
-            </h2>
+            <h2 id="cluster-explore-heading">Continue exploring {data.cluster}</h2>
             {pillarEntry.id === entry.id ? (
               <div class="cluster-foundation" aria-current="page">
                 <span class="evidence-label">Foundational guide / current article</span>
