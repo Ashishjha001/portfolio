@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MethodBadge from '../components/MethodBadge.astro';
 import DecisionBoard from '../components/DecisionBoard.astro';
-import HomepageDecisionMap from '../components/HomepageDecisionMap.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 
@@ -124,54 +123,6 @@ const schema = {
       </div>
     </section>
   </div>
-
-  <section class="section">
-    <div class="shell">
-      <div class="editorial-grid">
-        <div class="section-intro">
-          <p class="eyebrow">The measurement gap</p>
-          <h2>Search visibility is no longer one dashboard.</h2>
-        </div>
-        <p class="lede">
-          Conventional search remains important. Discovery now spans more surfaces than most
-          reporting systems were designed to observe.
-        </p>
-      </div>
-
-      <div class="visual-inset">
-        <HomepageDecisionMap />
-      </div>
-
-      <div class="comparison visual-followup">
-        <div>
-          <span class="evidence-label">What teams can usually see</span>
-          <h3>Rankings, sessions, forms and CRM stages.</h3>
-          <ul>
-            <li>Useful records, but often separated by scope and ownership.</li>
-            <li>Referral detail can be incomplete or grouped too broadly.</li>
-            <li>Attribution models describe the assumptions behind each reported total.</li>
-          </ul>
-        </div>
-        <div class="comparison__rule" aria-hidden="true"></div>
-        <div>
-          <span class="evidence-label">What needs a separate baseline</span>
-          <h3>How products appear inside generated answers.</h3>
-          <ul>
-            <li>Which sampled questions produced a mention or citation.</li>
-            <li>Which sources were visible during the observation window.</li>
-            <li>Whether a resulting visit can survive the path into pipeline.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="annotation" style="margin-top: 2.5rem;">
-        <span class="evidence-label">Evidence rule</span>
-        <p>
-          A single answer is one observation. A baseline is a documented frame that can be repeated
-          without quietly changing the question.
-        </p>
-      </div>
-    </div>
-  </section>
 
   <section class="section section--bright">
     <div class="shell editorial-grid">
@@ -329,34 +280,6 @@ const schema = {
             Repeat observation and decision review only when the signal warrants it.
           </p>
         </div>
-      </div>
-      <div class="scope-wrap" style="margin-top: 3rem;">
-        <table class="scope-table">
-          <thead
-            ><tr
-              ><th>Scope item</th><th>Default</th><th>Boundary</th><th>Commercial treatment</th></tr
-            ></thead
-          >
-          <tbody>
-            <tr
-              ><td>Query frame</td><td>50 buying-intent queries</td><td
-                >One market · one language</td
-              ><td>Written fixed fee before kickoff</td></tr
-            >
-            <tr
-              ><td>Observation</td><td>Up to four surfaces; two runs where appropriate</td><td
-                >Access and methodology can narrow the final set</td
-              ><td>Additional markets, languages or repetitions are add-ons</td></tr
-            >
-            <tr
-              ><td>Outputs</td><td
-                >Baseline, source map, comparison, technical review, gaps, 90-day plan</td
-              ><td>Recommendations stay within the sampled evidence</td><td
-                >Exact fee and any add-ons are stated in the written scope</td
-              ></tr
-            >
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
