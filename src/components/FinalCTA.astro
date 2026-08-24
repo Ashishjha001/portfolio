@@ -1,0 +1,23 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  label?: string;
+}
+
+const {
+  heading = 'Build the baseline before you fund the fix.',
+  body = 'A focused diagnostic gives your team a dated visibility record, a measurement-gap review and a prioritized 90-day plan.',
+  label = 'Request a visibility diagnostic',
+} = Astro.props;
+---
+
+<section class="section--green">
+  <div class="shell cta-band">
+    <h2>{heading}</h2>
+    <div class="cta-band__action">
+      <p>{body}</p>
+      <a class="button" href="/contact/" data-event="cta_primary_click">{label}</a>
+    </div>
+  </div>
+</section>

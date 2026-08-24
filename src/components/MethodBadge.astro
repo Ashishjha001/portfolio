@@ -1,0 +1,11 @@
+---
+interface Props {
+  version?: string;
+}
+
+const { version = 'v0.3' } = Astro.props;
+---
+
+<a class="method-badge" href="/methodology/" data-event="methodology_cta_click">
+  Method {version} · published
+</a>

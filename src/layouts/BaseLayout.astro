@@ -1,0 +1,134 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource-variable/newsreader';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  image = '/og-default.png',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const canonical = new URL(path, Astro.site ?? Astro.url.origin).toString();
+const imageUrl = new URL(image, Astro.site ?? Astro.url.origin).toString();
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'DataDecision',
+  url: 'https://datadecision.consulting',
+  email: 'u22me137@med.svnit.ac.in',
+  slogan: 'Growth you can prove.',
+  description: 'Measurement-first AI-search visibility for B2B SaaS.',
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DataDecision',
+  url: 'https://datadecision.consulting',
+};
+const schemaItems = schema
+  ? Array.isArray(schema)
+    ? [organizationSchema, websiteSchema, ...schema]
+    : [organizationSchema, websiteSchema, schema]
+  : [organizationSchema, websiteSchema];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#F4F0E7" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="DataDecision" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{title}</title>
+    {
+      schemaItems.map((item) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />
+      ))
+    }
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="main-content"><slot /></main>
+    <Footer />
+    <script is:inline>
+      window.dataDecisionEvents = window.dataDecisionEvents || [];
+      window.ddTrack = function (name, detail) {
+        const event = { name, detail: detail || {}, timestamp: new Date().toISOString() };
+        window.dataDecisionEvents.push(event);
+        window.dispatchEvent(new CustomEvent('datadecision:event', { detail: event }));
+      };
+      document.addEventListener('click', function (event) {
+        const target = event.target.closest('[data-event]');
+        if (!target) return;
+        window.ddTrack(target.dataset.event, {
+          label: target.textContent.trim(),
+          path: window.location.pathname,
+        });
+      });
+      document.addEventListener(
+        'toggle',
+        function (event) {
+          const target = event.target;
+          if (target instanceof HTMLDetailsElement && target.open && target.dataset.event) {
+            window.ddTrack(target.dataset.event, {
+              label: target.querySelector('summary')?.textContent?.trim() || '',
+              path: window.location.pathname,
+            });
+          }
+        },
+        true,
+      );
+
+      const mobileCta = document.querySelector('[data-mobile-cta]');
+      if (mobileCta) {
+        let ctaFrame;
+        const updateMobileCta = () => {
+          mobileCta.hidden = window.scrollY < Math.min(window.innerHeight * 0.75, 640);
+          ctaFrame = undefined;
+        };
+        updateMobileCta();
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ctaFrame) ctaFrame = requestAnimationFrame(updateMobileCta);
+          },
+          { passive: true },
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+.agents/
+.github/
+.vscode/
+.npm-cache/
+.astro/
+dist/
+node_modules/
+public/og-default.png

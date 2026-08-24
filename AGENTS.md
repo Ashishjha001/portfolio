@@ -1,22 +1,36 @@
-## Development
+# DataDecision repository guide
 
-When starting the dev server, use background mode:
+## Structure
 
-```
-astro dev --background
-```
+- `src/pages/`: static routes and collection-driven detail routes.
+- `src/content/`: publishable insight and demonstration entries only.
+- `src/components/`: shared editorial, evidence, navigation and form primitives.
+- `src/styles/`: Ledger design tokens and global composition rules.
+- `public/downloads/`: public research templates, never private strategy material.
+- `docs/`: launch operations, founder inputs and deployment notes.
+- `.21st/`: durable Ledger design decisions.
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+## Commands
 
-## Documentation
+- `npm run dev` — local server.
+- `npm run format:check` — formatting gate.
+- `npm run check` — Astro and TypeScript checks.
+- `npm run build` — production static build.
+- `npm run validate` — route, link, metadata and claim checks against `dist/`.
+- `npm run qa` — complete non-browser gate.
 
-Full documentation: https://docs.astro.build
+## Source and claim rules
 
-Consult these guides before working on related tasks:
+The user request is authoritative. The private strategy ZIP is build context and must never be committed. Public numbers require a date, sample/window, baseline, method link and limitation. Never fabricate clients, testimonials, logos, credentials, results, scarcity, rankings or attribution certainty. `DEMONSTRATION RUN` labels only genuine public-data or DataDecision self-measurement.
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+## Design constraints
+
+Use the Ledger direction recorded in `.21st/design.json`: editorial typography, asymmetric grids, hairline rules, tables, folio labels and purposeful whitespace. Avoid generic SaaS card grids, gradients, glass, glow, stock imagery, dashboards, heavy shadows and animated evidence numbers. Preserve keyboard access, visible focus, reduced motion and AA-conscious contrast.
+
+## Git restrictions
+
+Rebuild work stays on `codex/rebuild-v2`. Do not merge or push directly to `master`, alter DNS, or intentionally deploy production. Preserve `public/CNAME` and the master-only Pages workflow unless deployment facts change.
+
+## Definition of done
+
+All routes build; internal links resolve; desktop and mobile visual QA passes; metadata, schema, robots and sitemap are valid; no private strategy or secrets are committed; unresolved founder facts remain in `docs/FOUNDER_INPUT_REQUIRED.md`.

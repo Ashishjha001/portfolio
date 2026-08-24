@@ -1,0 +1,46 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  updated: string;
+}
+
+const { title, description, path, updated } = Astro.props;
+---
+
+<BaseLayout title={`${title} — DataDecision`} description={description} path={path}>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: title }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Legal draft</p><h1>{title}</h1><p class="lede">{description}</p>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio"><span>Draft record</span><span>{updated}</span></div><div
+        class="legal-notice"
+      >
+        <strong>Founder/legal review required.</strong> This plain-language draft does not guarantee compliance
+        in every jurisdiction and must be reviewed before production approval.
+      </div>
+    </aside>
+  </header>
+  <div class="shell article-shell">
+    <aside class="article-meta">
+      <dl>
+        <div><dt>Status</dt><dd>Draft</dd></div><div><dt>Updated</dt><dd>{updated}</dd></div><div>
+          <dt>Owner</dt><dd>Founder/legal review</dd>
+        </div>
+      </dl>
+    </aside><article class="prose"><slot /></article><aside class="article-aside">
+      <div class="article-aside__box">
+        <p class="evidence-label">Plain-language principle</p><p>
+          Collect less, explain what is collected, and do not claim a control that has not been
+          implemented.
+        </p>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

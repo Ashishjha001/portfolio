@@ -1,46 +1,18 @@
-# Astro Starter Kit: Basics
+# DataDecision
+
+Production static website for [datadecision.consulting](https://datadecision.consulting). Built with Astro and the Ledger design system: editorial, evidence-led, accessible and intentionally light on client-side JavaScript.
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Run the complete non-browser quality gate with `npm run qa`.
 
-## 🚀 Project Structure
+## Forms and analytics
 
-Inside of your Astro project, you'll see the following folders and files:
+The contact form requires a real provider endpoint in `PUBLIC_FORM_ENDPOINT`. Without it, the interface reports that submission is not configured and never fakes success. Analytics events are emitted through `window.ddTrack` and the `datadecision:event` browser event; connect an approved provider only after consent and privacy decisions are complete.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+See `docs/FOUNDER_INPUT_REQUIRED.md` and `docs/DEPLOYMENT_CHECKLIST.md` before production approval.

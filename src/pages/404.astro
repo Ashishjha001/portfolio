@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found — DataDecision"
+  description="The requested DataDecision page could not be found."
+  path="/404/"
+  noindex={true}
+>
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">404 / no observation</p><h1 style="font-size:clamp(4rem,10vw,8rem);">
+          No record at this address.
+        </h1>
+      </div><div>
+        <p class="lede">
+          The route may have moved, the link may be incomplete, or the page may never have existed.
+        </p><div class="button-row">
+          <a class="button button--primary" href="/">Return home</a><a
+            class="text-link"
+            href="/insights/">Browse insights</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

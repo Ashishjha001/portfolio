@@ -1,142 +1,73 @@
 ---
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy | DataDecision</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-        body { font-family: 'Inter', sans-serif; color: #334155; line-height: 1.7; background: #f8fafc; margin: 0; padding: 0; }
-        .header { background: #030b18; padding: 24px; text-align: center; }
-        .header a { color: white; text-decoration: none; font-weight: 700; font-size: 1.2rem; }
-        .container { max-width: 800px; margin: 60px auto; padding: 0 24px; }
-        h1 { color: #0f172a; font-size: 2.5rem; margin-bottom: 12px; }
-        h2 { color: #0f172a; margin-top: 40px; font-size: 1.5rem; }
-        p { margin-bottom: 16px; }
-        ul { margin: 0 0 16px 20px; padding: 0; }
-        li { margin-bottom: 8px; }
-        .updated { color: #64748b; font-size: 0.9rem; margin-bottom: 40px; display: block; }
-        .notice { padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; }
-        .footer-link { display: block; margin-top: 60px; color: #1e5bc6; text-decoration: none; font-weight: 500; }
-        .footer-link:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <a href="/">DataDecision</a>
-    </div>
-    <div class="container">
-        <h1>Privacy Policy</h1>
-        <span class="updated">Last Updated: August 23, 2026</span>
 
-        <h2>1. Introduction</h2>
-        <p>Welcome to DataDecision.consulting ("DataDecision", "we", "us", or "our").</p>
-        <p>This website is maintained as a portfolio, demonstration, and experimental project. DataDecision is not currently operating as an active consulting business and is not currently accepting new client engagements through this website.</p>
-        <p>This Privacy Policy explains what information may be collected when you visit this website and how that information may be used.</p>
+<LegalLayout
+  title="Privacy notice"
+  description="How this site handles enquiry data, technical records and future analytics choices."
+  path="/privacy/"
+  updated="24 Aug 2026"
+>
+  <h2>Scope of this draft</h2>
+  <p>
+    This notice covers the public DataDecision website and its diagnostic enquiry form. It does not
+    yet describe client-project data processing, which requires engagement-specific terms and, where
+    appropriate, a data-processing agreement.
+  </p>
 
-        <h2>2. Information We Collect</h2>
-        <p>We aim to collect as little personal information as reasonably necessary.</p>
+  <h2>Information you choose to provide</h2>
+  <p>
+    The enquiry form asks for your name, work email, company or website, role, primary problem,
+    preferred timeline, optional project-budget band and consent to a response. Hidden fields may
+    capture campaign parameters and the referring page so the enquiry source can be understood.
+  </p>
+  <p>
+    The form also uses a honeypot field and a minimum-completion-time check to reduce automated
+    spam. The client-side check is not described as server-side rate limiting.
+  </p>
 
-        <h2>2.1 Information You Provide</h2>
-        <p>If you voluntarily contact us by email or through any contact mechanism available on the website, we may receive information such as:</p>
-        <ul>
-            <li>Your name;</li>
-            <li>Email address;</li>
-            <li>Company or organization name;</li>
-            <li>The contents of your message; and</li>
-            <li>Any other information you voluntarily provide.</li>
-        </ul>
-        <p>Please do not send confidential, proprietary, financial, sensitive, or personally identifiable information through this website unless specifically requested.</p>
+  <h2>What happens before the form endpoint is configured</h2>
+  <p>
+    If the production form provider has not been configured, the website does not transmit the form
+    and does not report a successful submission. The missing connection is shown to the visitor.
+  </p>
 
-        <h2>2.2 Automatically Collected Information</h2>
-        <p>When you visit the website, certain technical information may be automatically processed by our hosting, security, analytics, or other technical service providers.</p>
-        <p>This may include:</p>
-        <ul>
-            <li>IP address;</li>
-            <li>Browser and device information;</li>
-            <li>Operating system;</li>
-            <li>Approximate geographic information derived from technical data;</li>
-            <li>Pages visited;</li>
-            <li>Referring pages;</li>
-            <li>Date and time of access;</li>
-            <li>Website performance information; and</li>
-            <li>Other technical information necessary to operate, secure, and maintain the website.</li>
-        </ul>
-        <p>Some of this information may be collected by third-party infrastructure providers rather than directly by DataDecision.</p>
+  <h2>Purposes</h2>
+  <ul>
+    <li>Review and respond to a requested diagnostic or partnership enquiry.</li><li>
+      Assess fit and prepare a written scope.
+    </li><li>Protect the form and diagnose delivery failures.</li><li>
+      Understand aggregate enquiry sources after an approved analytics setup exists.
+    </li>
+  </ul>
 
-        <h2>3. How We Use Information</h2>
-        <p>Information may be used to:</p>
-        <ul>
-            <li>Operate and maintain the website;</li>
-            <li>Monitor website performance;</li>
-            <li>Detect and prevent security issues, abuse, or unauthorized activity;</li>
-            <li>Understand general website usage;</li>
-            <li>Respond to voluntary communications; and</li>
-            <li>Maintain, improve, or troubleshoot the website.</li>
-        </ul>
-        <p>We do not currently operate the website as a customer account, subscription, or active consulting-service platform.</p>
+  <h2>Retention and recipients</h2>
+  <p>
+    The final retention period, form provider, recipient workflow and deletion process require
+    founder approval before launch. DataDecision should retain enquiry data only as long as needed
+    for the stated purpose, legal obligations and legitimate record-keeping, and should document
+    every provider that receives it.
+  </p>
 
-        <h2>4. Cookies and Similar Technologies</h2>
-        <p>The website may use cookies, local storage, analytics technologies, or similar technologies depending on the services currently configured on the website.</p>
-        <p>These technologies may be used for purposes such as:</p>
-        <ul>
-            <li>Website functionality;</li>
-            <li>Security;</li>
-            <li>Performance monitoring;</li>
-            <li>Analytics; and</li>
-            <li>Understanding general website usage.</li>
-        </ul>
-        <p>You may be able to control or disable cookies through your browser settings. Disabling certain technologies may affect some website functionality.</p>
+  <h2>Analytics and cookies</h2>
+  <p>
+    No third-party analytics or non-essential cookie is installed in this build. The site emits
+    first-party browser events that remain in the page unless an approved analytics adapter is
+    added. See the <a href="/cookies/">cookie policy</a>.
+  </p>
 
-        <h2>5. Third-Party Service Providers</h2>
-        <p>The website may use third-party providers for services such as:</p>
-        <ul>
-            <li>Website hosting;</li>
-            <li>Domain and DNS services;</li>
-            <li>Content delivery;</li>
-            <li>Security;</li>
-            <li>Analytics;</li>
-            <li>Email; and</li>
-            <li>Website infrastructure.</li>
-        </ul>
-        <p>These providers may process technical or other information as necessary to provide their services.</p>
-        <p>We do not sell personal information to third parties.</p>
+  <h2>Your choices</h2>
+  <p>
+    To ask about information supplied through this site, email <a
+      href="mailto:u22me137@med.svnit.ac.in">u22me137@med.svnit.ac.in</a
+    >. A reviewed version must still identify the legal entity and jurisdiction-specific rights
+    request process; this draft does not claim a universal legal basis.
+  </p>
 
-        <h2>6. Confidential Information</h2>
-        <p>The website is not intended to be a secure channel for submitting confidential or proprietary information.</p>
-        <p>Any information you voluntarily send to us should be treated as information you are authorized to disclose.</p>
-        <p>Sending information to DataDecision does not, by itself, create a consulting, professional, fiduciary, employment, partnership, agency, or other contractual relationship.</p>
-
-        <h2>7. Data Retention</h2>
-        <p>We retain information only for as long as reasonably necessary for the purpose for which it was collected, for security and operational purposes, or where retention is required or permitted by applicable law.</p>
-        <p>Because this website is maintained primarily as a portfolio/demo project, information may be deleted periodically and we do not guarantee indefinite retention of communications or website records.</p>
-
-        <h2>8. Data Security</h2>
-        <p>We take reasonable measures appropriate to the nature of the information and the website environment to protect information against unauthorized access, misuse, alteration, or destruction.</p>
-        <p>However, no website, internet transmission, or electronic storage system can be guaranteed to be completely secure.</p>
-        <p>Accordingly, you should avoid sending highly confidential or sensitive information through the website.</p>
-
-        <h2>9. Children&#39;s Privacy</h2>
-        <p>This website is not directed specifically toward children.</p>
-        <p>We do not knowingly seek to collect personal information from children through the website.</p>
-
-        <h2>10. Your Choices</h2>
-        <p>Depending on the information involved and applicable law, you may contact us regarding information you have voluntarily provided to request clarification, correction, or deletion where reasonably possible.</p>
-        <p>Requests may be submitted using the contact information below.</p>
-
-        <h2>11. Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time to reflect changes to the website, technology, or applicable requirements.</p>
-        <p>The updated version will be posted on this page with a revised "Last Updated" date.</p>
-
-        <h2>12. Contact</h2>
-        <p>For privacy-related questions or requests, contact:</p>
-        <p><strong>contact@datadecision.consulting</strong></p>
-
-        <p class="notice"><strong>Important Notice:</strong> DataDecision.consulting is currently maintained as a portfolio, demonstration, and experimental website and is not currently offering active consulting services through this website.</p>
-
-        <a href="/" class="footer-link">&larr; Back to Home</a>
-    </div>
-</body>
-</html>
+  <h2>Security and limits</h2>
+  <p>
+    Static delivery reduces some server-side attack surface, but no website can promise absolute
+    security. Provider access, retention, authentication and incident response must be verified
+    before production.
+  </p>
+</LegalLayout>

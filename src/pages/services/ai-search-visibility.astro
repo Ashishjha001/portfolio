@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import MethodBadge from '../../components/MethodBadge.astro';
+import DecisionBoard from '../../components/DecisionBoard.astro';
+import FAQList from '../../components/FAQList.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+const faqs = [
+  {
+    question: 'How stable are the observations?',
+    answer:
+      'They are snapshots within a defined window, not permanent rankings. Repeated runs can reveal whether an observation persists, but engine, session and prompt variance remain material limitations.',
+  },
+  {
+    question: 'How often should the baseline be repeated?',
+    answer:
+      'The cadence should follow the decision. A major launch or remediation program may justify a shorter interval; a stable category may not. The method records cadence before collection so frequency is not changed to manufacture a better story.',
+  },
+  {
+    question: 'Does crawler access guarantee a citation?',
+    answer:
+      'No. Access is necessary for some retrieval paths but not sufficient for inclusion, description accuracy or recommendation. Crawler policy, technical readability and source authority are separate layers.',
+  },
+  {
+    question: 'What arrives after 15 business days?',
+    answer:
+      'A dated visibility baseline, citation and source map, competitor comparison, technical access review, measurement-gap review, prioritized 90-day plan and a one-page Decision Board.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Growth Visibility Diagnostic',
+    serviceType: 'AI-search visibility measurement',
+    provider: { '@type': 'Organization', name: 'DataDecision' },
+    areaServed: 'Remote',
+    description:
+      'A sampled AI-search visibility baseline and prioritized action plan for B2B SaaS.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="AI-search visibility for B2B SaaS — DataDecision"
+  description="Build a sampled baseline of how your SaaS appears across approved search and AI surfaces—then rank what to fix, with the method and limitations attached."
+  path="/services/ai-search-visibility/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[{ label: 'Home', href: '/' }, { label: 'Services' }, { label: 'AI-search visibility' }]}
+  />
+  <header class="shell page-hero">
+    <div class="page-hero__copy">
+      <p class="eyebrow">AI-search visibility</p>
+      <h1>Where does your SaaS appear—and what can the sample actually prove?</h1>
+      <p class="lede">
+        Replace anecdotal spot-checks with a documented query frame, dated observations, a source
+        map and a prioritized action plan.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="/contact/" data-event="cta_primary_click"
+          >Request a visibility diagnostic</a
+        ><MethodBadge />
+      </div>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio"><span>Diagnostic / standard</span><span>15 business days</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">50</dt><dd>
+            <strong>Buying-intent queries</strong><small>Documented before collection</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Market and language</strong><small>Expansion requires explicit scoping</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">90d</dt><dd>
+            <strong>Action horizon</strong><small>Owner · effort · signal · stopping rule</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">The problem</p><h2>One answer is not a baseline.</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Generated answers can vary by engine, prompt, location, account state and time. A
+          screenshot can start a useful question, but it cannot support a trend claim on its own.
+        </p><div class="annotation" style="margin-top:2rem;">
+          <span class="evidence-label">Working definition</span><p>
+            An AI-search visibility baseline is a dated record of what a fixed query frame produced
+            across a documented surface set and observation protocol. It is a comparison instrument,
+            not a universal score.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">What you receive</p><h2>
+          A decision file, not a monitoring screenshot.
+        </h2>
+      </div>
+      <div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">01</span><div>
+            <h3>Visibility baseline</h3><p>
+              Dated mention, citation and recommendation observations inside the sampled query set.
+            </p>
+          </div><span class="rule-row__meta">Window attached</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">02</span><div>
+            <h3>Citation and source map</h3><p>
+              The public sources visible in the answers, recorded without assuming the source caused
+              inclusion.
+            </p>
+          </div><span class="rule-row__meta">Observation ≠ causality</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">03</span><div>
+            <h3>Competitor comparison</h3><p>
+              A consistent comparison against the approved set within the same query frame.
+            </p>
+          </div><span class="rule-row__meta">Same sample</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">04</span><div>
+            <h3>Technical access review</h3><p>
+              Robots policy, fetch accessibility, content clarity and implementation risks.
+            </p>
+          </div><span class="rule-row__meta">Necessary, not sufficient</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">05</span><div>
+            <h3>Measurement gaps and 90-day plan</h3><p>
+              Referral-to-CRM gaps plus ranked fixes with owners, effort, expected signal,
+              confidence and stopping rules.
+            </p>
+          </div><span class="rule-row__meta">Decision-ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Artifact anatomy</p><h2>Evidence and caveat share the page.</h2><p
+          class="small"
+        >
+          This is the reusable board structure, not a simulated result.
+        </p>
+      </div>
+      <DecisionBoard />
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow" style="color:#9fd2bc;">Fit</p><h2>
+          Built for teams with a real decision to make.
+        </h2>
+      </div>
+      <div class="comparison">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>Growth-stage B2B SaaS</h3><ul>
+            <li>A founder or growth leader needs a defensible baseline.</li><li>
+              Discovery, conversion and CRM data disagree.
+            </li><li>The team can provide inputs and act on a 90-day plan.</li>
+          </ul>
+        </div><div class="comparison__rule" style="background:#4b4e49;"></div><div>
+          <span class="evidence-label">Not the launch scope</span><h3>
+            Mandates the method cannot support
+          </h3><ul>
+            <li>Guaranteed rankings, citations or revenue.</li><li>
+              Pure brand campaigns or paid-media management.
+            </li><li>Unbounded multi-market monitoring without a written add-on.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Questions</p><h2>Sampling deserves scrutiny.</h2>
+      </div><FAQList items={faqs} />
+    </div>
+  </section>
+  <FinalCTA heading="Turn the question into a repeatable baseline." />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/">Request a visibility diagnostic</a>
+  </div>
+</BaseLayout>

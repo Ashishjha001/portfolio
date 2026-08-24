@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Request a visibility diagnostic — DataDecision"
+  description="Brief DataDecision on your AI-search visibility or measurement problem. The form is concise, accessible and connected only after a real provider endpoint is configured."
+  path="/contact/"
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Request a visibility diagnostic',
+    url: 'https://datadecision.consulting/contact/',
+    email: 'u22me137@med.svnit.ac.in',
+  }}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Request a diagnostic</p><h1>Brief the problem, not the pitch.</h1><p
+        class="lede"
+      >
+        Tell us what is difficult to see, measure or decide. The first review is about fit, scope
+        and evidence—not pressure to buy an oversized engagement.
+      </p>
+    </div><aside class="page-hero__aside">
+      <div class="folio"><span>What happens next</span><span>03 steps</span></div><div
+        class="rule-list"
+      >
+        <div class="rule-row" style="grid-template-columns:2rem 1fr;">
+          <span class="mono">01</span><div>
+            <h3 style="font-size:1.3rem;">Human review</h3><p>No automatic budget rejection.</p>
+          </div>
+        </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
+          <span class="mono">02</span><div>
+            <h3 style="font-size:1.3rem;">Fit and scope</h3><p>
+              The method must be able to answer the question.
+            </p>
+          </div>
+        </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
+          <span class="mono">03</span><div>
+            <h3 style="font-size:1.3rem;">Written next step</h3><p>
+              Scope, fee, inputs and limitations before kickoff.
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </header>
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Diagnostic brief</p><h2>Seven fields. One useful starting record.</h2><p
+          class="small"
+        >
+          The production form endpoint is intentionally not invented. In an unconfigured preview,
+          submission remains local and reports the missing connection. You can also email <a
+            href="mailto:u22me137@med.svnit.ac.in">u22me137@med.svnit.ac.in</a
+          >.
+        </p>
+      </div><ContactForm />
+    </div>
+  </section>
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Bring if available</p><h2>Inputs that make the first review sharper.</h2>
+      </div><div class="comparison">
+        <div>
+          <h3>Visibility context</h3><ul>
+            <li>Your product category and primary market.</li><li>
+              Three to five products buyers compare.
+            </li><li>Questions buyers ask before a shortlist.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <h3>Measurement context</h3><ul>
+            <li>The dashboard or CRM disagreement.</li><li>Current tracking constraints.</li><li>
+              The decision and deadline this work should support.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

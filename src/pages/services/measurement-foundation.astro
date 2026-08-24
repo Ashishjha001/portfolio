@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQList from '../../components/FAQList.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+const faqs = [
+  {
+    question: 'Will this give us perfect attribution?',
+    answer:
+      'No. A measurement foundation reduces preventable gaps and makes assumptions visible. It does not create complete causal attribution from incomplete or privacy-constrained data.',
+  },
+  {
+    question: 'Do you replace our analytics or CRM?',
+    answer:
+      'Not by default. The work begins by mapping the current stack, defining the decision fields and identifying the smallest reliable change. A replacement is recommended only when the evidence supports it.',
+  },
+  {
+    question: 'Can AI-referral traffic be tracked?',
+    answer:
+      'Some visits can be observed through source data or campaign parameters, while others may arrive without useful referrer detail. We separate observable traffic from the unobserved remainder and avoid estimating the remainder without evidence.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Growth Measurement Foundation',
+    serviceType: 'Marketing measurement and attribution foundation',
+    provider: { '@type': 'Organization', name: 'DataDecision' },
+    areaServed: 'Remote',
+    description:
+      'A practical measurement foundation connecting acquisition, conversion and CRM stages for B2B SaaS.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Growth measurement foundation for B2B SaaS — DataDecision"
+  description="Repair the gaps between acquisition data, conversion events and CRM stages—while keeping attribution assumptions visible."
+  path="/services/measurement-foundation/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services' },
+      { label: 'Measurement foundation' },
+    ]}
+  />
+  <header class="shell page-hero">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Measurement foundation</p><h1>
+        When GA4 and your CRM disagree, make the assumptions visible.
+      </h1><p class="lede">
+        Trace acquisition, conversion and pipeline as one evidence path. Repair the preventable
+        gaps, document the irreducible ones and give decision-makers a number they can challenge.
+      </p><div class="button-row">
+        <a class="button button--primary" href="/contact/" data-event="cta_primary_click"
+          >Request a diagnostic</a
+        ><a class="text-link" href="/insights/measuring-ai-referrals-ga4/">Read the tracking note</a
+        >
+      </div>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio"><span>Measurement record</span><span>Source → stage</span></div><dl
+        class="evidence-list"
+      >
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Tracking plan</strong><small>Decisions before events</small>
+          </dd>
+        </div><div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>Source reconciliation</strong><small>Acquisition and CRM fields</small>
+          </dd>
+        </div><div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>Assumption register</strong><small>What each report can and cannot say</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">The gap</p><h2>
+          A dashboard can be precise and still answer the wrong question.
+        </h2>
+      </div><div>
+        <p class="lede">
+          Session attribution, first-user source, form submission and CRM opportunity source are
+          different records. Treating them as interchangeable creates arguments that formatting
+          cannot solve.
+        </p><div class="comparison" style="margin-top:3rem;">
+          <div>
+            <span class="evidence-label">Observed</span><h3>What the systems record</h3><ul>
+              <li>Traffic-source and campaign dimensions.</li><li>
+                Events and form submissions.
+              </li><li>CRM source, stage and revenue fields.</li>
+            </ul>
+          </div><div class="comparison__rule"></div><div>
+            <span class="evidence-label">Interpreted</span><h3>What the report assumes</h3><ul>
+              <li>Which touch receives credit.</li><li>
+                How anonymous activity joins to a lead.
+              </li><li>Which field survives later updates.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">What we build</p><h2>A smaller, auditable measurement spine.</h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">01</span><div>
+            <h3>Decision-led tracking plan</h3><p>
+              Events, parameters and source fields tied to named business questions.
+            </p>
+          </div><span class="rule-row__meta">Purpose first</span>
+        </div><div class="rule-row">
+          <span class="mono">02</span><div>
+            <h3>Referral and campaign visibility</h3><p>
+              Source definitions, UTM governance and test cases for AI and conventional referrals.
+            </p>
+          </div><span class="rule-row__meta">Versioned rules</span>
+        </div><div class="rule-row">
+          <span class="mono">03</span><div>
+            <h3>CRM linkage</h3><p>
+              Original-source preservation, handoff rules, deduplication logic and stage mapping.
+            </p>
+          </div><span class="rule-row__meta">Field ownership</span>
+        </div><div class="rule-row">
+          <span class="mono">04</span><div>
+            <h3>Assumption register</h3><p>
+              Each dashboard definition paired with exclusions, confidence and known failure modes.
+            </p>
+          </div><span class="rule-row__meta">Board-readable</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow" style="color:#9fd2bc;">Boundary</p><h2>
+          No model can recover data that was never observed.
+        </h2>
+      </div><div>
+        <p class="lede" style="color:#d3d6d1;">
+          We do not present multi-touch attribution as causal proof. The deliverable names the
+          attribution rule, preserves the raw evidence where practical and keeps confidence
+          proportional to the sample.
+        </p><div class="annotation" style="margin-top:2rem;color:var(--ink);">
+          <span class="evidence-label">Decision rule</span><p>
+            If two systems answer different questions, reconcile the definitions before reconciling
+            the totals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Questions</p><h2>What measurement can—and cannot—settle.</h2>
+      </div><FAQList items={faqs} />
+    </div>
+  </section>
+  <FinalCTA
+    heading="Repair the path from discovery to pipeline."
+    body="Start with the diagnostic when AI-search visibility and measurement gaps need to be read together."
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/">Request a diagnostic</a>
+  </div>
+</BaseLayout>

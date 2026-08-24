@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'DataDecision AI-search visibility methodology v0.3',
+  description:
+    'The query-frame, observation protocol, metric definitions and limitations behind DataDecision visibility measurements.',
+  datePublished: '2026-08-24',
+  dateModified: '2026-08-24',
+  author: { '@type': 'Organization', name: 'DataDecision Research' },
+  mainEntityOfPage: 'https://datadecision.consulting/methodology/',
+};
+---
+
+<BaseLayout
+  title="AI-search visibility methodology v0.3 — DataDecision"
+  description="The exact query-frame rules, observation protocol, metric definitions and limitations behind every DataDecision AI-search visibility number."
+  path="/methodology/"
+  type="article"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
+  <header class="shell page-hero">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Methodology / version 0.3</p><h1>
+        Show the work: how we measure AI-search visibility.
+      </h1><p class="lede">
+        A published protocol for constructing the query frame, recording answers and sources,
+        calculating descriptive metrics and keeping limitations attached.
+      </p><div class="button-row">
+        <a
+          class="button button--primary"
+          href="/downloads/ai-visibility-baseline-template.csv"
+          data-event="template_download">Download the baseline template</a
+        ><a class="text-link" href="#limitations">Read limitations first</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio"><span>Method record</span><span>v0.3 · 24 Aug 2026</span></div><div
+        class="caveat"
+      >
+        <span class="evidence-label">Non-negotiable limitation</span>AI outputs are
+        nondeterministic. This method describes a sampled observation window; it does not estimate a
+        universal probability of placement unless a separate statistical design explicitly supports
+        that claim.
+      </div>
+    </aside>
+  </header>
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Principles</p><h2>Define the frame before reading the answer.</h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">P1</span><div>
+            <h3>Sampled, never absolute</h3><p>
+              Every statement is bounded by the engines, prompts, dates, market, language and run
+              conditions used.
+            </p>
+          </div><span class="rule-row__meta">Frame attached</span>
+        </div><div class="rule-row">
+          <span class="mono">P2</span><div>
+            <h3>Same question, same comparison</h3><p>
+              Competitors are compared inside the same approved query frame and observation window.
+            </p>
+          </div><span class="rule-row__meta">No moving goalposts</span>
+        </div><div class="rule-row">
+          <span class="mono">P3</span><div>
+            <h3>Observation is not causality</h3><p>
+              A cited source, technical change or later delta can suggest a hypothesis; it does not
+              prove the mechanism by itself.
+            </p>
+          </div><span class="rule-row__meta">Inference labelled</span>
+        </div><div class="rule-row">
+          <span class="mono">P4</span><div>
+            <h3>Version the method</h3><p>
+              Changes to prompt rules, surface set or calculations create a new version and an
+              explicit comparability note.
+            </p>
+          </div><span class="rule-row__meta">Changelog below</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">01 / Query frame</p><h2>
+          Questions come from buyer decisions, not keywords alone.
+        </h2>
+      </div><div>
+        <p class="lede">
+          The standard frame contains 50 buying-intent queries for one market and one language.
+          Queries are classified before collection so later reporting can separate different
+          decision contexts.
+        </p><div class="scope-wrap" style="margin-top:2.5rem;">
+          <table class="scope-table">
+            <thead
+              ><tr
+                ><th>Intent class</th><th>Example structure</th><th>Why it belongs</th><th
+                  >Guardrail</th
+                ></tr
+              ></thead
+            ><tbody
+              ><tr
+                ><td>Category</td><td>“Tools for [problem]”</td><td
+                  >Tests unprompted category inclusion</td
+                ><td>No brand name in the prompt</td></tr
+              ><tr
+                ><td>Alternative</td><td>“Alternatives to [known product]”</td><td
+                  >Tests shortlist construction</td
+                ><td>Competitor list approved in advance</td></tr
+              ><tr
+                ><td>Comparison</td><td>“[A] vs [B] for [context]”</td><td
+                  >Tests description and differentiation</td
+                ><td>Symmetric phrasing</td></tr
+              ><tr
+                ><td>Problem</td><td>“How should a team solve [problem]?”</td><td
+                  >Tests problem-led discovery</td
+                ><td>No desired vendor implied</td></tr
+              ></tbody
+            >
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">02 / Observation</p><h2>Record conditions while they still exist.</h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">A</span><div>
+            <h3>Surface and access</h3><p>
+              Record the approved engine or search surface, product mode, account state where
+              relevant and whether access was available.
+            </p>
+          </div><span class="rule-row__meta">Access logged</span>
+        </div><div class="rule-row">
+          <span class="mono">B</span><div>
+            <h3>Date, time and locale</h3><p>
+              Timestamp the observation and record the intended market/language conditions. Do not
+              imply location control beyond what was actually possible.
+            </p>
+          </div><span class="rule-row__meta">Conditions dated</span>
+        </div><div class="rule-row">
+          <span class="mono">C</span><div>
+            <h3>Answer and source capture</h3><p>
+              Record mention, citation, description and sources visible during the run. Preserve the
+              raw observation privately when platform terms permit.
+            </p>
+          </div><span class="rule-row__meta">Raw record</span>
+        </div><div class="rule-row">
+          <span class="mono">D</span><div>
+            <h3>Repeat where appropriate</h3><p>
+              The standard allows two documented runs where repetition supports the decision.
+              Repetition is not added after seeing an inconvenient result.
+            </p>
+          </div><span class="rule-row__meta">Cadence fixed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow" style="color:#9fd2bc;">03 / Definitions</p><h2>
+          Descriptive metrics, plainly named.
+        </h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">M1</span><div>
+            <h3>Mention presence</h3><p>
+              Queries in which the named entity appears ÷ eligible queries observed. A mention does
+              not imply endorsement or a clickable source.
+            </p>
+          </div><span class="rule-row__meta">Binary per query</span>
+        </div><div class="rule-row">
+          <span class="mono">M2</span><div>
+            <h3>Citation presence</h3><p>
+              Queries in which a visible source link points to the measured domain ÷ eligible
+              queries observed.
+            </p>
+          </div><span class="rule-row__meta">Visible links only</span>
+        </div><div class="rule-row">
+          <span class="mono">M3</span><div>
+            <h3>Description accuracy</h3><p>
+              A rubric-coded review of whether core product facts in the answer match the approved
+              factual record. Rubric and reviewers are documented.
+            </p>
+          </div><span class="rule-row__meta">Human-coded</span>
+        </div><div class="rule-row">
+          <span class="mono">M4</span><div>
+            <h3>Comparison share</h3><p>
+              The entity's observed presence relative to the approved comparison set inside the same
+              query frame. It is not market share.
+            </p>
+          </div><span class="rule-row__meta">Sample share only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="limitations">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">04 / Limitations</p><h2>
+          The method is useful because the caveats are visible.
+        </h2>
+      </div><div>
+        <div class="scope-wrap">
+          <table class="scope-table">
+            <thead
+              ><tr
+                ><th>Limitation</th><th>Why it matters</th><th>Control</th><th
+                  >What remains unresolved</th
+                ></tr
+              ></thead
+            ><tbody
+              ><tr
+                ><td>Output variance</td><td>The same prompt can produce a different answer.</td><td
+                  >Fixed frame, timestamps and pre-set repeat rule.</td
+                ><td>The sample never becomes a permanent ranking.</td></tr
+              ><tr
+                ><td>Personalization and locale</td><td
+                  >Account and location signals may change retrieval or phrasing.</td
+                ><td>Record accessible session and locale conditions.</td><td
+                  >Not every hidden signal can be controlled.</td
+                ></tr
+              ><tr
+                ><td>Engine change</td><td>Products, modes and policies evolve.</td><td
+                  >Method version, surface notes and update date.</td
+                ><td>Cross-version comparison may be limited.</td></tr
+              ><tr
+                ><td>Source visibility</td><td
+                  >A visible citation does not reveal every internal source or ranking signal.</td
+                ><td>Describe only visible evidence.</td><td>Causal mechanisms remain unknown.</td
+                ></tr
+              ><tr
+                ><td>Referral loss</td><td>Some visits lack useful source data.</td><td
+                  >QA tests, UTMs where supplied, CRM reconciliation.</td
+                ><td>Unobserved traffic is not estimated without evidence.</td></tr
+              ></tbody
+            >
+          </table>
+        </div><div class="annotation" style="margin-top:2rem;">
+          <span class="evidence-label">Citation request</span><p>
+            If you cite a DataDecision number, keep its measurement window, sample description,
+            baseline and method version attached.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Version record</p><h2>Changes remain legible.</h2>
+      </div><div class="rule-list">
+        <div class="rule-row">
+          <span class="mono">v0.3</span><div>
+            <h3>Launch protocol</h3><p>
+              Fixed default scope at 50 queries, one market, one language and two runs where
+              appropriate; clarified search/training crawler separation and metric limits.
+            </p>
+          </div><span class="rule-row__meta">24 Aug 2026</span>
+        </div><div class="rule-row">
+          <span class="mono">Next</span><div>
+            <h3>Change only after evidence</h3><p>
+              Future revisions will document the reason, affected fields and whether historical
+              records remain comparable.
+            </p>
+          </div><span class="rule-row__meta">No date assigned</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FinalCTA
+    heading="Use the method—or ask us to run it."
+    body="The template is public. The diagnostic adds collection discipline, technical review, measurement-gap analysis and a ranked decision plan."
+  />
+</BaseLayout>
