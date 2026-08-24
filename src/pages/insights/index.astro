@@ -7,6 +7,13 @@ import FinalCTA from '../../components/FinalCTA.astro';
 const insights = (await getCollection('insights')).sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
 );
+const clusterName = 'Measurement & Lead-Source Truth';
+const clusterEntries = insights.filter((entry) => entry.data.cluster === clusterName);
+const pillar = clusterEntries.find((entry) => entry.data.pillar);
+const supporting = clusterEntries
+  .filter((entry) => !entry.data.pillar)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const otherInsights = insights.filter((entry) => entry.data.cluster !== clusterName);
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
     date,
@@ -14,79 +21,138 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout
-  title="Insights on AI-search visibility and measurement — DataDecision"
-  description="Research notes, implementation guides and reusable templates for teams measuring AI-search visibility, referrals and pipeline evidence."
+  title="Measurement and AI-search insights — DataDecision"
+  description="Practical DataDecision guides for reconciling GA4, CRM and revenue data, governing campaign sources and measuring AI-search visibility."
   path="/insights/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy">
-      <p class="eyebrow">Research notes</p><h1>Practical guidance for measuring AI discovery.</h1><p
-        class="lede"
-      >
-        Dated guides for teams working through visibility, referral tracking and crawler policy.
+      <p class="eyebrow">Insights</p>
+      <h1>Practical guidance for decisions your dashboards cannot settle.</h1>
+      <p class="lede">
+        Concise, sourced guides for reconciling lead data, measuring discovery and repairing the
+        path into pipeline.
       </p>
     </div>
     <aside class="page-hero__aside">
       <div class="folio">
-        <span>Launch library</span><span
+        <span>Published library</span><span
           >{insights.length.toString().padStart(2, '0')} complete</span
         >
-      </div><div class="caveat">
-        <span class="evidence-label">Publishing rule</span>Every note must add original analysis, a
-        reusable tool or a clearer decision method.
+      </div>
+      <div class="caveat">
+        <span class="evidence-label">Editorial standard</span>
+        Each note answers one operational question, names its evidence boundary and links to the source
+        documentation.
       </div>
     </aside>
   </header>
+
   <section class="section">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">Launch notes</p><h2>Three resources, complete enough to use.</h2><p
-          class="small"
-        >
-          Start with the question closest to the decision your team is facing.
+        <p class="eyebrow">{clusterName}</p>
+        <h2>Start with the reconciliation problem.</h2>
+        <p class="small">
+          One foundational guide and five focused checks connect website activity to CRM records,
+          opportunity and revenue.
         </p>
-      </div><div class="insight-index">
+      </div>
+      <div>
         {
-          insights.map((entry, index) => (
-            <a class="insight-row" href={`/insights/${entry.id}/`}>
-              <span class="mono">
-                {String(index + 1).padStart(2, '0')} / {entry.data.category}
-              </span>
-              <div>
-                <>
-                  <h2>{entry.data.title}</h2>
-                  <p>{entry.data.description}</p>
-                </>
-              </div>
-              <span class="small">
-                Updated {formatDate(entry.data.updatedDate)}
-                <br />
-                {entry.data.readingMinutes} min read
+          pillar && (
+            <a class="cluster-pillar" href={`/insights/${pillar.id}/`}>
+              <span class="evidence-label">Foundational guide / 01</span>
+              <h2>{pillar.data.title}</h2>
+              <p>{pillar.data.description}</p>
+              <span class="cluster-pillar__meta">
+                Published {formatDate(pillar.data.publishedDate)} · {pillar.data.readingMinutes} min
+                read
               </span>
             </a>
-          ))
+          )
         }
-      </div>
-    </div>
-  </section>
-  <section class="section section--bright">
-    <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Templates</p><h2>Use the method with your own data.</h2>
-      </div><div>
-        <p class="lede">
-          Download the baseline template to frame buyer questions, record observations and keep the
-          comparison consistent across dates.
-        </p><div class="button-row">
-          <a
-            class="button"
-            href="/downloads/ai-visibility-baseline-template.csv"
-            data-event="template_download">Download baseline template</a
-          ><a class="text-link" href="/methodology/">Read the method</a>
+        <div
+          class="insight-index cluster-support-list"
+          aria-label="Measurement and Lead-Source Truth supporting insights"
+        >
+          {
+            supporting.map((entry, index) => (
+              <a class="insight-row" href={`/insights/${entry.id}/`}>
+                <span class="mono">{String(index + 2).padStart(2, '0')} / Supporting insight</span>
+                <div>
+                  <h3>{entry.data.title}</h3>
+                  <p>{entry.data.description}</p>
+                </div>
+                <span class="small">
+                  {formatDate(entry.data.publishedDate)}
+                  <br />
+                  {entry.data.readingMinutes} min read
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
   </section>
-  <FinalCTA heading="Turn a research question into a measured brief." />
+
+  {
+    otherInsights.length > 0 && (
+      <section class="section section--bright">
+        <div class="shell editorial-grid">
+          <div class="section-intro">
+            <p class="eyebrow">More research notes</p>
+            <h2>AI discovery, access and implementation.</h2>
+            <p class="small">
+              Additional DataDecision guidance remains available in the same library.
+            </p>
+          </div>
+          <div class="insight-index">
+            {otherInsights.map((entry, index) => (
+              <a class="insight-row" href={`/insights/${entry.id}/`}>
+                <span class="mono">
+                  {String(index + 1).padStart(2, '0')} / {entry.data.category}
+                </span>
+                <div>
+                  <h3>{entry.data.title}</h3>
+                  <p>{entry.data.description}</p>
+                </div>
+                <span class="small">
+                  Updated {formatDate(entry.data.updatedDate)}
+                  <br />
+                  {entry.data.readingMinutes} min read
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Templates</p>
+        <h2>Use the method with your own data.</h2>
+      </div>
+      <div>
+        <p class="lede">
+          Download the baseline template to frame buyer questions, record observations and keep the
+          comparison consistent across dates.
+        </p>
+        <div class="button-row">
+          <a
+            class="button"
+            href="/downloads/ai-visibility-baseline-template.csv"
+            data-event="template_download">Download baseline template</a
+          >
+          <a class="text-link" href="/methodology/">Read the method</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FinalCTA heading="Turn a measurement question into a scoped brief." />
 </BaseLayout>
