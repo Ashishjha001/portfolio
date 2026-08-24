@@ -294,7 +294,7 @@ h3 {
   min-height: 2.25rem;
   gap: 1rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .utility-bar p {
@@ -1493,10 +1493,6 @@ h3 {
   .utility-bar__inner {
     justify-content: center;
     text-align: center;
-  }
-
-  .utility-bar__inner p:last-child {
-    display: none;
   }
 
   .page-hero {
