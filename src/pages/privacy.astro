@@ -26,10 +26,12 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     spam. The client-side check is not described as server-side rate limiting.
   </p>
 
-  <h2>What happens before the form endpoint is configured</h2>
+  <h2>Form delivery</h2>
   <p>
-    If the production form provider has not been configured, the website does not transmit the form
-    and does not report a successful submission. The missing connection is shown to the visitor.
+    When you submit the enquiry form, the entered information and ordinary request metadata are
+    transmitted to Web3Forms for processing and delivery to DataDecision by email. The website
+    reports success only after the provider confirms receipt. You can email DataDecision directly
+    instead of using the form.
   </p>
 
   <h2>Purposes</h2>
@@ -43,10 +45,11 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
   <h2>Retention and recipients</h2>
   <p>
-    The final retention period, form provider, recipient workflow and deletion process require
-    founder approval before launch. DataDecision should retain enquiry data only as long as needed
-    for the stated purpose, legal obligations and legitimate record-keeping, and should document
-    every provider that receives it.
+    Web3Forms processes the submission to deliver it to DataDecision. DataDecision retains the
+    resulting enquiry record only as long as needed to respond, assess fit, meet applicable legal
+    obligations and maintain necessary business records. Provider practices can change; consult
+    Web3Forms' current documentation before submitting if its processing is material to your
+    decision.
   </p>
 
   <h2>Analytics and cookies</h2>
