@@ -13,6 +13,15 @@ DataDecision publishes sampled visibility methods, dated research notes and scop
 - [Work ledger](https://datadecision.consulting/work/): Dated website QA and future completed research records.
 - [Insights](https://datadecision.consulting/insights/): Dated guides and research templates.
 
+## Measurement & Lead-Source Truth
+
+- [GA4 vs CRM lead reconciliation](https://datadecision.consulting/insights/ga4-vs-crm-lead-reconciliation/): Foundational guide for explaining missing, duplicated and misattributed leads.
+- [HubSpot Original Source vs GA4](https://datadecision.consulting/insights/hubspot-original-source-vs-ga4/): Separate first discovery, conversion-session and revenue-credit questions.
+- [Why a CRM reports Direct despite UTM tags](https://datadecision.consulting/insights/crm-direct-traffic-despite-utm-tags/): Diagnose source loss across links, redirects, consent and CRM capture.
+- [GA4 or CRM for marketing revenue](https://datadecision.consulting/insights/ga4-or-crm-source-of-truth/): Assign an authoritative system to each business metric.
+- [Track ChatGPT referrals to revenue](https://datadecision.consulting/insights/track-chatgpt-referral-revenue/): Connect observable AI referrals to CRM opportunity and revenue records.
+- [UTM governance for B2B teams](https://datadecision.consulting/insights/utm-governance-b2b/): Define ownership, naming and pre-launch campaign checks.
+
 ## Contact
 
 - [Request a diagnostic](https://datadecision.consulting/contact/): Scoped enquiry form.

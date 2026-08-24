@@ -1,9 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MethodBadge from '../components/MethodBadge.astro';
 import DecisionBoard from '../components/DecisionBoard.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
+
+const measurementCluster = (await getCollection('insights'))
+  .filter((entry) => entry.data.cluster === 'Measurement & Lead-Source Truth')
+  .sort((a, b) => {
+    if (a.data.pillar !== b.data.pillar) return a.data.pillar ? -1 : 1;
+    return a.data.title.localeCompare(b.data.title);
+  });
+const featuredMeasurementInsights = measurementCluster.slice(0, 3);
 
 const faqs = [
   {
@@ -226,6 +235,37 @@ const schema = {
           </div>
           <span class="rule-row__meta">Post-diagnostic only</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright" aria-labelledby="home-insights-heading">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <p class="eyebrow">Measurement &amp; Lead-Source Truth</p>
+        <h2 id="home-insights-heading">Resolve the questions between analytics and revenue.</h2>
+        <p class="small">
+          Six practical guides connect website activity, source fields, CRM records and closed-won
+          value without pretending one platform can answer every question.
+        </p>
+        <a class="text-link" href="/insights/">View all insights</a>
+      </div>
+      <div class="home-insights">
+        {
+          featuredMeasurementInsights.map((entry, index) => (
+            <a
+              class:list={['home-insight', { 'home-insight--featured': entry.data.pillar }]}
+              href={`/insights/${entry.id}/`}
+            >
+              <span class="mono">
+                {String(index + 1).padStart(2, '0')} /{' '}
+                {entry.data.pillar ? 'Foundational guide' : 'Supporting insight'}
+              </span>
+              <h3>{entry.data.title}</h3>
+              <p>{entry.data.description}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

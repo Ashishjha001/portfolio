@@ -70,7 +70,7 @@ const schemaItems = schema
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#F4F0E7" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content={type} />

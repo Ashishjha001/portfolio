@@ -89,6 +89,16 @@
         "Dense evidence callout boxes"
       ],
       "reason": "The selected direction keeps the original Ledger composition while using smaller headings and tighter sections. Redundant homepage explanation, annotation boxes and the detailed homepage scope table are removed to reduce page length and visual density."
+    },
+    {
+      "date": "2026-08-24",
+      "choice": "Ledger editorial content cluster",
+      "alternatives": [
+        "Generic article card grid",
+        "Carousel-led discovery",
+        "Separate blog visual system"
+      ],
+      "reason": "The Measurement & Lead-Source Truth cluster uses one prominent foundational guide, ruled supporting rows, contextual article links and compact code-native frameworks. It preserves the existing Ledger typography and evidence hierarchy while keeping every article discoverable in static HTML."
     }
   ],
   "evidence": [
