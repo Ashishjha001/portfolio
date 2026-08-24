@@ -1,8 +1,8 @@
 # DataDecision
 
-> Experimental navigation file for DataDecision, a measurement-first AI-search visibility consultancy for B2B SaaS. This file is not presented as a ranking or citation signal.
+> Experimental navigation file for DataDecision, a measurement-first AI-search visibility consultancy for B2B SaaS.
 
-DataDecision publishes sampled visibility methods, dated research notes and scoped consultancy information. Keep the measurement window, sample, baseline, method version and limitations attached when citing any result.
+DataDecision publishes sampled visibility methods, dated research notes and scoped consultancy information. Include the measurement window, sample, baseline and method version when citing a result.
 
 ## Core pages
 
@@ -10,7 +10,7 @@ DataDecision publishes sampled visibility methods, dated research notes and scop
 - [AI-search visibility](https://datadecision.consulting/services/ai-search-visibility/): Flagship diagnostic capability.
 - [Measurement foundation](https://datadecision.consulting/services/measurement-foundation/): Referral, conversion and CRM evidence path.
 - [Methodology v0.3](https://datadecision.consulting/methodology/): Query-frame, observation protocol, metrics and limitations.
-- [Work ledger](https://datadecision.consulting/work/): Public-data demonstrations and self-measurement, honestly labelled.
+- [Work ledger](https://datadecision.consulting/work/): Dated website QA and future completed research records.
 - [Insights](https://datadecision.consulting/insights/): Dated guides and research templates.
 
 ## Contact

@@ -14,32 +14,34 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout
-  title="Work and demonstration evidence — DataDecision"
-  description="Public-data demonstrations and DataDecision self-measurement, clearly separated from client work and published with dates, samples, methods and limitations."
+  title="Work and website QA records — DataDecision"
+  description="Completed DataDecision research and website QA records with dates, samples, methods and limitations."
   path="/work/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work' }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy">
-      <p class="eyebrow">Evidence ledger</p><h1>Artifacts, honestly labelled.</h1><p class="lede">
-        Public-data demonstrations and DataDecision self-measurement now. Client work only after
-        real permission and verification.
+      <p class="eyebrow">Work ledger</p><h1>Published records with the context to judge them.</h1><p
+        class="lede"
+      >
+        The launch ledger begins with DataDecision’s own website QA. Future client work will appear
+        only with permission and verified facts.
       </p>
     </div>
     <aside class="page-hero__aside">
       <div class="folio"><span>Label key</span><span>01 definition</span></div><div class="caveat">
-        <span class="evidence-label">DEMONSTRATION RUN</span>A genuine public-data or DataDecision
-        self-measurement record. It is not a client result and does not imply a commercial outcome.
+        <span class="evidence-label">DEMONSTRATION RUN</span>A dated public-data or DataDecision
+        self-measurement record. The label separates it from client work.
       </div>
     </aside>
   </header>
   <section class="section">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">Published records</p><h2>Evidence before reputation.</h2><p
+        <p class="eyebrow">Published records</p><h2>Start with work that is complete.</h2><p
           class="small"
         >
-          No logo walls, empty client cards or work-in-progress case claims.
+          Each record links the observation date, sample, method and main limitation.
         </p>
       </div><div class="work-ledger">
         {
@@ -74,37 +76,6 @@ const formatDate = (date: Date) =>
             </article>
           ))
         }
-      </div>
-    </div>
-  </section>
-  <section class="section section--bright">
-    <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Self-case cadence</p><h2>Measure the firm with the same discipline.</h2>
-      </div><div class="scope-wrap">
-        <table class="scope-table">
-          <thead
-            ><tr><th>Observation</th><th>Status</th><th>Purpose</th><th>Publication rule</th></tr
-            ></thead
-          ><tbody
-            ><tr
-              ><td>Launch day</td><td>Published record above</td><td
-                >Establish the initial evidence and technical baseline.</td
-              ><td>Date, sample, method and limitations visible.</td></tr
-            ><tr
-              ><td>Day 30</td><td>Scheduled</td><td
-                >Repeat only comparable measures and document changes.</td
-              ><td>No future result shown before collection.</td></tr
-            ><tr
-              ><td>Day 60</td><td>Scheduled</td><td>Review signal stability and method drift.</td
-              ><td>Comparability note required.</td></tr
-            ><tr
-              ><td>Day 90</td><td>Scheduled</td><td
-                >Publish the complete launch-quarter self-case.</td
-              ><td>Keep null and negative findings.</td></tr
-            ></tbody
-          >
-        </table>
       </div>
     </div>
   </section>

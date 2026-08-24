@@ -8,11 +8,10 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   path="/privacy/"
   updated="24 Aug 2026"
 >
-  <h2>Scope of this draft</h2>
+  <h2>Scope of this notice</h2>
   <p>
-    This notice covers the public DataDecision website and its diagnostic enquiry form. It does not
-    yet describe client-project data processing, which requires engagement-specific terms and, where
-    appropriate, a data-processing agreement.
+    This notice covers the public DataDecision website and its diagnostic enquiry form. Client
+    project data is handled under the terms agreed for that engagement.
   </p>
 
   <h2>Information you choose to provide</h2>
@@ -22,16 +21,14 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     capture campaign parameters and the referring page so the enquiry source can be understood.
   </p>
   <p>
-    The form also uses a honeypot field and a minimum-completion-time check to reduce automated
-    spam. The client-side check is not described as server-side rate limiting.
+    The form uses automated-spam checks, including a hidden field and a minimum completion time.
   </p>
 
   <h2>Form delivery</h2>
   <p>
     When you submit the enquiry form, the entered information and ordinary request metadata are
-    transmitted to Web3Forms for processing and delivery to DataDecision by email. The website
-    reports success only after the provider confirms receipt. You can email DataDecision directly
-    instead of using the form.
+    processed by a form-delivery service and forwarded to DataDecision by email. You can email
+    DataDecision directly instead of using the form.
   </p>
 
   <h2>Purposes</h2>
@@ -45,32 +42,30 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
   <h2>Retention and recipients</h2>
   <p>
-    Web3Forms processes the submission to deliver it to DataDecision. DataDecision retains the
-    resulting enquiry record only as long as needed to respond, assess fit, meet applicable legal
-    obligations and maintain necessary business records. Provider practices can change; consult
-    Web3Forms' current documentation before submitting if its processing is material to your
-    decision.
+    The form-delivery service processes the submission so it can reach DataDecision. DataDecision
+    keeps the resulting enquiry record only as long as needed to respond, assess fit, meet
+    applicable obligations and maintain necessary business records.
   </p>
 
   <h2>Analytics and cookies</h2>
   <p>
-    No third-party analytics or non-essential cookie is installed in this build. The site emits
-    first-party browser events that remain in the page unless an approved analytics adapter is
-    added. See the <a href="/cookies/">cookie policy</a>.
+    The site currently uses no third-party analytics or non-essential cookies. Interaction events
+    used by the interface remain in the page and are not sent to an analytics service. See the <a
+      href="/cookies/">cookie policy</a
+    >.
   </p>
 
   <h2>Your choices</h2>
   <p>
     To ask about information supplied through this site, email <a
       href="mailto:contact@datadecision.consulting">contact@datadecision.consulting</a
-    >. A reviewed version must still identify the legal entity and jurisdiction-specific rights
-    request process; this draft does not claim a universal legal basis.
+    >. You may ask DataDecision to correct or delete enquiry information, subject to any record that
+    must be retained for an applicable obligation.
   </p>
 
   <h2>Security and limits</h2>
   <p>
-    Static delivery reduces some server-side attack surface, but no website can promise absolute
-    security. Provider access, retention, authentication and incident response must be verified
-    before production.
+    DataDecision limits the information requested and uses a specialist delivery service for the
+    enquiry form. No website or email workflow can promise absolute security.
   </p>
 </LegalLayout>

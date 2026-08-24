@@ -159,14 +159,22 @@ for (const privateName of [
 }
 
 const homeHtml = readFileSync(join(rootPath, 'index.html'), 'utf8');
+if (homeHtml.includes('17 of 17') || homeHtml.includes('17/17')) {
+  errors.push('Homepage must not display the website route-count proof');
+}
+
+const websiteQaHtml = readFileSync(
+  join(rootPath, 'work/datadecision-launch-evidence-baseline/index.html'),
+  'utf8',
+);
 for (const demonstrationField of [
   'DEMONSTRATION RUN',
   '24 Aug 2026',
   'Launch evidence audit v1.0',
   'Limitations',
 ]) {
-  if (!homeHtml.includes(demonstrationField)) {
-    errors.push(`Homepage demonstration record is missing: ${demonstrationField}`);
+  if (!websiteQaHtml.includes(demonstrationField)) {
+    errors.push(`Website QA demonstration record is missing: ${demonstrationField}`);
   }
 }
 

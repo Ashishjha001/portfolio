@@ -4,42 +4,38 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
 <LegalLayout
   title="Cookie policy"
-  description="The current site avoids non-essential cookies and documents what must change before analytics is connected."
+  description="How the DataDecision website currently uses cookies, browser storage and analytics."
   path="/cookies/"
   updated="24 Aug 2026"
 >
   <h2>Current position</h2>
   <p>
-    This build does not install third-party analytics, advertising pixels, session-replay tools or
-    other non-essential cookie technology. The contact form can capture campaign parameters in
-    hidden fields, but does not store them in a browser cookie.
+    The website currently uses no third-party analytics, advertising pixels, session-replay tools or
+    other non-essential cookie technology. The contact form can capture campaign parameters without
+    storing them in a browser cookie.
   </p>
 
   <h2>Essential browser storage</h2>
   <p>
-    The current static interface does not intentionally create essential cookies. Infrastructure
-    providers may process ordinary request metadata needed to deliver and protect the site; their
-    production configuration must be reviewed before this draft is approved.
+    The website does not intentionally create essential cookies. Hosting infrastructure may process
+    ordinary request metadata needed to deliver and protect the site.
   </p>
 
   <h2>Analytics events</h2>
   <p>
-    The site emits a small event layer for primary CTA clicks, methodology links, form start,
-    confirmed form success, template downloads, FAQ expansion, benchmark views and outbound contact
-    actions. These events remain in the page unless an approved analytics provider is connected.
+    The interface can record actions such as opening an FAQ or starting the enquiry form. These
+    events remain in the page and are not sent to an analytics service.
   </p>
 
   <h2>Future changes</h2>
   <p>
-    Before adding a provider, DataDecision should document the provider, identifiers, retention,
-    purposes, legal basis and consent behavior. If non-essential cookies are introduced, the consent
-    interface and this policy must be updated before the tracking code is enabled.
+    If DataDecision adds non-essential cookies or third-party analytics, this policy and the consent
+    controls will be updated before that technology is enabled.
   </p>
 
   <h2>Your control</h2>
   <p>
-    Because this build does not install non-essential cookies, there is no cosmetic consent banner.
-    A future banner should appear only if the deployed technology and applicable rules require a
-    real choice.
+    There is no cookie banner because the current website uses no non-essential cookies. If that
+    changes, the site will present the controls needed for a meaningful choice.
   </p>
 </LegalLayout>

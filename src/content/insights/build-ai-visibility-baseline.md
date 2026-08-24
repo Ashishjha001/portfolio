@@ -1,6 +1,6 @@
 ---
 title: 'Build your own AI-search visibility baseline'
-description: 'A no-tool protocol for turning 50 buyer questions into a dated, repeatable visibility record without pretending the sample is a ranking.'
+description: 'A practical protocol for turning 50 buyer questions into a dated, repeatable visibility record with a clear sample boundary.'
 publishedDate: 2026-08-24
 updatedDate: 2026-08-24
 category: 'Method guide'
@@ -22,7 +22,7 @@ sources:
   <p><strong>An AI-search visibility baseline is a dated record of what a fixed set of buyer questions produced across a documented set of search and AI surfaces.</strong> Build the query frame before observing results, preserve mentions and citations separately, repeat only under a pre-set rule, and report the sample boundary beside every metric.</p>
 </div>
 
-## Why “I checked ChatGPT once” is not a measurement
+## Why one ChatGPT check gives you a weak baseline
 
 A spot-check is useful for discovery. It can reveal an incorrect description, a surprising source or a competitor you did not expect. It cannot tell you whether the observation is typical, persistent or comparable with another brand.
 
@@ -168,6 +168,6 @@ Keep the final page compact:
 6. **Actions:** owner, effort, expected signal, confidence and stopping rule.
 7. **Limitations:** variance, access, personalization, engine change and sample boundary.
 
-> **Baseline before tooling. Track the frame, not the feeling.**
+> **Start with the frame. Tooling comes later.**
 
 The [published methodology](/methodology/) contains the version record and limitation table. Use it freely, or [request a diagnostic](/contact/) when you need the observation, technical review and measurement path handled as one scoped engagement.
