@@ -13,6 +13,7 @@ const insights = defineCollection({
     category: z.string(),
     readingMinutes: z.number().int().positive(),
     author: z.string().default('DataDecision Research'),
+    authorNote: z.string().optional(),
     featured: z.boolean().default(false),
     cluster: z.string().optional(),
     pillar: z.boolean().default(false),
