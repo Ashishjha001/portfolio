@@ -34,9 +34,21 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'DataDecision',
   url: 'https://datadecision.consulting',
-  email: 'u22me137@med.svnit.ac.in',
+  email: 'contact@datadecision.consulting',
   slogan: 'Growth you can prove.',
   description: 'Measurement-first AI-search visibility for B2B SaaS.',
+  founder: {
+    '@type': 'Person',
+    name: 'Ashish Jha',
+    jobTitle: 'Founder',
+    url: 'https://datadecision.consulting/about/',
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'business enquiries',
+    email: 'contact@datadecision.consulting',
+  },
 };
 const websiteSchema = {
   '@context': 'https://schema.org',

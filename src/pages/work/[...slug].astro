@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  return entries
+    .filter((entry) => entry.data.status === 'complete')
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
+    date,
+  );
+---
+
+<BaseLayout
+  title={`${data.title} — DataDecision`}
+  description={data.description}
+  path={`/work/${entry.id}/`}
+  type="article"
+>
+  <Breadcrumbs
+    items={[{ label: 'Home', href: '/' }, { label: 'Work', href: '/work/' }, { label: data.title }]}
+  />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy">
+      <p class="eyebrow">{data.label}</p><h1>{data.title}</h1><p class="lede">{data.description}</p>
+    </div>
+    <aside class="page-hero__aside">
+      <div class="folio">
+        <span>Observation record</span><span>{formatDate(data.observationDate)}</span>
+      </div><dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-label">Window</dt><dd>
+            <strong>{data.measurementWindow}</strong><small>Observation period</small>
+          </dd>
+        </div><div class="evidence-line">
+          <dt class="evidence-label">Sample</dt><dd>
+            <strong>{data.sample}</strong><small>Measured corpus</small>
+          </dd>
+        </div><div class="evidence-line">
+          <dt class="evidence-label">Baseline</dt><dd>
+            <strong>{data.baseline}</strong><small>Comparison starting point</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+  <div class="shell article-shell">
+    <aside class="article-meta">
+      <dl>
+        <div><dt>Label</dt><dd>{data.label}</dd></div><div>
+          <dt>Observed</dt><dd>{formatDate(data.observationDate)}</dd>
+        </div><div><dt>Method</dt><dd>{data.methodologyVersion}</dd></div>
+      </dl>
+    </aside><article class="prose"><Content /></article><aside class="article-aside">
+      <div class="article-aside__box">
+        <p class="evidence-label">Limitations</p><ul>
+          {data.limitations.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </aside>
+  </div>
+  <FinalCTA heading="Build a baseline your team can inspect." />
+</BaseLayout>

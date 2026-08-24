@@ -1,6 +1,6 @@
-# Founder input required before production
+# Founder and production inputs
 
-These facts were not present in the supplied package. They are intentionally omitted from public claims rather than inferred.
+Approved founder and contact facts are recorded below. Remaining production inputs are still omitted from public claims rather than inferred.
 
 ## Commercial
 
@@ -10,9 +10,8 @@ These facts were not present in the supplied package. They are intentionally omi
 
 ## Identity and contact
 
-- Founder’s public name, approved biography, portrait and verifiable credentials.
-- Confirm whether the approved contact email, `u22me137@med.svnit.ac.in`, is monitored under a
-  defined accessibility/privacy response process.
+- Confirm whether `contact@datadecision.consulting` is monitored under a defined accessibility/privacy response process.
+- Supply a real founder photograph only if one is approved for publication; the site currently uses a text-only founder record.
 - Approved LinkedIn or other social URLs.
 - Legal entity name, registered address, governing jurisdiction and tax presentation.
 
@@ -39,7 +38,9 @@ These facts were not present in the supplied package. They are intentionally omi
 
 ## Resolved facts
 
-- Approved public contact email: `u22me137@med.svnit.ac.in`.
+- Founder: Ashish Jha.
+- Education: graduate of NIT Surat. This is an identification fact and does not imply institutional endorsement.
+- Approved public contact email: `contact@datadecision.consulting`.
 
 ## Deployment
 

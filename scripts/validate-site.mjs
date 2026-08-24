@@ -57,6 +57,12 @@ for (const file of htmlFiles) {
   const h1Count = (html.match(/<h1(?:\s|>)/g) || []).length;
   if (h1Count !== 1) errors.push(`${rel}: expected one H1, found ${h1Count}`);
   if (!/<main\b/.test(html)) errors.push(`${rel}: missing main landmark`);
+  if (!html.includes('Growth you can prove.')) {
+    errors.push(`${rel}: permanent brand tagline is missing`);
+  }
+  if (!html.includes('contact@datadecision.consulting')) {
+    errors.push(`${rel}: company contact email is missing from the shared footer`);
+  }
   if (!/<link rel="canonical" href="https:\/\/datadecision\.consulting\//.test(html)) {
     errors.push(`${rel}: missing canonical URL`);
   }
@@ -83,11 +89,22 @@ for (const file of htmlFiles) {
     if (!internalTargetExists(href)) errors.push(`${rel}: broken internal link ${href}`);
   }
 
+  const pageSchemas = [];
   for (const match of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
     try {
-      JSON.parse(match[1]);
+      pageSchemas.push(JSON.parse(match[1]));
     } catch (error) {
       errors.push(`${rel}: invalid JSON-LD (${error.message})`);
+    }
+  }
+
+  if (rel === 'about/index.html') {
+    const founder = pageSchemas.find(
+      (item) => item['@type'] === 'Person' && item.name === 'Ashish Jha',
+    );
+    if (!founder) errors.push(`${rel}: missing Ashish Jha Person structured data`);
+    if (founder?.alumniOf?.name !== 'NIT Surat') {
+      errors.push(`${rel}: founder education structured data must use NIT Surat`);
     }
   }
 }
@@ -120,6 +137,11 @@ const prohibited = [
   'world-class',
   'cutting-edge',
   'glassmorphism',
+  'u22me137@med.svnit.ac.in',
+  'SVNIT',
+  'Sardar Vallabhbhai National Institute of Technology',
+  'founder identity pending',
+  'tagline rotator',
 ];
 
 for (const phrase of prohibited) {
@@ -134,6 +156,23 @@ for (const privateName of [
   'competitor dossier',
 ]) {
   if (corpus.includes(privateName)) errors.push(`Private strategy marker found: ${privateName}`);
+}
+
+const homeHtml = readFileSync(join(rootPath, 'index.html'), 'utf8');
+for (const demonstrationField of [
+  'DEMONSTRATION RUN',
+  '24 Aug 2026',
+  'Launch evidence audit v1.0',
+  'Limitations',
+]) {
+  if (!homeHtml.includes(demonstrationField)) {
+    errors.push(`Homepage demonstration record is missing: ${demonstrationField}`);
+  }
+}
+
+const generatedScripts = files.filter((file) => extname(file) === '.js');
+if (generatedScripts.length) {
+  errors.push(`Unexpected generated JavaScript bundle(s): ${generatedScripts.length}`);
 }
 
 if (errors.length) {

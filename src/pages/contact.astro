@@ -13,17 +13,22 @@ import ContactForm from '../components/ContactForm.astro';
     '@type': 'ContactPage',
     name: 'Request a visibility diagnostic',
     url: 'https://datadecision.consulting/contact/',
-    email: 'u22me137@med.svnit.ac.in',
+    email: 'contact@datadecision.consulting',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'DataDecision',
+      email: 'contact@datadecision.consulting',
+    },
   }}
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy">
-      <p class="eyebrow">Request a diagnostic</p><h1>Brief the problem, not the pitch.</h1><p
-        class="lede"
-      >
-        Tell us what is difficult to see, measure or decide. The first review is about fit, scope
-        and evidence—not pressure to buy an oversized engagement.
+      <p class="eyebrow">Request a diagnostic</p><h1>
+        Start with the decision you need to make.
+      </h1><p class="lede">
+        Tell us what is difficult to see, measure or decide. The first review tests whether the
+        published method and focused scope can answer that question.
       </p>
     </div><aside class="page-hero__aside">
       <div class="folio"><span>What happens next</span><span>03 steps</span></div><div
@@ -31,40 +36,64 @@ import ContactForm from '../components/ContactForm.astro';
       >
         <div class="rule-row" style="grid-template-columns:2rem 1fr;">
           <span class="mono">01</span><div>
-            <h3 style="font-size:1.3rem;">Human review</h3><p>No automatic budget rejection.</p>
+            <h3 style="font-size:1.3rem;">Submit one brief</h3><p>
+              Use the form or email the same information directly.
+            </p>
           </div>
         </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
           <span class="mono">02</span><div>
-            <h3 style="font-size:1.3rem;">Fit and scope</h3><p>
-              The method must be able to answer the question.
+            <h3 style="font-size:1.3rem;">Founder fit review</h3><p>
+              Ashish checks the question, evidence needs and scope fit.
             </p>
           </div>
         </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
           <span class="mono">03</span><div>
-            <h3 style="font-size:1.3rem;">Written next step</h3><p>
-              Scope, fee, inputs and limitations before kickoff.
+            <h3 style="font-size:1.3rem;">Written scope</h3><p>
+              Final frame, fee, inputs, timing and limitations before kickoff.
             </p>
           </div>
         </div>
       </div>
+      <div class="caveat">
+        <span class="evidence-label">Before work begins</span>
+        Delivery starts only after the written scope is accepted and required inputs are complete. The
+        enquiry does not create a charge or an automatic calendar booking.
+      </div>
     </aside>
   </header>
-  <section class="section">
-    <div class="shell editorial-grid">
+  <section class="section" aria-labelledby="diagnostic-brief">
+    <div class="shell editorial-grid editorial-grid--balanced">
       <div class="section-intro">
-        <p class="eyebrow">Diagnostic brief</p><h2>Seven fields. One useful starting record.</h2><p
-          class="small"
-        >
-          The production form endpoint is intentionally not invented. In an unconfigured preview,
-          submission remains local and reports the missing connection. You can also email <a
-            href="mailto:u22me137@med.svnit.ac.in">u22me137@med.svnit.ac.in</a
+        <p class="eyebrow">Diagnostic brief</p><h2 id="diagnostic-brief">
+          Seven fields. One useful starting record.
+        </h2><p class="small">
+          The form sends only after a production endpoint is configured and never reports success
+          without provider confirmation. You can also email <a
+            href="mailto:contact@datadecision.consulting">contact@datadecision.consulting</a
           >.
         </p>
+        <div class="scope-summary" aria-label="Standard diagnostic scope">
+          <p class="evidence-label">Standard visibility diagnostic</p>
+          <dl>
+            <div><dt>Query frame</dt><dd>50 buying-intent queries</dd></div>
+            <div><dt>Market</dt><dd>One market · one language</dd></div>
+            <div><dt>Surfaces</dt><dd>Up to four approved surfaces where access permits</dd></div>
+            <div><dt>Runs</dt><dd>Two where methodologically appropriate</dd></div>
+            <div>
+              <dt>Outputs</dt><dd>
+                Baseline, source map, technical review, measurement gaps and 90-day plan
+              </dd>
+            </div>
+            <div>
+              <dt>Timing</dt><dd>15 business days after scope and required inputs are complete</dd>
+            </div>
+          </dl>
+        </div>
       </div><ContactForm />
     </div>
   </section>
   <section class="section section--bright">
-    <div class="shell editorial-grid">
+    <div class="shell editorial-grid editorial-grid--reverse">
       <div class="section-intro">
         <p class="eyebrow">Bring if available</p><h2>Inputs that make the first review sharper.</h2>
       </div><div class="comparison">

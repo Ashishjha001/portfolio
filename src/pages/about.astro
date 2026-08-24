@@ -5,22 +5,44 @@ import FinalCTA from '../components/FinalCTA.astro';
 ---
 
 <BaseLayout
-  title="About DataDecision — Founder-led, method-first"
-  description="DataDecision is a founder-led, measurement-first growth partner focused on AI-search visibility, measurement foundations and scoped implementation."
+  title="About DataDecision and founder Ashish Jha"
+  description="DataDecision is a founder-led, measurement-first consultancy. Meet founder Ashish Jha and read the principles behind its AI-search visibility work."
   path="/about/"
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: 'About DataDecision',
-    mainEntity: { '@type': 'Organization', name: 'DataDecision' },
-  }}
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About DataDecision',
+      url: 'https://datadecision.consulting/about/',
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'DataDecision',
+        email: 'contact@datadecision.consulting',
+        founder: { '@type': 'Person', name: 'Ashish Jha' },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Ashish Jha',
+      jobTitle: 'Founder',
+      url: 'https://datadecision.consulting/about/',
+      email: 'contact@datadecision.consulting',
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
+      worksFor: {
+        '@type': 'Organization',
+        name: 'DataDecision',
+        url: 'https://datadecision.consulting/',
+      },
+    },
+  ]}
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy">
-      <p class="eyebrow">About DataDecision</p><h1>
-        Founder-led. Method-first. Built in public.
-      </h1><p class="lede">
+      <p class="eyebrow">About DataDecision</p><h1>A measurement practice built for scrutiny.</h1><p
+        class="lede"
+      >
         A focused consultancy for B2B SaaS teams that need a defensible view of AI-search visibility
         and the measurement path into pipeline.
       </p>
@@ -33,8 +55,41 @@ import FinalCTA from '../components/FinalCTA.astro';
       </p>
     </aside>
   </header>
+  <section class="section" aria-labelledby="founder-heading">
+    <div class="shell founder-record">
+      <div class="founder-record__identity">
+        <p class="eyebrow">Founder</p>
+        <h2 id="founder-heading">Ashish Jha</h2>
+        <p class="small">Founder, DataDecision<br />Graduate, NIT Surat</p>
+        <a class="text-link" href="mailto:contact@datadecision.consulting">
+          contact@datadecision.consulting
+        </a>
+      </div>
+      <div class="founder-record__body">
+        <p class="lede">
+          Ashish Jha founded DataDecision to build a measurement-first practice for AI-search
+          visibility and the path into pipeline.
+        </p>
+        <p class="measure">
+          His public operating standard is straightforward: define the observation frame before
+          interpreting the output, publish limitations beside conclusions, and recommend only work
+          the evidence can support. DataDecision’s focused launch scope reflects that standard.
+        </p>
+        <dl class="founder-record__facts">
+          <div>
+            <dt>Education</dt>
+            <dd>NIT Surat</dd>
+          </div>
+          <div>
+            <dt>Credential boundary</dt>
+            <dd class="small">Identification only; no institutional endorsement is claimed.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
   <section class="section">
-    <div class="shell editorial-grid">
+    <div class="shell editorial-grid editorial-grid--reverse">
       <div class="section-intro">
         <p class="eyebrow">Why this exists</p><h2>Evidence should survive the handoff.</h2>
       </div><div>
@@ -86,19 +141,21 @@ import FinalCTA from '../components/FinalCTA.astro';
     </div>
   </section>
   <section class="section section--ink">
-    <div class="shell editorial-grid">
+    <div class="shell editorial-grid editorial-grid--balanced">
       <div class="section-intro">
-        <p class="eyebrow" style="color:#9fd2bc;">What is not claimed</p><h2>No borrowed scale.</h2>
+        <p class="eyebrow" style="color:#9fd2bc;">Claim boundaries</p><h2>
+          Credibility starts with restraint.
+        </h2>
       </div><div>
         <p class="lede" style="color:#d3d6d1;">
           The launch site does not claim clients, logos, testimonials, partners, offices, headcount,
-          awards, proprietary datasets or guaranteed placements. Founder identity and verifiable
-          credentials will be added after the final factual record is approved—not filled with
-          generic biography copy.
+          awards, proprietary datasets or guaranteed placements. Its founder record contains the
+          facts supplied and approved for publication, without an invented biography, portrait or
+          experience claim.
         </p><div class="annotation" style="margin-top:2rem;color:var(--ink);">
           <span class="evidence-label">Current truth</span><p>
-            Founder-led delivery. Focused launch scope. Public method. Demonstration research
-            clearly labelled.
+            Ashish Jha leads the work. The launch scope is focused, the method is public and
+            demonstration research is clearly labelled.
           </p>
         </div>
       </div>

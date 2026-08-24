@@ -26,5 +26,5 @@ pnpm-debug.log*
 .idea/
 
 # local-only analysis and visual QA
-work/
-screenshots/
+/work/
+/screenshots/
