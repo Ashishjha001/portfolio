@@ -1,6 +1,6 @@
 ---
-title: 'Measuring AI referrals in GA4 without fooling yourself'
-description: 'Use GA4’s AI Assistant channel as a starting point, then test source capture, scope, CRM joins and the visits the report cannot observe.'
+title: 'A practical GA4 check for AI referrals'
+description: 'Start with GA4’s AI Assistant channel, then test source capture, scope, CRM joins and visits with missing referrer data.'
 publishedDate: 2026-08-24
 updatedDate: 2026-08-24
 category: 'Measurement'
@@ -24,7 +24,7 @@ sources:
   <p><strong>GA4 can now classify visits from named assistants in its AI Assistant channel, but that report is not a complete measure of AI-assisted discovery.</strong> Treat it as the observable referral layer. Validate the source data, separate session and user scope, test the path into your CRM, and report the traffic that lacks a useful referrer as unknown—not zero.</p>
 </div>
 
-## Start with the distinction GA4 cannot make for you
+## Start with the distinction GA4 leaves unresolved
 
 An AI referral is a visit whose available source data identifies an assistant or AI-search product. AI-assisted discovery is broader: it can include a person who reads an answer, remembers a brand, opens a new tab and arrives directly later. The first can sometimes be observed in analytics. The second often cannot be joined to the visit without additional evidence.
 
@@ -63,7 +63,7 @@ Google documents separate [traffic-source scopes](https://support.google.com/ana
 
 Choose the scope from the decision. A content team asking “which visits arrived from an assistant this month?” probably needs session-scoped reporting. A revenue team asking “which observed acquisition source is attached to these opportunities?” needs a documented join from analytics into CRM fields—and a warning about identity loss between the two.
 
-## Build a QA plan before building a dashboard
+## Test the source path before building a dashboard
 
 The fastest way to improve an AI-referral report is not another visualization. It is a small, repeatable test matrix.
 
@@ -107,9 +107,9 @@ The dashboard deserves a confidence label based on implementation QA, join cover
 
 ## Decision rules
 
-> **An AI-referral number without a QA plan is a classification result, not a measurement system.**
+> **The report becomes useful when its source path and CRM join have been tested.**
 
-- Use GA4’s AI Assistant channel as the starting definition, not an unquestionable total.
+- Use GA4’s AI Assistant channel as the starting definition and document its boundary.
 - Compare like scopes with like scopes.
 - Version custom rules and annotate changes.
 - Keep unknown traffic unknown.

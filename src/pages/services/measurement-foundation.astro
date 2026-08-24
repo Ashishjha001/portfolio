@@ -8,12 +8,12 @@ const faqs = [
   {
     question: 'Will this give us perfect attribution?',
     answer:
-      'No. A measurement foundation reduces preventable gaps and makes assumptions visible. It does not create complete causal attribution from incomplete or privacy-constrained data.',
+      'A measurement foundation closes preventable gaps and makes the remaining assumptions explicit. Causal attribution still requires evidence that analytics and CRM systems may not capture.',
   },
   {
     question: 'Do you replace our analytics or CRM?',
     answer:
-      'Not by default. The work begins by mapping the current stack, defining the decision fields and identifying the smallest reliable change. A replacement is recommended only when the evidence supports it.',
+      'The work starts by mapping the current stack, defining the decision fields and finding the smallest reliable change. A replacement is recommended only when the evidence supports it.',
   },
   {
     question: 'Can AI-referral traffic be tracked?',
@@ -47,7 +47,7 @@ const schema = [
 
 <BaseLayout
   title="Growth measurement foundation for B2B SaaS — DataDecision"
-  description="Repair the gaps between acquisition data, conversion events and CRM stages—while keeping attribution assumptions visible."
+  description="Repair the gaps between acquisition data, conversion events and CRM stages while keeping attribution assumptions visible."
   path="/services/measurement-foundation/"
   schema={schema}
 >
@@ -61,7 +61,7 @@ const schema = [
   <header class="shell page-hero">
     <div class="page-hero__copy">
       <p class="eyebrow">Measurement foundation</p><h1>
-        When GA4 and your CRM disagree, make the assumptions visible.
+        When GA4 and your CRM disagree, trace the difference.
       </h1><p class="lede">
         Trace acquisition, conversion and pipeline as one evidence path. Repair the preventable
         gaps, document the irreducible ones and give decision-makers a number they can challenge.
@@ -161,13 +161,13 @@ const schema = [
     <div class="shell editorial-grid">
       <div class="section-intro">
         <p class="eyebrow" style="color:#9fd2bc;">Boundary</p><h2>
-          No model can recover data that was never observed.
+          Work with the data you can actually observe.
         </h2>
       </div><div>
         <p class="lede" style="color:#d3d6d1;">
-          We do not present multi-touch attribution as causal proof. The deliverable names the
-          attribution rule, preserves the raw evidence where practical and keeps confidence
-          proportional to the sample.
+          The deliverable states the attribution rule, preserves raw evidence where practical and
+          keeps confidence proportional to the sample. It also shows where causal interpretation
+          would need a stronger research design.
         </p><div class="annotation" style="margin-top:2rem;color:var(--ink);">
           <span class="evidence-label">Decision rule</span><p>
             If two systems answer different questions, reconcile the definitions before reconciling
@@ -181,7 +181,7 @@ const schema = [
   <section class="section section--bright">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">Questions</p><h2>What measurement can—and cannot—settle.</h2>
+        <p class="eyebrow">Questions</p><h2>What teams ask about the measurement work.</h2>
       </div><FAQList items={faqs} />
     </div>
   </section>

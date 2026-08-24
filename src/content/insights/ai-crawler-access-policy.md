@@ -1,5 +1,5 @@
 ---
-title: 'AI crawler access: robots.txt, bot policies and what llms.txt does not do'
+title: 'AI crawler access: robots.txt, bot policies and the role of llms.txt'
 description: 'Separate search discovery, user-requested retrieval and model training; then write a crawler policy you can explain and verify.'
 publishedDate: 2026-08-24
 updatedDate: 2026-08-24
@@ -25,7 +25,7 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first / checked 24 Aug 2026</p>
-  <p><strong>Do not “allow AI” with one blanket robots.txt rule.</strong> Search indexing, user-requested retrieval and model-training collection are different purposes, and major providers expose different controls. Decide each purpose separately, publish the rule, verify access in logs where possible, and treat <code>llms.txt</code> as an experimental navigation aid—not a ranking, citation or crawler-permission mechanism.</p>
+  <p><strong>A single blanket robots.txt rule cannot express every AI-related access decision.</strong> Search indexing, user-requested retrieval and model-training collection are different purposes, and major providers expose different controls. Decide each purpose separately, publish the rule and verify access in logs where possible. Treat <code>llms.txt</code> as an experimental navigation aid.</p>
 </div>
 
 ## What is agent-crawlability?
@@ -156,11 +156,11 @@ Download the [crawler-policy decision matrix](/downloads/crawler-policy-decision
 
 ## Decision rules
 
-> **Cheap to publish, cheap to verify, never a guarantee.**
+> **Keep the policy simple enough to explain and verify.**
 
 - Separate search, user retrieval and training controls.
 - Write a reason beside every named rule.
 - Verify the deployed response and access path.
-- Treat `llms.txt` as an experimental map, not a control plane.
-- Do not turn crawler access into a citation promise.
+- Use `llms.txt` as an experimental map rather than a control plane.
+- Keep crawler access separate from citation expectations.
 - Recheck provider documentation on every policy review date.

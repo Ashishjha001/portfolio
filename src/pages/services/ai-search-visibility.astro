@@ -10,7 +10,7 @@ const faqs = [
   {
     question: 'How stable are the observations?',
     answer:
-      'They are snapshots within a defined window, not permanent rankings. Repeated runs can reveal whether an observation persists, but engine, session and prompt variance remain material limitations.',
+      'Each result belongs to a defined observation window. Repeated runs can show whether an observation appears again, while engine, session and prompt variance still affect the answer.',
   },
   {
     question: 'How often should the baseline be repeated?',
@@ -20,7 +20,7 @@ const faqs = [
   {
     question: 'Does crawler access guarantee a citation?',
     answer:
-      'No. Access is necessary for some retrieval paths but not sufficient for inclusion, description accuracy or recommendation. Crawler policy, technical readability and source authority are separate layers.',
+      'Crawler access supports some retrieval paths, but citations also depend on the product, query, sources and answer-generation process. The diagnostic reviews access as one part of the picture.',
   },
   {
     question: 'What arrives after 15 business days?',
@@ -54,17 +54,17 @@ const schema = [
 
 <BaseLayout
   title="AI-search visibility for B2B SaaS — DataDecision"
-  description="Build a sampled baseline of how your SaaS appears across approved search and AI surfaces—then rank what to fix, with the method and limitations attached."
+  description="Measure how your SaaS appears across an agreed set of search and AI surfaces, then choose the highest-value improvements."
   path="/services/ai-search-visibility/"
   schema={schema}
 >
   <Breadcrumbs
     items={[{ label: 'Home', href: '/' }, { label: 'Services' }, { label: 'AI-search visibility' }]}
   />
-  <header class="shell page-hero">
+  <header class="shell page-hero page-hero--ai-visibility">
     <div class="page-hero__copy">
       <p class="eyebrow">AI-search visibility</p>
-      <h1>Where does your SaaS appear—and what can the sample actually prove?</h1>
+      <h1>Where does your SaaS appear, and what should you improve next?</h1>
       <p class="lede">
         Replace anecdotal spot-checks with a documented query frame, dated observations, a source
         map and a prioritized action plan.
@@ -104,14 +104,31 @@ const schema = [
       </div>
       <div>
         <p class="lede">
-          Generated answers can vary by engine, prompt, location, account state and time. A
-          screenshot can start a useful question, but it cannot support a trend claim on its own.
-        </p><div class="annotation" style="margin-top:2rem;">
-          <span class="evidence-label">Working definition</span><p>
-            An AI-search visibility baseline is a dated record of what a fixed query frame produced
-            across a documented surface set and observation protocol. It is a comparison instrument,
-            not a universal score.
-          </p>
+          Generated answers vary by engine, prompt, location, account state and time. A useful
+          baseline fixes the query frame and surface set, records what appeared on specific dates
+          and gives the team a consistent comparison for the next decision.
+        </p>
+        <div class="rule-list" style="margin-top:2.5rem;">
+          <div class="rule-row">
+            <span class="mono">01</span><div>
+              <h3>Same buyer questions</h3><p>
+                Fix the market, language, comparison set and question wording before collection.
+              </p>
+            </div><span class="rule-row__meta">Query frame</span>
+          </div><div class="rule-row">
+            <span class="mono">02</span><div>
+              <h3>Dated observation conditions</h3><p>
+                Record the surface, access state, intended locale and collection date for every run.
+              </p>
+            </div><span class="rule-row__meta">Run record</span>
+          </div><div class="rule-row">
+            <span class="mono">03</span><div>
+              <h3>Separate evidence layers</h3><p>
+                Keep mentions, visible sources and observable referrals as distinct fields in the
+                final baseline.
+              </p>
+            </div><span class="rule-row__meta">Clear signals</span>
+          </div>
         </div>
       </div>
     </div>
@@ -133,10 +150,9 @@ const schema = [
         <div class="rule-row">
           <span class="mono">02</span><div>
             <h3>Citation and source map</h3><p>
-              The public sources visible in the answers, recorded without assuming the source caused
-              inclusion.
+              The public sources visible in the answers, grouped by topic and recurring domain.
             </p>
-          </div><span class="rule-row__meta">Observation ≠ causality</span>
+          </div><span class="rule-row__meta">Source context</span>
         </div>
         <div class="rule-row">
           <span class="mono">03</span><div>
@@ -167,10 +183,11 @@ const schema = [
   <section class="section">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">Artifact anatomy</p><h2>Evidence and caveat share the page.</h2><p
+        <p class="eyebrow">Decision Board</p><h2>Every recommendation answers four questions.</h2><p
           class="small"
         >
-          This is the reusable board structure, not a simulated result.
+          What did we observe? What did the data miss? What should happen next? What can the
+          evidence not prove?
         </p>
       </div>
       <DecisionBoard />
@@ -193,7 +210,7 @@ const schema = [
           </ul>
         </div><div class="comparison__rule" style="background:#4b4e49;"></div><div>
           <span class="evidence-label">Outside launch scope</span><h3>
-            Mandates the method cannot support
+            Work outside the current scope
           </h3><ul>
             <li>Guaranteed rankings, citations or revenue.</li><li>
               Pure brand campaigns or paid-media management.
@@ -207,7 +224,7 @@ const schema = [
   <section class="section section--bright">
     <div class="shell editorial-grid">
       <div class="section-intro">
-        <p class="eyebrow">Questions</p><h2>Sampling deserves scrutiny.</h2>
+        <p class="eyebrow">Questions</p><h2>What teams ask before starting.</h2>
       </div><FAQList items={faqs} />
     </div>
   </section>

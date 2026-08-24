@@ -1,6 +1,6 @@
 ---
-title: 'DataDecision launch evidence baseline'
-description: 'A self-audit of the rebuilt public website: route coverage, claim controls, content completeness and technical evidence files.'
+title: 'DataDecision website QA record'
+description: 'A dated audit of the public website: route coverage, claim controls, content completeness and technical evidence files.'
 label: 'DEMONSTRATION RUN'
 observationDate: 2026-08-24
 measurementWindow: 'Production build generated and audited on 24 Aug 2026'
@@ -8,7 +8,7 @@ sample: 'All 17 generated HTML routes, 3 launch articles, 3 public CSV templates
 baseline: 'First Ledger rebuild record; no comparable earlier baseline'
 methodologyVersion: 'Launch evidence audit v1.0'
 limitations:
-  - 'This is a website evidence and build-quality audit, not an AI-answer visibility result.'
+  - 'This record covers website evidence and build quality. It contains no AI-answer visibility result.'
   - 'Local build checks do not prove live crawler access, production form delivery or field performance.'
   - 'Browser and automated accessibility checks do not replace review with assistive-technology users.'
 status: 'complete'
@@ -54,12 +54,12 @@ The zeroes in the last three rows are intentional claim controls, not performanc
 
 The homepage directs visitors into deeper capability, methodology, work and insight pages rather than carrying every argument itself. The diagnostic scope is stated as 50 buying-intent queries, up to four approved surfaces where access permits, two documented runs where methodologically appropriate, one market, one language and 15 business days after required inputs are complete.
 
-Public pricing is not invented. The supplied materials contained a range without an approved scope-to-price map, so the production-input register requires founder confirmation before a public fee or credit condition is added.
+Engagement fees are stated in the written scope. The website does not publish a fee range because there is no approved scope-to-price map.
 
 The three articles each contain a dated answer-first section, primary platform sources or a published internal method, a practical procedure, a reusable asset and explicit limitations:
 
-1. [Measuring AI referrals in GA4 without fooling yourself](/insights/measuring-ai-referrals-ga4/)
-2. [AI crawler access: robots.txt, bot policies and what llms.txt does not do](/insights/ai-crawler-access-policy/)
+1. [A practical GA4 check for AI referrals](/insights/measuring-ai-referrals-ga4/)
+2. [AI crawler access: robots.txt, bot policies and the role of llms.txt](/insights/ai-crawler-access-policy/)
 3. [Build your own AI-search visibility baseline](/insights/build-ai-visibility-baseline/)
 
 ## Claim-control findings
@@ -68,8 +68,7 @@ The three articles each contain a dated answer-first section, primary platform s
 - No testimonial, client logo, partner strip, rating or award component is rendered.
 - No ranking, citation, traffic or revenue guarantee is offered.
 - Demonstration language appears only on this completed self-audit.
-- The founder record is limited to the supplied facts: Ashish Jha founded DataDecision and is a graduate of NIT Surat. No institutional endorsement or additional experience claim is implied.
-- The form cannot report success until a real endpoint confirms receipt.
+- The form reports success only after the delivery service accepts the submission.
 - Model-training crawler choices are separated from search and user-requested retrieval choices.
 
 ## Limitations
@@ -80,7 +79,7 @@ The static build cannot verify:
 
 - live DNS, certificate or CDN behavior;
 - whether named crawlers reach the origin;
-- real form-provider success before configuration;
+- email delivery after the form service accepts a submission;
 - conversion rate, qualified enquiries or commercial outcomes;
 - AI-answer appearance on any engine;
 - every assistive-technology interaction.
