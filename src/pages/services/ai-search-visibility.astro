@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import MethodBadge from '../../components/MethodBadge.astro';
 import DecisionBoard from '../../components/DecisionBoard.astro';
+import AISearchVisibilityMap from '../../components/AISearchVisibilityMap.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 
@@ -98,37 +99,42 @@ const schema = [
   </header>
 
   <section class="section">
-    <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">The problem</p><h2>A useful baseline begins beyond the first answer.</h2>
-      </div>
-      <div>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro">
+          <p class="eyebrow">The problem</p><h2>
+            A useful baseline begins beyond the first answer.
+          </h2>
+        </div>
         <p class="lede">
           Generated answers vary by engine, prompt, location, account state and time. A useful
           baseline fixes the query frame and surface set, records what appeared on specific dates
           and gives the team a consistent comparison for the next decision.
         </p>
-        <div class="rule-list" style="margin-top:2.5rem;">
-          <div class="rule-row">
-            <span class="mono">01</span><div>
-              <h3>Same buyer questions</h3><p>
-                Fix the market, language, comparison set and question wording before collection.
-              </p>
-            </div><span class="rule-row__meta">Query frame</span>
-          </div><div class="rule-row">
-            <span class="mono">02</span><div>
-              <h3>Dated observation conditions</h3><p>
-                Record the surface, access state, intended locale and collection date for every run.
-              </p>
-            </div><span class="rule-row__meta">Run record</span>
-          </div><div class="rule-row">
-            <span class="mono">03</span><div>
-              <h3>Separate evidence layers</h3><p>
-                Keep mentions, visible sources and observable referrals as distinct fields in the
-                final baseline.
-              </p>
-            </div><span class="rule-row__meta">Clear signals</span>
-          </div>
+      </div>
+      <div class="visual-inset">
+        <AISearchVisibilityMap />
+      </div>
+      <div class="rule-list visual-followup">
+        <div class="rule-row">
+          <span class="mono">01</span><div>
+            <h3>Same buyer questions</h3><p>
+              Fix the market, language, comparison set and question wording before collection.
+            </p>
+          </div><span class="rule-row__meta">Query frame</span>
+        </div><div class="rule-row">
+          <span class="mono">02</span><div>
+            <h3>Dated observation conditions</h3><p>
+              Record the surface, access state, intended locale and collection date for every run.
+            </p>
+          </div><span class="rule-row__meta">Run record</span>
+        </div><div class="rule-row">
+          <span class="mono">03</span><div>
+            <h3>Separate evidence layers</h3><p>
+              Keep mentions, visible sources and observable referrals as distinct fields in the
+              final baseline.
+            </p>
+          </div><span class="rule-row__meta">Clear signals</span>
         </div>
       </div>
     </div>

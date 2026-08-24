@@ -1,0 +1,227 @@
+<script is:inline>
+  (() => {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('[data-ledger-visual]').forEach((visual) => {
+      if (visual.dataset.ledgerVisualReady === 'true') return;
+      visual.dataset.ledgerVisualReady = 'true';
+
+      const stages = Array.from(visual.querySelectorAll('[data-activate-at]'));
+      const connectors = Array.from(visual.querySelectorAll('[data-connector-start]'));
+      const breaks = Array.from(visual.querySelectorAll('[data-break-start]'));
+      const replay = visual.querySelector('[data-visual-replay]');
+      const status = visual.querySelector('[data-visual-status]');
+      const duration = Number(visual.dataset.sequenceDuration || 7000);
+
+      let elapsed = 0;
+      let frameId;
+      let generation = 0;
+      let segmentBase = 0;
+      let segmentStartedAt;
+      let hasStarted = false;
+      let isRunning = false;
+      let isInViewport = false;
+
+      const updateConnector = (connector, progress) => {
+        const bounded = Math.max(0, Math.min(1, progress));
+        const path = connector.querySelector('[data-visual-path]');
+        const signal = connector.querySelector('[data-visual-signal]');
+
+        connector.style.setProperty('--connector-progress', bounded.toFixed(4));
+        connector.classList.toggle('is-drawing', bounded > 0 && bounded < 1);
+        connector.classList.toggle('is-complete', bounded >= 1);
+
+        if (path) {
+          path.style.strokeDasharray = '1';
+          path.style.strokeDashoffset = String(1 - bounded);
+        }
+
+        if (!signal) return;
+        signal.style.opacity = bounded > 0 && bounded < 1 ? '1' : '0';
+
+        if (path?.getTotalLength && signal instanceof SVGElement) {
+          const point = path.getPointAtLength(path.getTotalLength() * bounded);
+          signal.setAttribute('transform', `translate(${point.x} ${point.y})`);
+        }
+      };
+
+      const applyFrame = (time) => {
+        visual.dataset.animationElapsed = String(Math.round(time));
+        stages.forEach((stage) => {
+          const activation = Number(stage.dataset.activateAt || 0);
+          stage.classList.toggle('is-active', time >= activation);
+        });
+
+        connectors.forEach((connector) => {
+          const start = Number(connector.dataset.connectorStart || 0);
+          const connectorDuration = Number(connector.dataset.connectorDuration || 600);
+          updateConnector(connector, (time - start) / connectorDuration);
+        });
+
+        breaks.forEach((measurementBreak) => {
+          const start = Number(measurementBreak.dataset.breakStart || 0);
+          const end = Number(measurementBreak.dataset.breakEnd || duration);
+          measurementBreak.classList.toggle('is-break-active', time >= start && time < end);
+          measurementBreak.classList.toggle('is-reconciled', time >= end);
+        });
+      };
+
+      const pauseClock = () => {
+        generation += 1;
+        if (isRunning && segmentStartedAt !== undefined) {
+          elapsed = Math.min(duration, segmentBase + performance.now() - segmentStartedAt);
+          applyFrame(elapsed);
+        }
+        if (frameId !== undefined) cancelAnimationFrame(frameId);
+        frameId = undefined;
+        segmentStartedAt = undefined;
+      };
+
+      const canPlay = () => isInViewport && !document.hidden && isRunning;
+
+      const tick = (token, timestamp) => {
+        if (token !== generation) return;
+        frameId = undefined;
+        if (!canPlay()) {
+          segmentStartedAt = undefined;
+          return;
+        }
+
+        elapsed = Math.min(duration, segmentBase + timestamp - segmentStartedAt);
+        applyFrame(elapsed);
+
+        if (elapsed >= duration) {
+          elapsed = duration;
+          applyFrame(duration);
+          isRunning = false;
+          visual.dataset.animationState = 'complete';
+          visual.classList.add('is-complete');
+          if (status) status.textContent = 'Path animation complete.';
+          return;
+        }
+
+        frameId = requestAnimationFrame((nextTimestamp) => tick(token, nextTimestamp));
+      };
+
+      const resume = () => {
+        visual.classList.toggle('is-in-viewport', isInViewport);
+        if (!canPlay() || frameId !== undefined) return;
+        generation += 1;
+        const token = generation;
+        segmentBase = elapsed;
+        segmentStartedAt = performance.now();
+        frameId = requestAnimationFrame((timestamp) => tick(token, timestamp));
+      };
+
+      const reset = () => {
+        pauseClock();
+        elapsed = 0;
+        visual.classList.remove('is-complete');
+        visual.dataset.animationState = 'reset';
+        applyFrame(0);
+        if (status) status.textContent = 'Path animation ready.';
+      };
+
+      const start = () => {
+        reset();
+        hasStarted = true;
+        isRunning = true;
+        visual.dataset.animationState = 'running';
+        if (status) status.textContent = 'Path animation running.';
+        resume();
+      };
+
+      const showFinalState = () => {
+        pauseClock();
+        visual.classList.remove('has-motion', 'is-in-viewport');
+        visual.classList.add('is-reduced-motion', 'is-complete');
+        visual.dataset.animationState = 'complete';
+        elapsed = duration;
+        applyFrame(duration);
+        if (status) status.textContent = 'Path shown without animation.';
+      };
+
+      if (motionPreference.matches || !('IntersectionObserver' in window)) {
+        showFinalState();
+        return;
+      }
+
+      visual.classList.add('has-motion');
+      reset();
+      replay?.addEventListener('click', start);
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isInViewport = Boolean(entry?.isIntersecting && entry.intersectionRatio >= 0.35);
+          visual.classList.toggle('is-in-viewport', isInViewport);
+
+          if (isInViewport && !hasStarted) start();
+          else if (isInViewport) resume();
+          else pauseClock();
+        },
+        { threshold: [0, 0.35, 1] },
+      );
+
+      observer.observe(visual);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) pauseClock();
+        else resume();
+      });
+
+      motionPreference.addEventListener(
+        'change',
+        () => {
+          if (motionPreference.matches) {
+            observer.disconnect();
+            showFinalState();
+          }
+        },
+        { once: true },
+      );
+    });
+  })();
+</script>
+
+<style is:global>
+  .ledger-visual__actions {
+    display: inline-flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .ledger-visual__replay {
+    min-height: 2rem;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--green-dark);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--green-dark);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    transition:
+      background var(--transition),
+      color var(--transition);
+  }
+
+  .ledger-visual__replay:hover {
+    background: var(--green-dark);
+    color: white;
+  }
+
+  .ledger-visual.is-reduced-motion .ledger-visual__replay {
+    display: none;
+  }
+
+  @media (max-width: 680px) {
+    .ledger-visual__actions {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+</style>
