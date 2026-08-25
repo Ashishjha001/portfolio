@@ -126,6 +126,7 @@ const schemaItems = schema
     <Header currentPath={Astro.url.pathname} />
     <main id="main-content"><slot /></main>
     <Footer />
+    <button class="to-top" type="button" aria-label="Back to top" data-to-top hidden>↑</button>
     <script is:inline>
       window.dataDecisionEvents = window.dataDecisionEvents || [];
       window.ddTrack = function (name, detail) {
@@ -257,6 +258,7 @@ const schemaItems = schema
           });
           return;
         }
+        var isMobile = window.matchMedia('(max-width: 767px)').matches;
         var observer = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (entry) {
@@ -266,10 +268,34 @@ const schemaItems = schema
               }
             });
           },
-          { threshold: 0.18, rootMargin: '0px 0px -6% 0px' },
+          {
+            threshold: 0.18,
+            rootMargin: isMobile ? '0px 0px 4% 0px' : '0px 0px -6% 0px',
+          },
         );
         items.forEach(function (item) {
           observer.observe(item);
+        });
+      })();
+
+      /* Back-to-top control (mobile) */
+      (function () {
+        var btn = document.querySelector('[data-to-top]');
+        if (!btn) return;
+        var frame;
+        var update = function () {
+          frame = undefined;
+          btn.hidden = window.scrollY < 640;
+          btn.dataset.visible = window.scrollY > 640 ? 'true' : 'false';
+        };
+        var onScroll = function () {
+          if (!frame) frame = requestAnimationFrame(update);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+        btn.addEventListener('click', function () {
+          var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
         });
       })();
 
