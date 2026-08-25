@@ -194,7 +194,11 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
       }
 
       const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-      if (submit) submit.disabled = true;
+      if (submit) {
+        submit.disabled = true;
+        submit.dataset.state = 'sending';
+        submit.textContent = 'Sending brief…';
+      }
 
       try {
         const response = await fetch(endpoint, {
@@ -223,7 +227,11 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
         status.dataset.tone = 'error';
         status.dataset.visible = 'true';
       } finally {
-        if (submit) submit.disabled = false;
+        if (submit) {
+          submit.disabled = false;
+          delete submit.dataset.state;
+          submit.textContent = 'Send diagnostic brief';
+        }
         status.focus();
       }
     });
