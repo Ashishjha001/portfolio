@@ -31,7 +31,7 @@ The immediate reaction is usually: _Which tool is wrong?_
 
 That is the wrong first question. GA4 and your CRM are not counting the same thing.
 
-GA4 mainly observes website activity: sessions, events and key events. Your CRM stores identifiable business records: contacts, companies, opportunities and deals. A person can submit twice, block analytics, use two devices or already exist in the CRM. One human journey can therefore produce several analytics events but only one contact—or no tracked event and one contact.
+GA4 mainly observes website activity: sessions, events and key events. Your CRM stores identifiable business records: contacts, companies, opportunities and deals. A person can submit twice, block analytics, use two devices or already exist in the CRM. One human journey can therefore produce several analytics events but only one contact, or no tracked event and one contact.
 
 The goal is not to force both systems to display the same number. The goal is to explain the difference.
 
@@ -78,7 +78,7 @@ If 400 submissions become 260 contacts, classify the missing 140:
 - Different time zones or reporting windows
 - Different rules for what counts as a conversion
 
-Now the disagreement becomes a list of explainable buckets—not a fight between teams. If the unexplained records are being labelled Direct, use the [Direct-traffic diagnosis](/insights/crm-direct-traffic-despite-utm-tags/) to test the capture path.
+Now the disagreement becomes a list of explainable buckets, not a fight between teams. If the unexplained records are being labelled Direct, use the [Direct-traffic diagnosis](/insights/crm-direct-traffic-despite-utm-tags/) to test the capture path.
 
 ## Give each submission a shared ID
 

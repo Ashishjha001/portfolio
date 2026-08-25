@@ -4,6 +4,7 @@ export const prerender = true;
 
 const staticRoutes = [
   '/',
+  '/services/',
   '/services/ai-search-visibility/',
   '/services/measurement-foundation/',
   '/methodology/',

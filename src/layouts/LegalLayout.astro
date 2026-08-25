@@ -12,7 +12,7 @@ interface Props {
 const { title, description, path, updated } = Astro.props;
 ---
 
-<BaseLayout title={`${title} — DataDecision`} description={description} path={path}>
+<BaseLayout title={`${title} | DataDecision`} description={description} path={path}>
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: title }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy">
@@ -20,9 +20,7 @@ const { title, description, path, updated } = Astro.props;
     </div>
     <aside class="page-hero__aside">
       <div class="folio"><span>Last updated</span><span>{updated}</span></div>
-      <p class="lede" style="font-family:var(--font-display);font-size:1.6rem;">
-        Clear terms for using the website and contacting DataDecision.
-      </p>
+      <p class="lede">Clear terms for using the website and contacting DataDecision.</p>
     </aside>
   </header>
   <div class="shell article-shell">

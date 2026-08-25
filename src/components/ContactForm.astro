@@ -24,11 +24,24 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
     <input id="company-fax" name="company_fax" type="text" tabindex="-1" autocomplete="off" />
     <input name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" />
   </div>
+  <input type="hidden" name="selected_service" id="selected-service" value="general-enquiry" />
 
+  <p class="form-brief-line" data-brief-line hidden>
+    <span class="evidence-label">Selected service:</span>
+    <span data-brief-name></span>
+  </p>
   <div class="form-grid">
-    <div class="form-field">
-      <label for="name">Name <span aria-hidden="true">*</span></label>
-      <input id="name" name="name" type="text" autocomplete="name" required />
+    <div class="form-field form-field--full">
+      <label for="service-selection">Service <span class="small">(change if needed)</span></label>
+      <select id="service-selection" name="service_selection" data-service-select>
+        <option value="general-enquiry">General enquiry</option>
+        <option value="growth-strategy-measurement">Growth Strategy &amp; Measurement</option>
+        <option value="search-seo-ai-visibility">Search, SEO &amp; AI Visibility</option>
+        <option value="paid-acquisition-performance">Paid Acquisition &amp; Performance</option>
+        <option value="conversion-lifecycle-growth">Conversion &amp; Lifecycle Growth</option>
+        <option value="ai-agent-development">AI Agent Development</option>
+        <option value="ai-gpt-integrations">AI &amp; GPT Integrations</option>
+      </select>
     </div>
     <div class="form-field">
       <label for="email">Work email <span aria-hidden="true">*</span></label>
@@ -38,33 +51,25 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
       <label for="company">Company or website <span aria-hidden="true">*</span></label>
       <input id="company" name="company" type="text" autocomplete="organization" required />
     </div>
-    <div class="form-field">
-      <label for="role">Role <span aria-hidden="true">*</span></label>
-      <input id="role" name="role" type="text" autocomplete="organization-title" required />
-    </div>
     <div class="form-field form-field--full">
-      <label for="problem">Primary problem <span aria-hidden="true">*</span></label>
+      <label for="problem">What do you want to understand? <span aria-hidden="true">*</span></label>
       <textarea id="problem" name="problem" required aria-describedby="problem-help"></textarea>
-      <small id="problem-help">What is difficult to see, measure or decide today?</small>
+      <small id="problem-help">
+        The decision, dashboard disagreement or visibility question you need answered.
+      </small>
     </div>
     <div class="form-field form-field--full">
-      <label for="timeline">Preferred timeline <span aria-hidden="true">*</span></label>
-      <select id="timeline" name="timeline" required>
-        <option value="">Select a timeline</option>
-        <option value="within-30-days">Within 30 days</option>
-        <option value="this-quarter">This quarter</option>
-        <option value="exploring">Exploring options</option>
-      </select>
-    </div>
-    <div class="form-field form-field--full">
-      <label for="budget">Project budget <span class="small">(optional)</span></label>
-      <select id="budget" name="budget">
-        <option value="">Prefer not to say</option>
-        <option value="under-50k">Under ₹50,000</option>
-        <option value="50k-100k">₹50,000–₹1,00,000</option>
-        <option value="100k-300k">₹1,00,000–₹3,00,000</option>
-        <option value="over-300k">Above ₹3,00,000</option>
-      </select>
+      <label for="stack"
+        >Analytics and CRM you use today <span class="small">(optional)</span></label
+      >
+      <input
+        id="stack"
+        name="stack"
+        type="text"
+        aria-describedby="stack-help"
+        placeholder="GA4, Search Console, HubSpot, or not sure yet"
+      />
+      <small id="stack-help">Anything you have helps. "Not sure" is a fine answer.</small>
     </div>
     <div class="form-field form-field--full">
       <label class="form-check" for="consent">
@@ -102,6 +107,49 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
     Object.entries(values).forEach(([id, value]) => {
       const input = document.getElementById(id) as HTMLInputElement | null;
       if (input) input.value = value;
+    });
+
+    /* Selected service: read ?service= from the URL, keep editable dropdown in sync */
+    const serviceLabels: Record<string, string> = {
+      'growth-strategy-measurement': 'Growth Strategy & Measurement',
+      'search-seo-ai-visibility': 'Search, SEO & AI Visibility',
+      'paid-acquisition-performance': 'Paid Acquisition & Performance',
+      'conversion-lifecycle-growth': 'Conversion & Lifecycle Growth',
+      'ai-agent-development': 'AI Agent Development',
+      'ai-gpt-integrations': 'AI & GPT Integrations',
+    };
+    const serviceSelect = document.getElementById('service-selection') as HTMLSelectElement | null;
+    const hiddenService = document.getElementById('selected-service') as HTMLInputElement | null;
+    const briefLine = document.querySelector<HTMLElement>('[data-brief-line]');
+    const briefName = document.querySelector<HTMLElement>('[data-brief-name]');
+
+    const syncService = (slug: string) => {
+      const label = serviceLabels[slug];
+      if (!serviceSelect || !hiddenService) return;
+      if (!label) return;
+      serviceSelect.value = slug;
+      hiddenService.value = slug;
+      if (briefLine && briefName) {
+        briefName.textContent = label;
+        briefLine.hidden = false;
+      }
+    };
+
+    const initialService = params.get('service');
+    if (initialService && serviceLabels[initialService]) {
+      syncService(initialService);
+    }
+
+    serviceSelect?.addEventListener('change', () => {
+      const slug = serviceSelect.value;
+      if (hiddenService) hiddenService.value = slug;
+      if (!briefLine || !briefName) return;
+      if (slug === 'general-enquiry' || !serviceLabels[slug]) {
+        briefLine.hidden = true;
+      } else {
+        briefName.textContent = serviceLabels[slug];
+        briefLine.hidden = false;
+      }
     });
 
     let started = false;
@@ -160,7 +208,7 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
         }
         form.reset();
         status.textContent =
-          'Thanks—your brief has been sent. Ashish will review it and reply by email.';
+          'Thanks, your brief has been sent. Ashish will review it and reply by email.';
         status.dataset.tone = 'success';
         status.dataset.visible = 'true';
         window.ddTrack?.('form_submit_success', { path: window.location.pathname });

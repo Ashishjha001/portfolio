@@ -5,50 +5,177 @@ interface Props {
 
 const { currentPath } = Astro.props;
 const links = [
-  { href: '/services/ai-search-visibility/', label: 'AI-search visibility' },
-  { href: '/services/measurement-foundation/', label: 'Measurement' },
-  { href: '/methodology/', label: 'Methodology' },
-  { href: '/work/', label: 'Work' },
-  { href: '/insights/', label: 'Insights' },
-  { href: '/about/', label: 'About' },
+  { href: '/services/', label: 'Services', index: '01' },
+  { href: '/methodology/', label: 'Methodology', index: '02' },
+  { href: '/work/', label: 'Work', index: '03' },
+  { href: '/insights/', label: 'Insights', index: '04' },
+  { href: '/about/', label: 'About', index: '05' },
 ];
 
 const isCurrent = (href: string) =>
   href === '/' ? currentPath === href : currentPath.startsWith(href);
 ---
 
-<header class="site-header">
-  <nav class="shell nav" aria-label="Primary navigation">
+<header class="site-header" data-site-header>
+  <div class="site-header__bar">
     <a class="brand" href="/" aria-label="DataDecision home">
-      DataDecision
-      <small>Growth you can prove.</small>
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+          <path d="M4 19V5l7 8 3-3.4 6-1V12l-6 1-3 3.4L4 24z" fill="currentColor" opacity=".9"
+          ></path>
+          <circle cx="18.4" cy="5.6" r="2.6" fill="var(--signal)"></circle>
+        </svg>
+      </span>
+      <span class="brand__word">DataDecision<small>Growth you can prove.</small></span>
     </a>
-    <div class="nav__links">
+
+    <nav class="nav-desk" aria-label="Primary navigation">
       {
         links.map((link) => (
-          <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+          <a
+            href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+            data-nav-link
+          >
+            <span class="nav-desk__index" aria-hidden="true">
+              {link.index}
+            </span>
             {link.label}
           </a>
         ))
       }
+      <span class="nav-desk__indicator" aria-hidden="true" data-nav-indicator></span>
+    </nav>
+
+    <div class="site-header__actions">
+      <a
+        class="button button--primary button--compact"
+        href="/contact/"
+        data-event="cta_primary_click"
+      >
+        Request a diagnostic
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label">Menu</span>
+        <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
     </div>
-    <a class="button button--primary" href="/contact/" data-event="cta_primary_click">
-      Request a diagnostic
-    </a>
-    <details class="mobile-nav">
-      <summary>Menu</summary>
-      <div class="mobile-nav__panel">
-        {
-          links.map((link) => (
-            <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+  <div class="mobile-menu__backdrop" data-menu-close></div>
+  <nav class="mobile-menu__panel" aria-label="Mobile navigation">
+    <ol class="mobile-menu__list">
+      {
+        links.map((link) => (
+          <li style={`--i:${link.index}`}>
+            <a
+              href={link.href}
+              aria-current={isCurrent(link.href) ? 'page' : undefined}
+              data-menu-close
+            >
+              <span class="mono" aria-hidden="true">
+                {link.index}
+              </span>
               {link.label}
             </a>
-          ))
-        }
-        <a class="button button--primary" href="/contact/" data-event="cta_primary_click">
-          Request a diagnostic
-        </a>
-      </div>
-    </details>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="mobile-menu__foot">
+      <a
+        class="button button--primary"
+        href="/contact/"
+        data-event="cta_primary_click"
+        data-menu-close
+      >
+        Request a diagnostic
+      </a>
+      <p class="mono">contact@datadecision.consulting</p>
+    </div>
   </nav>
-</header>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+  if (toggle && menu) {
+    const closers = Array.from(menu.querySelectorAll<HTMLElement>('[data-menu-close]'));
+    let open = false;
+
+    const setOpen = (next: boolean) => {
+      open = next;
+      toggle.setAttribute('aria-expanded', String(next));
+      document.documentElement.classList.toggle('menu-open', next);
+      if (next) {
+        menu.hidden = false;
+        requestAnimationFrame(() => menu.classList.add('is-open'));
+        const firstLink = menu.querySelector<HTMLElement>('a');
+        firstLink?.focus({ preventScroll: true });
+      } else {
+        menu.classList.remove('is-open');
+        window.setTimeout(() => {
+          if (!open) menu.hidden = true;
+        }, 320);
+        toggle.focus({ preventScroll: true });
+      }
+    };
+
+    toggle.addEventListener('click', () => setOpen(!open));
+    closers.forEach((closer) => closer.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && open) setOpen(false);
+    });
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+      if (event.matches && open) setOpen(false);
+    });
+  }
+
+  /* Sliding active underline for the desktop nav */
+  (function () {
+    const nav = document.querySelector<HTMLElement>('.nav-desk');
+    const indicator = document.querySelector<HTMLElement>('[data-nav-indicator]');
+    if (!nav || !indicator) return;
+    const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'));
+    const active = links.find((link) => link.getAttribute('aria-current') === 'page') || null;
+
+    const moveTo = (link: HTMLAnchorElement | null) => {
+      if (!link) {
+        indicator.style.opacity = '0';
+        return;
+      }
+      indicator.style.opacity = '1';
+      indicator.style.width = `${link.offsetWidth - 24}px`;
+      indicator.style.transform = `translateX(${link.offsetLeft + 12}px)`;
+    };
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = (link: HTMLAnchorElement | null) => {
+      if (reduced.matches) {
+        indicator.style.transition = 'none';
+        moveTo(link);
+        requestAnimationFrame(() => (indicator.style.transition = ''));
+        return;
+      }
+      moveTo(link);
+    };
+
+    apply(active);
+    links.forEach((link) => {
+      link.addEventListener('mouseenter', () => apply(link));
+      link.addEventListener('focus', () => apply(link));
+    });
+    nav.addEventListener('mouseleave', () => apply(active));
+    nav.addEventListener('focusout', () => apply(active));
+    window.addEventListener('resize', () => apply(active));
+  })();
+</script>

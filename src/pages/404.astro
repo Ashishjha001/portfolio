@@ -3,18 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Page not found — DataDecision"
+  title="Page not found | DataDecision"
   description="The requested DataDecision page could not be found."
   path="/404/"
   noindex={true}
 >
-  <section class="section">
+  <section class="section not-found">
+    <span class="chapter-mark" aria-hidden="true">404</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">404</p><h1 style="font-size:clamp(4rem,10vw,8rem);">
-          We couldn’t find that page.
-        </h1>
-      </div><div>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">404</p><h1 class="not-found__title">We couldn’t find that page.</h1>
+      </div><div data-reveal style="--reveal-delay:110ms">
         <p class="lede">
           The route may have moved, the link may be incomplete, or the page may never have existed.
         </p><div class="button-row">
@@ -27,3 +26,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: clamp(5rem, 14vw, 10rem);
+  }
+
+  .not-found__title {
+    font-size: clamp(2.8rem, 8vw, 6rem);
+  }
+</style>

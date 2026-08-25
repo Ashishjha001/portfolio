@@ -27,7 +27,7 @@ sources:
 
 Most demo dashboards are built backwards.
 
-They start with the metrics that are easy to display—traffic, leads and pipeline—and ignore the transitions where revenue actually disappears.
+They start with the metrics that are easy to display, such as traffic, leads and pipeline, and ignore the transitions where revenue actually disappears.
 
 A useful dashboard should answer one question:
 

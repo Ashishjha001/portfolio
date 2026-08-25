@@ -43,7 +43,7 @@ Compare the new visits by:
 - Branded versus non-branded search
 - Existing customer or prospect, where known
 
-If the increase came from a broad informational query or an untargeted campaign, the page may be receiving more curiosity—not more buying intent. The [rankings-flat diagnosis](/insights/demo-requests-dropped-rankings-flat/) provides the corresponding Search Console checks.
+If the increase came from a broad informational query or an untargeted campaign, the page may be receiving more curiosity, not more buying intent. The [rankings-flat diagnosis](/insights/demo-requests-dropped-rankings-flat/) provides the corresponding Search Console checks.
 
 ## Inspect five possible gaps
 

@@ -67,9 +67,20 @@ const schemaItems = schema
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Google Tag Manager -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+    </script>
+    <!-- Google Tag Manager: loads only on the production host; the runtime
+         guard below keeps localhost, previews and staging completely clean. -->
     <script is:inline>
       (function (w, d, s, l, i) {
+        var host = window.location.hostname;
+        if (host !== 'datadecision.consulting' && host !== 'www.datadecision.consulting') {
+          return;
+        }
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
         var f = d.getElementsByTagName(s)[0],
@@ -82,7 +93,7 @@ const schemaItems = schema
     </script>
     <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#F4F0E7" />
+    <meta name="theme-color" content="#F7F3EA" />
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     <link rel="canonical" href={canonical} />
@@ -106,17 +117,12 @@ const schemaItems = schema
     <slot name="head" />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-NJPG9FPZ"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-        title="Google Tag Manager"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    {
+      /* No GTM <noscript> fallback in this experimental build: static frames
+         cannot runtime-check the host, so they could fire on localhost. */
+    }
     <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar"></span></div>
     <Header currentPath={Astro.url.pathname} />
     <main id="main-content"><slot /></main>
     <Footer />
@@ -148,6 +154,124 @@ const schemaItems = schema
         },
         true,
       );
+
+      /* Scroll progress spine (paused while the tab is hidden) */
+      (function () {
+        var bar = document.querySelector('.scroll-progress__bar');
+        if (!bar) return;
+        var frame;
+        var update = function () {
+          frame = undefined;
+          var doc = document.documentElement;
+          var max = doc.scrollHeight - window.innerHeight;
+          var value = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+          bar.style.transform = 'scaleX(' + value + ')';
+        };
+        var onScroll = function () {
+          if (!frame && !document.hidden) frame = requestAnimationFrame(update);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) update();
+        });
+        update();
+      })();
+
+      /* Hero arrival: start the one-shot network sequence after first paint */
+      (function () {
+        var hero = document.querySelector('.hero');
+        if (!hero) return;
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduced.matches) {
+          hero.classList.add('is-arrived');
+          return;
+        }
+        var start = function () {
+          requestAnimationFrame(function () {
+            hero.classList.add('is-arrived');
+          });
+        };
+        if (document.readyState === 'complete') start();
+        else window.addEventListener('load', start, { once: true });
+      })();
+
+      /* Diagnostic numerals count up once, on view; final values stay in markup */
+      (function () {
+        var card = document.querySelector('.scope-card');
+        if (!card) return;
+        var nums = card.querySelectorAll('[data-count]');
+        if (!nums.length) return;
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduced.matches || !('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting) return;
+            io.disconnect();
+            Array.prototype.forEach.call(nums, function (el) {
+              var target = parseInt(el.getAttribute('data-count'), 10);
+              var pad = parseInt(el.getAttribute('data-pad') || '0', 10);
+              var out = el.querySelector('.scope-num__value');
+              if (!out) return;
+              var t0 = null;
+              var step = function (ts) {
+                if (t0 === null) t0 = ts;
+                var progress = Math.min((ts - t0) / 800, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                out.textContent = String(Math.round(eased * target)).padStart(pad, '0');
+                if (progress < 1) requestAnimationFrame(step);
+              };
+              requestAnimationFrame(step);
+            });
+          },
+          { threshold: 0.4 },
+        );
+        io.observe(card);
+      })();
+
+      /* Header surface state: keep the fixed bar legible over light sections */
+      (function () {
+        var header = document.querySelector('[data-site-header]');
+        if (!header) return;
+        var frame;
+        var update = function () {
+          frame = undefined;
+          header.classList.toggle('is-scrolled', window.scrollY > 24);
+        };
+        var onScroll = function () {
+          if (!frame) frame = requestAnimationFrame(update);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
+      })();
+
+      /* Reveal-on-enter fallback for browsers without scroll-driven CSS animations */
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var items = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+        if (!items.length || !('IntersectionObserver' in window)) return;
+        if (reduced.matches) {
+          items.forEach(function (item) {
+            item.classList.add('is-revealed');
+          });
+          return;
+        }
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.18, rootMargin: '0px 0px -6% 0px' },
+        );
+        items.forEach(function (item) {
+          observer.observe(item);
+        });
+      })();
 
       const mobileCta = document.querySelector('[data-mobile-cta]');
       if (mobileCta) {

@@ -5,7 +5,7 @@ import ContactForm from '../components/ContactForm.astro';
 ---
 
 <BaseLayout
-  title="Request a visibility diagnostic — DataDecision"
+  title="Request a visibility diagnostic | DataDecision"
   description="Brief DataDecision on the AI-search visibility or measurement question your team needs to answer next."
   path="/contact/"
   schema={{
@@ -23,32 +23,28 @@ import ContactForm from '../components/ContactForm.astro';
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
   <header class="shell page-hero page-hero--compact">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Request a diagnostic</p><h1>
         Start with the decision you need to make.
       </h1><p class="lede">
         Tell us what is difficult to see, measure or decide. The first review tests whether the
         published method and focused scope can answer that question.
       </p>
-    </div><aside class="page-hero__aside">
+    </div><aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio"><span>What happens next</span><span>03 steps</span></div><div
         class="rule-list"
       >
-        <div class="rule-row" style="grid-template-columns:2rem 1fr;">
+        <div class="rule-row rule-row--slim">
           <span class="mono">01</span><div>
-            <h3 style="font-size:1.3rem;">Submit one brief</h3><p>
-              Use the form or email the same information directly.
-            </p>
+            <h3>Submit one brief</h3><p>Use the form or email the same information directly.</p>
           </div>
-        </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
+        </div><div class="rule-row rule-row--slim">
           <span class="mono">02</span><div>
-            <h3 style="font-size:1.3rem;">Fit review</h3><p>
-              We check the question, evidence needs and scope fit.
-            </p>
+            <h3>Fit review</h3><p>We check the question, evidence needs and scope fit.</p>
           </div>
-        </div><div class="rule-row" style="grid-template-columns:2rem 1fr;">
+        </div><div class="rule-row rule-row--slim">
           <span class="mono">03</span><div>
-            <h3 style="font-size:1.3rem;">Written scope</h3><p>
+            <h3>Written scope</h3><p>
               Final frame, fee, inputs, timing and limitations before kickoff.
             </p>
           </div>
@@ -61,13 +57,19 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </aside>
   </header>
-  <section class="section contact-form-section" aria-labelledby="diagnostic-brief">
+  <section
+    id="request-a-brief"
+    class="section contact-form-section"
+    aria-labelledby="diagnostic-brief"
+  >
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell editorial-grid editorial-grid--balanced">
-      <div class="section-intro">
-        <p class="eyebrow">Diagnostic brief</p><h2 id="diagnostic-brief">
-          Seven fields. One useful starting record.
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Request a brief</p><h2 id="diagnostic-brief">
+          Tell us what you need to grow.
         </h2><p class="small">
-          Share enough context for a useful first review. You can also email <a
+          Share the business question, your website and the service area you are exploring. We will
+          review fit before proposing scope. You can also email <a
             href="mailto:contact@datadecision.consulting">contact@datadecision.consulting</a
           >.
         </p>
@@ -88,14 +90,15 @@ import ContactForm from '../components/ContactForm.astro';
             </div>
           </dl>
         </div>
-      </div><ContactForm />
+      </div><div data-reveal style="--reveal-delay:120ms"><ContactForm /></div>
     </div>
   </section>
   <section class="section section--bright">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid editorial-grid--reverse">
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
         <p class="eyebrow">Bring if available</p><h2>Inputs that make the first review sharper.</h2>
-      </div><div class="comparison">
+      </div><div class="comparison" data-reveal style="--reveal-delay:110ms">
         <div>
           <h3>Visibility context</h3><ul>
             <li>Your product category and primary market.</li><li>

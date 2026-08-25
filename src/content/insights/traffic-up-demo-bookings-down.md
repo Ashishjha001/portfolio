@@ -75,7 +75,7 @@ Compare the current period with the previous one by:
 - New versus returning visitors
 - Branded versus non-branded search
 
-A new informational article can create thousands of visits without producing a single serious buyer. That traffic is not necessarily bad—but it should not be used to judge demo conversion in the same way as pricing-page or product-comparison traffic.
+A new informational article can create thousands of visits without producing a single serious buyer. That traffic is not necessarily bad, but it should not be used to judge demo conversion in the same way as pricing-page or product-comparison traffic.
 
 GA4’s Landing Page report can show where sessions began, while Funnel Exploration can reveal where users left a defined journey. Do not look only at the sitewide conversion rate; segment the funnel by landing page and source. If rankings stayed flat while requests fell, use the [discovery-to-capture checks](/insights/demo-requests-dropped-rankings-flat/) to isolate the change.
 
@@ -111,7 +111,7 @@ If the visitor asks for a demo and then waits hours for an email, you have turne
 
 The right diagnosis is not “our conversion rate fell.” It is:
 
-> Paid-social traffic grew, but fewer visitors reached the demo page. Among those who did, form completion stayed stable. The leak is traffic quality—not the form.
+> Paid-social traffic grew, but fewer visitors reached the demo page. Among those who did, form completion stayed stable. The leak is traffic quality, not the form.
 
 That sentence tells the team what to fix. A blended conversion rate does not. Use the [demo-funnel dashboard framework](/insights/b2b-saas-demo-funnel-dashboard/) to keep each transition visible, and reconcile form submissions with CRM records using the [GA4-to-CRM lead framework](/insights/ga4-vs-crm-lead-reconciliation/).
 

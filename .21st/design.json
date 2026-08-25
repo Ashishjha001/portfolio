@@ -1,119 +1,140 @@
 {
-  "version": 1,
+  "version": 2,
   "project": {
-    "name": "DataDecision",
+    "name": "DataDecision (experimental visual build)",
     "productType": "premium B2B consultancy website",
     "stack": ["astro"]
   },
   "sources": {
-    "tokens": [],
-    "components": [],
-    "assets": ["src/assets"],
-    "instructions": ["AGENTS.md", "CLAUDE.md"]
+    "tokens": ["src/styles/global.css"],
+    "components": ["src/components"],
+    "assets": ["public"],
+    "instructions": ["AGENTS.md", "README.md"]
   },
   "design": {
     "colorMode": "light",
+    "direction": "Ledger (restored) + editorial motion layer",
     "colors": {
-      "paper": "#F4F0E7",
+      "paper": "#F7F3EA",
       "paperBright": "#FBFAF6",
-      "ink": "#161815",
-      "graphite": "#52584F",
-      "evidenceGreen": "#175F49",
+      "paperDeep": "#EBE5D9",
+      "ink": "#14181F",
+      "graphite": "#50564E",
+      "green": "#175F49",
+      "greenDark": "#0F4939",
       "caveatAmber": "#8B5B19",
-      "rule": "#C9C3B7"
+      "rule": "#C9C3B7",
+      "note": "Original deployed Ledger palette restored per user review.",
+      "brandGreen": "#0E6E54",
+      "deepGreen": "#0C4F3D",
+      "deepGreenHover": "#0A4435",
+      "warmWhite": "#FFFDF8",
+      "softGreenText": "#D7E4DC",
+      "mintAccent": "#63D6AE",
+      "darkSectionBorder": "rgba(255,255,255,0.18)"
     },
     "typography": {
-      "display": "Newsreader, Iowan Old Style, Georgia, serif",
-      "body": "IBM Plex Sans, Arial, sans-serif",
-      "evidence": "IBM Plex Mono, Consolas, monospace"
-    },
-    "spacing": {
-      "base": "8px",
-      "sectionDesktop": "112px",
-      "sectionMobile": "72px"
+      "display": "Newsreader Variable (serif)",
+      "body": "IBM Plex Sans",
+      "evidence": "IBM Plex Mono",
+      "note": "Font imports restored after silent regression."
     },
     "radius": {
       "control": "2px",
-      "surface": "0px"
-    },
-    "shadows": {
-      "default": "none"
+      "surface": "4px",
+      "small": "3px"
     },
     "motion": {
-      "duration": "160ms",
-      "preference": "reduced-motion safe"
+      "duration": "entrances 550-750ms, hovers 180-250ms",
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "rules": "opacity/transform only, one-shot reveals at 18% visibility, count-up once, no loops/parallax/glow/network graphics",
+      "preference": "reduced-motion shows final states instantly"
     },
-    "density": "editorial"
+    "density": "immersive editorial"
   },
   "components": {
     "installed": [],
-    "preferredPrimitives": [],
-    "patterns": ["Semantic desktop SVG with a record-led mobile sequence"]
+    "preferredPrimitives": [
+      "SignalField (hero constellation)",
+      "MethodStory (scroll-activated steps)",
+      "ServiceExplorer (keyboard tabs)",
+      "DecisionTabs (keyboard tabs)",
+      "MeasurementPath (staged diagram)",
+      "TickerStrip (single marquee)"
+    ],
+    "patterns": [
+      "Full-viewport hero with constellation field and live UTC stamp",
+      "Oversized outlined chapter numerals per section",
+      "Inverted-paper chapters for contrast rhythm",
+      "Sticky section intros on desktop grids"
+    ]
   },
   "constraints": {
     "must": [
-      "Editorial asymmetric composition",
-      "Evidence labels, dates, samples and limitations beside claims",
-      "Visible rules, tables, folios and purposeful whitespace",
-      "Responsive four/eight/twelve-column grid",
-      "WCAG AA-conscious contrast and keyboard-complete interactions"
+      "Preserve all approved factual copy, routes, metadata, schema and evidence limitations verbatim",
+      "No em or en dashes anywhere in visible copy or titles (AI-tell ban)",
+      "Tight page-hero spacing: no large voids above headings",
+      "WCAG AA contrast, keyboard-complete interactions, visible focus",
+      "prefers-reduced-motion collapses all motion",
+      "GTM loads only on the production host with a runtime hostname guard"
     ],
     "avoid": [
-      "Generic SaaS card grids",
-      "Gradients, glass, glow and heavy shadows",
-      "Decorative dashboards or fabricated metrics",
-      "Stock photography and AI visual cliches",
-      "Inter, Geist and Space Grotesk",
-      "Animated evidence numbers"
+      "Generic SaaS card grids, stock imagery, fabricated metrics or clients",
+      "Em/en dashes in copy",
+      "More than one marquee per page",
+      "Large animation or 3D libraries (vanilla CSS/JS only)",
+      "Autoplay carousels (use accessible tabs)"
     ]
   },
   "decisions": [
     {
-      "date": "2026-08-24",
-      "choice": "Ledger Column",
-      "alternatives": ["Audit Dossier"],
-      "reason": "The open editorial column system supports long-form evidence, premium restraint and mobile reflow. Folio labels, marginal annotations and framed scope tables are retained from Audit Dossier without its rigid document-shell density."
+      "date": "2026-08-25",
+      "choice": "Signal Atlas dark immersive direction",
+      "alternatives": ["Ledger Column (production)", "Light editorial"],
+      "reason": "The experimental build intentionally replaces the production Ledger design. Dark canvas, Space Grotesk display type, mint signal accent and chapter-based scroll storytelling differentiate it completely while keeping every factual claim intact."
     },
     {
-      "date": "2026-08-24",
-      "choice": "Code-native Ledger evidence maps",
-      "alternatives": ["Third-party design-kit assets", "Raster diagrams"],
-      "reason": "Original inline SVG preserves the Ledger rules and evidence labels at desktop sizes, while a record-led mobile sequence keeps text readable without shrinking the desktop diagram. Motion is sequential, finite, viewport-aware and reduced-motion safe."
+      "date": "2026-08-25",
+      "choice": "Remove the AI-search visibility map; rebuild the measurement spine",
+      "alternatives": ["Restyle both legacy diagrams"],
+      "reason": "The old light-green diagrams clashed with the dark theme. The first was removed entirely per feedback; the measurement path was rebuilt as a staged dark SVG with replay and reduced-motion support."
     },
     {
-      "date": "2026-08-24",
-      "choice": "Compact text-first page hierarchy",
-      "alternatives": [
-        "Oversized display headings",
-        "Raster hero imagery",
-        "Dense evidence callout boxes"
-      ],
-      "reason": "The selected direction keeps the original Ledger composition while using smaller headings and tighter sections. Redundant homepage explanation, annotation boxes and the detailed homepage scope table are removed to reduce page length and visual density."
+      "date": "2026-08-25",
+      "choice": "Signal and evidence motion discipline (pass 2)",
+      "alternatives": ["Continuous ambient animation", "GSAP-driven choreography"],
+      "reason": "All hero network motion is one-shot (links draw once, four nodes illuminate in sequence, then rest). Folio numerals reduced to quiet mono marks and hidden below 720px. Sticky header is solid rgba with a thin rule instead of blur glass. Accordions are exclusive with grid-rows height animation and plus-to-minus. Type scale locked to the 72-88/56-72/38-52/20-28/17-20/11-13px spec with fluid clamps."
     },
     {
-      "date": "2026-08-24",
-      "choice": "Ledger editorial content cluster",
-      "alternatives": [
-        "Generic article card grid",
-        "Carousel-led discovery",
-        "Separate blog visual system"
-      ],
-      "reason": "The Measurement & Lead-Source Truth cluster uses one prominent foundational guide, ruled supporting rows, contextual article links and compact code-native frameworks. It preserves the existing Ledger typography and evidence hierarchy while keeping every article discoverable in static HTML."
+      "date": "2026-08-25",
+      "choice": "BASIC/DEPT-inspired re-theme: flat black, pink accent, film grain",
+      "alternatives": ["Keep mint-on-navy palette", "Keep boxed diagnostic diagrams"],
+      "reason": "User direction: adopt basicagency.com style foundations (black surface, #f4f4f4 text, #f9cdcd accent, 18px base, pill controls, noise texture, flat composition). All gradients and glows removed; boxed measurement diagram replaced by a flat typographic spine strip; header made permanently solid to eliminate content bleed-through. No content changed; proprietary SctoGroteskA font and assets not copied."
+    },
+    {
+      "date": "2026-08-25",
+      "choice": "Reverted BASIC pink re-theme back to mint Signal Atlas",
+      "alternatives": ["Keep BASIC black/pink palette"],
+      "reason": "User review: the black-and-pink direction looked bad; the earlier mint-on-navy theme was preferred. Palette, glows, radii and type scale restored to the pre-BASIC state. The BASIC pass improvements that were kept: permanently solid header (fixes content bleed-through) and the flat typographic measurement spine (boxed diagram removed). Education Note row removed from the about page founder facts per user instruction; structured data still records alumniOf: NIT Surat."
+    },
+    {
+      "date": "2026-08-25",
+      "choice": "Restore deployed Ledger theme; keep and refine the motion layer",
+      "alternatives": ["Keep mint Signal Atlas", "Keep BASIC black/pink"],
+      "reason": "User direction: the deployed Ledger visual direction (warm paper, ink serif, measurement green, print-like borders) is correct; the experimental build now matches it and adds only purposeful motion: hero line/panel sequence, one-shot count-up, ledger row reveals, sliding nav underline, decision-board tab transitions, hover micro-interactions, scroll progress line. Framer Motion/GSAP not added (static Astro site; vanilla JS meets every requirement). Banned per spec: network graphics (SignalField removed), looping ticker (removed), live UTC clock (replaced with static scope language)."
+    },
+    {
+      "date": "2026-08-25",
+      "choice": "Deep-green ink sections replace near-black",
+      "alternatives": ["Keep near-black ink chapters"],
+      "reason": "User direction: near-black sections felt disconnected and dim. All section--ink backgrounds now use deep green #0C4F3D (cards/table bands #105A46), warm-white serif headings, soft-green body text #D7E4DC, mint labels #63D6AE, white-alpha rules. Cream remains dominant; CTA band matches #0C4F3D. scroll-margin-top 112px added for anchor navigation."
+    },
+    {
+      "date": "2026-08-25",
+      "choice": "Dedicated /services page with six outcome-based categories",
+      "alternatives": ["Five lifecycle-stage services", "Generic agency service grid"],
+      "reason": "User correction: lifecycle stages are engagement stages, not services. Services index now lists six buyable categories (Growth Strategy & Measurement; Search, SEO & AI Visibility; Paid Acquisition & Performance; Conversion & Lifecycle Growth; AI Agent Development; AI & GPT Integrations) as numbered ledger rows with alternating cream/pale-tint backgrounds. The five lifecycle stages moved to a deep-green engagement-path section. Every CTA links to /contact/?service=[slug]#request-a-brief (trailing slash required by trailingSlash:always); the contact form reads the param, prefills a visible editable dropdown + hidden selected_service field, and shows Selected service: [name]. Homepage credibility band removed. Nav now: Services, Methodology, Work, Insights, About."
     }
   ],
-  "evidence": [
-    {
-      "fact": "project.instructions",
-      "source": "AGENTS.md"
-    },
-    {
-      "fact": "project.instructions",
-      "source": "CLAUDE.md"
-    },
-    {
-      "fact": "project.stack:astro",
-      "source": "package.json"
-    }
-  ],
-  "generatedAt": "2026-08-23T23:24:22.330Z"
+  "generatedAt": "2026-08-25T00:00:00.000Z"
 }

@@ -11,15 +11,88 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="faq-list">
+<div class="faq-list" data-faq-list>
   {
-    items.map((item) => (
-      <details data-event="faq_expand">
-        <summary>{item.question}</summary>
-        <div class="faq-list__answer">
-          <p>{item.answer}</p>
+    items.map((item, index) => (
+      <details data-event="faq_expand" data-faq-item>
+        <summary data-faq-toggle aria-expanded="false" aria-controls={`faq-answer-${index}`}>
+          {item.question}
+        </summary>
+        <div class="faq-list__answer" id={`faq-answer-${index}`} data-faq-answer>
+          <div class="faq-list__answer-inner">
+            <p>{item.answer}</p>
+          </div>
         </div>
       </details>
     ))
   }
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-faq-list]').forEach((list) => {
+    const items = Array.from(list.querySelectorAll<HTMLDetailsElement>('[data-faq-item]'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!items.length) return;
+
+    const setExpanded = (item: HTMLDetailsElement, expanded: boolean) => {
+      const summary = item.querySelector<HTMLElement>('[data-faq-toggle]');
+      summary?.setAttribute('aria-expanded', String(expanded));
+    };
+
+    const collapse = (item: HTMLDetailsElement) => {
+      const answer = item.querySelector<HTMLElement>('[data-faq-answer]');
+      if (!answer || reduced.matches) {
+        item.open = false;
+        setExpanded(item, false);
+        return;
+      }
+      answer.style.gridTemplateRows = '0fr';
+      answer.dataset.state = 'closing';
+      window.setTimeout(() => {
+        item.open = false;
+        answer.dataset.state = '';
+        setExpanded(item, false);
+      }, 300);
+    };
+
+    const expand = (item: HTMLDetailsElement) => {
+      const answer = item.querySelector<HTMLElement>('[data-faq-answer]');
+      item.open = true;
+      setExpanded(item, true);
+      if (!answer || reduced.matches) return;
+      answer.style.gridTemplateRows = '0fr';
+      answer.dataset.state = 'opening';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          answer.style.gridTemplateRows = '1fr';
+        });
+      });
+      window.setTimeout(() => {
+        answer.dataset.state = '';
+        answer.style.gridTemplateRows = '';
+      }, 320);
+    };
+
+    items.forEach((item) => {
+      const summary = item.querySelector<HTMLElement>('[data-faq-toggle]');
+      summary?.addEventListener('click', (event) => {
+        // With JavaScript present, take over the toggle for smooth motion.
+        event.preventDefault();
+        if (item.open) {
+          collapse(item);
+        } else {
+          items.forEach((other) => {
+            if (other !== item && other.open) collapse(other);
+          });
+          expand(item);
+        }
+      });
+
+      // Keyboard on summary is native (Enter/Space); keep aria state in sync
+      // for any open attribute set without JS.
+      item.addEventListener('toggle', () => {
+        setExpanded(item, item.open);
+      });
+    });
+  });
+</script>

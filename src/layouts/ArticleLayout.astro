@@ -78,7 +78,7 @@ const schema = [
 ---
 
 <BaseLayout
-  title={`${data.seoTitle ?? data.title} — DataDecision`}
+  title={`${data.seoTitle ?? data.title} | DataDecision`}
   description={data.description}
   path={articleUrl}
   type="article"
@@ -97,12 +97,12 @@ const schema = [
     ]}
   />
   <header class="shell page-hero page-hero--compact article-hero">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">{data.cluster ?? data.category}</p>
       <h1>{data.title}</h1>
       <p class="lede">{data.description}</p>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio">
         <span>{data.pillar ? 'Foundational guide' : 'Research note'}</span>
         <span>{data.readingMinutes} min read</span>
@@ -132,7 +132,7 @@ const schema = [
     </aside>
   </header>
   <div class="shell article-shell">
-    <aside class="article-meta" aria-label="Article metadata">
+    <aside class="article-meta" aria-label="Article metadata" data-reveal>
       <dl>
         <div><dt>Cluster</dt><dd>{data.cluster ?? data.category}</dd></div>
         <div><dt>Published</dt><dd>{formatDate(data.publishedDate)}</dd></div>

@@ -27,7 +27,7 @@ sources:
 
 You added UTM tags. Someone clicked the campaign. The lead entered your CRM as **Direct**.
 
-Frustrating—but surprisingly common.
+Frustrating, but surprisingly common.
 
 The first thing to understand is that Direct is often not a real marketing channel. In GA4, `(direct) / (none)` means the visit did not contain a clear referral source. It does not prove that the person typed the website address from memory.
 
