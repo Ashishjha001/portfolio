@@ -3310,9 +3310,14 @@ a.cluster-foundation:hover {
 .explorer__tab .explorer__tab-label {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(0.86rem, 1.6vw, 1.02rem);
-  line-height: 1.2;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.25;
   letter-spacing: -0.01em;
+  color: var(--ink-soft);
+}
+
+.explorer__tab[aria-selected='true'] .explorer__tab-label {
+  color: var(--text);
 }
 
 .explorer__tab::after {
@@ -3337,6 +3342,16 @@ a.cluster-foundation:hover {
 
 .explorer__tab:hover {
   color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .explorer__tab {
+    padding: 1rem 0.9rem 1.1rem;
+  }
+
+  .explorer__tab-index {
+    color: var(--signal);
+  }
 }
 
 .explorer__panel {
@@ -4109,4 +4124,97 @@ section[id] {
   color: var(--text);
   font-weight: 600;
   font-size: 0.95rem;
+}
+
+/* ---------- mobile polish ---------- */
+
+@media (max-width: 767px) {
+  .hero__hint {
+    display: none;
+  }
+
+  .hero {
+    padding-top: calc(var(--header-h) + 1.5rem);
+    min-height: auto;
+  }
+
+  .section {
+    padding-block: clamp(3rem, 8vw, 4rem);
+  }
+}
+
+/* ---------- touch feedback (no hover on touch devices) ---------- */
+
+@media (hover: none) {
+  .button:active {
+    transform: scale(0.98);
+  }
+
+  .rule-row:active,
+  .process-rail__step:active,
+  .insight-row:active,
+  .cluster-pillar:active {
+    background: rgba(23, 95, 73, 0.05);
+  }
+
+  .home-insight:active,
+  .service-row:active .service-row__grid,
+  .method-step:active {
+    transform: scale(0.995);
+  }
+
+  .text-link,
+  .service-row__cta,
+  .footer-nav a {
+    padding-block: 0.3rem;
+  }
+}
+
+/* ---------- back to top (mobile) ---------- */
+
+.to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 210;
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(22, 24, 21, 0.15);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.to-top[data-visible='true'] {
+  display: inline-flex;
+}
+
+.to-top:active {
+  transform: scale(0.94);
+}
+
+@media (min-width: 768px) {
+  .to-top {
+    display: none !important;
+  }
+}
+
+body:has(.mobile-cta:not([hidden])) .to-top {
+  bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* keep the fixed mobile CTA from covering footer content */
+@media (max-width: 1023px) {
+  body:has(.mobile-cta:not([hidden])) .site-footer {
+    padding-bottom: 4.5rem;
+  }
 }
