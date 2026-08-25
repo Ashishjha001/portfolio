@@ -17,7 +17,7 @@ const schema = {
 ---
 
 <BaseLayout
-  title="AI-search visibility methodology v0.3 — DataDecision"
+  title="AI-search visibility methodology v0.3 | DataDecision"
   description="The exact query-frame rules, observation protocol, metric definitions and limitations behind every DataDecision AI-search visibility number."
   path="/methodology/"
   type="article"
@@ -25,7 +25,7 @@ const schema = {
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
   <header class="shell page-hero">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Methodology / version 0.3</p><h1>
         Show the work: how we measure AI-search visibility.
       </h1><p class="lede">
@@ -39,7 +39,7 @@ const schema = {
         ><a class="text-link" href="#limitations">Read limitations first</a>
       </div>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio"><span>Method record</span><span>v0.3 · 24 Aug 2026</span></div><div
         class="caveat"
       >
@@ -51,11 +51,14 @@ const schema = {
     </aside>
   </header>
 
-  <section class="section">
+  <section class="section" aria-labelledby="principles-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Principles</p><h2>Define the frame before reading the answer.</h2>
-      </div><div class="rule-list">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Principles</p><h2 id="principles-heading">
+          Define the frame before reading the answer.
+        </h2>
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">P1</span><div>
             <h3>Sampled, never absolute</h3><p>
@@ -88,13 +91,14 @@ const schema = {
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="queryframe-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">01 / Query frame</p><h2>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">01 / Query frame</p><h2 id="queryframe-heading">
           Questions come from buyer decisions, not keywords alone.
         </h2>
-      </div><div>
+      </div><div data-reveal style="--reveal-delay:110ms">
         <p class="lede">
           The standard frame contains 50 buying-intent queries for one market and one language.
           Queries are classified before collection so later reporting can separate different
@@ -132,11 +136,14 @@ const schema = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="observation-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">02 / Observation</p><h2>Record conditions while they still exist.</h2>
-      </div><div class="rule-list">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">02 / Observation</p><h2 id="observation-heading">
+          Record conditions while they still exist.
+        </h2>
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">A</span><div>
             <h3>Surface and access</h3><p>
@@ -170,13 +177,14 @@ const schema = {
     </div>
   </section>
 
-  <section class="section section--ink">
+  <section class="section section--ink" aria-labelledby="definitions-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow" style="color:#9fd2bc;">03 / Definitions</p><h2>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">03 / Definitions</p><h2 id="definitions-heading">
           Descriptive metrics, plainly named.
         </h2>
-      </div><div class="rule-list">
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">M1</span><div>
             <h3>Mention presence</h3><p>
@@ -201,7 +209,7 @@ const schema = {
         </div><div class="rule-row">
           <span class="mono">M4</span><div>
             <h3>Comparison share</h3><p>
-              The entity's observed presence relative to the approved comparison set inside the same
+              The entity’s observed presence relative to the approved comparison set inside the same
               query frame. It is not market share.
             </p>
           </div><span class="rule-row__meta">Sample share only</span>
@@ -210,11 +218,14 @@ const schema = {
     </div>
   </section>
 
-  <section class="section" id="limitations">
+  <section class="section" id="limitations" aria-labelledby="limitations-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">04 / Limitations</p><h2>Where the method stops.</h2>
-      </div><div>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">04 / Limitations</p><h2 id="limitations-heading">
+          Where the method stops.
+        </h2>
+      </div><div data-reveal style="--reveal-delay:110ms">
         <div class="scope-wrap">
           <table class="scope-table">
             <thead
@@ -255,11 +266,12 @@ const schema = {
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="version-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Version record</p><h2>Changes remain legible.</h2>
-      </div><div class="rule-list">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Version record</p><h2 id="version-heading">Changes remain legible.</h2>
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">v0.3</span><div>
             <h3>Launch protocol</h3><p>

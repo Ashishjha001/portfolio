@@ -52,7 +52,7 @@ Chili Piper’s analysis of nearly four million mostly B2B form submissions foun
 - Enterprise requests require account research or coordination.
 - Capacity is limited and poor-fit meetings regularly consume specialist time.
 
-The SDR should add information or direction—not act as a waiting room.
+The SDR should add information or direction, not act as a waiting room.
 
 ## Use a three-path model
 

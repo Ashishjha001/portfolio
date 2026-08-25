@@ -39,25 +39,25 @@ import FinalCTA from '../components/FinalCTA.astro';
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
   <header class="shell page-hero page-hero--compact">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">About DataDecision</p><h1>
         A focused practice for better growth decisions.
       </h1><p class="lede">
         A focused consultancy for B2B SaaS teams that need a defensible view of AI-search visibility
         and the measurement path into pipeline.
       </p>
-    </div><aside class="page-hero__aside">
-      <div class="folio"><span>Company description</span><span>01 line</span></div><p
-        class="lede"
-        style="font-family:var(--font-display);font-size:1.8rem;"
-      >
+    </div><aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Company description</span><span>01 line</span></div>
+      <p class="lede">
         Focused on AI-search visibility, measurement foundations and scoped implementation.
       </p>
     </aside>
   </header>
+
   <section class="section" aria-labelledby="founder-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell founder-record">
-      <div class="founder-record__identity">
+      <div class="founder-record__identity" data-reveal>
         <p class="eyebrow">Founder</p>
         <h2 id="founder-heading">Ashish Jha</h2>
         <p class="small">Founder, DataDecision<br />Graduate, NIT Surat</p>
@@ -65,7 +65,7 @@ import FinalCTA from '../components/FinalCTA.astro';
           contact@datadecision.consulting
         </a>
       </div>
-      <div class="founder-record__body">
+      <div class="founder-record__body" data-reveal style="--reveal-delay:120ms">
         <p class="lede">
           Ashish Jha founded DataDecision to build a measurement-first practice for AI-search
           visibility and the path into pipeline.
@@ -80,19 +80,19 @@ import FinalCTA from '../components/FinalCTA.astro';
             <dt>Education</dt>
             <dd>NIT Surat</dd>
           </div>
-          <div>
-            <dt>Education note</dt>
-            <dd class="small">This identifies Ashish’s education and implies no endorsement.</dd>
-          </div>
         </dl>
       </div>
     </div>
   </section>
-  <section class="section">
+
+  <section class="section section--ink" aria-labelledby="why-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid editorial-grid--reverse">
-      <div class="section-intro">
-        <p class="eyebrow">Why this exists</p><h2>Evidence should survive the handoff.</h2>
-      </div><div>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Why this exists</p><h2 id="why-heading">
+          Evidence should survive the handoff.
+        </h2>
+      </div><div data-reveal style="--reveal-delay:110ms">
         <p class="lede">
           A useful growth number should carry enough context to make a decision. That matters as
           discovery spreads across search pages, generated answers, review sources and conversations
@@ -104,11 +104,15 @@ import FinalCTA from '../components/FinalCTA.astro';
       </div>
     </div>
   </section>
-  <section class="section section--bright">
+
+  <section class="section" aria-labelledby="principles-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Operating principles</p><h2>How the work is judged.</h2>
-      </div><div class="rule-list">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Operating principles</p><h2 id="principles-heading">
+          How the work is judged.
+        </h2>
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">01</span><div>
             <h3>Start with the observation</h3><p>
@@ -138,14 +142,16 @@ import FinalCTA from '../components/FinalCTA.astro';
       </div>
     </div>
   </section>
-  <section class="section section--ink">
+
+  <section class="section section--bright" aria-labelledby="relationship-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid editorial-grid--balanced">
-      <div class="section-intro">
-        <p class="eyebrow" style="color:#9fd2bc;">Working relationship</p><h2>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Working relationship</p><h2 id="relationship-heading">
           Clear access and clear handoffs.
         </h2>
-      </div><div>
-        <p class="lede" style="color:#d3d6d1;">
+      </div><div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
           You work directly with Ashish from the first fit review through the final Decision Board.
           Before work begins, you receive a written scope covering the question, inputs, timing, fee
           and expected deliverables.

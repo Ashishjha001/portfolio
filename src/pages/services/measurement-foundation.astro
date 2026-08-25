@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import MeasurementPath from '../../components/MeasurementPath.astro';
+import SpineStrip from '../../components/SpineStrip.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 
@@ -47,7 +47,7 @@ const schema = [
 ---
 
 <BaseLayout
-  title="Growth measurement foundation for B2B SaaS — DataDecision"
+  title="Growth measurement foundation for B2B SaaS | DataDecision"
   description="Repair the gaps between acquisition data, conversion events and CRM stages while keeping attribution assumptions visible."
   path="/services/measurement-foundation/"
   schema={schema}
@@ -60,7 +60,7 @@ const schema = [
     ]}
   />
   <header class="shell page-hero">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Measurement foundation</p><h1>
         When GA4 and your CRM disagree, trace the difference.
       </h1><p class="lede">
@@ -73,7 +73,7 @@ const schema = [
         >
       </div>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio"><span>Measurement record</span><span>Source → stage</span></div><dl
         class="evidence-list"
       >
@@ -94,24 +94,25 @@ const schema = [
     </aside>
   </header>
 
-  <section class="section">
+  <section class="section" aria-labelledby="gap-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell">
       <div class="editorial-grid">
-        <div class="section-intro">
-          <p class="eyebrow">The gap</p><h2>
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The gap</p><h2 id="gap-heading">
             A dashboard can be precise and still answer the wrong question.
           </h2>
         </div>
-        <p class="lede">
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
           Session attribution, first-user source, form submission and CRM opportunity source are
           different records. Treating them as interchangeable creates arguments that formatting
           cannot solve.
         </p>
       </div>
-      <div class="visual-inset">
-        <MeasurementPath />
+      <div class="visual-inset" data-reveal style="--reveal-delay:180ms">
+        <SpineStrip />
       </div>
-      <div class="comparison visual-followup">
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:240ms">
         <div>
           <span class="evidence-label">Observed</span><h3>What the systems record</h3><ul>
             <li>Traffic-source and campaign dimensions.</li><li>Events and form submissions.</li><li
@@ -131,11 +132,14 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="build-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">What we build</p><h2>A smaller, auditable measurement spine.</h2>
-      </div><div class="rule-list">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What we build</p><h2 id="build-heading">
+          A smaller, auditable measurement spine.
+        </h2>
+      </div><div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">01</span><div>
             <h3>Decision-led tracking plan</h3><p>
@@ -165,14 +169,15 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--ink">
-    <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow" style="color:#9fd2bc;">Boundary</p><h2>
+  <section class="section" aria-labelledby="boundary-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Boundary</p><h2 id="boundary-heading">
           Work with the data you can actually observe.
         </h2>
-      </div><div>
-        <p class="lede" style="color:#d3d6d1;">
+      </div><div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
           The deliverable states the attribution rule, preserves raw evidence where practical and
           keeps confidence proportional to the sample. It also shows where causal interpretation
           would need a stronger research design.
@@ -181,11 +186,14 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="mf-questions-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Questions</p><h2>What teams ask about the measurement work.</h2>
-      </div><FAQList items={faqs} />
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="mf-questions-heading">
+          What teams ask about the measurement work.
+        </h2>
+      </div><div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
     </div>
   </section>
   <FinalCTA

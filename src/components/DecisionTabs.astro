@@ -1,0 +1,134 @@
+---
+// Decision Board as an accessible tab interface.
+// The four questions are preserved verbatim from the approved content.
+interface Question {
+  label: string;
+  heading: string;
+  body: string;
+}
+
+interface Props {
+  questions: Question[];
+}
+
+const { questions } = Astro.props;
+---
+
+<section class="decision-tabs" data-decision-tabs>
+  <div class="decision-tabs__head">
+    <p class="evidence-label">Decision Board</p>
+    <span class="decision-tabs__count" data-decision-count
+      >01 / {String(questions.length).padStart(2, '0')}</span
+    >
+  </div>
+
+  <div
+    class="decision-tabs__tablist"
+    role="tablist"
+    aria-label="Four questions in the Decision Board"
+  >
+    {
+      questions.map((question, i) => (
+        <button
+          class="decision-tabs__tab"
+          id={`decision-tab-${i}`}
+          type="button"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`decision-panel-${i}`}
+          tabindex={i === 0 ? 0 : -1}
+          data-decision-tab
+        >
+          {String(i + 1).padStart(2, '0')} / {question.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    questions.map((question, i) => (
+      <div
+        class="decision-tabs__panel"
+        id={`decision-panel-${i}`}
+        role="tabpanel"
+        aria-labelledby={`decision-tab-${i}`}
+        tabindex="0"
+        hidden={i !== 0}
+        data-decision-panel
+      >
+        <h3>{question.heading}</h3>
+        <p>{question.body}</p>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-decision-tabs]').forEach((widget) => {
+    const tabs = Array.from(widget.querySelectorAll<HTMLButtonElement>('[data-decision-tab]'));
+    const panels = Array.from(widget.querySelectorAll<HTMLElement>('[data-decision-panel]'));
+    const count = widget.querySelector<HTMLElement>('[data-decision-count]');
+    if (!tabs.length || !panels.length) return;
+
+    let currentIndex = 0;
+    let switching = false;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const setState = (nextIndex: number) => {
+      tabs.forEach((tab, index) => {
+        const active = index === nextIndex;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      if (count) {
+        count.textContent = `${String(nextIndex + 1).padStart(2, '0')} / ${String(tabs.length).padStart(2, '0')}`;
+      }
+    };
+
+    const select = (nextIndex: number, focus = false) => {
+      if (nextIndex === currentIndex || switching) {
+        if (focus) tabs[nextIndex]?.focus();
+        return;
+      }
+      setState(nextIndex);
+      const currentPanel = panels[currentIndex]!;
+      const nextPanel = panels[nextIndex]!;
+      currentIndex = nextIndex;
+
+      if (reduced.matches || !('animation' in document.documentElement.style)) {
+        panels.forEach((panel, index) => (panel.hidden = index !== nextIndex));
+      } else {
+        switching = true;
+        currentPanel.classList.add('is-leaving');
+        window.setTimeout(() => {
+          currentPanel.hidden = true;
+          currentPanel.classList.remove('is-leaving');
+          nextPanel.hidden = false;
+          nextPanel.classList.add('is-entering');
+          window.setTimeout(() => {
+            nextPanel.classList.remove('is-entering');
+            switching = false;
+          }, 230);
+        }, 150);
+      }
+      if (focus) tabs[nextIndex]?.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', (event) => {
+        let target: number | undefined;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown')
+          target = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp')
+          target = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') target = 0;
+        else if (event.key === 'End') target = tabs.length - 1;
+        if (target !== undefined) {
+          event.preventDefault();
+          select(target, true);
+        }
+      });
+    });
+  });
+</script>

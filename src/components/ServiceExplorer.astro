@@ -1,0 +1,121 @@
+---
+// Interactive explorer for the four launch capabilities.
+// All copy is preserved from the approved homepage capability list;
+// the side figures restate only facts already published on this site.
+interface Capability {
+  index: string;
+  label: string;
+  title: string;
+  body: string;
+  meta: string;
+  href?: string;
+  figure: { term: string; detail: string }[];
+}
+
+interface Props {
+  capabilities: Capability[];
+}
+
+const { capabilities } = Astro.props;
+const autoId = 'capability';
+---
+
+<section class="explorer" data-explorer>
+  <div class="explorer__tablist" role="tablist" aria-label="Launch capabilities" data-explorer-tabs>
+    {
+      capabilities.map((capability, i) => (
+        <button
+          class="explorer__tab"
+          id={`${autoId}-tab-${i}`}
+          type="button"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`${autoId}-panel-${i}`}
+          tabindex={i === 0 ? 0 : -1}
+          data-explorer-tab
+        >
+          <span class="explorer__tab-index">{capability.index}</span>
+          <span class="explorer__tab-label">{capability.label}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    capabilities.map((capability, i) => (
+      <div
+        class="explorer__panel"
+        id={`${autoId}-panel-${i}`}
+        role="tabpanel"
+        aria-labelledby={`${autoId}-tab-${i}`}
+        tabindex="0"
+        hidden={i !== 0}
+        data-explorer-panel
+      >
+        <div class="explorer__panel-inner">
+          <div>
+            <span class="explorer__tab-index mono">{capability.index}</span>
+            <h3>{capability.title}</h3>
+            <p>{capability.body}</p>
+            <span class="explorer__meta">{capability.meta}</span>
+            {capability.href && (
+              <div class="button-row">
+                <a class="text-link" href={capability.href}>
+                  Read capability ↗
+                </a>
+              </div>
+            )}
+          </div>
+          <div class="explorer__figure">
+            <span class="evidence-label">Scope record</span>
+            <dl>
+              {capability.figure.map((row) => (
+                <div>
+                  <dt>{row.term}</dt>
+                  <dd>{row.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-explorer]').forEach((explorer) => {
+    const tabs = Array.from(explorer.querySelectorAll<HTMLButtonElement>('[data-explorer-tab]'));
+    const panels = Array.from(explorer.querySelectorAll<HTMLElement>('[data-explorer-panel]'));
+    if (!tabs.length || !panels.length) return;
+
+    const select = (nextIndex: number, focus = false) => {
+      tabs.forEach((tab, index) => {
+        const active = index === nextIndex;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach((panel, index) => {
+        panel.hidden = index !== nextIndex;
+      });
+      if (focus) tabs[nextIndex]?.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', (event) => {
+        let target: number | undefined;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown')
+          target = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp')
+          target = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') target = 0;
+        else if (event.key === 'End') target = tabs.length - 1;
+        if (target !== undefined) {
+          event.preventDefault();
+          select(target, true);
+        }
+      });
+    });
+  });
+</script>

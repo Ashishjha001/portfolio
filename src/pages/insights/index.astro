@@ -30,13 +30,13 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout
-  title="Measurement and AI-search insights — DataDecision"
+  title="Measurement and AI-search insights | DataDecision"
   description="Practical DataDecision guides for reconciling GA4, CRM and revenue data, governing campaign sources and measuring AI-search visibility."
   path="/insights/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
   <header class="shell page-hero page-hero--compact">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Insights</p>
       <h1>Practical guidance for decisions your dashboards cannot settle.</h1>
       <p class="lede">
@@ -44,7 +44,7 @@ const formatDate = (date: Date) =>
         path into pipeline.
       </p>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio">
         <span>Published library</span><span
           >{insights.length.toString().padStart(2, '0')} complete</span
@@ -58,11 +58,13 @@ const formatDate = (date: Date) =>
     </aside>
   </header>
 
-  <section class="section">
+  <section class="section" aria-labelledby="measurement-cluster-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
+        <p class="cluster-index">Cluster 01</p>
         <p class="eyebrow">{measurementClusterName}</p>
-        <h2>Start with the reconciliation problem.</h2>
+        <h2 id="measurement-cluster-heading">Start with the reconciliation problem.</h2>
         <p class="small">
           One foundational guide and five focused checks connect website activity to CRM records,
           opportunity and revenue.
@@ -71,7 +73,7 @@ const formatDate = (date: Date) =>
       <div>
         {
           measurementPillar && (
-            <a class="cluster-pillar" href={`/insights/${measurementPillar.id}/`}>
+            <a class="cluster-pillar" href={`/insights/${measurementPillar.id}/`} data-reveal>
               <span class="evidence-label">Foundational guide / 01</span>
               <h2>{measurementPillar.data.title}</h2>
               <p>{measurementPillar.data.description}</p>
@@ -85,6 +87,8 @@ const formatDate = (date: Date) =>
         <div
           class="insight-index cluster-support-list"
           aria-label="Measurement and Lead-Source Truth supporting insights"
+          data-reveal
+          style="--reveal-delay:110ms"
         >
           {
             measurementSupporting.map((entry, index) => (
@@ -107,11 +111,13 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="demo-cluster-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
+        <p class="cluster-index">Cluster 02</p>
         <p class="eyebrow">{demoClusterName}</p>
-        <h2>Find the first break between demand and a held meeting.</h2>
+        <h2 id="demo-cluster-heading">Find the first break between demand and a held meeting.</h2>
         <p class="small">
           One diagnostic framework and five focused checks connect qualified visits to requests,
           routing, booked meetings and pipeline.
@@ -120,7 +126,7 @@ const formatDate = (date: Date) =>
       <div>
         {
           demoPillar && (
-            <a class="cluster-pillar" href={`/insights/${demoPillar.id}/`}>
+            <a class="cluster-pillar" href={`/insights/${demoPillar.id}/`} data-reveal>
               <span class="evidence-label">Foundational guide / 01</span>
               <h2>{demoPillar.data.title}</h2>
               <p>{demoPillar.data.description}</p>
@@ -134,6 +140,8 @@ const formatDate = (date: Date) =>
         <div
           class="insight-index cluster-support-list"
           aria-label="B2B SaaS Demo-Funnel Diagnosis supporting insights"
+          data-reveal
+          style="--reveal-delay:110ms"
         >
           {
             demoSupporting.map((entry, index) => (
@@ -158,16 +166,20 @@ const formatDate = (date: Date) =>
 
   {
     otherInsights.length > 0 && (
-      <section class="section">
+      <section class="section" aria-labelledby="more-heading">
+        <span class="chapter-mark" aria-hidden="true">
+          03
+        </span>
         <div class="shell editorial-grid">
-          <div class="section-intro">
+          <div class="section-intro" data-reveal>
+            <p class="cluster-index">Cluster 03</p>
             <p class="eyebrow">More research notes</p>
-            <h2>AI discovery, access and implementation.</h2>
+            <h2 id="more-heading">AI discovery, access and implementation.</h2>
             <p class="small">
               Additional DataDecision guidance remains available in the same library.
             </p>
           </div>
-          <div class="insight-index">
+          <div class="insight-index" data-reveal style="--reveal-delay:110ms">
             {otherInsights.map((entry, index) => (
               <a class="insight-row" href={`/insights/${entry.id}/`}>
                 <span class="mono">
@@ -190,20 +202,21 @@ const formatDate = (date: Date) =>
     )
   }
 
-  <section class="section">
+  <section class="section section--bright" aria-labelledby="templates-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
         <p class="eyebrow">Templates</p>
-        <h2>Use the method with your own data.</h2>
+        <h2 id="templates-heading">Use the method with your own data.</h2>
       </div>
-      <div>
+      <div data-reveal style="--reveal-delay:110ms">
         <p class="lede">
           Download the baseline template to frame buyer questions, record observations and keep the
           comparison consistent across dates.
         </p>
         <div class="button-row">
           <a
-            class="button"
+            class="button button--primary"
             href="/downloads/ai-visibility-baseline-template.csv"
             data-event="template_download">Download baseline template</a
           >

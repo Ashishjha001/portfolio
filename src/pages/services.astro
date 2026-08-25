@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const services = [
+  {
+    index: '01',
+    name: 'Growth Strategy & Measurement',
+    slug: 'growth-strategy-measurement',
+    problem:
+      'You have activity across channels but no clear view of what drives qualified demand, pipeline or revenue.',
+    doing: [
+      'Growth audit, funnel diagnosis and prioritized experiment roadmap',
+      'GA4, CRM and source-of-truth measurement foundations',
+      'Executive dashboards and decision-ready reporting',
+    ],
+    bestFor:
+      'Teams with unclear attribution, rising acquisition costs or inconsistent growth decisions.',
+  },
+  {
+    index: '02',
+    name: 'Search, SEO & AI Visibility',
+    slug: 'search-seo-ai-visibility',
+    problem:
+      'Your buyers search across Google and AI answers, but your brand is not consistently discovered, understood or considered.',
+    doing: [
+      'Technical SEO and conversion-led content strategy',
+      'AI-search visibility and answer-readiness assessment',
+      'Organic demand measurement, competitor research and prioritized fixes',
+    ],
+    bestFor: 'Brands that need durable discoverability beyond paid traffic alone.',
+  },
+  {
+    index: '03',
+    name: 'Paid Acquisition & Performance',
+    slug: 'paid-acquisition-performance',
+    problem:
+      'You are spending on acquisition but cannot confidently tell which campaigns, audiences and landing experiences create profitable growth.',
+    doing: [
+      'Google Ads, Meta Ads and LinkedIn Ads strategy and management',
+      'Campaign structure, audience, creative and landing-page testing',
+      'CAC, ROAS, lead-quality and pipeline measurement',
+    ],
+    bestFor:
+      'Teams ready to scale paid demand with disciplined testing and clear commercial targets.',
+  },
+  {
+    index: '04',
+    name: 'Conversion & Lifecycle Growth',
+    slug: 'conversion-lifecycle-growth',
+    problem:
+      'You are attracting attention, but too much of it disappears before a purchase, demo, repeat order or sales conversation.',
+    doing: [
+      'Landing-page and funnel conversion analysis',
+      'Lead journey, CRM and email lifecycle optimization',
+      'Experiment design for conversion, retention and lifetime value',
+    ],
+    bestFor:
+      'B2B teams improving demos and pipeline, or B2C teams improving purchases and repeat revenue.',
+  },
+  {
+    index: '05',
+    name: 'AI Agent Development',
+    slug: 'ai-agent-development',
+    problem:
+      'Your team has repetitive growth, research, reporting or customer-workflow tasks that AI could assist, but no reliable operating design.',
+    doing: [
+      'Workflow mapping and high-value AI use-case selection',
+      'Custom AI-agent design for defined business workflows',
+      'Testing, guardrails, handover and human-review steps',
+    ],
+    bestFor:
+      'Teams seeking practical automation with clear ownership, controls and measurable time savings.',
+  },
+  {
+    index: '06',
+    name: 'AI & GPT Integrations',
+    slug: 'ai-gpt-integrations',
+    problem:
+      'Your growth and operations tools hold valuable information, but teams still move data manually between systems and AI tools.',
+    doing: [
+      'AI/GPT integration design for approved business systems',
+      'Knowledge retrieval, reporting and workflow-assistance setups',
+      'Data flow, permissions, testing and practical team adoption',
+    ],
+    bestFor:
+      'Teams that want useful AI embedded into existing workflows rather than another disconnected tool.',
+  },
+];
+
+const stages = [
+  {
+    index: '01',
+    name: 'Brief',
+    body: 'Define the business question, context, systems and commercial goal.',
+  },
+  {
+    index: '02',
+    name: 'Diagnostic',
+    body: 'Establish the baseline and identify the highest-value gaps.',
+  },
+  {
+    index: '03',
+    name: 'Strategy',
+    body: 'Select the priority work, owner, effort and expected signal.',
+  },
+  {
+    index: '04',
+    name: 'Implementation',
+    body: 'Deliver the agreed growth, measurement or AI work to fixed scope.',
+  },
+  {
+    index: '05',
+    name: 'Measurement',
+    body: 'Review results, learnings and next decisions against the original baseline.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision services',
+  url: 'https://datadecision.consulting/services/',
+  hasPart: services.map((service) => ({
+    '@type': 'Service',
+    name: service.name,
+    provider: { '@type': 'Organization', name: 'DataDecision' },
+    url: `https://datadecision.consulting/contact/?service=${service.slug}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Services | DataDecision"
+  description="Growth systems across strategy and measurement, search and AI visibility, paid acquisition, conversion, and practical AI agents and integrations for B2B SaaS."
+  path="/services/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
+
+  <!-- S1: Editorial hero -->
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">DataDecision / Services</p>
+      <h1>Growth systems that turn attention into revenue.</h1>
+      <p class="lede">
+        From search and paid acquisition to conversion, measurement and practical AI systems, we
+        identify where growth is leaking and build the focused work required to fix it.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/#request-a-brief"
+          data-event="cta_primary_click">Request a brief →</a
+        >
+      </div>
+      <p class="hero__badge mono" data-reveal style="--reveal-delay:160ms">
+        Baseline first · Scope recorded · Evidence attached
+      </p>
+    </div>
+  </header>
+
+  <!-- S3: Services index -->
+  <section class="services-index" aria-label="Service ledger">
+    {
+      services.map((service, i) => (
+        <article
+          class:list={['service-row', { 'service-row--tint': i % 2 === 1 }]}
+          data-reveal
+          style={`--reveal-delay:${(i % 2) * 70}ms`}
+          id={service.slug}
+        >
+          <div class="shell service-row__grid">
+            <span class="service-row__num" aria-hidden="true">
+              {service.index}
+            </span>
+            <div class="service-row__body">
+              <h2>{service.name}</h2>
+              <p class="service-row__problem">{service.problem}</p>
+              <div class="service-row__receive">
+                <span class="evidence-label">What we do</span>
+                <ul>
+                  {service.doing.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <p class="service-row__best">
+                <span class="evidence-label">Best for</span>
+                {service.bestFor}
+              </p>
+            </div>
+            <div class="service-row__meta">
+              <a
+                class="text-link service-row__cta"
+                href={`/contact/?service=${service.slug}#request-a-brief`}
+                data-event="service_brief_click"
+              >
+                Request a brief →
+              </a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <!-- S4: How engagements work -->
+  <section class="section section--ink" aria-labelledby="path-heading">
+    <span class="chapter-mark" aria-hidden="true">↳</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How engagements work</p>
+        <h2 id="path-heading">A defined path from question to measurable work.</h2>
+        <p class="small" style="margin-top:1.2rem;">
+          The stages below are the engagement lifecycle behind every service above, not separate
+          products.
+        </p>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          stages.map((stage) => (
+            <div class="rule-row">
+              <span class="mono">{stage.index}</span>
+              <div>
+                <h3>{stage.name}</h3>
+                <p>{stage.body}</p>
+              </div>
+              <span class="rule-row__meta">Stage {stage.index}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- S5: Final CTA -->
+  <section class="section section--green" aria-labelledby="services-cta-heading">
+    <div class="shell cta-band">
+      <h2 id="services-cta-heading" data-reveal>
+        Start with the question your growth data cannot answer.
+      </h2>
+      <div class="cta-band__action" data-reveal style="--reveal-delay:120ms">
+        <p>Brief us on the visibility, measurement or conversion problem you need to resolve.</p>
+        <a
+          class="button button--primary"
+          href="/contact/#request-a-brief"
+          data-event="cta_primary_click"
+        >
+          Request a brief →
+        </a>
+        <p class="cta-band__note">We review every brief personally. No automated sales sequence.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero__badge {
+    display: inline-block;
+    margin: 1.4rem 0 0;
+    padding: 0.45em 1em;
+    border: 1px solid var(--rule-strong);
+    border-radius: 2px;
+    color: var(--muted);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .service-row {
+    border-top: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-row:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .service-row--tint {
+    background: var(--bg-deep);
+  }
+
+  .service-row::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-row:hover::after,
+  .service-row:focus-within::after {
+    transform: scaleX(1);
+  }
+
+  .service-row__grid {
+    display: grid;
+    grid-template-columns: 7ch minmax(0, 1fr) 200px;
+    gap: 1.5rem 2.5rem;
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-row:hover .service-row__grid,
+  .service-row:focus-within .service-row__grid {
+    transform: translateY(-2px);
+  }
+
+  .service-row__num {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 600;
+    color: var(--signal);
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .service-row__body h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    margin-bottom: 0.5em;
+    max-width: 24ch;
+  }
+
+  .service-row__problem {
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-row__receive .evidence-label {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: var(--signal);
+  }
+
+  .service-row__receive ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .service-row__receive li {
+    position: relative;
+    padding-left: 1.3rem;
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  .service-row__receive li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.72rem;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .service-row__best {
+    display: block;
+    margin: 1.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.93rem;
+    max-width: 56ch;
+  }
+
+  .service-row__best .evidence-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--signal);
+  }
+
+  .service-row__meta {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+    justify-items: start;
+  }
+
+  .service-row__cta {
+    font-size: 0.98rem;
+  }
+
+  .service-row__cta::after {
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-row:hover .service-row__cta,
+  .service-row:focus-within .service-row__cta {
+    color: var(--signal);
+  }
+
+  @media (max-width: 900px) {
+    .service-row__grid {
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+
+    .service-row__num {
+      padding-top: 0;
+    }
+  }
+</style>

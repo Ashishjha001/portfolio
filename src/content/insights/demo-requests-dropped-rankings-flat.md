@@ -58,7 +58,7 @@ Check whether visitors still:
 - View proof such as case studies or integrations
 - Return before converting
 
-Use GA4 path analysis backwards from the demo event. If fewer converting visitors now pass through the same commercial pages, the problem may be content intent or internal linking—not ranking. If the pricing audience itself changed, inspect why [pricing-page visits rose while demos stayed flat](/insights/pricing-page-visits-up-demos-flat/).
+Use GA4 path analysis backwards from the demo event. If fewer converting visitors now pass through the same commercial pages, the problem may be content intent or internal linking, not ranking. If the pricing audience itself changed, inspect why [pricing-page visits rose while demos stayed flat](/insights/pricing-page-visits-up-demos-flat/).
 
 Also inspect recent website changes. A new sticky header, animation, cookie banner or mobile layout can hide a CTA without affecting search rankings at all.
 

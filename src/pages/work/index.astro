@@ -14,13 +14,13 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout
-  title="Work and website QA records — DataDecision"
+  title="Work and website QA records | DataDecision"
   description="Completed DataDecision research and website QA records with dates, samples, methods and limitations."
   path="/work/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work' }]} />
   <header class="shell page-hero page-hero--compact">
-    <div class="page-hero__copy">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Work ledger</p><h1>Published records with the context to judge them.</h1><p
         class="lede"
       >
@@ -28,7 +28,7 @@ const formatDate = (date: Date) =>
         only with permission and verified facts.
       </p>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio"><span>Label key</span><span>01 definition</span></div><div class="caveat">
         <span class="evidence-label">DEMONSTRATION RUN</span>A dated public-data or DataDecision
         self-measurement record. The label separates it from client work.
@@ -36,43 +36,42 @@ const formatDate = (date: Date) =>
     </aside>
   </header>
   <section class="section">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
+      <div class="section-intro" data-reveal>
         <p class="eyebrow">Published records</p><h2>Start with work that is complete.</h2><p
           class="small"
         >
           Each record links the observation date, sample, method and main limitation.
         </p>
-      </div><div class="work-ledger">
+      </div><div class="work-ledger" data-reveal style="--reveal-delay:110ms">
         {
           work.map((entry) => (
             <article class="work-entry">
-              <div>
-                <>
-                  <span class="status-label">{entry.data.label}</span>
-                  <p class="small">Observed {formatDate(entry.data.observationDate)}</p>
-                </>
+              <div class="work-entry__id">
+                <span class="status-label">{entry.data.label}</span>
+                <p class="small">Observed {formatDate(entry.data.observationDate)}</p>
               </div>
               <div>
-                <>
-                  <h3>
-                    <a href={`/work/${entry.id}/`}>{entry.data.title}</a>
-                  </h3>
-                  <p>{entry.data.description}</p>
-                </>
+                <h3>
+                  <a href={`/work/${entry.id}/`}>{entry.data.title}</a>
+                </h3>
+                <p>{entry.data.description}</p>
               </div>
-              <div class="small">
-                <br />
-                {entry.data.sample}
-                <br />
-                <br />
-                <br />
-                {entry.data.methodologyVersion}
-                <br />
-                <br />
-                <br />
-                {entry.data.limitations[0]}
-              </div>
+              <dl class="work-entry__meta">
+                <div>
+                  <dt class="evidence-label">Sample</dt>
+                  <dd class="small">{entry.data.sample}</dd>
+                </div>
+                <div>
+                  <dt class="evidence-label">Method</dt>
+                  <dd class="small">{entry.data.methodologyVersion}</dd>
+                </div>
+                <div>
+                  <dt class="evidence-label">Limitation</dt>
+                  <dd class="small">{entry.data.limitations[0]}</dd>
+                </div>
+              </dl>
             </article>
           ))
         }

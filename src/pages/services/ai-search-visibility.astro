@@ -2,8 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import MethodBadge from '../../components/MethodBadge.astro';
-import DecisionBoard from '../../components/DecisionBoard.astro';
-import AISearchVisibilityMap from '../../components/AISearchVisibilityMap.astro';
+import DecisionTabs from '../../components/DecisionTabs.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 
@@ -27,6 +26,29 @@ const faqs = [
     question: 'What arrives after 15 business days?',
     answer:
       'A dated visibility baseline, citation and source map, competitor comparison, technical access review, measurement-gap review, prioritized 90-day plan and a one-page Decision Board.',
+  },
+];
+
+const decisionQuestions = [
+  {
+    label: 'Visibility baseline',
+    heading: 'What appeared in the sample?',
+    body: 'See the dated mentions, citations and comparison set produced by the agreed query frame.',
+  },
+  {
+    label: 'Measurement gap',
+    heading: 'What would your stack miss?',
+    body: 'Find the breaks between referral data, conversion events and CRM records.',
+  },
+  {
+    label: 'Priority action',
+    heading: 'What should move first?',
+    body: 'Give each recommended action an owner, effort estimate, expected signal and stopping rule.',
+  },
+  {
+    label: 'Evidence boundary',
+    heading: 'What can the evidence not prove?',
+    body: 'State the sample boundary and uncertainty beside the decision it supports.',
   },
 ];
 
@@ -54,7 +76,7 @@ const schema = [
 ---
 
 <BaseLayout
-  title="AI-search visibility for B2B SaaS — DataDecision"
+  title="AI-search visibility for B2B SaaS | DataDecision"
   description="Measure how your SaaS appears across an agreed set of search and AI surfaces, then choose the highest-value improvements."
   path="/services/ai-search-visibility/"
   schema={schema}
@@ -62,8 +84,8 @@ const schema = [
   <Breadcrumbs
     items={[{ label: 'Home', href: '/' }, { label: 'Services' }, { label: 'AI-search visibility' }]}
   />
-  <header class="shell page-hero page-hero--ai-visibility">
-    <div class="page-hero__copy">
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">AI-search visibility</p>
       <h1>Where does your SaaS appear, and what should you improve next?</h1>
       <p class="lede">
@@ -76,7 +98,7 @@ const schema = [
         ><MethodBadge />
       </div>
     </div>
-    <aside class="page-hero__aside">
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
       <div class="folio"><span>Diagnostic / standard</span><span>15 business days</span></div>
       <dl class="evidence-list">
         <div class="evidence-line">
@@ -98,24 +120,22 @@ const schema = [
     </aside>
   </header>
 
-  <section class="section">
+  <section class="section" aria-labelledby="problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell">
       <div class="editorial-grid">
-        <div class="section-intro">
-          <p class="eyebrow">The problem</p><h2>
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem</p><h2 id="problem-heading">
             A useful baseline begins beyond the first answer.
           </h2>
         </div>
-        <p class="lede">
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
           Generated answers vary by engine, prompt, location, account state and time. A useful
           baseline fixes the query frame and surface set, records what appeared on specific dates
           and gives the team a consistent comparison for the next decision.
         </p>
       </div>
-      <div class="visual-inset">
-        <AISearchVisibilityMap />
-      </div>
-      <div class="rule-list visual-followup">
+      <div class="rule-list visual-followup" data-reveal style="--reveal-delay:180ms">
         <div class="rule-row">
           <span class="mono">01</span><div>
             <h3>Same buyer questions</h3><p>
@@ -140,12 +160,15 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--ink" aria-labelledby="deliverables-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">What you receive</p><h2>A decision file built for action.</h2>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What you receive</p><h2 id="deliverables-heading">
+          A decision file built for action.
+        </h2>
       </div>
-      <div class="rule-list">
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">01</span><div>
             <h3>Visibility baseline</h3><p>
@@ -186,35 +209,39 @@ const schema = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="board-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Decision Board</p><h2>Every recommendation answers four questions.</h2><p
-          class="small"
-        >
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Decision Board</p><h2 id="board-heading">
+          Every recommendation answers four questions.
+        </h2><p class="small">
           What did we observe? What did the data miss? What should happen next? What can the
           evidence not prove?
         </p>
       </div>
-      <DecisionBoard />
+      <div data-reveal style="--reveal-delay:110ms">
+        <DecisionTabs questions={decisionQuestions} />
+      </div>
     </div>
   </section>
 
-  <section class="section section--ink">
+  <section class="section section--ink" aria-labelledby="fit-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow" style="color:#9fd2bc;">Fit</p><h2>
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="fit-heading">
           Built for teams with a real decision to make.
         </h2>
       </div>
-      <div class="comparison">
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
         <div>
           <span class="evidence-label">Strong fit</span><h3>Growth-stage B2B SaaS</h3><ul>
             <li>A founder or growth leader needs a defensible baseline.</li><li>
               Discovery, conversion and CRM data disagree.
             </li><li>The team can provide inputs and act on a 90-day plan.</li>
           </ul>
-        </div><div class="comparison__rule" style="background:#4b4e49;"></div><div>
+        </div><div class="comparison__rule"></div><div>
           <span class="evidence-label">Outside launch scope</span><h3>
             Work outside the current scope
           </h3><ul>
@@ -227,11 +254,14 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section" aria-labelledby="questions-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
     <div class="shell editorial-grid">
-      <div class="section-intro">
-        <p class="eyebrow">Questions</p><h2>What teams ask before starting.</h2>
-      </div><FAQList items={faqs} />
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="questions-heading">
+          What teams ask before starting.
+        </h2>
+      </div><div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
     </div>
   </section>
   <FinalCTA heading="Turn the question into a repeatable baseline." />

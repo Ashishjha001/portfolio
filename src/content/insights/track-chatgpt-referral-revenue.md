@@ -27,7 +27,7 @@ sources:
   <p><strong>Traffic reports cannot answer the revenue question alone.</strong> Join the observed AI referral to a conversion, CRM contact, opportunity and closed-won record while keeping sourced, converting and influenced pipeline separate.</p>
 </div>
 
-The dashboard shows 83 visits from ChatGPT. Interesting—but the CEO asks a better question:
+The dashboard shows 83 visits from ChatGPT. Interesting, but the CEO asks a better question:
 
 > Did any of those visits create pipeline or revenue?
 
@@ -41,7 +41,7 @@ GA4 now includes an **AI Assistant** channel for traffic from sources such as Ch
 
 HubSpot also has an **AI Referrals** category and can identify platforms such as ChatGPT, Claude and Perplexity when the referral information is available.
 
-That gives you a starting point—but not complete attribution. Referrer information can be missing, a person may copy the URL, switch devices or return directly days later.
+That gives you a starting point, but not complete attribution. Referrer information can be missing, a person may copy the URL, switch devices or return directly days later.
 
 ## Track the full chain
 
@@ -86,7 +86,7 @@ With small volumes, avoid dramatic conclusions from one deal. Review the landing
 
 The valuable question is not “How many AI clicks did we get?” It is:
 
-> Which AI-referred visits became real buying conversations—and what content caused that to happen?
+> Which AI-referred visits became real buying conversations, and what content caused that to happen?
 
 That is the measurement layer most AI-visibility reports still miss.
 

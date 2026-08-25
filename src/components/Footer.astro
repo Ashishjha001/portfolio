@@ -1,46 +1,67 @@
 ---
 const year = new Date().getFullYear();
+
+const columns = [
+  {
+    heading: 'Capabilities',
+    label: 'Services',
+    links: [
+      { href: '/services/', label: 'All services' },
+      { href: '/services/ai-search-visibility/', label: 'AI-search visibility' },
+      { href: '/services/measurement-foundation/', label: 'Measurement foundation' },
+      { href: '/methodology/', label: 'Methodology' },
+      { href: '/contact/', label: 'Request a diagnostic' },
+    ],
+  },
+  {
+    heading: 'Evidence',
+    label: 'Evidence and resources',
+    links: [
+      { href: '/work/', label: 'Work ledger' },
+      { href: '/insights/', label: 'Insights' },
+      { href: '/downloads/ai-visibility-baseline-template.csv', label: 'Baseline template' },
+      { href: '/about/', label: 'About' },
+    ],
+  },
+  {
+    heading: 'Trust',
+    label: 'Legal and access',
+    links: [
+      { href: '/privacy/', label: 'Privacy' },
+      { href: '/terms/', label: 'Terms' },
+      { href: '/cookies/', label: 'Cookies' },
+      { href: '/accessibility/', label: 'Accessibility' },
+      { href: 'mailto:contact@datadecision.consulting', label: 'contact@datadecision.consulting' },
+    ],
+  },
+];
 ---
 
 <footer class="site-footer">
   <div class="shell footer-grid">
-    <div>
-      <a class="brand" href="/">DataDecision<small>Growth you can prove.</small></a>
+    <div class="footer-grid__brand">
+      <a class="brand brand--footer" href="/">
+        <span class="brand__word">DataDecision<small>Growth you can prove.</small></span>
+      </a>
       <h2>Measurement-first AI-search visibility for B2B SaaS.</h2>
       <p class="small measure">
         Focused on AI-search visibility, measurement foundations and scoped implementation.
       </p>
     </div>
-    <nav class="footer-nav" aria-label="Services">
-      <h3>Capabilities</h3>
-      <ul>
-        <li><a href="/services/ai-search-visibility/">AI-search visibility</a></li>
-        <li><a href="/services/measurement-foundation/">Measurement foundation</a></li>
-        <li><a href="/methodology/">Methodology</a></li>
-        <li><a href="/contact/">Request a diagnostic</a></li>
-      </ul>
-    </nav>
-    <nav class="footer-nav" aria-label="Evidence and resources">
-      <h3>Evidence</h3>
-      <ul>
-        <li><a href="/work/">Work ledger</a></li>
-        <li><a href="/insights/">Insights</a></li>
-        <li><a href="/downloads/ai-visibility-baseline-template.csv">Baseline template</a></li>
-        <li><a href="/about/">About</a></li>
-      </ul>
-    </nav>
-    <nav class="footer-nav" aria-label="Legal and access">
-      <h3>Trust</h3>
-      <ul>
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/terms/">Terms</a></li>
-        <li><a href="/cookies/">Cookies</a></li>
-        <li><a href="/accessibility/">Accessibility</a></li>
-        <li>
-          <a href="mailto:contact@datadecision.consulting">contact@datadecision.consulting</a>
-        </li>
-      </ul>
-    </nav>
+    {
+      columns.map((column) => (
+        <nav class="footer-nav" aria-label={column.label}>
+          <h3>{column.heading}</h3>
+          <ul>
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
   </div>
   <div class="shell footer-bottom">
     <span>© {year} DataDecision. All rights reserved.</span>

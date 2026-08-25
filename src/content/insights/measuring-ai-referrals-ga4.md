@@ -21,7 +21,7 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first / checked 24 Aug 2026</p>
-  <p><strong>GA4 can now classify visits from named assistants in its AI Assistant channel, but that report is not a complete measure of AI-assisted discovery.</strong> Treat it as the observable referral layer. Validate the source data, separate session and user scope, test the path into your CRM, and report the traffic that lacks a useful referrer as unknown—not zero.</p>
+  <p><strong>GA4 can now classify visits from named assistants in its AI Assistant channel, but that report is not a complete measure of AI-assisted discovery.</strong> Treat it as the observable referral layer. Validate the source data, separate session and user scope, test the path into your CRM, and report the traffic that lacks a useful referrer as unknown, not zero.</p>
 </div>
 
 ## Start with the distinction GA4 leaves unresolved
@@ -61,7 +61,7 @@ Google documents separate [traffic-source scopes](https://support.google.com/ana
 | Session    | Which source is associated with this session?                                     | Treating it as a causal account of the buying journey               |
 | Event      | Which source received credit for an event under the configured attribution rules? | Comparing it directly with a session total without naming the scope |
 
-Choose the scope from the decision. A content team asking “which visits arrived from an assistant this month?” probably needs session-scoped reporting. A revenue team asking “which observed acquisition source is attached to these opportunities?” needs a documented join from analytics into CRM fields—and a warning about identity loss between the two.
+Choose the scope from the decision. A content team asking “which visits arrived from an assistant this month?” probably needs session-scoped reporting. A revenue team asking “which observed acquisition source is attached to these opportunities?” needs a documented join from analytics into CRM fields, plus a warning about identity loss between the two.
 
 ## Test the source path before building a dashboard
 

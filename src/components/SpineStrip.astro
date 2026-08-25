@@ -1,0 +1,271 @@
+---
+// Measurement spine as a flat, typographic strip (BASIC/DEPT-style composition).
+// All labels preserved verbatim from the approved measurement-foundation content.
+interface Props {
+  id?: string;
+}
+
+const { id = 'measurement-spine' } = Astro.props;
+
+const stages = [
+  { index: '01', name: 'Discovery' },
+  { index: '02', name: 'Referral' },
+  { index: '03', name: 'Website session' },
+  { index: '04', name: 'Form submission' },
+  { index: '05', name: 'CRM record' },
+  { index: '06', name: 'Qualified opportunity' },
+  { index: '07', name: 'Pipeline' },
+];
+
+const breaks = [
+  'Referrer absent',
+  'Source detail grouped',
+  'Event blocked',
+  'Identifiers dropped',
+  'Source overwritten',
+  'Stage definition differs',
+];
+---
+
+<figure id={id} class="spine" data-reveal>
+  <div class="spine__head">
+    <span class="evidence-label">Measurement spine / possible breaks</span>
+    <span class="spine__legend">
+      <i aria-hidden="true"></i>
+      <span class="evidence-label">Break to test</span>
+    </span>
+  </div>
+
+  <div class="spine__axis" aria-hidden="true">
+    <span>Observable records</span>
+    <span>Commercial decision</span>
+  </div>
+
+  <ol class="spine__stages" aria-label="Seven stages from discovery to pipeline">
+    {
+      stages.map((stage, index) => (
+        <li class="spine__stage">
+          <span class="spine__index">{stage.index}</span>
+          <span class="spine__name">{stage.name}</span>
+          {index < stages.length - 1 && <span class="spine__arrow" aria-hidden="true" />}
+        </li>
+      ))
+    }
+  </ol>
+
+  <ul class="spine__breaks" aria-label="Six possible breaks to test">
+    {
+      breaks.map((breakLabel) => (
+        <li>
+          <span class="spine__tick" aria-hidden="true">
+            ‖
+          </span>
+          {breakLabel}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="spine__note">
+    <span>Possible break ≠ confirmed failure</span>
+    <span>Test field presence, ownership + definition</span>
+  </p>
+
+  <figcaption>
+    <span class="evidence-label">Interpretation</span>
+    The break labels are test hypotheses, not findings about a particular stack. A measurement audit verifies
+    field presence, ownership and definition at each handoff.
+  </figcaption>
+</figure>
+
+<style>
+  .spine {
+    margin: 0;
+    border-block: 1px solid var(--line);
+    padding: 1.4rem 0 0;
+  }
+
+  .spine__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .spine__head .evidence-label {
+    color: var(--signal);
+  }
+
+  .spine__legend {
+    display: inline-flex;
+    gap: 0.55rem;
+    align-items: center;
+  }
+
+  .spine__legend i {
+    width: 0.32rem;
+    height: 0.85rem;
+    background: var(--signal);
+  }
+
+  .spine__legend .evidence-label {
+    color: var(--muted);
+  }
+
+  .spine__axis {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0 0.4rem;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .spine__stages {
+    display: grid;
+    margin: 0;
+    padding: 0.4rem 0 1.4rem;
+    list-style: none;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .spine__stage {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+    align-content: start;
+    padding: 0.9rem 1.1rem 0.9rem 0;
+    border-left: 1px solid var(--line);
+    padding-left: 1.1rem;
+  }
+
+  .spine__stage:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .spine__index {
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .spine__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .spine__arrow {
+    position: absolute;
+    top: 1.35rem;
+    right: -0.3rem;
+    width: 0.6rem;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  .spine__arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+    transform: rotate(45deg);
+  }
+
+  .spine__breaks {
+    display: grid;
+    margin: 0;
+    padding: 1.1rem 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem 2rem;
+  }
+
+  .spine__breaks li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .spine__tick {
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: -0.14em;
+  }
+
+  .spine__note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0.8rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--signal) 35%, transparent);
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .spine figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    padding: 1rem 0 1.2rem;
+    color: var(--faint);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .spine figcaption .evidence-label {
+    color: var(--signal);
+  }
+
+  @media (max-width: 860px) {
+    .spine__stages {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .spine__stage {
+      grid-template-columns: 2.4rem 1fr;
+      align-items: baseline;
+      gap: 0.9rem;
+      padding: 0.75rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .spine__stage:first-child {
+      padding-top: 1rem;
+    }
+
+    .spine__arrow {
+      display: none;
+    }
+
+    .spine__breaks {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

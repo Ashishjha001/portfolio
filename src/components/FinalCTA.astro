@@ -12,12 +12,12 @@ const {
 } = Astro.props;
 ---
 
-<section class="section--green">
+<section class="section section--green">
   <div class="shell cta-band">
-    <h2>{heading}</h2>
-    <div class="cta-band__action">
+    <h2 data-reveal>{heading}</h2>
+    <div class="cta-band__action" data-reveal style="--reveal-delay:120ms">
       <p>{body}</p>
-      <a class="button" href="/contact/" data-event="cta_primary_click">{label}</a>
+      <a class="button button--primary" href="/contact/" data-event="cta_primary_click">{label}</a>
     </div>
   </div>
 </section>
