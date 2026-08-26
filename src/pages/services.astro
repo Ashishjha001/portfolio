@@ -7,84 +7,123 @@ const services = [
     index: '01',
     name: 'Growth Strategy & Measurement',
     slug: 'growth-strategy-measurement',
-    problem:
-      'You have activity across channels but no clear view of what drives qualified demand, pipeline or revenue.',
+    tagline: 'Know what drives growth. Build around what works.',
     doing: [
-      'Growth audit, funnel diagnosis and prioritized experiment roadmap',
-      'GA4, CRM and source-of-truth measurement foundations',
-      'Executive dashboards and decision-ready reporting',
+      'Growth strategy, market research, funnel diagnosis and experiment roadmaps',
+      'GA4, GTM, CRM, attribution and source-of-truth measurement',
+      'Customer journey, ICP and channel strategy',
+      'Executive dashboards and revenue reporting',
+      'Marketing performance and competitive analysis',
     ],
     bestFor:
-      'Teams with unclear attribution, rising acquisition costs or inconsistent growth decisions.',
+      'Companies that need a clear growth strategy and reliable visibility from marketing activity to pipeline and revenue.',
   },
   {
     index: '02',
-    name: 'Search, SEO & AI Visibility',
-    slug: 'search-seo-ai-visibility',
-    problem:
-      'Your buyers search across Google and AI answers, but your brand is not consistently discovered, understood or considered.',
+    name: 'Web, SEO & AI Visibility',
+    slug: 'web-seo-ai-visibility',
+    tagline: 'Get discovered on Google. Get understood by AI. Get chosen by customers.',
     doing: [
-      'Technical SEO and conversion-led content strategy',
-      'AI-search visibility and answer-readiness assessment',
-      'Organic demand measurement, competitor research and prioritized fixes',
+      'Complete website strategy, UX/UI design and development',
+      'High-converting landing pages and service/product pages',
+      'Technical and on-page SEO',
+      'AEO — Answer Engine Optimization',
+      'GEO — Generative Engine Optimization',
+      'AI-search visibility across ChatGPT, Gemini, Claude, Grok and Google AI Overviews',
+      'Keyword, search-intent and competitor research',
+      'Content strategy and production',
+      'Topical authority and internal-link architecture',
+      'Schema and structured data',
+      'Digital authority and citation strategy',
+      'Website performance and Core Web Vitals',
+      'Organic and AI-referral measurement',
     ],
-    bestFor: 'Brands that need durable discoverability beyond paid traffic alone.',
+    bestFor:
+      'Companies that want us to build or transform their complete digital presence for search, AI discovery, authority and conversion.',
   },
   {
     index: '03',
-    name: 'Paid Acquisition & Performance',
+    name: 'Paid Acquisition & Demand Generation',
     slug: 'paid-acquisition-performance',
-    problem:
-      'You are spending on acquisition but cannot confidently tell which campaigns, audiences and landing experiences create profitable growth.',
+    tagline: 'Turn the right audience into qualified demand.',
     doing: [
-      'Google Ads, Meta Ads and LinkedIn Ads strategy and management',
-      'Campaign structure, audience, creative and landing-page testing',
+      'Google Ads, LinkedIn Ads and Meta Ads',
+      'Paid-search and paid-social strategy',
+      'B2B account and audience targeting',
+      'Campaign creative and copy',
+      'Dedicated landing pages',
+      'Retargeting',
+      'Lead-generation campaigns',
+      'ICP and prospect research',
+      'LinkedIn and outbound demand-generation systems',
+      'Campaign experimentation and optimization',
       'CAC, ROAS, lead-quality and pipeline measurement',
     ],
     bestFor:
-      'Teams ready to scale paid demand with disciplined testing and clear commercial targets.',
+      'Companies that want to create demand now while their organic and AI-search visibility compounds over time.',
   },
   {
     index: '04',
     name: 'Conversion & Lifecycle Growth',
     slug: 'conversion-lifecycle-growth',
-    problem:
-      'You are attracting attention, but too much of it disappears before a purchase, demo, repeat order or sales conversation.',
+    tagline: 'Turn attention into pipeline. Turn customers into lasting revenue.',
     doing: [
-      'Landing-page and funnel conversion analysis',
-      'Lead journey, CRM and email lifecycle optimization',
-      'Experiment design for conversion, retention and lifetime value',
+      'Conversion Rate Optimization (CRO)',
+      'Website and landing-page optimization',
+      'Funnel and customer-journey analysis',
+      'Lead-capture optimization',
+      'A/B testing and experimentation',
+      'CRM and lifecycle optimization',
+      'Email and lead nurturing',
+      'Lead scoring and routing',
+      'Marketing-to-sales handoff',
+      'Retention and repeat-purchase strategy',
+      'Revenue Operations (RevOps)',
+      'Customer lifetime-value optimization',
     ],
     bestFor:
-      'B2B teams improving demos and pipeline, or B2C teams improving purchases and repeat revenue.',
+      'Companies already generating traffic or leads but losing opportunities between first visit, conversion, sales and retention.',
   },
   {
     index: '05',
     name: 'AI Agent Development',
     slug: 'ai-agent-development',
-    problem:
-      'Your team has repetitive growth, research, reporting or customer-workflow tasks that AI could assist, but no reliable operating design.',
+    tagline: 'Turn repetitive work into intelligent, controlled workflows.',
     doing: [
-      'Workflow mapping and high-value AI use-case selection',
-      'Custom AI-agent design for defined business workflows',
-      'Testing, guardrails, handover and human-review steps',
+      'AI opportunity and workflow mapping',
+      'Custom AI agents for defined business processes',
+      'Marketing and sales research agents',
+      'Lead qualification and enrichment agents',
+      'Content and research workflows',
+      'Reporting and analytics agents',
+      'Customer-support workflows',
+      'Internal knowledge agents',
+      'Human-in-the-loop review systems',
+      'Testing, evaluation and guardrails',
+      'Deployment, documentation and handover',
     ],
     bestFor:
-      'Teams seeking practical automation with clear ownership, controls and measurable time savings.',
+      'Teams that want practical AI automation tied to measurable business outcomes rather than AI experimentation for its own sake.',
   },
   {
     index: '06',
     name: 'AI & GPT Integrations',
     slug: 'ai-gpt-integrations',
-    problem:
-      'Your growth and operations tools hold valuable information, but teams still move data manually between systems and AI tools.',
+    tagline: 'Bring AI into the tools your business already runs on.',
     doing: [
-      'AI/GPT integration design for approved business systems',
-      'Knowledge retrieval, reporting and workflow-assistance setups',
-      'Data flow, permissions, testing and practical team adoption',
+      'AI/GPT integration with existing business systems',
+      'CRM and marketing-platform integrations',
+      'Internal knowledge retrieval and RAG systems',
+      'AI-powered reporting and analytics',
+      'Automated research and workflow assistance',
+      'Marketing and sales automation',
+      'Data and API integrations',
+      'Permission and access architecture',
+      'Testing and monitoring',
+      'Team implementation and adoption',
     ],
     bestFor:
-      'Teams that want useful AI embedded into existing workflows rather than another disconnected tool.',
+      'Companies that want AI embedded into their existing technology and workflows instead of adding another disconnected tool.',
   },
 ];
 
@@ -144,8 +183,8 @@ const schema = {
       <p class="eyebrow">DataDecision / Services</p>
       <h1>Growth systems that turn attention into revenue.</h1>
       <p class="lede">
-        From search and paid acquisition to conversion, measurement and practical AI systems, we
-        identify where growth is leaking and build the focused work required to fix it.
+        From building your website to SEO, AI search visibility, content, paid acquisition,
+        conversion and analytics — we build the complete digital growth engine behind your business.
       </p>
       <div class="button-row">
         <a
@@ -176,7 +215,7 @@ const schema = {
             </span>
             <div class="service-row__body">
               <h2>{service.name}</h2>
-              <p class="service-row__problem">{service.problem}</p>
+              <p class="service-row__tagline">{service.tagline}</p>
               <div class="service-row__receive">
                 <span class="evidence-label">What we do</span>
                 <ul>
@@ -329,10 +368,23 @@ const schema = {
     max-width: 24ch;
   }
 
-  .service-row__problem {
+  .service-row__tagline {
     color: var(--ink-soft);
-    max-width: 58ch;
+    font-weight: 600;
+    font-size: 1.05rem;
+    max-width: 52ch;
     margin-bottom: 1.2rem;
+  }
+
+  .service-row__receive ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+
+  @media (max-width: 760px) {
+    .service-row__receive ul {
+      grid-template-columns: 1fr;
+    }
   }
 
   .service-row__receive .evidence-label {
