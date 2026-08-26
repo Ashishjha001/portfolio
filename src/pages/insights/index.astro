@@ -21,7 +21,15 @@ const demoPillar = demoClusterEntries.find((entry) => entry.data.pillar);
 const demoSupporting = demoClusterEntries
   .filter((entry) => !entry.data.pillar)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
-const clusteredNames = new Set([measurementClusterName, demoClusterName]);
+const playbooksClusterName = 'Service Playbooks';
+const playbooksClusterEntries = insights.filter(
+  (entry) => entry.data.cluster === playbooksClusterName,
+);
+const playbooksPillar = playbooksClusterEntries.find((entry) => entry.data.pillar);
+const playbooksSupporting = playbooksClusterEntries
+  .filter((entry) => !entry.data.pillar)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const clusteredNames = new Set([measurementClusterName, demoClusterName, playbooksClusterName]);
 const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.cluster ?? ''));
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
@@ -164,6 +172,59 @@ const formatDate = (date: Date) =>
     </div>
   </section>
 
+  <section class="section section--bright" aria-labelledby="playbooks-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="cluster-index">Cluster 03</p>
+        <p class="eyebrow">{playbooksClusterName}</p>
+        <h2 id="playbooks-heading">How DataDecision implements every service, step by step.</h2>
+        <p class="small">
+          Complete implementation playbooks for each pillar: what the DataDecision team builds, in
+          what order, with the artifacts and limits stated.
+        </p>
+      </div>
+      <div>
+        {
+          playbooksPillar && (
+            <a class="cluster-pillar" href={`/insights/${playbooksPillar.id}/`} data-reveal>
+              <span class="evidence-label">Foundational playbook / 01</span>
+              <h2>{playbooksPillar.data.title}</h2>
+              <p>{playbooksPillar.data.description}</p>
+              <span class="cluster-pillar__meta">
+                Published {formatDate(playbooksPillar.data.publishedDate)} ·{' '}
+                {playbooksPillar.data.readingMinutes} min read
+              </span>
+            </a>
+          )
+        }
+        <div
+          class="insight-index cluster-support-list"
+          aria-label="Service Playbooks supporting guides"
+          data-reveal
+          style="--reveal-delay:110ms"
+        >
+          {
+            playbooksSupporting.map((entry, index) => (
+              <a class="insight-row" href={`/insights/${entry.id}/`}>
+                <span class="mono">{String(index + 2).padStart(2, '0')} / Playbook</span>
+                <div>
+                  <h3>{entry.data.title}</h3>
+                  <p>{entry.data.description}</p>
+                </div>
+                <span class="small">
+                  {formatDate(entry.data.publishedDate)}
+                  <br />
+                  {entry.data.readingMinutes} min read
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
   {
     otherInsights.length > 0 && (
       <section class="section" aria-labelledby="more-heading">
@@ -172,7 +233,7 @@ const formatDate = (date: Date) =>
         </span>
         <div class="shell editorial-grid">
           <div class="section-intro" data-reveal>
-            <p class="cluster-index">Cluster 03</p>
+            <p class="cluster-index">Cluster 04</p>
             <p class="eyebrow">More research notes</p>
             <h2 id="more-heading">AI discovery, access and implementation.</h2>
             <p class="small">
@@ -203,7 +264,7 @@ const formatDate = (date: Date) =>
   }
 
   <section class="section section--bright" aria-labelledby="templates-heading">
-    <span class="chapter-mark" aria-hidden="true">04</span>
+    <span class="chapter-mark" aria-hidden="true">05</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Templates</p>
