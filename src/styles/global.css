@@ -171,6 +171,18 @@ summary {
   margin-inline: auto;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1239,7 +1251,7 @@ html.js:not(.reduced-motion) .hero.is-arrived .hero__pulse:nth-of-type(4) {
   display: inline-block;
 }
 
-html.js:not(.reduced-motion) .hero__title .line > span {
+html.js:not(.reduced-motion) .hero__title .line:not(.rotator) > span {
   opacity: 0;
   transform: translateY(22px);
   animation: line-up 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -3719,6 +3731,141 @@ html.js .diagram-frame.has-stages .diag-node.is-active {
 /* legal/article prose link affordance on inverted sections */
 .section--bright .prose a {
   color: var(--accent-on-light);
+}
+
+/* ============================================================
+   Hero rotator (Get Recommended by [platform])
+   ============================================================ */
+
+.hero__title--rotator {
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  max-width: none;
+}
+
+.hero__title .rotator {
+  display: grid;
+  justify-items: start;
+  position: relative;
+}
+
+.rotator__word {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  color: var(--ink);
+  position: relative;
+}
+
+.rotator__word::before {
+  content: '';
+  position: absolute;
+  inset: -14% -5% -20%;
+  background: radial-gradient(closest-side, rgba(14, 110, 84, 0.1), transparent 72%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .rotator__word {
+    white-space: normal;
+  }
+}
+
+html.js .rotator__word {
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.js .rotator__word:not(.is-current) {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+html.js .rotator__word.is-current {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+html.js:not(.reduced-motion) .hero__title .line.rotator {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: line-up 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(1 * 90ms + 180ms);
+}
+
+/* platform accents — only the changing word carries colour */
+.rotator[data-platform='overviews'] .rotator__word.is-current {
+  background: linear-gradient(90deg, #1a73e8, #188038);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rotator[data-platform='gemini'] .rotator__word.is-current {
+  background: linear-gradient(90deg, #1a73e8, #8430ce);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rotator[data-platform='claude'] .rotator__word.is-current {
+  color: #c15f3c;
+}
+
+/* supporting copy hierarchy */
+.hero__standfirst {
+  margin: 0.4rem 0 0.9rem;
+  font-size: clamp(1.15rem, 1.9vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text);
+  max-width: 44ch;
+}
+
+.hero__lede {
+  margin-bottom: 0;
+}
+
+.hero__trust {
+  margin: 1.6rem 0 0;
+  color: var(--faint);
+  letter-spacing: 0.14em;
+}
+
+/* faint background search signals */
+.hero__query {
+  position: absolute;
+  margin: 0;
+  color: var(--ink);
+  opacity: 0.055;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__query--a {
+  top: 22%;
+  left: 4%;
+}
+
+.hero__query--b {
+  top: 14%;
+  right: 6%;
+}
+
+.hero__query--c {
+  bottom: 18%;
+  right: 12%;
+}
+
+@media (max-width: 900px) {
+  .hero__query {
+    display: none;
+  }
 }
 
 /* ============================================================
