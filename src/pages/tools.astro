@@ -1,0 +1,671 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Free growth tools',
+  url: 'https://datadecision.consulting/tools/',
+};
+---
+
+<BaseLayout
+  title="Free Growth Tools | DataDecision"
+  description="Free tools from DataDecision: UTM builder and validator, AI crawler access checker and a website snapshot audit. No signup required."
+  path="/tools/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Free tools' }]} />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">DataDecision / Free tools</p>
+      <h1>Three small tools we use on every engagement. Free, no signup.</h1>
+      <p class="lede">
+        The same checks the DataDecision team runs before campaigns launch and before blaming
+        content for weak AI visibility. They run entirely in your browser — nothing you enter is
+        stored or sent to us.
+      </p>
+    </div>
+  </header>
+
+  <!-- Tool 1: UTM builder + validator -->
+  <section class="section section--compact tool-band" aria-labelledby="utm-heading">
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 01 / Campaign links</span>
+        <h2 id="utm-heading">UTM builder &amp; validator</h2>
+        <p class="tool-intro">
+          Build campaign links that follow the DataDecision taxonomy — or paste an existing URL to
+          check it against the same rules.
+        </p>
+      </div>
+      <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
+        <div class="utm-grid">
+          <div class="form-field">
+            <label for="utm-url">Destination URL <span aria-hidden="true">*</span></label>
+            <input id="utm-url" type="url" placeholder="https://yoursite.com/demo" />
+          </div>
+          <div class="form-field">
+            <label for="utm-source">utm_source <span aria-hidden="true">*</span></label>
+            <input id="utm-source" type="text" placeholder="linkedin" />
+          </div>
+          <div class="form-field">
+            <label for="utm-medium">utm_medium <span aria-hidden="true">*</span></label>
+            <input id="utm-medium" type="text" placeholder="paid_social" />
+          </div>
+          <div class="form-field">
+            <label for="utm-campaign">utm_campaign</label>
+            <input id="utm-campaign" type="text" placeholder="india_q3_demo" />
+          </div>
+          <div class="form-field">
+            <label for="utm-content">utm_content</label>
+            <input id="utm-content" type="text" placeholder="founder_video_01" />
+          </div>
+        </div>
+        <div class="utm-output-row">
+          <output class="utm-output" id="utm-result" aria-live="polite"></output>
+          <button class="button button--primary" type="button" id="utm-copy" disabled>
+            Copy link
+          </button>
+        </div>
+        <div class="utm-validate">
+          <label class="evidence-label" for="utm-check">Or paste a campaign URL to validate</label>
+          <div class="utm-validate-row">
+            <input id="utm-check" type="url" placeholder="Paste a full URL with UTM parameters" />
+            <button class="button" type="button" id="utm-check-btn">Validate</button>
+          </div>
+          <ul class="tool-findings" id="utm-findings" aria-live="polite"></ul>
+        </div>
+        <p class="tool-note">
+          Rules applied: lowercase values, no spaces, required source + medium, no email addresses
+          or personal data in parameters. Full model in the
+          <a href="/insights/utm-governance-b2b/">UTM governance guide</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool 2: AI crawler access checker -->
+  <section
+    class="section section--compact tool-band section--deep"
+    aria-labelledby="crawler-heading"
+  >
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 02 / AI access</span>
+        <h2 id="crawler-heading">AI crawler access checker</h2>
+        <p class="tool-intro">
+          Enter your domain and the checker reads your robots.txt and reports how the major AI
+          crawlers are treated — the verification the DataDecision team runs before diagnosing weak
+          AI visibility.
+        </p>
+      </div>
+      <div class="tool-panel tool-panel--deep" data-reveal style="--reveal-delay:100ms">
+        <div class="utm-validate-row">
+          <input
+            id="crawler-domain"
+            type="text"
+            placeholder="yourdomain.com"
+            aria-label="Domain to check"
+          />
+          <button class="button button--primary" type="button" id="crawler-check">
+            Check access
+          </button>
+        </div>
+        <div id="crawler-status" class="tool-status" role="status" aria-live="polite"></div>
+        <div id="crawler-results" class="crawler-results" hidden></div>
+        <p class="tool-note tool-note--deep">
+          Simplified analysis of robots.txt as published. Full verification (fetch tests per
+          provider, region checks) is part of the
+          <a href="/insights/technical-access-verification-checklist/"
+            >access verification checklist</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool 3: Website snapshot audit -->
+  <section class="section section--compact tool-band" aria-labelledby="snapshot-heading">
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 03 / First impression</span>
+        <h2 id="snapshot-heading">Website snapshot audit</h2>
+        <p class="tool-intro">
+          The thirty-second check the DataDecision team runs on any page: title, description,
+          canonical, headings and structured data — the basics every search engine and AI model
+          reads first.
+        </p>
+      </div>
+      <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
+        <div class="utm-validate-row">
+          <input
+            id="snap-url"
+            type="url"
+            placeholder="https://yoursite.com"
+            aria-label="Page URL to audit"
+          />
+          <button class="button button--primary" type="button" id="snap-check">Audit page</button>
+        </div>
+        <div id="snap-status" class="tool-status" role="status" aria-live="polite"></div>
+        <ul class="tool-findings" id="snap-findings" aria-live="polite"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="tools-cta-heading">
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Beyond the free checks</p>
+        <h2 id="tools-cta-heading">The tools find symptoms. The engagement fixes the system.</h2>
+        <p class="small">
+          Every tool above is one check from a full audit. The DataDecision team runs the complete
+          version — access, architecture, content, measurement — inside each service.
+        </p>
+      </div>
+      <div class="button-row" data-reveal style="--reveal-delay:110ms">
+        <a
+          class="button button--primary"
+          href="/contact/?service=web-seo-ai-visibility#request-a-brief"
+          data-event="cta_primary_click">Get Your Free AI Visibility Audit</a
+        >
+        <a class="text-link" href="/services/">Explore all services</a>
+      </div>
+    </div>
+  </section>
+  <style>
+    .tool-band {
+      padding-block: clamp(2.2rem, 4.5vw, 3.4rem);
+    }
+
+    .tool-head {
+      margin-bottom: 1.4rem;
+    }
+
+    .tool-head h2 {
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      margin-bottom: 0.4em;
+    }
+
+    .tool-intro {
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    .tool-panel {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 1.5rem 1.4rem;
+    }
+
+    .tool-panel--deep {
+      background: var(--deep-green);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: var(--soft-green-text);
+    }
+
+    .tool-panel--deep .tool-intro,
+    .tool-panel--deep .tool-note {
+      color: var(--soft-green-text);
+    }
+
+    .tool-panel--deep .tool-note a,
+    .tool-panel--deep .evidence-label {
+      color: var(--mint-accent);
+    }
+
+    .utm-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-bottom: 1.1rem;
+    }
+
+    .utm-output-row,
+    .utm-validate-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .utm-validate-row input {
+      flex: 1 1 260px;
+      padding: 0.72rem 0.9rem;
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--radius-small);
+      background: var(--panel);
+      color: var(--text);
+    }
+
+    .tool-panel--deep .utm-validate-row input {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: var(--warm-white);
+    }
+
+    .utm-output {
+      flex: 1 1 320px;
+      padding: 0.72rem 0.9rem;
+      border: 1px dashed var(--rule-strong);
+      border-radius: var(--radius-small);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow-wrap: anywhere;
+      min-height: 2.7rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .utm-validate {
+      margin-top: 1.2rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .tool-findings {
+      margin: 0.4rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+    }
+
+    .tool-findings li {
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    .tool-findings li::before {
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    .tool-findings li.ok::before {
+      content: '✓';
+      color: var(--signal);
+    }
+
+    .tool-findings li.warn::before {
+      content: '!';
+      color: var(--amber);
+    }
+
+    .tool-findings li.bad::before {
+      content: '✕';
+      color: var(--error);
+    }
+
+    .tool-note {
+      margin: 1.1rem 0 0;
+      color: var(--faint);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .tool-note a {
+      color: var(--signal);
+    }
+
+    .tool-status {
+      margin: 0.8rem 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      min-height: 1.3em;
+    }
+
+    .tool-panel--deep .tool-status {
+      color: var(--soft-green-text);
+    }
+
+    .crawler-results {
+      display: grid;
+      gap: 0.5rem;
+      margin: 0.6rem 0 0;
+    }
+
+    .crawler-row {
+      display: grid;
+      grid-template-columns: minmax(140px, auto) 1fr auto;
+      gap: 0.4rem 1rem;
+      align-items: center;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--radius-small);
+      font-size: 0.86rem;
+    }
+
+    .crawler-row .crawler-name {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--mint-accent);
+    }
+
+    .crawler-row .crawler-detail {
+      color: var(--soft-green-text);
+      font-size: 0.78rem;
+    }
+
+    .crawler-badge {
+      padding: 0.2em 0.7em;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .crawler-badge.allow {
+      background: rgba(99, 214, 174, 0.15);
+      color: var(--mint-accent);
+    }
+
+    .crawler-badge.block {
+      background: rgba(255, 157, 143, 0.15);
+      color: var(--error);
+    }
+
+    .crawler-badge.unknown {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--soft-green-text);
+    }
+  </style>
+
+  <script is:inline>
+    /* ---------- Tool 1: UTM builder + validator ---------- */
+    (function () {
+      const url = document.getElementById('utm-url');
+      const source = document.getElementById('utm-source');
+      const medium = document.getElementById('utm-medium');
+      const campaign = document.getElementById('utm-campaign');
+      const content = document.getElementById('utm-content');
+      const result = document.getElementById('utm-result');
+      const copy = document.getElementById('utm-copy');
+      if (!url) return;
+
+      const clean = (value: string) => value.trim().toLowerCase().replace(/\s+/g, '_');
+
+      const update = () => {
+        let base = url.value.trim();
+        if (!base || !source.value.trim()) {
+          result.textContent = base ? 'Add utm_source to generate the link' : '';
+          copy.disabled = true;
+          return;
+        }
+        const params = new URLSearchParams();
+        params.set('utm_source', clean(source.value));
+        if (medium.value.trim()) params.set('utm_medium', clean(medium.value));
+        if (campaign.value.trim()) params.set('utm_campaign', clean(campaign.value));
+        if (content.value.trim()) params.set('utm_content', clean(content.value));
+        base = base + (base.includes('?') ? '&' : '?') + params.toString();
+        result.textContent = base;
+        copy.disabled = false;
+      };
+
+      [url, source, medium, campaign, content].forEach((input) =>
+        input?.addEventListener('input', update),
+      );
+
+      copy?.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(result.textContent || '');
+        copy.textContent = 'Copied ✓';
+        window.setTimeout(() => (copy.textContent = 'Copy link'), 1600);
+      });
+
+      /* validator */
+      const checkInput = document.getElementById('utm-check');
+      const checkBtn = document.getElementById('utm-check-btn');
+      const findings = document.getElementById('utm-findings');
+
+      const addFinding = (kind: string, text: string) => {
+        const li = document.createElement('li');
+        li.className = kind;
+        li.textContent = text;
+        findings?.appendChild(li);
+      };
+
+      const validate = () => {
+        if (!findings) return;
+        findings.innerHTML = '';
+        const raw = checkInput?.value.trim() || '';
+        if (!raw) return;
+        let parsed: URL;
+        try {
+          parsed = new URL(raw);
+        } catch {
+          addFinding('bad', 'That is not a valid URL.');
+          return;
+        }
+        const sp = parsed.searchParams;
+        const src = sp.get('utm_source');
+        const med = sp.get('utm_medium');
+        const emailIn = /[^@\s]+@[^@\s]+\.[^@\s]+/.test(raw);
+
+        if (!src) addFinding('bad', 'utm_source missing — the visit cannot be attributed.');
+        else addFinding('ok', `utm_source present: "${src}"`);
+
+        if (!med) addFinding('warn', 'utm_medium missing — channel grouping will suffer.');
+        else addFinding('ok', `utm_medium present: "${med}"`);
+
+        [src, med, sp.get('utm_campaign'), sp.get('utm_content')].forEach((value) => {
+          if (!value) return;
+          if (value !== value.toLowerCase())
+            addFinding('warn', `"${value}" has uppercase — values should be lowercase.`);
+          if (/\s/.test(value))
+            addFinding('warn', `"${value}" contains a space — use underscores.`);
+        });
+
+        if (emailIn)
+          addFinding(
+            'bad',
+            'An email address appears in the URL — personal data must never go in UTMs.',
+          );
+        if (parsed.pathname === '/' && (src || med))
+          addFinding('warn', 'UTMs on the homepage usually mean internal or accidental tagging.');
+        if (!findings?.querySelector('.bad, .warn'))
+          addFinding('ok', 'Clean campaign link — follows the taxonomy.');
+      };
+
+      checkBtn?.addEventListener('click', validate);
+      checkInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') validate();
+      });
+    })();
+
+    /* ---------- Tool 2: AI crawler access checker ---------- */
+    (function () {
+      const domainInput = document.getElementById('crawler-domain');
+      const btn = document.getElementById('crawler-check');
+      const status = document.getElementById('crawler-status');
+      const results = document.getElementById('crawler-results');
+      if (!domainInput || !btn || !status || !results) return;
+
+      const TOKENS = [
+        ['GPTBot', 'OpenAI training crawler'],
+        ['OAI-SearchBot', 'OpenAI search crawler'],
+        ['ChatGPT-User', 'OpenAI user-triggered fetch'],
+        ['ClaudeBot', 'Anthropic crawler'],
+        ['anthropic-ai', 'Anthropic AI answer fetch'],
+        ['PerplexityBot', 'Perplexity crawler'],
+        ['Perplexity-User', 'Perplexity user-triggered fetch'],
+        ['Google-Extended', 'Google Gemini training'],
+        ['Googlebot', 'Google search crawler'],
+        ['Bingbot', 'Bing / Copilot crawler'],
+        ['Applebot-Extended', 'Apple Intelligence training'],
+      ];
+
+      const badge = (state: string) =>
+        `<span class="crawler-badge ${state}">${state.toUpperCase()}</span>`;
+
+      async function fetchRobots(domain: string): Promise<string> {
+        const target =
+          'https://' + domain.replace(/^https?:\/\//, '').replace(/\/.*$/, '') + '/robots.txt';
+        const proxies = [
+          'https://r.jina.ai/' + target,
+          'https://api.allorigins.win/raw?url=' + encodeURIComponent(target),
+        ];
+        for (const proxy of proxies) {
+          try {
+            const res = await fetch(proxy);
+            if (res.ok) return await res.text();
+          } catch (e) {
+            /* try next */
+          }
+        }
+        throw new Error('unreachable');
+      }
+
+      const analyze = (text: string) => {
+        const lines = text.split(/\r?\n/);
+        const groups: { agent: string; disallow: string[]; allow: string[] }[] = [];
+        let current: { agent: string; disallow: string[]; allow: string[] } | null = null;
+        const sitemaps: string[] = [];
+        for (const rawLine of lines) {
+          const line = rawLine.split('#')[0].trim();
+          if (!line) continue;
+          const [key, ...rest] = line.split(':');
+          const value = rest.join(':').trim();
+          const keyLower = key.toLowerCase();
+          if (keyLower === 'user-agent') {
+            if (!current || current.agent !== value) {
+              current = { agent: value, disallow: [], allow: [] };
+              groups.push(current);
+            }
+          } else if (keyLower === 'disallow' && current) {
+            current.disallow.push(value);
+          } else if (keyLower === 'allow' && current) {
+            current.allow.push(value);
+          } else if (keyLower === 'sitemap') {
+            sitemaps.push(value);
+          }
+        }
+        return { groups, sitemaps };
+      };
+
+      const check = async () => {
+        const domain = domainInput.value
+          .trim()
+          .replace(/^https?:\/\//, '')
+          .replace(/\/.*$/, '');
+        if (!domain) {
+          status.textContent = 'Enter a domain first.';
+          return;
+        }
+        btn.disabled = true;
+        status.textContent = 'Fetching robots.txt…';
+        results.hidden = true;
+        results.innerHTML = '';
+        try {
+          const text = await fetchRobots(domain);
+          status.textContent = `robots.txt retrieved from ${domain}.`;
+          const { groups, sitemaps } = analyze(text);
+          const rows: string[] = [];
+          for (const [token, description] of TOKENS) {
+            const matches = groups.filter((g) => g.agent.toLowerCase() === token.toLowerCase());
+            let state = 'unknown';
+            let detail = 'Not mentioned in robots.txt — defaults apply (usually allowed).';
+            if (matches.length) {
+              const fullBlock = matches.some((g) =>
+                g.disallow.some((d) => d === '/' && !g.allow.length),
+              );
+              if (fullBlock) {
+                state = 'block';
+                detail = 'Blocked from the entire site (Disallow: /).';
+              } else {
+                state = 'allow';
+                detail = `Referenced with ${matches.reduce((n, g) => n + g.disallow.length + g.allow.length, 0)} specific rule(s).`;
+              }
+            }
+            rows.push(
+              `<div class="crawler-row"><span class="crawler-name">${token}</span><span class="crawler-detail">${detail}</span>${badge(state)}</div>`,
+            );
+          }
+          rows.push(
+            `<div class="crawler-row"><span class="crawler-name">SITEMAP</span><span class="crawler-detail">${
+              sitemaps.length
+                ? sitemaps.map((s) => s).join(' · ')
+                : 'No sitemap line found in robots.txt.'
+            }</span>${badge(sitemaps.length ? 'allow' : 'unknown')}</div>`,
+          );
+          results.innerHTML = rows.join('');
+          results.hidden = false;
+        } catch {
+          status.textContent =
+            'Could not retrieve robots.txt through the browser (the site may block proxy fetches, or the domain is wrong). Try again or verify manually.';
+        } finally {
+          btn.disabled = false;
+        }
+      };
+
+      btn.addEventListener('click', check);
+      domainInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') check();
+      });
+    })();
+
+    /* ---------- Tool 3: Website snapshot audit ---------- */
+    (function () {
+      const input = document.getElementById('snap-url');
+      const btn = document.getElementById('snap-check');
+      const status = document.getElementById('snap-status');
+      const findings = document.getElementById('snap-findings');
+      if (!input || !btn || !status || !findings) return;
+
+      const add = (kind: string, text: string) => {
+        const li = document.createElement('li');
+        li.className = kind;
+        li.textContent = text;
+        findings.appendChild(li);
+      };
+
+      const audit = async () => {
+        const raw = input.value.trim();
+        if (!raw) return;
+        btn.disabled = true;
+        status.textContent = 'Fetching the page…';
+        findings.innerHTML = '';
+        try {
+          const target = raw.startsWith('http') ? raw : 'https://' + raw;
+          const res = await fetch('https://r.jina.ai/' + target);
+          if (!res.ok) throw new Error('bad status');
+          const text = await res.text();
+          status.textContent = 'Page retrieved. Basic checks:';
+          const title = text.match(/Title: (.+)/i)?.[1];
+          const desc = text.match(/Description: (.+)/i)?.[1];
+          const h1s = (text.match(/^#\s(.+)$/gm) || []).length;
+          const hasSchema = /application\/ld\+json/i.test(text);
+          const canonical = /canonical/i.test(text);
+
+          if (title) add('ok', `Title found (${title.length} chars): "${title.slice(0, 80)}"`);
+          else add('bad', 'No title found — the single most important on-page element is missing.');
+          if (desc) add('ok', `Meta description found: "${desc.slice(0, 90)}"`);
+          else add('warn', 'No meta description detected.');
+          if (h1s === 1) add('ok', 'One H1 heading found.');
+          else if (h1s === 0) add('warn', 'No H1 heading detected on the page.');
+          else add('warn', `${h1s} H1 headings detected — pages should have exactly one.`);
+          if (canonical) add('ok', 'Canonical reference detected.');
+          else add('warn', 'No canonical reference detected.');
+          if (hasSchema) add('ok', 'Structured data (JSON-LD) detected.');
+          else add('warn', 'No structured data detected — add Organization/Service schema.');
+        } catch {
+          status.textContent =
+            'Could not retrieve that page through the browser (it may block proxy fetches). Try another URL or verify manually.';
+        } finally {
+          btn.disabled = false;
+        }
+      };
+
+      btn.addEventListener('click', audit);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') audit();
+      });
+    })();
+  </script>
+</BaseLayout>
