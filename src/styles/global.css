@@ -748,6 +748,10 @@ html.menu-open .menu-toggle__icon i:last-child {
   border-top: 1px solid var(--line);
 }
 
+.section--compact {
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+}
+
 .section:first-of-type,
 .hero + .section {
   border-top: 0;
@@ -4391,7 +4395,7 @@ body:has(.mobile-cta:not([hidden])) .to-top {
 .tools-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 1.5rem 3rem;
   align-items: center;
   padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.4rem, 3vw, 2.4rem);

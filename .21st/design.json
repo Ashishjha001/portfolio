@@ -134,6 +134,15 @@
       "choice": "Dedicated /services page with six outcome-based categories",
       "alternatives": ["Five lifecycle-stage services", "Generic agency service grid"],
       "reason": "User correction: lifecycle stages are engagement stages, not services. Services index now lists six buyable categories (Growth Strategy & Measurement; Search, SEO & AI Visibility; Paid Acquisition & Performance; Conversion & Lifecycle Growth; AI Agent Development; AI & GPT Integrations) as numbered ledger rows with alternating cream/pale-tint backgrounds. The five lifecycle stages moved to a deep-green engagement-path section. Every CTA links to /contact/?service=[slug]#request-a-brief (trailing slash required by trailingSlash:always); the contact form reads the param, prefills a visible editable dropdown + hidden selected_service field, and shows Selected service: [name]. Homepage credibility band removed. Nav now: Services, Methodology, Work, Insights, About."
+    },
+    {
+      "date": "2026-08-26",
+      "choice": "Concise homepage with detail routed to deeper pages",
+      "alternatives": [
+        "Keep every scope detail on the homepage",
+        "Compress the capability explorer on mobile"
+      ],
+      "reason": "The homepage now prioritizes proposition, method, free tools, selected insights, process, founder trust, FAQs and conversion. The dense capability explorer and evidence board were removed from the homepage, while detailed scope remains on service and methodology pages. Supporting summaries and repeated qualifiers were reduced so mobile visitors can scan the page without navigating a compressed desktop tab interface."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"
