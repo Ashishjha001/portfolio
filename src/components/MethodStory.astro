@@ -1,15 +1,9 @@
 ---
-// Scroll-linked retelling of the four method steps.
-// Copy is preserved verbatim from the approved homepage content.
-// Each step reveals its concrete deliverable and the decision it enables:
-// on hover/focus, when scroll-activated, or pinned by click/keyboard.
+// Concise, scroll-linked overview of the four method steps.
 interface Step {
   index: string;
   title: string;
   body: string;
-  tag: string;
-  deliverable: string;
-  decision: string;
 }
 
 interface Props {
@@ -30,46 +24,11 @@ const { steps } = Astro.props;
           <span class="mono">{step.index}</span>
           <h3>{step.title}</h3>
           <p>{step.body}</p>
-          <span class="method-step__tag">{step.tag}</span>
-          <button
-            class="method-step__toggle text-link"
-            type="button"
-            aria-expanded="false"
-            data-step-toggle
-          >
-            Deliverable + decision
-          </button>
-          <div class="method-step__detail">
-            <div class="method-step__detail-inner">
-              <dl class="method-step__facts">
-                <div>
-                  <dt>Output</dt>
-                  <dd>{step.deliverable}</dd>
-                </div>
-                <div>
-                  <dt>Decision</dt>
-                  <dd>{step.decision}</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
         </li>
       ))
     }
   </ol>
 </div>
-
-<style>
-  .method-step__toggle {
-    justify-self: start;
-    margin-top: 0.7rem;
-    padding: 0;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-  }
-</style>
 
 <script>
   const story = document.querySelector<HTMLElement>('[data-method-story]');
@@ -117,15 +76,5 @@ const { steps } = Astro.props;
       window.addEventListener('resize', onScroll);
       updateFill();
     }
-
-    /* Click / Enter pins a step's deliverable + decision open */
-    story.querySelectorAll<HTMLButtonElement>('[data-step-toggle]').forEach((toggle) => {
-      const step = toggle.closest<HTMLElement>('.method-step');
-      if (!step) return;
-      toggle.addEventListener('click', () => {
-        const pinned = step.classList.toggle('is-pinned');
-        toggle.setAttribute('aria-expanded', String(pinned));
-      });
-    });
   }
 </script>

@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MethodStory from '../components/MethodStory.astro';
-import ServiceExplorer from '../components/ServiceExplorer.astro';
-import DecisionTabs from '../components/DecisionTabs.astro';
 import MethodBadge from '../components/MethodBadge.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
@@ -28,11 +26,6 @@ const faqs = [
       'The default scope covers up to four approved search and AI surfaces where access permits. The final engine set, access conditions and observation protocol are written into the methodology record before collection begins.',
   },
   {
-    question: 'Is this SEO with a new name?',
-    answer:
-      'Some foundations overlap: crawl access, useful content, technical clarity and external authority still matter. The additional work is a sampled answer-layer baseline, source observation, prompt-frame design and a measurement path into conversion and pipeline.',
-  },
-  {
     question: 'What is included in the standard scope?',
     answer:
       'Fifty buying-intent queries, one market, one language, up to four surfaces where access permits, two documented runs where methodologically appropriate, a technical access review, measurement-gap review and prioritized 90-day action plan.',
@@ -42,11 +35,6 @@ const faqs = [
     answer:
       'The standard delivery window is 15 business days after the required inputs are complete and the written scope is confirmed.',
   },
-  {
-    question: 'Do you manage paid media?',
-    answer:
-      'The launch focus is AI-search visibility, measurement foundations and tightly scoped post-diagnostic implementation. Paid channels may appear in a recommendation when the evidence makes them relevant, but paid-media management is outside the current service scope.',
-  },
 ];
 
 const methodSteps = [
@@ -54,113 +42,21 @@ const methodSteps = [
     index: '01',
     title: 'Frame the query set',
     body: 'Define buying intent, market, language, competitors and collection conditions before checking any result.',
-    tag: 'Inputs locked',
-    deliverable: 'A written query frame and approved comparison set.',
-    decision: 'What we compare, in which market and language.',
   },
   {
     index: '02',
     title: 'Observe the surfaces',
     body: 'Record dated answers, mentions and sources across the approved engine set inside a clearly defined sample.',
-    tag: 'Windowed',
-    deliverable: 'Dated observation records for every surface.',
-    decision: 'Which engines stay in the approved set.',
   },
   {
     index: '03',
     title: 'Audit the measurement path',
     body: 'Test whether referral, conversion and CRM records can connect discovery to pipeline.',
-    tag: 'Assumptions shown',
-    deliverable: 'A measurement-gap review with test results.',
-    decision: 'Which gaps we repair now and which we document.',
   },
   {
     index: '04',
     title: 'Rank the next decisions',
     body: 'Attach an owner, effort, expected signal, confidence label and stopping rule to each recommended action.',
-    tag: '90-day horizon',
-    deliverable: 'A prioritized 90-day action plan.',
-    decision: 'What moves first, owned by whom, stopped by what.',
-  },
-];
-
-const capabilities = [
-  {
-    index: 'A',
-    label: 'AI-search visibility',
-    title: 'AI-search visibility diagnostic',
-    body: 'A dated, sampled baseline across approved surfaces, with a source map, competitor comparison and prioritized actions.',
-    meta: 'Diagnostic output · 15 business days',
-    href: '/services/ai-search-visibility/',
-    figure: [
-      { term: 'Frame', detail: '50 buying-intent queries' },
-      { term: 'Surfaces', detail: 'Up to four approved surfaces where access permits' },
-      { term: 'Runs', detail: 'Two documented runs where appropriate' },
-      { term: 'Output', detail: 'Baseline, source map and 90-day plan' },
-    ],
-  },
-  {
-    index: 'B',
-    label: 'Measurement foundation',
-    title: 'Measurement foundation',
-    body: 'Tracking plan, referral visibility, CRM linkage and an assumption register that makes reporting easier to challenge.',
-    meta: 'Diagnostic output · scoped separately',
-    href: '/services/measurement-foundation/',
-    figure: [
-      { term: 'Plan', detail: 'Decisions before events' },
-      { term: 'Sources', detail: 'Acquisition and CRM fields reconciled' },
-      { term: 'Linkage', detail: 'Discovery connected to pipeline records' },
-      { term: 'Register', detail: 'What each report can and cannot say' },
-    ],
-  },
-  {
-    index: 'C',
-    label: 'Recommendations',
-    title: 'Conversion and visibility recommendations',
-    body: 'Audit-grade recommendations inside every engagement, ordered by evidence, effort and expected signal.',
-    meta: 'Included in every diagnostic',
-    figure: [
-      { term: 'Order', detail: 'Evidence first, then effort' },
-      { term: 'Signal', detail: 'Expected change named per action' },
-      { term: 'Confidence', detail: 'Labelled beside each recommendation' },
-      { term: 'Boundary', detail: 'Evidence limits stated openly' },
-    ],
-  },
-  {
-    index: 'D',
-    label: 'Implementation sprint',
-    title: 'Scoped implementation sprint',
-    body: 'A fixed post-diagnostic sprint for a defined measurement or answer-readiness problem, with its own boundaries and acceptance criteria.',
-    meta: 'Post-diagnostic only',
-    figure: [
-      { term: 'Entry', detail: 'Selected from diagnostic findings' },
-      { term: 'Scope', detail: 'Fixed before kickoff' },
-      { term: 'Criteria', detail: 'Acceptance defined in writing' },
-      { term: 'Additions', detail: 'Agreed separately, never silently' },
-    ],
-  },
-];
-
-const decisionQuestions = [
-  {
-    label: 'Visibility baseline',
-    heading: 'What appeared in the sample?',
-    body: 'See the dated mentions, citations and comparison set produced by the agreed query frame.',
-  },
-  {
-    label: 'Measurement gap',
-    heading: 'What would your stack miss?',
-    body: 'Find the breaks between referral data, conversion events and CRM records.',
-  },
-  {
-    label: 'Priority action',
-    heading: 'What should move first?',
-    body: 'Give each recommended action an owner, effort estimate, expected signal and stopping rule.',
-  },
-  {
-    label: 'Evidence boundary',
-    heading: 'What can the evidence not prove?',
-    body: 'State the sample boundary and uncertainty beside the decision it supports.',
   },
 ];
 
@@ -207,15 +103,12 @@ const schema = {
             </span>
           </span>
         </h1>
-        <p class="hero__standfirst" data-reveal style="--reveal-delay:160ms">
-          Let AI recommend your product or service when your customers are ready to choose.
-        </p>
-        <p class="lede hero__lede" data-reveal style="--reveal-delay:220ms">
+        <p class="lede hero__lede" data-reveal style="--reveal-delay:160ms">
           From building your website to SEO, AI search visibility, content, paid acquisition,
           conversion and analytics — we build the complete digital growth engine behind your
           business.
         </p>
-        <div class="button-row hero__actions" data-reveal style="--reveal-delay:280ms">
+        <div class="button-row hero__actions" data-reveal style="--reveal-delay:220ms">
           <a
             class="button button--primary"
             href="/contact/?service=web-seo-ai-visibility#request-a-brief"
@@ -227,9 +120,6 @@ const schema = {
             See How It Works
           </a>
         </div>
-        <p class="hero__trust mono" data-reveal style="--reveal-delay:340ms">
-          Built for discovery across Google · ChatGPT · Gemini · Claude · Grok
-        </p>
       </div>
     </div>
   </section>
@@ -242,35 +132,11 @@ const schema = {
         <p class="eyebrow">The method</p>
         <h2 id="home-method-heading">Four steps from question to action.</h2>
         <MethodBadge />
-        <p class="small" style="margin-top:1.2rem;">
-          Every engagement follows the same observable sequence. Nothing is interpreted before the
-          frame is fixed and the window is recorded.
-        </p>
         <div class="button-row">
-          <a class="text-link" href="/services/ai-search-visibility/">
-            See the diagnostic deliverables
-          </a>
+          <a class="text-link" href="/methodology/">Read the complete method</a>
         </div>
       </div>
       <MethodStory steps={methodSteps} />
-    </div>
-  </section>
-
-  <!-- Chapter 03: Capabilities explorer -->
-  <section class="section" data-chapter aria-labelledby="home-capabilities-heading">
-    <span class="chapter-mark" aria-hidden="true">03</span>
-    <div class="shell editorial-grid editorial-grid--balanced">
-      <div class="section-intro" data-reveal>
-        <p class="eyebrow">Launch capabilities</p>
-        <h2 id="home-capabilities-heading">Focused enough to show the work.</h2>
-        <p class="small">
-          The launch scope covers AI-search visibility, measurement foundations and defined
-          implementation work. Select a capability to inspect its scope.
-        </p>
-      </div>
-      <div data-reveal style="--reveal-delay:120ms">
-        <ServiceExplorer capabilities={capabilities} />
-      </div>
     </div>
   </section>
 
@@ -285,32 +151,23 @@ const schema = {
             Free tools · No signup · Run in your browser
           </span>
           <h2 id="tools-card-heading">Run our checks yourself. Right now.</h2>
-          <p class="tools-card__copy">
-            The same UTM validator, AI crawler access checker and website snapshot audit the
-            DataDecision team runs before every engagement — free, nothing stored.
-          </p>
         </div>
-        <ul class="tools-card__list" aria-hidden="true">
-          <li><span class="mono">01</span> UTM builder &amp; validator</li>
-          <li><span class="mono">02</span> AI crawler access checker</li>
-          <li><span class="mono">03</span> Website snapshot audit</li>
-        </ul>
         <span class="tools-card__cta" aria-hidden="true">Open the tools →</span>
       </a>
     </div>
   </section>
 
-  <!-- Chapter 04: Insights -->
-  <section class="section section--bright" data-chapter aria-labelledby="home-insights-heading">
-    <span class="chapter-mark" aria-hidden="true">04</span>
+  <!-- Chapter 03: Insights -->
+  <section
+    class="section section--compact section--bright"
+    data-chapter
+    aria-labelledby="home-insights-heading"
+  >
+    <span class="chapter-mark" aria-hidden="true">03</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Measurement &amp; Lead-Source Truth</p>
         <h2 id="home-insights-heading">Resolve the questions between analytics and revenue.</h2>
-        <p class="small">
-          Six practical guides connect website activity, source fields, CRM records and closed-won
-          value without pretending one platform can answer every question.
-        </p>
         <a class="text-link" href="/insights/">View all insights</a>
       </div>
       <div class="home-insights">
@@ -327,7 +184,6 @@ const schema = {
                 {entry.data.pillar ? 'Foundational guide' : 'Supporting insight'}
               </span>
               <h3>{entry.data.title}</h3>
-              <p>{entry.data.description}</p>
             </a>
           ))
         }
@@ -335,67 +191,47 @@ const schema = {
     </div>
   </section>
 
-  <!-- Chapter 05: Evidence format -->
-  <section class="section" data-chapter aria-labelledby="home-evidence-heading">
-    <span class="chapter-mark" aria-hidden="true">05</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
-        <p class="eyebrow">Evidence format</p>
-        <h2 id="home-evidence-heading">Every recommendation answers four questions.</h2>
-        <p class="small">
-          What did we observe? What did the data miss? What should happen next? What can the
-          evidence not prove?
-        </p>
-        <div class="button-row">
-          <a class="text-link" href="/work/" data-event="benchmark_view">View sample output</a>
-          <a class="text-link" href="/methodology/">Read the evidence standard</a>
-        </div>
-      </div>
-      <div data-reveal style="--reveal-delay:120ms">
-        <DecisionTabs questions={decisionQuestions} />
-      </div>
-    </div>
-  </section>
-
-  <!-- Chapter 06: Process and scope -->
-  <section class="section section--ink" data-chapter aria-labelledby="home-process-heading">
-    <span class="chapter-mark" aria-hidden="true">06</span>
+  <!-- Chapter 04: Process and scope -->
+  <section
+    class="section section--compact section--ink"
+    data-chapter
+    aria-labelledby="home-process-heading"
+  >
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell">
-      <div class="editorial-grid editorial-grid--balanced" style="margin-bottom: 3rem;">
+      <div class="editorial-grid editorial-grid--balanced" style="margin-bottom: 2rem;">
         <div class="section-intro" data-reveal>
           <p class="eyebrow">Process and scope</p>
           <h2 id="home-process-heading">A defined scope before kickoff.</h2>
-        </div>
-        <div data-reveal style="--reveal-delay:100ms">
-          <p class="lede">
-            The default diagnostic is deliberately narrow enough to repeat. Additions such as larger
-            query sets, more markets, more languages or more runs require a written scope change.
-          </p>
         </div>
       </div>
       <div class="process-rail">
         <div class="process-rail__step" data-process-step data-reveal>
           <span class="mono">01 / 15 business days</span><h3>Diagnostic</h3><p>
-            Begins after required inputs and the written scope are complete.
+            Written scope and required inputs confirmed.
           </p>
         </div>
         <div class="process-rail__step" data-process-step data-reveal style="--reveal-delay:110ms">
           <span class="mono">02 / optional</span><h3>Implementation sprint</h3><p>
-            Fixed scope selected from the diagnostic, with additions agreed separately.
+            Fixed scope selected from the findings.
           </p>
         </div>
         <div class="process-rail__step" data-process-step data-reveal style="--reveal-delay:220ms">
           <span class="mono">03 / optional</span><h3>Measurement cadence</h3><p>
-            Repeat observation and decision review only when the signal warrants it.
+            Repeat only when the signal warrants it.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Chapter 07: Founder -->
-  <section class="section section--bright" data-chapter aria-labelledby="homepage-founder">
-    <span class="chapter-mark" aria-hidden="true">07</span>
+  <!-- Chapter 05: Founder -->
+  <section
+    class="section section--compact section--bright"
+    data-chapter
+    aria-labelledby="homepage-founder"
+  >
+    <span class="chapter-mark" aria-hidden="true">05</span>
     <div class="shell editorial-grid editorial-grid--reverse">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Founder</p>
@@ -408,20 +244,15 @@ const schema = {
             Ashish Jha founded DataDecision. He is a graduate of NIT Surat and leads the firm’s
             AI-search visibility and measurement work.
           </p>
-          <p class="measure">
-            Ashish defines the observation frame, reviews the evidence and turns the findings into a
-            practical next-step plan. The NIT Surat reference identifies his education and does not
-            imply institutional endorsement.
-          </p>
-          <a class="text-link" href="/about/">Read about Ashish and the operating principles</a>
+          <a class="text-link" href="/about/">About Ashish and DataDecision</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Chapter 08: Questions -->
-  <section class="section" data-chapter aria-labelledby="home-faq-heading">
-    <span class="chapter-mark" aria-hidden="true">08</span>
+  <!-- Chapter 06: Questions -->
+  <section class="section section--compact" data-chapter aria-labelledby="home-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Essential questions</p><h2 id="home-faq-heading">
@@ -450,10 +281,13 @@ const schema = {
       });
 
       const show = (index: number) => {
-        words[current].classList.remove('is-current');
+        const previousWord = words[current];
+        const nextWord = words[index];
+        if (!previousWord || !nextWord) return;
+        previousWord.classList.remove('is-current');
         current = index;
-        words[current].classList.add('is-current');
-        rotator.dataset.platform = words[current].dataset.platform || 'chatgpt';
+        nextWord.classList.add('is-current');
+        rotator.dataset.platform = nextWord.dataset.platform || 'chatgpt';
       };
 
       if (reduced.matches) {
@@ -473,7 +307,9 @@ const schema = {
       };
 
       const io = new IntersectionObserver((entries) => {
-        inView = entries[0].isIntersecting;
+        const entry = entries[0];
+        if (!entry) return;
+        inView = entry.isIntersecting;
         if (inView) start();
         else stop();
       });
