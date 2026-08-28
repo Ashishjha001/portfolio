@@ -7,6 +7,13 @@ const staticRoutes = [
   '/services/',
   '/services/ai-search-visibility/',
   '/services/measurement-foundation/',
+  '/growth/',
+  '/performance-marketing/',
+  '/seo/',
+  '/ai-search/',
+  '/research/',
+  '/playbooks/',
+  '/tools/',
   '/methodology/',
   '/work/',
   '/insights/',
@@ -32,7 +39,7 @@ export async function GET() {
         lastmod: entry.data.observationDate.toISOString().slice(0, 10),
       })),
   ];
-  const fallbackLastmod = '2026-08-24';
+  const fallbackLastmod = '2026-08-28';
   const urls = [
     ...staticRoutes.map((path) => ({ path, lastmod: fallbackLastmod })),
     ...contentRoutes,
