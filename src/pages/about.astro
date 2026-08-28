@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
+import FounderSocialLinks from '../components/FounderSocialLinks.astro';
+import { entityDefinition } from '../data/entityDefinition';
 ---
 
 <BaseLayout
@@ -18,7 +20,11 @@ import FinalCTA from '../components/FinalCTA.astro';
         '@type': 'Organization',
         name: 'DataDecision',
         email: 'contact@datadecision.consulting',
-        founder: { '@type': 'Person', name: 'Ashish Jha' },
+        founder: {
+          '@type': 'Person',
+          name: 'Ashish Jha',
+          sameAs: Object.values(entityDefinition.founder.sameAs),
+        },
       },
     },
     {
@@ -28,6 +34,7 @@ import FinalCTA from '../components/FinalCTA.astro';
       jobTitle: 'Founder',
       url: 'https://datadecision.consulting/about/',
       email: 'contact@datadecision.consulting',
+      sameAs: Object.values(entityDefinition.founder.sameAs),
       alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
       worksFor: {
         '@type': 'Organization',
@@ -64,6 +71,7 @@ import FinalCTA from '../components/FinalCTA.astro';
         <a class="text-link" href="mailto:contact@datadecision.consulting">
           contact@datadecision.consulting
         </a>
+        <FounderSocialLinks />
       </div>
       <div class="founder-record__body" data-reveal style="--reveal-delay:120ms">
         <p class="lede">

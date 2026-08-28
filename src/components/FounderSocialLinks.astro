@@ -1,0 +1,55 @@
+---
+import { entityDefinition } from '../data/entityDefinition';
+
+const profiles = [
+  {
+    label: 'LinkedIn',
+    href: entityDefinition.founder.sameAs.linkedin,
+    icon: 'linkedin',
+  },
+  {
+    label: 'Instagram',
+    href: entityDefinition.founder.sameAs.instagram,
+    icon: 'instagram',
+  },
+] as const;
+---
+
+<nav class="founder-socials" aria-label="Ashish Jha social profiles">
+  {
+    profiles.map((profile) => (
+      <a
+        class="founder-social-link"
+        href={profile.href}
+        target="_blank"
+        rel="me noopener noreferrer"
+        aria-label={`Ashish Jha on ${profile.label} (opens in a new tab)`}
+      >
+        {profile.icon === 'linkedin' ? (
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M5.2 7.1H2.1V21h3.1V7.1ZM3.7 1.8A1.8 1.8 0 1 0 3.7 5.4a1.8 1.8 0 0 0 0-3.6ZM8.3 7.1V21h3.1v-6.9c0-1.8.3-3.6 2.6-3.6 2.2 0 2.3 2.1 2.3 3.7V21h3.1v-7.7c0-3.8-.8-6.7-5.2-6.7-2.1 0-3.5 1.2-4.1 2.3h-.1V7.1H8.3Z"
+            />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+            <circle cx="17.4" cy="6.7" r="1.2" fill="currentColor" />
+          </svg>
+        )}
+        <span>{profile.label}</span>
+      </a>
+    ))
+  }
+</nav>

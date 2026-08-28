@@ -59,6 +59,10 @@ export const entityDefinition = {
     url: 'https://datadecision.consulting/about/',
     email: 'contact@datadecision.consulting',
     alumniOf: 'NIT Surat',
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/in/jha-ashishh/',
+      instagram: 'https://www.instagram.com/ashish_jh.a/',
+    },
     summary:
       'Ashish Jha founded DataDecision to build a measurement-first practice for AI-search visibility and the path into pipeline.',
   },
@@ -85,6 +89,7 @@ export const founderSchema = {
   jobTitle: entityDefinition.founder.jobTitle,
   url: entityDefinition.founder.url,
   email: entityDefinition.founder.email,
+  sameAs: Object.values(entityDefinition.founder.sameAs),
   alumniOf: { '@type': 'CollegeOrUniversity', name: entityDefinition.founder.alumniOf },
   worksFor: {
     '@type': 'Organization',
@@ -111,6 +116,7 @@ export const organizationSchema = {
     name: entityDefinition.founder.name,
     jobTitle: entityDefinition.founder.jobTitle,
     url: entityDefinition.founder.url,
+    sameAs: Object.values(entityDefinition.founder.sameAs),
     alumniOf: { '@type': 'CollegeOrUniversity', name: entityDefinition.founder.alumniOf },
   },
   contactPoint: {
