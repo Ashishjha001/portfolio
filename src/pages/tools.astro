@@ -155,26 +155,153 @@ const schema = {
     </div>
   </section>
 
+  <!-- Tool 4: Funnel Leakage Calculator -->
+  <section
+    class="section section--compact tool-band"
+    aria-labelledby="funnel-heading"
+    id="funnel-leakage-calculator"
+  >
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 04 / Growth</span>
+        <h2 id="funnel-heading">Funnel leakage calculator</h2>
+        <p class="tool-intro">
+          Enter the counts at each stage of a funnel and see the conversion rate and leakage at
+          every step, plus the single largest measurable leak — the DataDecision Funnel Leakage
+          Index. No data leaves your browser.
+        </p>
+      </div>
+      <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
+        <p class="tool-note" style="margin-top:0">
+          Stages: <strong>Traffic</strong> → <strong>Leads</strong> → <strong>Demos</strong> →
+          <strong>Qualified</strong> → <strong>Customers</strong>. Enter whole numbers.
+        </p>
+        <div class="funnel-inputs" id="funnel-inputs">
+          <label class="ffield"
+            ><span>Traffic</span><input
+              id="fl-traffic"
+              type="number"
+              min="0"
+              placeholder="100000"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Leads</span><input
+              id="fl-leads"
+              type="number"
+              min="0"
+              placeholder="1000"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Demos</span><input
+              id="fl-demos"
+              type="number"
+              min="0"
+              placeholder="200"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Qualified</span><input
+              id="fl-qualified"
+              type="number"
+              min="0"
+              placeholder="100"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Customers</span><input
+              id="fl-customers"
+              type="number"
+              min="0"
+              placeholder="20"
+            /></label
+          >
+        </div>
+        <div id="funnel-results" class="funnel-results" aria-live="polite"></div>
+        <p class="tool-note">
+          Based on the
+          <a href="/insights/traffic-up-demo-bookings-down/">traffic-to-demo diagnostic</a> and the
+          <a href="/knowledge-base/#funnel-leakage-index">Funnel Leakage Index framework</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool 5: CAC Calculator -->
+  <section
+    class="section section--compact tool-band section--deep"
+    aria-labelledby="cac-heading"
+    id="cac-calculator"
+  >
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 05 / Economics</span>
+        <h2 id="cac-heading">Break-even CAC calculator</h2>
+        <p class="tool-intro">
+          A finance-driven acquisition ceiling from contribution margin and payback — so acquisition
+          targets come from your numbers, not someone else's benchmark.
+        </p>
+      </div>
+      <div class="tool-panel tool-panel--deep" data-reveal style="--reveal-delay:100ms">
+        <div class="funnel-inputs" id="cac-inputs">
+          <label class="ffield ffield--deep"
+            ><span>ACV (annual, first-year)</span><input
+              id="cac-acv"
+              type="number"
+              min="0"
+              placeholder="25000"
+            /></label
+          >
+          <label class="ffield ffield--deep"
+            ><span>Gross margin (%)</span><input
+              id="cac-margin"
+              type="number"
+              min="0"
+              max="100"
+              placeholder="70"
+            /></label
+          >
+          <label class="ffield ffield--deep"
+            ><span>Payback target (months)</span><input
+              id="cac-payback"
+              type="number"
+              min="1"
+              placeholder="12"
+            /></label
+          >
+        </div>
+        <div id="cac-results" class="cac-results" aria-live="polite"></div>
+        <p class="tool-note tool-note--deep">
+          This is the worksheet ceiling. The full method lives in the
+          <a href="/insights/break-even-cac-worksheet/">break-even CAC worksheet</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--compact" aria-labelledby="tools-cta-heading">
     <div class="shell editorial-grid editorial-grid--balanced">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Beyond the free checks</p>
         <h2 id="tools-cta-heading">The tools find symptoms. The engagement fixes the system.</h2>
         <p class="small">
-          Every tool above is one check from a full audit. The DataDecision team runs the complete
-          version — access, architecture, content, measurement — inside each service.
+          Every tool above is one check from a full diagnostic. The DataDecision team runs the
+          complete version — access, architecture, content, funnel, economics, measurement — inside
+          each service.
         </p>
       </div>
       <div class="button-row" data-reveal style="--reveal-delay:110ms">
         <a
           class="button button--primary"
           href="/contact/?service=web-seo-ai-visibility#request-a-brief"
-          data-event="cta_primary_click">Get Your Free AI Visibility Audit</a
+          data-event="cta_primary_click">Diagnose your funnel and measurement</a
         >
-        <a class="text-link" href="/services/">Explore all services</a>
+        <a class="text-link" href="/knowledge-base/">Explore the knowledge base</a>
       </div>
     </div>
   </section>
+
   <style>
     .tool-band {
       padding-block: clamp(2.2rem, 4.5vw, 3.4rem);
@@ -307,6 +434,124 @@ const schema = {
       color: var(--faint);
       font-size: 0.8rem;
       line-height: 1.55;
+    }
+
+    .funnel-inputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .ffield {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .ffield span {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .ffield input {
+      padding: 0.66rem 0.8rem;
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--radius-small);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .ffield--deep span {
+      color: var(--mint-accent);
+    }
+
+    .ffield--deep input {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: var(--warm-white);
+    }
+
+    .funnel-results,
+    .cac-results {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .funnel-step {
+      display: grid;
+      grid-template-columns: minmax(130px, auto) 1fr auto;
+      gap: 0.4rem 1rem;
+      align-items: center;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-small);
+      font-size: 0.86rem;
+    }
+
+    .funnel-step .step-name {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--green);
+    }
+
+    .funnel-bar {
+      height: 8px;
+      background: var(--bgg, var(--rule));
+      border-radius: 999px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .funnel-bar i {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--fill, 0%);
+      background: var(--fill-color, var(--signal));
+      border-radius: 999px;
+    }
+
+    .funnel-step .step-pct {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      min-width: 4.2rem;
+      text-align: right;
+    }
+
+    .funnel-step.leak-max {
+      border-color: var(--amber);
+      background: color-mix(in srgb, var(--amber-pale) 30%, var(--panel));
+    }
+
+    .funnel-finding,
+    .cac-finding {
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-small);
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+    }
+
+    .funnel-finding.warn,
+    .cac-finding.warn {
+      border-color: var(--amber);
+      background: color-mix(in srgb, var(--amber-pale) 35%, var(--panel));
+    }
+
+    .cac-finding {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .cac-results .cac-big {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      color: var(--mint-accent);
     }
 
     .tool-note a {
@@ -688,6 +933,101 @@ const schema = {
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') audit();
       });
+    })();
+
+    /* ---------- Tool 4: Funnel leakage calculator ---------- */
+    (function () {
+      const ids = ['fl-traffic', 'fl-leads', 'fl-demos', 'fl-qualified', 'fl-customers'];
+      const names = ['Traffic', 'Leads', 'Demos', 'Qualified', 'Customers'];
+      const inputs = ids.map((id) => document.getElementById(id));
+      const results = document.getElementById('funnel-results');
+      if (!results) return;
+
+      const pct = (n) => `${(n * 100).toFixed(1)}%`;
+
+      const run = () => {
+        const values = inputs.map((input) => {
+          const n = parseFloat(input?.value || '');
+          return Number.isFinite(n) && n > 0 ? n : 0;
+        });
+        results.innerHTML = '';
+        if (values.every((v) => v === 0)) return;
+
+        const steps = [];
+        for (let i = 0; i < values.length - 1; i++) {
+          const from = values[i];
+          const to = values[i + 1];
+          const conversion = from > 0 ? to / from : 0;
+          const leakage = from > 0 ? (from - to) / from : 0;
+          steps.push({ name: `${names[i]} → ${names[i + 1]}`, conversion, leakage });
+        }
+
+        const max = steps.reduce(
+          (best, step) => (step.leakage > best.leakage ? step : best),
+          steps[0],
+        );
+
+        steps.forEach((step) => {
+          const fill = Math.max(0, Math.min(step.conversion * 100, 100));
+          const isMax = step.leakage === max.leakage;
+          const row = document.createElement('div');
+          row.className = 'funnel-step' + (isMax ? ' leak-max' : '');
+          row.innerHTML = `<span class="step-name">${step.name}</span><span class="funnel-bar"><i style="--fill:${fill}%"></i></span><span class="step-pct">${pct(step.conversion)}</span>`;
+          results.appendChild(row);
+        });
+
+        const finding = document.createElement('div');
+        finding.className = 'funnel-finding' + (max.leakage > 0.6 ? ' warn' : '');
+        finding.innerHTML = `<strong>Largest measurable leak: ${max.name} (${pct(max.leakage)}).</strong> ${
+          max.leakage > 0.6
+            ? 'More than half the eligible base is lost at this step. This points to where a stage-level diagnostic should go first — but the index only names the step; it does not prove the cause.'
+            : 'No single step loses more than half of its eligible base in your sample. Compare the same measure over time before assuming a defect.'
+        }`;
+        results.appendChild(finding);
+      };
+
+      inputs.forEach((input) => input?.addEventListener('input', run));
+      run();
+    })();
+
+    /* ---------- Tool 5: Break-even CAC calculator ---------- */
+    (function () {
+      const acv = document.getElementById('cac-acv');
+      const margin = document.getElementById('cac-margin');
+      const payback = document.getElementById('cac-payback');
+      const results = document.getElementById('cac-results');
+      if (!results) return;
+
+      const fmt = (n) => n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+      const run = () => {
+        const num = (input) => {
+          const n = parseFloat(input?.value || '');
+          return Number.isFinite(n) ? n : 0;
+        };
+        const acvVal = num(acv);
+        const marginVal = num(margin);
+        const paybackVal = num(payback);
+        results.innerHTML = '';
+        if (!acvVal || !marginVal || !paybackVal) return;
+
+        const contribution = acvVal * (marginVal / 100);
+        const monthly = paybackVal > 0 ? contribution / paybackVal : 0;
+        const ceiling = monthly;
+
+        const panel = document.createElement('div');
+        panel.className = 'cac-finding';
+        panel.innerHTML = `<span class="evidence-label">Break-even ceiling</span><div class="cac-big">${fmt(ceiling)} per customer</div>`;
+        results.appendChild(panel);
+
+        const note = document.createElement('div');
+        note.className = 'cac-finding';
+        note.innerHTML = `Based on contribution of <strong>${fmt(contribution)}</strong> per customer and a <strong>${fmt(paybackVal)}-month</strong> payback target. This is the acquisition ceiling before sales cost share and market response — treat it as a cap, not a spend target.`;
+        results.appendChild(note);
+      };
+
+      [acv, margin, payback].forEach((input) => input?.addEventListener('input', run));
+      run();
     })();
   </script>
 </BaseLayout>

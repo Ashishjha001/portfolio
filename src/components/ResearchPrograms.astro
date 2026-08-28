@@ -1,0 +1,252 @@
+---
+import { researchPrograms } from '../data/researchPrograms';
+
+const statusLabel: Record<string, string> = {
+  scheduled: 'Method defined · not collected',
+  'in-collection': 'Collecting',
+  published: 'Published',
+  'needs-founder-input': 'Needs founder decision',
+};
+
+const statusKind: Record<string, string> = {
+  scheduled: 'neutral',
+  'in-collection': 'active',
+  published: 'ok',
+  'needs-founder-input': 'warn',
+};
+
+const programCards = researchPrograms.map((program) => ({
+  ...program,
+  label: statusLabel[program.status],
+  kind: statusKind[program.status],
+}));
+---
+
+<section class="section section--bright" aria-labelledby="programs-heading" id="programs">
+  <span class="chapter-mark" aria-hidden="true">{String.fromCharCode(9472)}</span>
+  <div class="shell editorial-grid">
+    <div class="section-intro" data-reveal>
+      <p class="eyebrow">Research programmes</p>
+      <h2 id="programs-heading">The studies we run, and their data status.</h2>
+      <p class="small">
+        Every programme lists its question, method, sample, collection window and limits. A
+        programme with no published finding has not had data collected yet — we build the
+        infrastructure before we assert a number, and we never fabricate a benchmark.
+      </p>
+    </div>
+    <div class="program-list" data-reveal style="--reveal-delay:100ms">
+      {
+        programCards.map((program) => (
+          <details class="program" data-event="research_program_open">
+            <summary>
+              <span class="program__title">
+                <strong>{program.title}</strong>
+                <span class="status status--{program.kind}">{program.label}</span>
+              </span>
+              <span class="program__q">{program.researchQuestion}</span>
+              <span class="program__toggle" aria-hidden="true">
+                ＋
+              </span>
+            </summary>
+            <dl class="program__spec">
+              <div>
+                <>
+                  <dt>Research question</dt>
+                  <dd>{program.researchQuestion}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Methodology</dt>
+                  <dd>{program.methodology}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Data source</dt>
+                  <dd>{program.dataSource}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Sample</dt>
+                  <dd>{program.sample}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Collection period</dt>
+                  <dd>{program.collectionPeriod}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Definitions</dt>
+                  <dd>{program.definitions}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Calculations</dt>
+                  <dd>{program.calculations}</dd>
+                </>
+              </div>
+              <div>
+                <>
+                  <dt>Limitations</dt>
+                  <dd>{program.limitations}</dd>
+                </>
+              </div>
+            </dl>
+            <div class="program__links">
+              <span class="evidence-label">Data status</span>
+              {program.hasPublishedFindings ? (
+                <span class="program__foot">Published finding available.</span>
+              ) : (
+                <span class="program__foot">
+                  No finding published — <em>correctly</em>. We do not post uncollected data.
+                </span>
+              )}
+              <a class="text-link" href="/methodology/">
+                Read the underlying methodology
+              </a>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .program-list {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .program {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .program summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+    padding: 1.2rem 0;
+  }
+
+  .program summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .program__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .program__title strong {
+    font-size: 1.2rem;
+  }
+
+  .program__q {
+    color: var(--muted);
+    font-size: 0.9rem;
+    grid-column: 1 / -1;
+  }
+
+  .program__toggle {
+    grid-row: 1 / 3;
+    color: var(--signal);
+    font-weight: 700;
+    font-size: 1.1rem;
+    align-self: start;
+  }
+
+  .program[open] .program__toggle {
+    transform: rotate(45deg);
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+  }
+
+  .status--neutral {
+    color: var(--muted);
+  }
+
+  .status--active {
+    color: var(--amber-deep);
+    border-color: var(--amber);
+  }
+
+  .status--warn {
+    color: var(--amber-deep);
+    border-color: var(--amber);
+  }
+
+  .status--ok {
+    color: var(--ok);
+    border-color: var(--signal);
+  }
+
+  .program__spec {
+    margin: 0;
+    padding: 0 0 1.2rem;
+  }
+
+  .program__spec div {
+    display: grid;
+    grid-template-columns: 0.9rem 1fr;
+    gap: 0.2rem 0.6rem;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--rule) 40%, transparent);
+  }
+
+  .program__spec dt {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .program__spec dd {
+    margin: 0;
+    grid-column: 1 / -1;
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .program__links {
+    display: grid;
+    gap: 0.4rem;
+    padding-bottom: 1.4rem;
+  }
+
+  .program__foot {
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .program summary {
+      grid-template-columns: 1fr auto;
+    }
+
+    .program__title {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+  }
+</style>

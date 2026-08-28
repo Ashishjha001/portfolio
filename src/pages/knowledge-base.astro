@@ -1,0 +1,413 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { topics } from '../data/topicArchitecture';
+import { frameworks } from '../data/frameworks';
+import { questionGraphs } from '../data/questionOwnership';
+
+const allInsights = await getCollection('insights');
+const insightById = Object.fromEntries(allInsights.map((entry) => [entry.id, entry]));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision knowledge base',
+  description:
+    'The interconnected DataDecision knowledge graph: clusters, insights, frameworks, research, tools and the questions they answer.',
+  url: 'https://datadecision.consulting/knowledge-base/',
+  hasPart: [
+    ...allInsights.map((entry) => ({
+      '@type': 'Article',
+      name: entry.data.title,
+      url: `https://datadecision.consulting/insights/${entry.id}/`,
+    })),
+    ...frameworks.map((framework) => ({
+      '@type': 'CreativeWork',
+      name: framework.name,
+      url: `https://datadecision.consulting/knowledge-base/#${framework.id}`,
+    })),
+  ],
+};
+---
+
+<BaseLayout
+  title="Knowledge base | DataDecision"
+  description="Browse DataDecision as a knowledge graph: the four strategic clusters, every insight, the proprietary frameworks, original research and the interactive tools behind them."
+  path="/knowledge-base/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knowledge base' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">DataDecision / Knowledge base</p>
+      <h1>One connected system, not a blog archive.</h1>
+      <p class="lede">
+        Every cluster links to its insights, frameworks, research and tools. Start from the question
+        you are trying to answer or the discipline you care about, and follow the relationships that
+        matter.
+      </p>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Knowledge graph</span><span>4 clusters · n insights · n frameworks</span>
+      </div>
+    </aside>
+  </header>
+
+  <!-- Question ownership -->
+  <section class="section section--ink" aria-labelledby="questions-heading" id="questions">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Question ownership</p>
+        <h2 id="questions-heading">One question, one best answer.</h2>
+        <p class="small">
+          Start from the question a leader is actually asking. Each head question points to its
+          canonical answer and the next useful step.
+        </p>
+      </div>
+      <div class="qb" data-reveal style="--reveal-delay:100ms">
+        {
+          questionGraphs.map((graph) => (
+            <details class="qb-row" open={false} data-event="kb_question_open">
+              <>
+                <summary>
+                  <span class="qb-row__main">{graph.head.question}</span>
+                  <span class="qb-row__tag">{graph.head.cluster}</span>
+                </summary>
+                <div class="qb-row__body">
+                  {graph.head.subQuestions && graph.head.subQuestions.length > 0 && (
+                    <ol class="qb-chain">
+                      {graph.head.subQuestions.map((sub) => (
+                        <li>{sub}</li>
+                      ))}
+                    </ol>
+                  )}
+                  <div class="qb-links">
+                    {graph.head.canonicalPage && (
+                      <a class="text-link" href={graph.head.canonicalPage}>
+                        Read the best answer
+                      </a>
+                    )}
+                    {graph.head.tool && (
+                      <a class="text-link" href={graph.head.tool}>
+                        Run the diagnostic
+                      </a>
+                    )}
+                    {graph.head.service && (
+                      <a class="text-link" href={graph.head.service}>
+                        Explore the service
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Frameworks -->
+  <section class="section section--bright" aria-labelledby="frameworks-heading" id="frameworks">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Proprietary frameworks</p>
+        <h2 id="frameworks-heading">The DataDecision method, named and reusable.</h2>
+        <p class="small">
+          Each framework has a definition, inputs, calculation, interpretation and named limits.
+          They are tools for making a decision, not branded slogans.
+        </p>
+      </div>
+      <div class="fw-grid" data-reveal style="--reveal-delay:100ms">
+        {
+          frameworks.map((framework) => (
+            <article class="fw-card" id={framework.id}>
+              <div class="fw-card__head">
+                <span class="evidence-label">{framework.owner}</span>
+                <h3>{framework.name}</h3>
+                <p>{framework.oneLiner}</p>
+              </div>
+              <ul class="fw-card__list">
+                <li>
+                  <>
+                    <span>Definition</span>
+                    <span>{framework.definition}</span>
+                  </>
+                </li>
+                <li>
+                  <>
+                    <span>Calculation</span>
+                    <span>{framework.calculation}</span>
+                  </>
+                </li>
+                <li>
+                  <>
+                    <span>Limits</span>
+                    <span>{framework.limitations[0]}</span>
+                  </>
+                </li>
+              </ul>
+              <div class="fw-card__links">
+                {framework.insightHref && (
+                  <a class="text-link" href={framework.insightHref}>
+                    Read the related insight
+                  </a>
+                )}
+                {framework.toolHref && (
+                  <a class="text-link" href={framework.toolHref}>
+                    Use the tool
+                  </a>
+                )}
+                {framework.serviceHref && (
+                  <a class="text-link" href={framework.serviceHref}>
+                    Explore the service
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Clusters to insights -->
+  <section class="section" aria-labelledby="clusters-heading" id="clusters">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Strategic clusters</p>
+        <h2 id="clusters-heading">From a pillar to its deepest answers.</h2>
+        <p class="small">
+          The four strategic domains and the protected insights that carry their depth.
+        </p>
+      </div>
+      <div class="cluster-list" data-reveal style="--reveal-delay:100ms">
+        {
+          topics.map((topic) => {
+            const insights = topic.insightIds
+              .map((id) => insightById[id])
+              .filter((entry) => entry !== undefined);
+            return (
+              <article class="cluster">
+                <div class="cluster__head">
+                  <a href={`/${topic.slug}/`}>
+                    <span class="mono">{topic.index}</span>
+                    <h3>{topic.label}</h3>
+                  </a>
+                  <a class="cluster__pillar" href={`/${topic.slug}/`}>
+                    Open pillar →
+                  </a>
+                </div>
+                <ul class="cluster__insights">
+                  {insights.map((entry) => (
+                    <li>
+                      <a href={`/insights/${entry.id}/`}>{entry.data.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Know exactly which question matters before you start."
+    body="Bring us the decision, evidence available and audience. We will point you to the best answer, the right tool and a scoped next step."
+    label="Discuss your question"
+  />
+</BaseLayout>
+
+<style>
+  .qb,
+  .fw-grid,
+  .cluster-list {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .qb-row {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .qb-row summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 0;
+  }
+
+  .qb-row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .qb-row__main {
+    font-size: 1.05rem;
+    font-family: var(--font-display);
+  }
+
+  .qb-row__tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  .qb-row__body {
+    padding: 0 0 1.2rem;
+  }
+
+  .qb-chain {
+    margin: 0 0 0.9rem;
+    padding-left: 1.1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .qb-chain li {
+    padding: 0.15rem 0;
+  }
+
+  .qb-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+  }
+
+  .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .fw-card {
+    border: 1px solid var(--rule);
+    padding: 1.3rem;
+    background: var(--panel);
+  }
+
+  .fw-card__head h3 {
+    margin: 0.4rem 0 0.2rem;
+    font-size: 1.12rem;
+  }
+
+  .fw-card__head p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: 0 0 0.8rem;
+  }
+
+  .fw-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .fw-card__list li {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.82rem;
+  }
+
+  .fw-card__list span:first-child {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.2rem;
+  }
+
+  .fw-card__list span:last-child {
+    color: var(--muted);
+  }
+
+  .fw-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    margin-top: 0.9rem;
+  }
+
+  .cluster {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.1rem 0;
+  }
+
+  .cluster__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .cluster__head a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .cluster__head h3 {
+    margin: 0.2rem 0 0;
+    font-size: 1.15rem;
+  }
+
+  .cluster__pillar {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cluster__insights {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .cluster__insights a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+
+  .cluster__insights a:hover {
+    color: var(--green);
+  }
+
+  @media (max-width: 640px) {
+    .qb-row summary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+
+    .qb-row__tag {
+      text-align: left;
+    }
+
+    .cluster__head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
+import ResearchPrograms from '../components/ResearchPrograms.astro';
 
 const completedWork = (await getCollection('work'))
   .filter((entry) => entry.data.status === 'complete')
@@ -74,6 +75,8 @@ const formatDate = (date: Date) =>
       </dl>
     </aside>
   </header>
+
+  <ResearchPrograms />
 
   <section class="section section--ink" aria-labelledby="records-heading">
     <span class="chapter-mark" aria-hidden="true">01</span>

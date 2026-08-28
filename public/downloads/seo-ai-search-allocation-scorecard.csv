@@ -1,0 +1,12 @@
+layer,condition,score_0_to_2,dated_evidence,evidence_source,observed_gap,proposed_work,work_type,amount_inr,owner,expected_signal,review_date,stopping_rule,limitation,status
+SHARED,Technical foundation,,"What was checked and when","URL inspection, crawl, render or index evidence",,,shared,,,,,,,planned
+SHARED,Commercial page coverage,,"Priority buyer decisions with and without owners","Query-to-page map",,,shared,,,,,,,planned
+SEARCH,Conventional search evidence,,"Stable query-page observation","Search Console export",,,search_specific,,,,,,,planned
+ANSWER,AI-surface evidence,,"Fixed question panel, surfaces and dates","Observation log",,,answer_specific,,,,,,,planned
+ANSWER,Source evidence,,"Recurring cited or supporting sources","Citation and source review",,,answer_specific,,,,,,,planned
+REVENUE,Revenue measurement,,"Referral, conversion and CRM join QA","Analytics and CRM",,,measurement,,,,,,,planned
+ALLOCATION,Shared foundation work,,,,,,shared,,,,,,,planned
+ALLOCATION,Conventional search work,,,,,,search_specific,,,,,,,planned
+ALLOCATION,AI-search baseline or repair,,,,,,answer_specific,,,,,,,planned
+ALLOCATION,Measurement repair,,,,,,measurement,,,,,,,planned
+ALLOCATION,Learning reserve,,,,,,reserve,,,,,,,planned

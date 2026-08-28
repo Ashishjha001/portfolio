@@ -109,6 +109,7 @@ export const topics: TopicDefinition[] = [
       },
     ],
     insightIds: [
+      'b2b-saas-demo-form-friction-lead-quality',
       'traffic-up-demo-bookings-down',
       'how-to-increase-conversion-rate',
       'pricing-page-visits-up-demos-flat',
@@ -213,6 +214,7 @@ export const topics: TopicDefinition[] = [
       },
     ],
     insightIds: [
+      'b2b-saas-demand-generation-budget-india',
       'how-to-run-profitable-paid-ads',
       'break-even-cac-worksheet',
       'how-to-measure-marketing-revenue',
@@ -317,6 +319,7 @@ export const topics: TopicDefinition[] = [
       },
     ],
     insightIds: [
+      'b2b-saas-seo-query-to-page-map',
       'how-to-rank-and-get-recommended-by-ai',
       'seo-aeo-geo-overlap',
       'technical-access-verification-checklist',
@@ -418,6 +421,7 @@ export const topics: TopicDefinition[] = [
       },
     ],
     insightIds: [
+      'seo-vs-ai-search-budget-allocation',
       'build-ai-visibility-baseline',
       'three-ai-surfaces-measurement',
       'ai-crawler-access-policy',
@@ -467,6 +471,7 @@ export const topicBySlug = Object.fromEntries(topics.map((topic) => [topic.slug,
 
 const insightGroups: Record<TopicDefinition['slug'], string[]> = {
   growth: [
+    'b2b-saas-demo-form-friction-lead-quality',
     'b2b-saas-demo-funnel-dashboard',
     'b2b-saas-demo-show-up-rate',
     'demo-no-shows-diagnosis',
@@ -479,6 +484,7 @@ const insightGroups: Record<TopicDefinition['slug'], string[]> = {
     'traffic-up-demo-bookings-down',
   ],
   'performance-marketing': [
+    'b2b-saas-demand-generation-budget-india',
     'attribution-assumption-register',
     'break-even-cac-worksheet',
     'consent-mode-declined-tracking',
@@ -494,12 +500,14 @@ const insightGroups: Record<TopicDefinition['slug'], string[]> = {
     'utm-governance-b2b',
   ],
   seo: [
+    'b2b-saas-seo-query-to-page-map',
     'how-to-rank-and-get-recommended-by-ai',
     'seo-aeo-geo-overlap',
     'technical-access-verification-checklist',
     'zero-click-content-funding',
   ],
   'ai-search': [
+    'seo-vs-ai-search-budget-allocation',
     'aeo-geo-vendor-due-diligence',
     'ai-crawler-access-policy',
     'build-ai-visibility-baseline',
