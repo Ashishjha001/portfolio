@@ -13,6 +13,8 @@ const staticRoutes = [
   '/ai-search/',
   '/research/',
   '/knowledge-base/',
+  '/search-intelligence/',
+  '/intelligence-log/',
   '/playbooks/',
   '/tools/',
   '/methodology/',

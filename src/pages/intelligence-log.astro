@@ -1,0 +1,318 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { intelligenceLog, logSummary } from '../data/intelligenceLog';
+
+const sorted = [...intelligenceLog].sort((a, b) => b.date.localeCompare(a.date));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision intelligence log',
+  description:
+    'The dated, observable record of DataDecision search decisions: the site changelog and the experiment ledger, each with its own standard of evidence.',
+  url: 'https://datadecision.consulting/intelligence-log/',
+};
+---
+
+<BaseLayout
+  title="Intelligence log | DataDecision"
+  description="The dated record behind DataDecision search decisions: what changed, why, what was deliberately left untouched, and which experiments have a stated metric."
+  path="/intelligence-log/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Knowledge', href: '/knowledge-base/' },
+      { label: 'Intelligence log' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Intelligence log / Learning</p>
+      <h1>A self-improving system that keeps receipts.</h1>
+      <p class="lede">
+        Every search decision on this site is dated and owned. The changelog records what changed
+        and what was deliberately protected. The experiment ledger names the metric that will judge
+        a change — and never claims a result it has not closed.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="/search-intelligence/#priorities"
+          >See the prioritised moves</a
+        >
+        <a class="text-link" href="/search-intelligence/">Read the scoring model</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Two standards</span>
+        <span>Changelog ≠ experiment</span>
+      </div>
+      <dl class="il-rule">
+        <div>
+          <dt>Changelog</dt>
+          <dd>Recorded, dated change to the observable system</dd>
+        </div>
+        <div>
+          <dt>Experiment</dt>
+          <dd>A change with a metric, an owner, a baseline and a status</dd>
+        </div>
+        <div>
+          <dt>Left unchanged</dt>
+          <dd>Deliberate protection of a verified asset</dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="ledger-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The ledger</p>
+        <h2 id="ledger-heading">Dated entries, owned decisions.</h2>
+        <p class="small">
+          Implemented means it is observably on this site. Recommended means it is not yet closed.
+          The two are never conflated here.
+        </p>
+      </div>
+      <div class="il-ledger" data-reveal style="--reveal-delay:100ms">
+        {
+          sorted.map((entry) => (
+            <article class="il-entry">
+              <div class="il-entry__rail">
+                <span class="mono">{entry.entryId}</span>
+                <span class="il-date">{entry.date}</span>
+                <span class={`il-badge il-badge--${entry.kind}`}>{entry.kind}</span>
+                <span class={`il-badge il-badge--status il-badge--${entry.status}`}>
+                  {entry.status.replace(/-/g, ' ')}
+                </span>
+              </div>
+              <div class="il-entry__body">
+                <h3>{entry.title}</h3>
+                <p>{entry.body}</p>
+                {entry.metric && (
+                  <dl class="il-metric">
+                    <dt>Judging metric</dt>
+                    <dd>{entry.metric}</dd>
+                  </dl>
+                )}
+                {entry.untouched && (
+                  <dl class="il-untouched">
+                    <dt>Protected</dt>
+                    <dd>{entry.untouched}</dd>
+                  </dl>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="summary-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Where the system stands</p>
+        <h2 id="summary-heading">Implemented vs recommended, kept separate.</h2>
+        <p class="small">
+          A short, honest status of what is observably built versus what is still a recommendation.
+        </p>
+      </div>
+      <div class="il-summary" data-reveal style="--reveal-delay:100ms">
+        <div class="il-summary__block">
+          <span class="evidence-label">Implemented</span>
+          <p>{logSummary.implemented}</p>
+        </div>
+        <div class="il-summary__block">
+          <span class="evidence-label">Recommended — not yet closed</span>
+          <p>{logSummary.recommended}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="A decision you can defend to finance and to the board."
+    body="Show us the numbers you already have. We will place them in a scored, dated, auditable frame before any spend is recommended."
+    label="Discuss a measurement decision"
+  />
+</BaseLayout>
+
+<style>
+  .il-rule {
+    border-top: 1px solid var(--rule-strong);
+    margin: 0;
+  }
+
+  .il-rule div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .il-rule dt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .il-rule dd {
+    margin: 0;
+  }
+
+  .il-ledger {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .il-entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .il-entry__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .il-entry__rail .mono {
+    font-size: 0.62rem;
+    color: var(--signal);
+  }
+
+  .il-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .il-badge {
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .il-badge--changelog {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: var(--green);
+  }
+
+  .il-badge--experiment {
+    background: color-mix(in srgb, var(--amber) 18%, transparent);
+    color: var(--amber-deep);
+  }
+
+  .il-badge--status {
+    margin-top: 0.2rem;
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  .il-badge--applied {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: var(--green);
+  }
+
+  .il-badge--active {
+    background: color-mix(in srgb, var(--amber) 18%, transparent);
+    color: var(--amber-deep);
+  }
+
+  .il-badge--left-unchanged {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  .il-entry__body h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .il-entry__body p {
+    margin: 0 0 0.6rem;
+    color: var(--muted);
+  }
+
+  .il-entry__body dl {
+    margin: 0.4rem 0 0;
+  }
+
+  .il-metric,
+  .il-untouched {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .il-metric dt,
+  .il-untouched dt {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .il-metric dd,
+  .il-untouched dd {
+    margin: 0;
+    color: var(--text);
+  }
+
+  .il-summary {
+    border-top: 1px solid var(--rule-strong);
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .il-summary .il-summary__block {
+    border: 1px solid var(--rule);
+    padding: 1.2rem;
+    background: var(--panel);
+  }
+
+  .il-summary p {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .il-entry {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .il-entry__rail {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .il-metric,
+    .il-untouched {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>
