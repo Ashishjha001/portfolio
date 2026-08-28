@@ -283,6 +283,11 @@ const schema = {
     border-bottom: 1px solid var(--rule);
   }
 
+  .section--ink .qb,
+  .section--ink .qb-row {
+    border-color: var(--dark-border);
+  }
+
   .qb-row summary {
     cursor: pointer;
     list-style: none;
@@ -302,6 +307,10 @@ const schema = {
     font-family: var(--font-display);
   }
 
+  .section--ink .qb-row__main {
+    color: var(--warm-white);
+  }
+
   .qb-row__tag {
     font-family: var(--font-mono);
     font-size: 0.62rem;
@@ -309,6 +318,10 @@ const schema = {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-align: right;
+  }
+
+  .section--ink .qb-row__tag {
+    color: var(--mint-accent);
   }
 
   .qb-row__body {
@@ -320,6 +333,10 @@ const schema = {
     padding-left: 1.1rem;
     color: var(--muted);
     font-size: 0.9rem;
+  }
+
+  .section--ink .qb-chain {
+    color: var(--soft-green-text);
   }
 
   .qb-chain li {
