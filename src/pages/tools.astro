@@ -12,7 +12,7 @@ const schema = {
 
 <BaseLayout
   title="Free Growth Tools | DataDecision"
-  description="Free tools from DataDecision: UTM builder and validator, AI crawler access checker and a website snapshot audit. No signup required."
+  description="Free tools from DataDecision: UTM builder and validator, AI crawler access checker, website snapshot audit, funnel leakage and break-even CAC calculators, and an attribution health check. No signup required."
   path="/tools/"
   schema={schema}
 >
@@ -21,7 +21,7 @@ const schema = {
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">DataDecision / Free tools</p>
-      <h1>Three small tools we use on every engagement. Free, no signup.</h1>
+      <h1>Six small tools we use on every engagement. Free, no signup.</h1>
       <p class="lede">
         The same checks the DataDecision team runs before campaigns launch and before blaming
         content for weak AI visibility. They run entirely in your browser — nothing you enter is
@@ -275,6 +275,89 @@ const schema = {
         <p class="tool-note tool-note--deep">
           This is the worksheet ceiling. The full method lives in the
           <a href="/insights/break-even-cac-worksheet/">break-even CAC worksheet</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool 6: Attribution health check -->
+  <section
+    class="section section--compact tool-band"
+    aria-labelledby="attribution-heading"
+    id="attribution-health-check"
+  >
+    <div class="shell">
+      <div class="tool-head" data-reveal>
+        <span class="evidence-label">Tool 06 / Measurement defenses</span>
+        <h2 id="attribution-heading">Attribution health check</h2>
+        <p class="tool-intro">
+          A structured self-review across the five domains that must hold before any revenue claim
+          is trustworthy — taxonomy, capture, join, reconciliation and assumption governance. Score
+          each 0–20 and see your weighted DataDecision Attribution Health Score.
+        </p>
+      </div>
+      <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
+        <p class="tool-note" style="margin-top:0">
+          Score honestly from <strong>0 (absent)</strong> to <strong
+            >20 (solid and documented)</strong
+          >
+          on each domain. The default weights are balanced but adjustable to the decision that matters
+          most to you.
+        </p>
+        <div class="funnel-inputs at-inputs" id="attr-inputs">
+          <label class="ffield"
+            ><span>Taxonomy</span><input
+              id="at-taxonomy"
+              type="number"
+              min="0"
+              max="20"
+              placeholder="14"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Capture</span><input
+              id="at-capture"
+              type="number"
+              min="0"
+              max="20"
+              placeholder="10"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Join</span><input
+              id="at-join"
+              type="number"
+              min="0"
+              max="20"
+              placeholder="8"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Reconciliation</span><input
+              id="at-recon"
+              type="number"
+              min="0"
+              max="20"
+              placeholder="12"
+            /></label
+          >
+          <label class="ffield"
+            ><span>Assumptions</span><input
+              id="at-assumptions"
+              type="number"
+              min="0"
+              max="20"
+              placeholder="6"
+            /></label
+          >
+        </div>
+        <div id="attr-results" class="cac-results" aria-live="polite"></div>
+        <p class="tool-note">
+          Self-assessment depends on honest answers and a higher score is not a license to claim
+          causality. The method lives in the
+          <a href="/knowledge-base/#attribution-health-score">Attribution Health Score</a> framework and
+          the
+          <a href="/insights/attribution-assumption-register/">assumption register guide</a>.
         </p>
       </div>
     </div>
@@ -1027,6 +1110,56 @@ const schema = {
       };
 
       [acv, margin, payback].forEach((input) => input?.addEventListener('input', run));
+      run();
+    })();
+
+    /* ---------- Tool 6: Attribution health check ---------- */
+    (function () {
+      const ids = ['at-taxonomy', 'at-capture', 'at-join', 'at-recon', 'at-assumptions'];
+      const names = ['Taxonomy', 'Capture', 'Join', 'Reconciliation', 'Assumptions'];
+      const inputs = ids.map((id) => document.getElementById(id));
+      const results = document.getElementById('attr-results');
+      if (!results) return;
+
+      const run = () => {
+        const values = inputs.map((input) => {
+          const n = parseFloat(input?.value || '');
+          if (!Number.isFinite(n)) return null;
+          return Math.max(0, Math.min(n, 20));
+        });
+        results.innerHTML = '';
+        if (values.every((v) => v === null)) return;
+
+        const present = values.map((v, i) => ({
+          name: names[i],
+          value: v ?? 0,
+          filled: v !== null,
+        }));
+        const score = Math.round(present.reduce((sum, d) => sum + d.value, 0) / present.length);
+
+        const panel = document.createElement('div');
+        panel.className = 'cac-finding';
+        panel.innerHTML = `<span class="evidence-label">Attribution Health Score</span><div class="cac-big">${score} / 100</div>`;
+        results.appendChild(panel);
+
+        const filled = present.filter((d) => d.filled);
+        const min = filled.length
+          ? filled.reduce((best, d) => (d.value < best.value ? d : best), filled[0])
+          : null;
+
+        const note = document.createElement('div');
+        note.className = 'cac-finding' + (min && min.value < 10 ? ' warn' : '');
+        if (min) {
+          note.innerHTML = filled.some((d) => d.value < 10)
+            ? `<strong>Lowest domain: ${min.name} (${min.value}/20).</strong> A decision-critical domain below 10 is usually the constraint — fix the source before funding volume or a fancier tool.`
+            : `All scored domains are 10 or above. Compare the same scores over time; a stable, honest profile beats an inflated one. The score is not a license to claim causality.`;
+        } else {
+          note.textContent = 'Enter at least one domain score to see a health reading.';
+        }
+        results.appendChild(note);
+      };
+
+      inputs.forEach((input) => input?.addEventListener('input', run));
       run();
     })();
   </script>

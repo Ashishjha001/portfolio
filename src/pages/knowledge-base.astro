@@ -219,6 +219,38 @@ const schema = {
     </div>
   </section>
 
+  <section class="section section--bright" aria-labelledby="intel-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Into the machine</p>
+        <h2 id="intel-heading">How every search decision is made, recorded and improved.</h2>
+        <p class="small">
+          The intelligence engine publishes the scoring model, and the log records what changed and
+          what was deliberately protected.
+        </p>
+      </div>
+      <div class="intel-links" data-reveal style="--reveal-delay:100ms">
+        <a href="/search-intelligence/">
+          <span class="mono">01</span>
+          <div>
+            <h3>Search Intelligence Engine</h3>
+            <p>
+              Query intent, opportunity scoring, gap engines, AI-search signals and competitor view.
+            </p>
+          </div>
+        </a>
+        <a href="/intelligence-log/">
+          <span class="mono">02</span>
+          <div>
+            <h3>Intelligence log</h3>
+            <p>The dated changelog and experiment ledger that keep every decision auditable.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <FinalCTA
     heading="Know exactly which question matters before you start."
     body="Bring us the decision, evidence available and audience. We will point you to the best answer, the right tool and a scoped next step."
@@ -391,6 +423,41 @@ const schema = {
   }
 
   .cluster__insights a:hover {
+    color: var(--green);
+  }
+
+  .intel-links {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .intel-links a {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .intel-links .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .intel-links h3 {
+    font-size: 1.12rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .intel-links p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .intel-links a:hover h3,
+  .intel-links a:focus-visible h3 {
     color: var(--green);
   }
 

@@ -1,0 +1,792 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import {
+  queryIntentClasses,
+  OPPORTUNITY_WEIGHTS,
+  strikingDistanceClasses,
+  gapEngines,
+  aiSearchQueryLab,
+  aiSignalLayers,
+  competitorIntelligence,
+  priorityOpportunities,
+  priorityRank,
+  searchIntelligenceSchemaNote,
+} from '../data/searchIntelligence';
+import type { Cluster } from '../data/questionOwnership';
+
+const clusterLabels: Record<Cluster, string> = {
+  growth: 'Growth',
+  'performance-marketing': 'Performance marketing',
+  seo: 'SEO',
+  'ai-search': 'AI search',
+};
+
+const ranked = [...priorityOpportunities].sort((a, b) => priorityRank(b) - priorityRank(a));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision Search Intelligence Engine',
+  description:
+    'The observable model behind DataDecision search decisions: query intent, opportunity scoring, striking-distance classes, gap engines, AI-search signals, competitor intelligence and prioritised next moves.',
+  url: 'https://datadecision.consulting/search-intelligence/',
+};
+---
+
+<BaseLayout
+  title="Search Intelligence Engine | DataDecision"
+  description="The transparent model behind DataDecision search decisions: how queries are classified, scored and prioritised — with the logic, limits and data status kept visible."
+  path="/search-intelligence/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Knowledge', href: '/knowledge-base/' },
+      { label: 'Search intelligence' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Search intelligence / Observability</p>
+      <h1>The machine is visible, so every search decision can be audited.</h1>
+      <p class="lede">
+        DataDecision turns search into a loop — SEARCH, INSIGHT, ACTION, MEASUREMENT, LEARNING. This
+        page publishes the model: how a query becomes a question, how a question is scored, and how
+        a decision is prioritised. Nothing here is a hidden black box.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="#priorities">See the prioritised next moves</a>
+        <a class="text-link" href="/intelligence-log/">Open the intelligence log</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Loop state</span><span>Observable · Auditable · No fabricated numbers</span>
+      </div>
+      <dl class="si-rule">
+        <div>
+          <dt>Observe</dt>
+          <dd>Record what search and AI surfaces show</dd>
+        </div>
+        <div>
+          <dt>Score</dt>
+          <dd>Weight demand, intent, relevance, conversion, effort</dd>
+        </div>
+        <div>
+          <dt>Act</dt>
+          <dd>Choose CREATE / UPDATE / EXPAND / LINK / MERGE / LEAVE-ALONE</dd>
+        </div>
+        <div>
+          <dt>Learn</dt>
+          <dd>Log the outcome and revise the model</dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <!-- Section 1: The loop -->
+  <section class="section section--ink" aria-labelledby="loop-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The operating model</p>
+        <h2 id="loop-heading">Search is not a set of rankings. It is a loop.</h2>
+        <p class="small">
+          What gets measured, changes. What changes, gets measured again. Every stage has an owner
+          and a visible output, so no step becomes an unexamined assumption.
+        </p>
+      </div>
+      <ol class="si-loop" data-reveal style="--reveal-delay:100ms">
+        <li>
+          <span class="mono">01</span><div>
+            <h3>Search</h3>
+            <p>
+              Observe queries, AI surfaces, competitors and source infrastructure. Record what was
+              seen, not what was assumed.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">02</span><div>
+            <h3>Insight</h3>
+            <p>
+              Classify intent and name the gap. Decouple what is observed from what is inferred.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">03</span><div>
+            <h3>Action</h3>
+            <p>Choose one of six decision types and tie it to an owner and a metric.</p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">04</span><div>
+            <h3>Measurement</h3>
+            <p>Define the number that shows the action worked, and the baseline before it.</p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">05</span><div>
+            <h3>Learning</h3>
+            <p>Log the outcome in the intelligence log and revise the scoring weights.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Section 2: Query intent -->
+  <section class="section" aria-labelledby="intent-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Query classification</p>
+        <h2 id="intent-heading">The same words can mean very different jobs.</h2>
+        <p class="small">
+          Classifying intent before writing lets DataDecision match the answer to the stage of the
+          decision — informative, diagnostic, commercial, implementation, or measurement.
+        </p>
+      </div>
+      <div class="si-intents" data-reveal style="--reveal-delay:100ms">
+        {
+          queryIntentClasses.map((intent, index) => (
+            <div class="si-intent">
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{intent.label}</h3>
+                <p>{intent.definition}</p>
+                <code>{intent.example}</code>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Opportunity scoring model -->
+  <section class="section section--bright" aria-labelledby="scoring-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Scoring logic</p>
+        <h2 id="scoring-heading">Why one opportunity outranks another.</h2>
+        <p class="small">
+          The score is a documented weighted sum, not a gut feel. The weights are public so that a
+          challenge to any decision starts from the math, not from a claim.
+        </p>
+      </div>
+      <div class="si-score" data-reveal style="--reveal-delay:100ms">
+        <div class="si-score__formula">
+          <code
+            >SCORE = (Demand × {OPPORTUNITY_WEIGHTS.demand}) + (Intent × {
+              OPPORTUNITY_WEIGHTS.intent
+            }) + (Relevance × {OPPORTUNITY_WEIGHTS.relevance}) + (Conversion × {
+              OPPORTUNITY_WEIGHTS.conversion
+            }) + (Feasibility × {OPPORTUNITY_WEIGHTS.feasibility})</code
+          >
+        </div>
+        {
+          (
+            [
+              ['demand', 'Demand', '0..1 — search volume or question-frequency evidence'],
+              ['intent', 'Intent', '0..1 — commercial or diagnostic weight'],
+              ['relevance', 'Relevance', '0..1 — sits inside a strategic cluster'],
+              ['conversion', 'Conversion', '0..1 — how directly it feeds a lead path'],
+              ['feasibility', 'Feasibility', '0..1 — effort, data and authority required'],
+            ] as const
+          ).map(([id, label, desc]) => (
+            <div class="si-factor">
+              <span class="mono">{id}</span>
+              <span class="si-factor__label">{label}</span>
+              <span class="si-factor__weight">
+                × {OPPORTUNITY_WEIGHTS[id as keyof typeof OPPORTUNITY_WEIGHTS]}
+              </span>
+              <span class="si-factor__desc">{desc}</span>
+            </div>
+          ))
+        }
+        <p class="small si-note">{searchIntelligenceSchemaNote}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Striking distance classes -->
+  <section class="section" aria-labelledby="distance-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Striking distance</p>
+        <h2 id="distance-heading">A rank is a symptom. The class tells you what to do.</h2>
+        <p class="small">
+          Each striking-distance class points to a different action. A low CTR and a low impression
+          rate are different problems with different fixes.
+        </p>
+      </div>
+      <div class="si-distances" data-reveal style="--reveal-delay:100ms">
+        {
+          (
+            Object.entries(strikingDistanceClasses) as [
+              string,
+              { label: string; description: string },
+            ][]
+          ).map(([key, cls]) => (
+            <article class="si-distance">
+              <span class="evidence-label">{key.replace(/_/g, ' ')}</span>
+              <h3>{cls.label}</h3>
+              <p>{cls.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Gap engines -->
+  <section class="section section--ink" aria-labelledby="gaps-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Gap engines</p>
+        <h2 id="gaps-heading">Three gaps, and the guardrail before every action.</h2>
+        <p class="small">
+          DataDecision does not recommend creating content to solve every problem. The gap engines
+          name the condition, the options, and the rule that protects existing depth.
+        </p>
+      </div>
+      <div class="si-gaps" data-reveal style="--reveal-delay:100ms">
+        {
+          gapEngines.map((engine) => (
+            <article class="si-gap">
+              <span class="evidence-label">{engine.type.replace(/_/g, ' ')}</span>
+              <h3>{engine.name}</h3>
+              <p>
+                <strong>Condition:</strong> {engine.condition}
+              </p>
+              <p>
+                <strong>Options:</strong> {engine.recommendedActions.join(' · ')}
+              </p>
+              <p class="si-guardrail">
+                <strong>Guardrail:</strong> {engine.guardrail}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: AI search signals + query lab -->
+  <section class="section section--bright" aria-labelledby="aiq-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">AI-search signals</p>
+        <h2 id="aiq-heading">A mention is not a citation. A citation is not a referral.</h2>
+        <p class="small">
+          DataDecision measures AI presence in layers so a single glowing summary is not mistaken
+          for earned reach. The query lab shows the representative questions per cluster that are
+          still being observed.
+        </p>
+      </div>
+      <div class="si-signals" data-reveal style="--reveal-delay:100ms">
+        {
+          aiSignalLayers.map((layer, index) => (
+            <article class="si-signal">
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{layer.layer}</h3>
+                <p>{layer.definition}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="qolab-heading">
+    <span class="chapter-mark" aria-hidden="true">07</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">AI Search Query Lab</p>
+        <h2 id="qolab-heading">The representative questions under observation.</h2>
+        <p class="small">
+          A fixed, recorded set of questions per cluster. Running the same set repeatedly shows
+          movement honestly — and any item not yet recorded is marked need-data rather than guessed.
+        </p>
+      </div>
+      <div class="si-lab" data-reveal style="--reveal-delay:100ms">
+        {
+          (
+            Object.entries(aiSearchQueryLab) as [
+              Cluster,
+              { query: string; intent: string; status: string }[],
+            ][]
+          ).map(([cluster, queries]) => (
+            <details class="si-lab__row">
+              <summary>
+                <span class="mono">{cluster}</span>
+                <span>
+                  {queries.length} query{queries.length === 1 ? '' : 's'} · {clusterLabels[cluster]}
+                </span>
+              </summary>
+              <ul>
+                {queries.map((q) => (
+                  <li>
+                    <code>{q.query}</code>
+                    <span class="si-status">{q.status.replace(/-/g, ' ')}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Competitor intelligence -->
+  <section class="section section--ink" aria-labelledby="comp-heading">
+    <span class="chapter-mark" aria-hidden="true">08</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Competitor intelligence</p>
+        <h2 id="comp-heading">Where DataDecision can own the answer.</h2>
+        <p class="small">
+          A working view of what comparable players own and miss — kept at topical-review level and
+          updated from evidence, never from assumption about a named competitor.
+        </p>
+      </div>
+      <div class="si-competitors" data-reveal style="--reveal-delay:100ms">
+        {
+          competitorIntelligence.map((c) => (
+            <article class="si-competitor">
+              <div class="si-competitor__head">
+                <h3>{c.name}</h3>
+                <span class="evidence-label">
+                  {clusterLabels[c.cluster]} · {c.dataStatus.replace(/-/g, ' ')}
+                </span>
+              </div>
+              <p>
+                <strong>Owns:</strong> {c.ownerOf.join(' · ')}
+              </p>
+              <p>
+                <strong>Misses:</strong> {c.misses.join(' · ')}
+              </p>
+              <p class="si-guardrail">
+                <strong>DataDecision can own:</strong> {c.dataDecisionCanOwn.join(' · ')}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Priorities -->
+  <section class="section" aria-labelledby="priorities" id="priorities">
+    <span class="chapter-mark" aria-hidden="true">09</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Prioritised next moves</p>
+        <h2 id="priorities">Ranked by value minus effort, with status kept honest.</h2>
+        <p class="small">
+          Each row is scored with the public formula above. The status column separates what is
+          actually built on this site from what is still recommended only.
+        </p>
+      </div>
+      <div class="si-priorities" data-reveal style="--reveal-delay:100ms">
+        {
+          ranked.map((p, index) => (
+            <article class="si-priority">
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div class="si-priority__main">
+                <div class="si-priority__title">
+                  <h3>{p.title}</h3>
+                  <span class={`si-badge si-badge--${p.status}`}>
+                    {p.status.replace(/_/g, ' ')}
+                  </span>
+                </div>
+                <p>{p.note}</p>
+                <div class="si-priority__meta">
+                  <span>{clusterLabels[p.cluster]}</span>
+                  <span>{p.action.replace(/_/g, ' ')}</span>
+                  <span>Priority {priorityRank(p).toFixed(1)}</span>
+                  <span>Effort {p.effort}/5</span>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Do not guess which search problem to solve first."
+    body="Bring us the data you can see and the decision you need to defend. We will score the opportunities together and pick the next move with the math in view."
+    label="Discuss a measurement decision"
+  />
+</BaseLayout>
+
+<style>
+  .si-rule {
+    border-top: 1px solid var(--rule-strong);
+    margin: 0;
+  }
+
+  .si-rule div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-rule dt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .si-rule dd {
+    margin: 0;
+  }
+
+  .si-loop {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .si-loop li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-loop .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .si-loop h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.12rem;
+  }
+
+  .si-loop p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .si-intents,
+  .si-distance,
+  .si-competitors,
+  .si-priorities {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .si-intent,
+  .si-signal {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-intent .mono,
+  .si-signal .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .si-intent h3,
+  .si-signal h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .si-intent p,
+  .si-signal p {
+    margin: 0 0 0.4rem;
+    color: var(--muted);
+  }
+
+  .si-intent code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--green);
+  }
+
+  .si-score {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .si-score__formula {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-score__formula code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--text);
+    display: inline-block;
+  }
+
+  .si-factor {
+    display: grid;
+    grid-template-columns: 7rem 1fr auto;
+    gap: 0.4rem 1rem;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.9rem;
+  }
+
+  .si-factor .mono {
+    color: var(--green);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+  }
+
+  .si-factor__label {
+    font-weight: 600;
+  }
+
+  .si-factor__weight {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .si-note {
+    margin-top: 1rem;
+  }
+
+  .si-distances,
+  .si-gaps,
+  .si-signals {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .si-distance,
+  .si-gap {
+    border: 1px solid var(--rule);
+    padding: 1.2rem;
+    background: var(--panel);
+  }
+
+  .si-distance h3,
+  .si-gap h3 {
+    margin: 0.45rem 0 0.3rem;
+    font-size: 1.08rem;
+  }
+
+  .si-distance p,
+  .si-gap p {
+    margin: 0.25rem 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .si-gap {
+    background: color-mix(in srgb, var(--paper) 40%, transparent);
+  }
+
+  .si-gap .si-guardrail,
+  .si-competitor .si-guardrail {
+    color: var(--text);
+  }
+
+  .si-signals .si-signal {
+    padding: 0.9rem 0;
+  }
+
+  .si-lab {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .si-lab__row {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-lab__row summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .si-lab__row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .si-lab__row .mono {
+    font-size: 0.65rem;
+    color: var(--green);
+    text-transform: uppercase;
+  }
+
+  .si-lab__row summary > span:last-child {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .si-lab__row ul {
+    margin: 0;
+    padding: 0 0 1rem;
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .si-lab__row li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .si-lab__row code {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  .si-status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .si-competitor {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.1rem 0;
+  }
+
+  .si-competitor__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .si-competitor__head h3 {
+    margin: 0;
+    font-size: 1.12rem;
+  }
+
+  .si-competitor p {
+    margin: 0.3rem 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .si-priority {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .si-priority .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .si-priority__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .si-priority__title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .si-priority__main p {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+  }
+
+  .si-priority__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--green);
+  }
+
+  .si-badge {
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .si-badge--implemented {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: var(--green);
+  }
+
+  .si-badge--partial {
+    background: color-mix(in srgb, var(--amber) 18%, transparent);
+    color: var(--amber-deep);
+  }
+
+  .si-badge--recommended {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .si-factor {
+      grid-template-columns: 1fr auto;
+    }
+
+    .si-factor .si-factor__desc {
+      grid-column: 1 / -1;
+    }
+
+    .si-priority {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .si-lab__row summary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+    }
+  }
+</style>
