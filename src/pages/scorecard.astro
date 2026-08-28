@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { scorecardDimensions, researchCalendar } from '../data/authorityScorecard';
+
+const statusLabel = { implemented: 'Implemented', partial: 'Partial', 'need-data': 'Needs data' };
+const ownerLabel = { 'founder-input': 'Needs founder input', researcher: 'Research team' };
+const statusColor = {
+  implemented: 'good',
+  partial: 'warn',
+  'need-data': 'muted',
+} as const;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision authority scorecard',
+  description:
+    'An internal management scorecard of authority dimensions and a 12-month research roadmap — clearly not an objective Google or AI score.',
+  url: 'https://datadecision.consulting/scorecard/',
+};
+---
+
+<BaseLayout
+  title="Authority scorecard | DataDecision"
+  description="DataDecision's internal authority scorecard and 12-month research roadmap — an honest management view, not an objective search or AI score."
+  path="/scorecard/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Scorecard' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Authority scorecard</p>
+      <h1>An internal management view, not a magic score.</h1>
+      <p class="lede">
+        This page tracks DataDecision’s own authority dimensions and research roadmap. It is an
+        internal management framework — it is not presented as any objective Google or AI score, and
+        no dimension is scored where data is missing.
+      </p>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Internal only</span><span>Not an objective search or AI score</span>
+      </div>
+    </aside>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="dims-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Dimensions</p>
+        <h2 id="dims-heading">Where the authority work stands, honestly.</h2>
+        <p class="small">
+          Each dimension is implemented, partial, or needs data. Missing data is never turned into a
+          number.
+        </p>
+      </div>
+      <div class="sc-dims" data-reveal style="--reveal-delay:100ms">
+        {
+          scorecardDimensions.map((dim) => (
+            <div class="sc-dim">
+              <div class="sc-dim__head">
+                <h3>{dim.name}</h3>
+                <span class={`sc-status sc-status--${statusColor[dim.status]}`}>
+                  {statusLabel[dim.status]}
+                </span>
+              </div>
+              <p>{dim.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="calendar-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">12-month research roadmap</p>
+        <h2 id="calendar-heading">Studies only run when a credible data source exists.</h2>
+        <p class="small">
+          The calendar is prioritised by value against effort. No study runs for the sake of filling
+          a calendar.
+        </p>
+      </div>
+      <div class="sc-calendar" data-reveal style="--reveal-delay:100ms">
+        {
+          researchCalendar.map((item) => (
+            <article class="sc-item">
+              <span class="mono">{item.id}</span>
+              <div class="sc-item__body">
+                <h3>{item.study}</h3>
+                <p>
+                  <em>Window:</em> {item.window} · <em>Priority:</em> {item.priority}
+                </p>
+                <p>{item.value}</p>
+              </div>
+              <span class="sc-owner">{ownerLabel[item.owner]}</span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="A scorecard is a management tool, not a promise."
+    body="Ask us to show you the evidence behind any dimension — the baseline, the method and the limitation stay visible."
+    label="Challenge the view"
+  />
+</BaseLayout>
+
+<style>
+  .sc-dims,
+  .sc-calendar {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .sc-dim {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sc-dim__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .sc-dim__head h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .sc-dim p {
+    margin: 0.3rem 0 0;
+    color: var(--muted);
+  }
+
+  .sc-status,
+  .sc-owner {
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 999px;
+  }
+
+  .sc-status--good {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: var(--green);
+  }
+
+  .sc-status--warn {
+    background: color-mix(in srgb, var(--amber) 18%, transparent);
+    color: var(--amber-deep);
+  }
+
+  .sc-status--muted {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  .sc-item {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .sc-item .mono {
+    color: var(--signal);
+    font-size: 0.62rem;
+  }
+
+  .sc-item__body h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.08rem;
+  }
+
+  .sc-item__body p {
+    margin: 0.2rem 0;
+    color: var(--muted);
+  }
+
+  .sc-item__body em {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-style: normal;
+    letter-spacing: 0.06em;
+    color: var(--green);
+  }
+
+  .sc-owner {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .sc-item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

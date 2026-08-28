@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+/**
+ * Personalized content paths (Layer 28). Each role follows a recommended
+ * route through the site — decision framework, diagnostic, then service.
+ * Kept intentionally simple; navigation is not over-complicated.
+ */
+const rolePaths = [
+  {
+    id: 'founder',
+    role: 'Founder',
+    opensWith: 'A decision the numbers must support',
+    steps: [
+      {
+        label: 'Decision framework',
+        href: '/knowledge-base/#growth-bottleneck',
+        note: 'Isolate the first meaningful constraint.',
+      },
+      {
+        label: 'Diagnostic',
+        href: '/tools/#funnel-leakage-calculator',
+        note: 'Find the largest measurable leak in your funnel.',
+      },
+      {
+        label: 'Deepen',
+        href: '/insights/traffic-up-demo-bookings-down/',
+        note: 'Traffic up, demo bookings down — a worked diagnostic.',
+      },
+      {
+        label: 'Service',
+        href: '/services/measurement-foundation/',
+        note: 'A measurement foundation for the next decision.',
+      },
+    ],
+  },
+  {
+    id: 'seo-lead',
+    role: 'SEO lead',
+    opensWith: 'Technical depth then a reusable method',
+    steps: [
+      {
+        label: 'Technical content',
+        href: '/insights/b2b-saas-seo-query-to-page-map/',
+        note: 'Map queries to pages without cannibalisation.',
+      },
+      { label: 'Methodology', href: '/methodology/', note: 'The rules behind every analysis.' },
+      {
+        label: 'Tool',
+        href: '/tools/#attribution-health-check',
+        note: 'Check the measurement stack is defensible.',
+      },
+      {
+        label: 'Service',
+        href: '/services/ai-search-visibility/',
+        note: 'AI search visibility, measured.',
+      },
+    ],
+  },
+  {
+    id: 'cmo',
+    role: 'CMO',
+    opensWith: 'Measurement and benchmarks before service',
+    steps: [
+      {
+        label: 'Measurement',
+        href: '/knowledge-base/#measurement-maturity',
+        note: 'Stage the measurement capability.',
+      },
+      { label: 'Benchmark', href: '/research/', note: 'How research is framed and reported.' },
+      {
+        label: 'Research',
+        href: '/insights/how-to-measure-marketing-revenue/',
+        note: 'Measure marketing to revenue, honestly.',
+      },
+      {
+        label: 'Service',
+        href: '/services/measurement-foundation/',
+        note: 'A defensible path into pipeline.',
+      },
+    ],
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision content paths',
+  description: 'Recommended routes through the DataDecision site for founders, SEO leads and CMOs.',
+  url: 'https://datadecision.consulting/paths/',
+};
+---
+
+<BaseLayout
+  title="Start here | DataDecision"
+  description="Recommended routes through DataDecision for founders, SEO leads and CMOs — from decision framework to diagnostic to service."
+  path="/paths/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Start here' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Start here</p>
+      <h1>Pick your role, follow the path that fits.</h1>
+      <p class="lede">
+        Three short routes through the site. Each starts from the kind of decision you are actually
+        making and leads to the right framework, diagnostic and service — without burying you in
+        navigation.
+      </p>
+    </div>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="paths-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Personalised routes</p>
+        <h2 id="paths-heading">Decision framework → diagnostic → service.</h2>
+      </div>
+      <div class="paths" data-reveal style="--reveal-delay:100ms">
+        {
+          rolePaths.map((path, index) => (
+            <article class="path" id={path.id}>
+              <div class="path__head">
+                <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>For the {path.role}</h3>
+                  <p class="path__opens">{path.opensWith}</p>
+                </div>
+              </div>
+              <ol class="path__steps">
+                {path.steps.map((step) => (
+                  <li>
+                    <a href={step.href}>{step.label}</a>
+                    <span>{step.note}</span>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Not sure which path fits?"
+    body="Describe the decision you are facing and the data already in hand. We will point you to the right starting place."
+    label="Ask us where to start"
+  />
+</BaseLayout>
+
+<style>
+  .paths {
+    display: grid;
+    gap: 1.4rem;
+    margin-top: 2rem;
+  }
+
+  .path {
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--paper) 40%, transparent);
+  }
+
+  .path__head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .path__head .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .path__head h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .path__opens {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+  }
+
+  .path__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .path__steps li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0.4rem 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .path__steps a {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .path__steps span {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 640px) {
+    .path__steps li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>
