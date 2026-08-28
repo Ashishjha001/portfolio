@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { organizationSchema, websiteSchema, entityDefinition } from '../data/entityDefinition';
 import '@fontsource-variable/newsreader';
 import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/600.css';
@@ -29,34 +30,6 @@ const {
 
 const canonical = new URL(path, Astro.site ?? Astro.url.origin).toString();
 const imageUrl = new URL(image, Astro.site ?? Astro.url.origin).toString();
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'DataDecision',
-  url: 'https://datadecision.consulting',
-  logo: 'https://datadecision.consulting/logo.png',
-  email: 'contact@datadecision.consulting',
-  slogan: 'Growth you can prove.',
-  description: 'Measurement-first AI-search visibility for B2B SaaS.',
-  founder: {
-    '@type': 'Person',
-    name: 'Ashish Jha',
-    jobTitle: 'Founder',
-    url: 'https://datadecision.consulting/about/',
-    alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
-  },
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'business enquiries',
-    email: 'contact@datadecision.consulting',
-  },
-};
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'DataDecision',
-  url: 'https://datadecision.consulting',
-};
 const schemaItems = schema
   ? Array.isArray(schema)
     ? [organizationSchema, websiteSchema, ...schema]

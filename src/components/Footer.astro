@@ -1,4 +1,5 @@
 ---
+import { entityDefinition } from '../data/entityDefinition';
 const year = new Date().getFullYear();
 
 const columns = [
@@ -24,12 +25,18 @@ const columns = [
       { href: '/playbooks/', label: 'Playbooks' },
       { href: '/tools/', label: 'Free tools' },
       { href: '/methodology/', label: 'Methodology' },
+      { href: '/concepts/', label: 'Canonical concepts' },
+      { href: '/proof/', label: 'Proof architecture' },
     ],
   },
   {
     heading: 'Trust',
     label: 'Legal and access',
     links: [
+      { href: '/why-datadecision/', label: 'Why DataDecision' },
+      { href: '/ai-search-observatory/', label: 'AI observatory' },
+      { href: '/scorecard/', label: 'Authority scorecard' },
+      { href: '/paths/', label: 'Where to start' },
       { href: '/privacy/', label: 'Privacy' },
       { href: '/terms/', label: 'Terms' },
       { href: '/cookies/', label: 'Cookies' },
@@ -47,10 +54,8 @@ const columns = [
       <a class="brand brand--footer" href="/">
         <span class="brand__word">DataDecision<small>Growth you can prove.</small></span>
       </a>
-      <h2>Measurement-first AI-search visibility for B2B SaaS.</h2>
-      <p class="small measure">
-        Focused on AI-search visibility, measurement foundations and scoped implementation.
-      </p>
+      <h2>{entityDefinition.description}</h2>
+      <p class="small measure">{entityDefinition.oneLineFocus}</p>
     </div>
     {
       columns.map((column) => (

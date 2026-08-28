@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { entityDefinition } from '../data/entityDefinition';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Why DataDecision',
+  description:
+    'What problem DataDecision exists to solve, how it thinks and measures, how it differs, and what it does not claim.',
+  url: 'https://datadecision.consulting/why-datadecision/',
+  mainEntity: {
+    '@type': 'Organization',
+    name: entityDefinition.name,
+    url: entityDefinition.url,
+  },
+};
+---
+
+<BaseLayout
+  title="Why DataDecision | DataDecision"
+  description="What problem DataDecision solves, how it thinks and measures, how it differs, what it does not claim, and how it approaches client work."
+  path="/why-datadecision/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Why DataDecision' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Why DataDecision</p>
+      <h1>Growth decisions deserve evidence you can defend.</h1>
+      <p class="lede">
+        DataDecision exists for one reason: marketing and growth numbers are too often presented
+        without the context needed to make a decision. This page states plainly what DataDecision is
+        for, how it thinks, and what it will not claim.
+      </p>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Positioning</span><span>{entityDefinition.positioning}</span></div>
+    </aside>
+  </header>
+
+  <!-- What problem -->
+  <section class="section" aria-labelledby="problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid editorial-grid--reverse">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The problem</p>
+        <h2 id="problem-heading">A number without a frame cannot be trusted.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          Discovery now spans search results, generated answers, review sources and conversations
+          that no single dashboard fully observes. Teams are asked to fund growth on numbers whose
+          source, baseline and limitation are unknown.
+        </p>
+        <p class="measure">
+          DataDecision concentrates on the measurement layer: establishing what is visible,
+          identifying what the existing stack misses, and ranking the work most likely to improve
+          the next decision.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it thinks -->
+  <section class="section section--ink" aria-labelledby="thinks-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The principles</p>
+        <h2 id="thinks-heading">Evidence first. Claims later. Limits always visible.</h2>
+        <p class="small">
+          Four operating rules govern how every analysis and recommendation is produced. They are
+          applied to DataDecision's own work before they are recommended to a client.
+        </p>
+      </div>
+      <ol class="why-list" data-reveal style="--reveal-delay:100ms">
+        <li>
+          <span class="mono">01</span><div>
+            <h3>Start with the observation</h3>
+            <p>
+              Describe what happened, when it happened and how it was recorded — before any
+              interpretation.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">02</span><div>
+            <h3>Record the baseline</h3>
+            <p>
+              Establish the starting point before proposing any change, so progress can be compared
+              honestly.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">03</span><div>
+            <h3>Publish the method</h3>
+            <p>
+              Make the rules for interrogating a number visible, without exposing private client
+              data.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">04</span><div>
+            <h3>Name uncertainty precisely</h3>
+            <p>Record unknown, unavailable and ambiguous observations as separate states.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- How it measures -->
+  <section class="section section--bright" aria-labelledby="measures-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How it measures</p>
+        <h2 id="measures-heading">Named frameworks, not branded slogans.</h2>
+        <p class="small">
+          The DataDecision method is made of reusable frameworks, each with a definition, inputs,
+          calculation, interpretation and named limits.
+        </p>
+      </div>
+      <div class="why-measure" data-reveal style="--reveal-delay:100ms">
+        <p class="lede">Chapters in the method:</p>
+        <ul class="why-measure__list">
+          <li>
+            <a href="/knowledge-base/#funnel-leakage-index">Funnel Leakage Index</a> — names the stage
+            with the largest measurable loss.
+          </li>
+          <li>
+            <a href="/knowledge-base/#growth-bottleneck">Growth Bottleneck Framework</a> — isolates the
+            first meaningful constraint.
+          </li>
+          <li>
+            <a href="/knowledge-base/#attribution-health-score">Attribution Health Score</a> — scores
+            how defensible a revenue claim is.
+          </li>
+          <li>
+            <a href="/knowledge-base/#measurement-maturity">Measurement Maturity Model</a> — stages the
+            measurement capability.
+          </li>
+          <li>
+            <a href="/knowledge-base/#search-to-revenue">Search-to-Revenue Framework</a> — traces visibility
+            into pipeline.
+          </li>
+          <li>
+            <a href="/knowledge-base/#ai-search-visibility-score">AI Search Visibility Score</a> — measures
+            AI presence with a visible sample.
+          </li>
+          <li>
+            <a href="/knowledge-base/#ai-citation-index">AI Citation Index</a> — separates mention from
+            citation from recommendation.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it differs / what it does not claim -->
+  <section class="section" aria-labelledby="differs-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How it differs</p>
+        <h2 id="differs-heading">What DataDecision does not claim.</h2>
+        <p class="small">
+          The clearest way to show how DataDecision thinks is to state what it refuses to promise.
+        </p>
+      </div>
+      <div class="why-diff" data-reveal style="--reveal-delay:100ms">
+        <ul>
+          <li><strong>Not</strong> a guarantee of any specific ranking or "first" position.</li>
+          <li><strong>Not</strong> a claim that AI systems will recommend DataDecision.</li>
+          <li>
+            <strong>Not</strong> fabricated mentions, reviews, citations, clients or statistics.
+          </li>
+          <li><strong>Not</strong> automation designed to manipulate search or AI systems.</li>
+          <li>
+            <strong>Not</strong> causal conclusions produced without stated baselines and evidence.
+          </li>
+          <li>
+            <strong>Not</strong> superlative positioning that is not independently substantiated.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How client work is approached -->
+  <section class="section section--ink" aria-labelledby="approach-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
+    <div class="shell editorial-grid editorial-grid--reverse">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How client work is approached</p>
+        <h2 id="approach-heading">A scoped unit of work, not an open-ended retainer.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          Work is framed as a question the evidence can answer. Before it begins the client receives
+          a written scope covering the inputs, timing, fee and expected deliverables. Each
+          engagement runs through a Decision Board that keeps the observation, baseline and limits
+          in view.
+        </p>
+        <p class="measure">
+          The goal is a defensible next decision, not an impressive dashboard. See the
+          <a class="text-link" href="/methodology/">methodology</a> and the
+          <a class="text-link" href="/work/">work ledger</a> to inspect how this is applied.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Bring the decision and the evidence you have."
+    body="Tell us the question a number needs to answer, and what data already exists. We will say plainly whether the evidence can support a scoped next step."
+    label="Discuss your question"
+  />
+</BaseLayout>
+
+<style>
+  .why-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .why-list li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .why-list .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .why-list h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.12rem;
+  }
+
+  .why-list p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .why-measure__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .why-measure__list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  .why-measure__list a {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .why-diff {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .why-diff ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .why-diff li {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 0.6rem 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .why-diff strong {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.25rem;
+  }
+</style>

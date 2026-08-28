@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { entityDefinition } from '../data/entityDefinition';
+
+/**
+ * Proof hierarchy (Layer 5). Only levels that genuinely exist on the site are
+ * marked present. Levels without committed work are marked not-yet-present
+ * and are never manufactured.
+ */
+const proofLevels = [
+  {
+    level: 1,
+    name: 'Methodology',
+    present: true,
+    href: '/methodology/',
+    note: 'The stated rules for producing an analysis and a recommendation.',
+  },
+  {
+    level: 2,
+    name: 'Original frameworks',
+    present: true,
+    href: '/knowledge-base/#frameworks',
+    note: 'Seven proprietary frameworks, each with named inputs and limits.',
+  },
+  {
+    level: 3,
+    name: 'Original research',
+    present: false,
+    href: '/research/',
+    note: 'Framed research programs; no benchmark is published before evidence exists.',
+  },
+  {
+    level: 4,
+    name: 'Interactive tools',
+    present: true,
+    href: '/tools/',
+    note: 'Six browser-based diagnostic tools, no data leaves the browser.',
+  },
+  {
+    level: 5,
+    name: 'Real case studies',
+    present: false,
+    href: '/work/',
+    note: 'The template exists; real named cases are only added with client permission.',
+  },
+  {
+    level: 6,
+    name: 'Client outcomes',
+    present: false,
+    href: '/work/',
+    note: 'No fabricated outcomes. Reported results must be dated and evidenced.',
+  },
+  {
+    level: 7,
+    name: 'Independent references',
+    present: false,
+    href: '/research/',
+    note: 'Earned only through legitimate publication, research references and distribution.',
+  },
+  {
+    level: 8,
+    name: 'Third-party recognition',
+    present: false,
+    href: '/contact/',
+    note: 'Never manufactured. Only genuine, independently substantiated recognition is claimed.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision proof architecture',
+  description:
+    'The hierarchy of evidence DataDecision uses — showing which levels genuinely exist and which are not yet present.',
+  url: 'https://datadecision.consulting/proof/',
+  mainEntity: { '@type': 'Organization', name: entityDefinition.name },
+};
+---
+
+<BaseLayout
+  title="Proof architecture | DataDecision"
+  description="The evidence hierarchy behind DataDecision — viewed honestly, showing which proof levels exist and which are not yet present."
+  path="/proof/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Proof' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Proof architecture</p>
+      <h1>The evidence behind the claims, ranked and kept honest.</h1>
+      <p class="lede">
+        A proof hierarchy is only credible if it shows the levels that are not yet present. This
+        page does exactly that — no level is manufactured, and every present level links to its
+        source.
+      </p>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Proof levels</span><span
+          >{proofLevels.filter((l) => l.present).length} present of {proofLevels.length}</span
+        >
+      </div>
+    </aside>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="levels-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The hierarchy</p>
+        <h2 id="levels-heading">From method to recognition, shown level by level.</h2>
+        <p class="small">
+          Green marks a level that genuinely exists on this site. Muted marks a level that is framed
+          but not yet earned — it is never faked.
+        </p>
+      </div>
+      <div class="proof-levels" data-reveal style="--reveal-delay:100ms">
+        {
+          proofLevels.map((level) => (
+            <article
+              class={`proof-level${level.present ? ' proof-level--present' : ' proof-level--missing'}`}
+            >
+              <span class="mono">{String(level.level).padStart(2, '0')}</span>
+              <div class="proof-level__body">
+                <div class="proof-level__title">
+                  <h3>{level.name}</h3>
+                  <span
+                    class={`proof-badge ${level.present ? 'proof-badge--present' : 'proof-badge--missing'}`}
+                  >
+                    {level.present ? 'Present' : 'Not yet present'}
+                  </span>
+                </div>
+                <p>{level.note}</p>
+              </div>
+              <a class="text-link" href={level.href}>
+                Open source
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Ask to see the proof behind any claim we make."
+    body="Every DataDecision claim should survive a request for its source, baseline and limitation. If it cannot, we do not expect you to rely on it."
+    label="Challenge a claim"
+  />
+</BaseLayout>
+
+<style>
+  .proof-levels {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .proof-level {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .proof-level .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .proof-level__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .proof-level__title h3 {
+    margin: 0;
+    font-size: 1.12rem;
+  }
+
+  .proof-level__body p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .proof-badge {
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .proof-badge--present {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: var(--green);
+  }
+
+  .proof-badge--missing {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .proof-level {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .proof-level > a {
+      grid-column: 2;
+    }
+  }
+</style>

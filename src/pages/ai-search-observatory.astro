@@ -1,0 +1,402 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import {
+  aiShareMetrics,
+  observatoryQuerySet,
+  observatorySystems,
+  observationLogFrame,
+} from '../data/observatory';
+
+const clusterLabels = {
+  growth: 'Growth',
+  'performance-marketing': 'Performance marketing',
+  seo: 'SEO',
+  'ai-search': 'AI search',
+} as const;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision AI Search Observatory',
+  description:
+    'Tracks how AI systems represent important market questions, keeping mention, citation, recommendation, source, referral and conversion share strictly separate.',
+  url: 'https://datadecision.consulting/ai-search-observatory/',
+};
+---
+
+<BaseLayout
+  title="AI Search Observatory | DataDecision"
+  description="A dated record of how AI systems represent important market questions — keeping mention, citation, recommendation, source, referral and conversion share separate."
+  path="/ai-search-observatory/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Knowledge', href: '/knowledge-base/' },
+      { label: 'AI Search Observatory' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">AI Search Observatory</p>
+      <h1>A citation is not a recommendation. We never blur them.</h1>
+      <p class="lede">
+        The observatory tracks how AI systems represent the questions that matter to this market.
+        Every record keeps six distinct shares separate, and no observation is treated as universal
+        truth.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="#query-set">See the query set</a>
+        <a class="text-link" href="/search-intelligence/">Read the measurement model</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Observable in</span><span>{observatorySystems.length} answer systems</span>
+      </div>
+      <dl class="obs-limits">
+        <div>
+          <dt>Varies by</dt>
+          <dd>Model · date · location · personalisation · retrieval</dd>
+        </div>
+        <div>
+          <dt>Status rule</dt>
+          <dd>need-data is never shown as a measured number</dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <!-- Six separate shares -->
+  <section class="section section--ink" aria-labelledby="shares-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Six distinct shares</p>
+        <h2 id="shares-heading">One metric per question, never summed.</h2>
+        <p class="small">
+          A company can have high citations and low recommendations, or high mentions and low
+          citations. Collapsing them hides the signal, so the observatory always keeps them apart.
+        </p>
+      </div>
+      <div class="obs-shares" data-reveal style="--reveal-delay:100ms">
+        {
+          aiShareMetrics.map((metric, index) => (
+            <article class="obs-share">
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{metric.label}</h3>
+                <p>{metric.definition}</p>
+                <code>{metric.example}</code>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Query set -->
+  <section class="section" aria-labelledby="query-set" id="query-set">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The query set</p>
+        <h2 id="query-set">The same questions, run repeatedly and dated.</h2>
+        <p class="small">
+          A fixed representative set per cluster. Running the identical set over time is the only
+          honest way to see movement. Anything not yet recorded is need-data.
+        </p>
+      </div>
+      <div class="obs-queries" data-reveal style="--reveal-delay:100ms">
+        {
+          observatoryQuerySet.map((q, index) => (
+            <div class="obs-query">
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <code>{q.query}</code>
+              <span class="obs-query__cluster">{clusterLabels[q.cluster]}</span>
+              <span class="obs-query__intent">{q.intent}</span>
+              <span class="obs-status obs-status--need-data">{q.status.replace(/-/g, ' ')}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Systems + observation frame -->
+  <section class="section section--bright" aria-labelledby="systems-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Systems and limits</p>
+        <h2 id="systems-heading">Which surfaces are observed, and why each record is a sample.</h2>
+        <p class="small">
+          Records are captured per system and per date. Because outputs vary, a single observation
+          is presented as one data point with its limitation, never as a universal finding.
+        </p>
+      </div>
+      <div class="obs-systems" data-reveal style="--reveal-delay:100ms">
+        <ul class="obs-systems__list">
+          {observatorySystems.map((system) => <li>{system}</li>)}
+        </ul>
+        <h3 class="obs-frame-title">What a complete record captures</h3>
+        <dl class="obs-frame">
+          <div><dt>Date / system / query</dt><dd>when, where, what was asked</dd></div>
+          <div>
+            <dt>Six separate shares</dt><dd>
+              mention · citation · recommendation · source · referral · conversion
+            </dd>
+          </div>
+          <div>
+            <dt>Competitor presence</dt><dd>recommended companies and their cited sources</dd>
+          </div>
+          <div><dt>Limitation</dt><dd>model, location and date variance acknowledged</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Observation log -->
+  <section class="section" aria-labelledby="log-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Observation log</p>
+        <h2 id="log-heading">No fabricated observations.</h2>
+        <p class="small">
+          This log is intentionally empty of invented results. It holds the frame a real, dated
+          record must satisfy. A genuine measurement run is added only after it completes.
+        </p>
+      </div>
+      <div class="obs-log" data-reveal style="--reveal-delay:100ms">
+        {
+          observationLogFrame.map((record) => (
+            <article class="obs-log__row">
+              <div class="obs-log__rail">
+                <span class="mono">{record.entryId}</span>
+                <span class="obs-status obs-status--need-data">need data</span>
+              </div>
+              <div>
+                <h3>{record.query}</h3>
+                <p>{record.note}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="See where your brand actually sits across AI answers."
+    body="We will run a dated, sampled observation across the surfaces that matter to you and return a frame that keeps every share separate."
+    label="Request an AI visibility observation"
+  />
+</BaseLayout>
+
+<style>
+  .obs-limits {
+    border-top: 1px solid var(--rule-strong);
+    margin: 0;
+  }
+
+  .obs-limits div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .obs-limits dt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .obs-limits dd {
+    margin: 0;
+    color: var(--text);
+  }
+
+  .obs-shares,
+  .obs-queries {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .obs-share {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .obs-share .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .obs-share h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .obs-share p {
+    margin: 0 0 0.4rem;
+    color: var(--muted);
+  }
+
+  .obs-share code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--green);
+  }
+
+  .obs-query {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto auto;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .obs-query .mono {
+    color: var(--signal);
+    font-size: 0.62rem;
+  }
+
+  .obs-query code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .obs-query__cluster,
+  .obs-query__intent {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .obs-status {
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 999px;
+  }
+
+  .obs-status--need-data {
+    background: color-mix(in srgb, var(--muted) 14%, transparent);
+    color: var(--muted);
+  }
+
+  .obs-systems__list {
+    list-style: none;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .obs-systems__list li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.92rem;
+  }
+
+  .obs-frame-title {
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .obs-frame {
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .obs-frame div {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .obs-frame dt {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .obs-frame dd {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .obs-log {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .obs-log__row {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .obs-log__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .obs-log__rail .mono {
+    font-size: 0.62rem;
+    color: var(--signal);
+  }
+
+  .obs-log__row h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+  }
+
+  .obs-log__row p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .obs-query {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .obs-query__cluster,
+    .obs-query__intent {
+      grid-column: 2;
+    }
+
+    .obs-log__row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .obs-frame div {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>

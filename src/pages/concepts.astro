@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { concepts } from '../data/concepts';
+
+const clusterLabels = {
+  growth: 'Growth',
+  'performance-marketing': 'Performance marketing',
+  seo: 'SEO',
+  'ai-search': 'AI search',
+} as const;
+
+function canonicalHref(home: (typeof concepts)[number]['canonicalHome']): string | null {
+  switch (home.kind) {
+    case 'framework':
+      return `/knowledge-base/#${home.id}`;
+    case 'insight':
+      return `/insights/${home.id}/`;
+    case 'tool':
+      return `/tools/#${home.anchor}`;
+    case 'service':
+      return `/services/${home.slug}/`;
+    case 'recommended':
+      return null;
+  }
+}
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision canonical concepts',
+  description:
+    'The canonical source of truth for the concepts DataDecision treats as strategically important — each pointing to one committed home.',
+  url: 'https://datadecision.consulting/concepts/',
+};
+---
+
+<BaseLayout
+  title="Canonical concepts | DataDecision"
+  description="The canonical definitions behind DataDecision: AI search visibility, AI citation, attribution health, funnel leakage and the other concepts the site is built on."
+  path="/concepts/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Knowledge', href: '/knowledge-base/' },
+      { label: 'Concepts' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Canonical concepts</p>
+      <h1>One definition, one home, no competing pages.</h1>
+      <p class="lede">
+        Each concept DataDecision treats as important has a single canonical definition and a single
+        committed source. Supporting content points to these homes instead of redefining the idea in
+        its own words.
+      </p>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Source of truth</span><span>{concepts.length} canonical concepts</span>
+      </div>
+    </aside>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="concepts-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The index</p>
+        <h2 id="concepts-heading">Canonical definitions with a committed home.</h2>
+        <p class="small">
+          Every definition records what it is, why it matters, how it is measured and its limitation
+          — then points to the canonical source.
+        </p>
+      </div>
+      <div class="concepts" data-reveal style="--reveal-delay:100ms">
+        {
+          concepts.map((c, index) => {
+            const href = canonicalHref(c.canonicalHome);
+            return (
+              <article class="concept" id={c.slug}>
+                <div class="concept__head">
+                  <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3>{c.name}</h3>
+                    <span class="concept__cluster">{clusterLabels[c.cluster]}</span>
+                  </div>
+                </div>
+                <p class="concept__one">{c.inOneLine}</p>
+                <dl class="concept__details">
+                  <div>
+                    <dt>Why it matters</dt>
+                    <dd>{c.whyItMatters}</dd>
+                  </div>
+                  <div>
+                    <dt>How measured</dt>
+                    <dd>{c.howMeasured}</dd>
+                  </div>
+                  <div>
+                    <dt>Limitation</dt>
+                    <dd>{c.limitation}</dd>
+                  </div>
+                </dl>
+                <div class="concept__home">
+                  {href ? (
+                    <a class="text-link" href={href}>
+                      Canonical home — {c.canonicalHome.label}
+                    </a>
+                  ) : (
+                    <span class="small">
+                      Canonical home <strong>recommended</strong> — not yet committed.
+                    </span>
+                  )}
+                </div>
+                {c.related.length > 0 && (
+                  <p class="concept__related small">
+                    Related:{' '}
+                    {c.related
+                      .map((r) => concepts.find((x) => x.slug === r)?.name)
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                )}
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Need a canonical frame before the work begins?"
+    body="Tell us the concept or decision at stake. We will point you to the canonical home, the relevant tool and a scoped next step."
+    label="Discuss your question"
+  />
+</BaseLayout>
+
+<style>
+  .concepts {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .concept {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .concept__head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .concept__head .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .concept__head h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .concept__cluster {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .concept__one {
+    font-size: 1.02rem;
+    margin: 0.9rem 0 0.8rem;
+  }
+
+  .concept__details {
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .concept__details div {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .concept__details dt {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .concept__details dd {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .concept__home {
+    margin-top: 1rem;
+  }
+
+  .concept__home strong {
+    color: var(--amber-deep);
+  }
+
+  .concept__related {
+    margin: 0.8rem 0 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .concept__head {
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+    }
+
+    .concept__details div {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>
