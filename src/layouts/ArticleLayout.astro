@@ -40,6 +40,13 @@ const schema = [
     description: data.description,
     datePublished: data.publishedDate.toISOString(),
     dateModified: data.updatedDate.toISOString(),
+    inLanguage: 'en',
+    wordCount: Math.round(data.readingMinutes * 220),
+    isFamilyFriendly: true,
+    articleSection: data.cluster ?? data.category,
+    keywords: [data.cluster, data.category, 'DataDecision', 'measurement', 'AI search visibility']
+      .filter(Boolean)
+      .join(', '),
     author: {
       '@type': 'Organization',
       name: data.author,
@@ -49,11 +56,11 @@ const schema = [
       '@type': 'Organization',
       name: 'DataDecision',
       url: 'https://datadecision.consulting/',
+      logo: 'https://datadecision.consulting/logo.png',
     },
     mainEntityOfPage: canonicalUrl,
     url: canonicalUrl,
     image: 'https://datadecision.consulting/og-default.png',
-    articleSection: data.cluster ?? data.category,
     isPartOf: data.cluster
       ? {
           '@type': 'CollectionPage',
@@ -61,6 +68,34 @@ const schema = [
           url: 'https://datadecision.consulting/insights/',
         }
       : undefined,
+    about:
+      data.cluster === 'growth'
+        ? { '@type': 'Thing', name: 'Growth measurement' }
+        : data.cluster === 'performance-marketing'
+          ? { '@type': 'Thing', name: 'Performance marketing measurement' }
+          : data.cluster === 'seo'
+            ? { '@type': 'Thing', name: 'SEO and search measurement' }
+            : data.cluster === 'ai-search'
+              ? { '@type': 'Thing', name: 'AI search visibility' }
+              : { '@type': 'Thing', name: data.category },
+    ...(data.sources.length > 0
+      ? {
+          citation: data.sources.map((source) => ({
+            '@type': 'CreativeWork',
+            name: source.label,
+            url: source.url.toString(),
+          })),
+        }
+      : {}),
+    ...(data.methodologyVersion
+      ? {
+          isBasedOn: {
+            '@type': 'CreativeWork',
+            name: `DataDecision methodology ${data.methodologyVersion}`,
+            url: 'https://datadecision.consulting/methodology/',
+          },
+        }
+      : {}),
   },
 ];
 ---
