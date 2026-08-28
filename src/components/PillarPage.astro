@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import type { TopicDefinition } from '../data/topicArchitecture';
+import { frameworksByOwner } from '../data/frameworks';
+import { researchPrograms } from '../data/researchPrograms';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from './Breadcrumbs.astro';
 import FAQList from './FAQList.astro';
@@ -12,6 +14,10 @@ interface Props {
 }
 
 const { topic } = Astro.props;
+const clusterFrameworks = frameworksByOwner[topic.slug] ?? [];
+const clusterResearch = researchPrograms.filter((program) =>
+  topic.insightIds.some((id) => program.relatedInsights.includes(id)),
+);
 const allInsights = await getCollection('insights');
 const relatedInsights = topic.insightIds
   .map((id) => allInsights.find((entry) => entry.id === id))
@@ -192,8 +198,67 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--ink" aria-labelledby="topic-faq-heading">
+  <section class="section section--bright" aria-labelledby="kg-heading">
     <span class="chapter-mark" aria-hidden="true">06</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Knowledge graph</p>
+        <h2 id="kg-heading">Follow the method beyond the guidance.</h2>
+        <p class="small">
+          The proprietary frameworks, research programmes and interactive tools that carry this
+          cluster's depth — all connected to the same question.
+        </p>
+      </div>
+      <div class="kg-block" data-reveal style="--reveal-delay:100ms">
+        {
+          clusterFrameworks.length > 0 && (
+            <div class="kg-group">
+              <h3>Frameworks</h3>
+              <ul>
+                {clusterFrameworks.map((framework) => (
+                  <li>
+                    <a href="/knowledge-base/#{framework.id}">{framework.name}</a>
+                    {framework.toolHref && (
+                      <a class="kg-tool" href={framework.toolHref}>
+                        Tool →
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          clusterResearch.length > 0 && (
+            <div class="kg-group">
+              <h3>Research</h3>
+              <ul>
+                {clusterResearch.map((program) => (
+                  <li>
+                    <a href="/research/#programs">{program.title}</a>
+                    <span class="kg-status">{program.status}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        <div class="kg-group">
+          <h3>Explore the system</h3>
+          <ul>
+            <li><a href="/knowledge-base/">Open the knowledge base</a></li>
+            <li><a href="/tools/">Run the interactive tools</a></li>
+            <li><a href="/methodology/">Read the methodology</a></li>
+            <li><a href="/research/">See the research programme</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="topic-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">07</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Questions before you engage</p>
@@ -424,5 +489,60 @@ const schema = [
     .topic-insights a {
       transition: none;
     }
+  }
+
+  .kg-block {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .kg-group {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .kg-group h3 {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0 0 0.6rem;
+  }
+
+  .kg-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .kg-group li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding: 0.3rem 0;
+  }
+
+  .kg-group a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .kg-group a:hover {
+    color: var(--green);
+  }
+
+  .kg-group .kg-tool {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+  }
+
+  .kg-status {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 </style>

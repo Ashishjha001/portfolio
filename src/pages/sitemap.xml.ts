@@ -12,6 +12,7 @@ const staticRoutes = [
   '/seo/',
   '/ai-search/',
   '/research/',
+  '/knowledge-base/',
   '/playbooks/',
   '/tools/',
   '/methodology/',

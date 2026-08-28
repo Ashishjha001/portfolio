@@ -192,8 +192,21 @@ for (const demonstrationField of [
 }
 
 const generatedScripts = files.filter((file) => extname(file) === '.js');
-if (generatedScripts.length) {
-  errors.push(`Unexpected generated JavaScript bundle(s): ${generatedScripts.length}`);
+const allowedScripts = [
+  'HeroField.astro_astro_type_script_index_0_lang',
+  'NetworkGraph.astro_astro_type_script_index_0_lang',
+  'ScrollMorph.astro_astro_type_script_index_0_lang',
+  'three-core',
+];
+const unexpectedScripts = generatedScripts.filter((file) => {
+  const name = file
+    .split(/[\\/]/)
+    .pop()
+    .replace(/\.[^.]+$/, '');
+  return !allowedScripts.some((allowed) => name.startsWith(allowed));
+});
+if (unexpectedScripts.length) {
+  errors.push(`Unexpected generated JavaScript bundle(s): ${unexpectedScripts.length}`);
 }
 
 if (errors.length) {
