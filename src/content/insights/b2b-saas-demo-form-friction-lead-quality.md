@@ -12,10 +12,6 @@ authorNote: 'DataDecision Research is led by founder Ashish Jha. This guide is a
 featured: true
 methodologyVersion: 'Form friction decision method v1.0'
 sources:
-  - label: 'W3C WCAG 2.2: Labels or Instructions'
-    url: 'https://www.w3.org/TR/WCAG22/#labels-or-instructions'
-  - label: 'W3C WCAG 2.2: Error Identification'
-    url: 'https://www.w3.org/TR/WCAG22/#error-identification'
   - label: 'HubSpot: Create and customize forms'
     url: 'https://knowledge.hubspot.com/forms/create-and-edit-forms'
   - label: 'GOV.UK Design System: Question pages'
@@ -109,7 +105,7 @@ Do not choose between conversion rate and quality. Put both on the same ledger.
 - records that could not be routed;
 - records rejected for a documented reason.
 
-W3C’s WCAG 2.2 requires [labels or instructions](https://www.w3.org/TR/WCAG22/#labels-or-instructions) when content needs user input. It also requires that detectable [input errors are identified](https://www.w3.org/TR/WCAG22/#error-identification) and described in text. These are implementation requirements, not optional conversion tactics.
+Treat visible labels, clear instructions and text-based error messages as implementation requirements, not optional conversion tactics. GOV.UK’s [question-page pattern](https://design-system.service.gov.uk/patterns/question-pages/) provides a practical reference for asking one clear question at a time, labeling inputs and explaining errors.
 
 ## Pre-commit the test before changing the form
 
