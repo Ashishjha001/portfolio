@@ -143,6 +143,12 @@
         "Compress the capability explorer on mobile"
       ],
       "reason": "The homepage now prioritizes proposition, method, free tools, selected insights, process, founder trust, FAQs and conversion. The dense capability explorer and evidence board were removed from the homepage, while detailed scope remains on service and methodology pages. Supporting summaries and repeated qualifiers were reduced so mobile visitors can scan the page without navigating a compressed desktop tab interface."
+    },
+    {
+      "date": "2026-08-28",
+      "choice": "Homepage mobile flow is compact and text-led",
+      "alternatives": ["Retain desktop card density", "Keep the founder monogram placeholder"],
+      "reason": "At widths below 768px, homepage editorial leads and their content use explicit flow gaps, method and insight cards use compact type and padding, and reveal motion is opacity-only. The founder monogram placeholder is removed; credibility is presented as concise text until a real photograph is supplied."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"
