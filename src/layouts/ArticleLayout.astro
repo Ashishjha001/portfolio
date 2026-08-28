@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
+import { getTopicForInsight } from '../data/topicArchitecture';
 
 interface Props {
   entry: CollectionEntry<'insights'>;
@@ -12,6 +13,7 @@ const { entry } = Astro.props;
 const { data } = entry;
 const articleUrl = `/insights/${entry.id}/`;
 const canonicalUrl = `https://datadecision.consulting${articleUrl}`;
+const parentTopic = getTopicForInsight(entry.id);
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
     date,
@@ -191,9 +193,25 @@ const schema = [
     </article>
     <aside class="article-aside">
       <div class="article-aside__box">
-        <p class="evidence-label">Reading rule</p>
-        <p>Use each system for the question it can answer, then reconcile the joins.</p>
-        <a class="text-link" href="/services/measurement-foundation/">Measurement foundation</a>
+        {
+          parentTopic ? (
+            <>
+              <p class="evidence-label">Part of {parentTopic.label}</p>
+              <p>See how this question fits the wider decision and service architecture.</p>
+              <a class="text-link" href={`/${parentTopic.slug}/`}>
+                Explore {parentTopic.shortLabel}
+              </a>
+            </>
+          ) : (
+            <>
+              <p class="evidence-label">Reading rule</p>
+              <p>Use each system for the question it can answer, then reconcile the joins.</p>
+              <a class="text-link" href="/services/measurement-foundation/">
+                Measurement foundation
+              </a>
+            </>
+          )
+        }
       </div>
     </aside>
   </div>

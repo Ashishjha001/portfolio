@@ -13,8 +13,12 @@ const links = [
   { href: '/about/', label: 'About', index: '06' },
 ];
 
-const isCurrent = (href: string) =>
-  href === '/' ? currentPath === href : currentPath.startsWith(href);
+const topicPaths = ['/growth/', '/performance-marketing/', '/seo/', '/ai-search/'];
+const isCurrent = (href: string) => {
+  if (href === '/') return currentPath === href;
+  if (href === '/services/' && topicPaths.some((path) => currentPath.startsWith(path))) return true;
+  return currentPath.startsWith(href);
+};
 ---
 
 <header class="site-header" data-site-header>

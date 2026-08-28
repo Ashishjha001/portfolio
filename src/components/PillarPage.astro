@@ -1,0 +1,428 @@
+---
+import { getCollection } from 'astro:content';
+import type { TopicDefinition } from '../data/topicArchitecture';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import FAQList from './FAQList.astro';
+import FinalCTA from './FinalCTA.astro';
+import StrategicAreas from './StrategicAreas.astro';
+
+interface Props {
+  topic: TopicDefinition;
+}
+
+const { topic } = Astro.props;
+const allInsights = await getCollection('insights');
+const relatedInsights = topic.insightIds
+  .map((id) => allInsights.find((entry) => entry.id === id))
+  .filter((entry) => entry !== undefined);
+const canonicalUrl = `https://datadecision.consulting/${topic.slug}/`;
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: topic.label,
+    headline: topic.title,
+    description: topic.description,
+    url: canonicalUrl,
+    about: topic.outcomes.map((outcome) => ({ '@type': 'Thing', name: outcome.title })),
+    hasPart: relatedInsights.map((entry) => ({
+      '@type': 'Article',
+      name: entry.data.title,
+      url: `https://datadecision.consulting/insights/${entry.id}/`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: topic.faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={`${topic.seoTitle} | DataDecision`}
+  description={topic.description}
+  path={`/${topic.slug}/`}
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: topic.label }]} />
+
+  <header class="shell page-hero topic-hero">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Strategic area / {topic.index}</p>
+      <h1>{topic.title}</h1>
+      <p class="lede">{topic.introduction}</p>
+      <div class="button-row">
+        <a class="button button--primary" href="/contact/" data-event="topic_cta_click">
+          {topic.ctaLabel}
+        </a>
+        <a class="text-link" href="#how-we-work">See the approach</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside topic-questions" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Start here if</span><span>{topic.index} / 04</span></div>
+      <ul>
+        {topic.questions.map((question) => <li>{question}</li>)}
+      </ul>
+    </aside>
+  </header>
+
+  <StrategicAreas current={topic.slug} compact />
+
+  <section class="section" aria-labelledby="outcomes-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What this work is for</p>
+        <h2 id="outcomes-heading">Turn a broad growth problem into a smaller set of decisions.</h2>
+      </div>
+      <div class="topic-outcomes" data-reveal style="--reveal-delay:100ms">
+        {
+          topic.outcomes.map((outcome, index) => (
+            <article>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{outcome.title}</h3>
+              <p>{outcome.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" id="how-we-work" aria-labelledby="approach-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How we approach it</p>
+        <h2 id="approach-heading">Evidence first, then a scoped next move.</h2>
+        <p class="small">
+          The method changes with the question. The discipline does not: frame the decision, inspect
+          the path, name the limits and define how the next action will be judged.
+        </p>
+      </div>
+      <ol class="topic-steps" data-reveal style="--reveal-delay:100ms">
+        {
+          topic.approach.map((step, index) => (
+            <li>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="measurement-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Measurement questions</p>
+        <h2 id="measurement-heading">Measure the decision, not just the activity.</h2>
+      </div>
+      <dl class="topic-metrics" data-reveal style="--reveal-delay:100ms">
+        {
+          topic.metrics.map((metric) => (
+            <div>
+              <>
+                <dt>{metric.label}</dt>
+                <dd>{metric.question}</dd>
+              </>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--bright" aria-labelledby="related-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Related guidance</p>
+        <h2 id="related-heading">Read the practical questions behind the work.</h2>
+        <p class="small">
+          These published Insights keep their original titles, dates and evidence boundaries.
+        </p>
+      </div>
+      <div class="topic-insights" data-reveal style="--reveal-delay:100ms">
+        {
+          relatedInsights.map((entry, index) => (
+            <a href={`/insights/${entry.id}/`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')} / Insight</span>
+              <h3>{entry.data.title}</h3>
+              <p>{entry.data.description}</p>
+              <span class="topic-insights__action">Read the Insight →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ways-to-work-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Ways to work together</p>
+        <h2 id="ways-to-work-heading">Choose the service that matches the actual constraint.</h2>
+      </div>
+      <div class="topic-services" data-reveal style="--reveal-delay:100ms">
+        {
+          topic.serviceLinks.map((link) => (
+            <a href={link.href}>
+              <strong>{link.label}</strong>
+              <span>{link.note}</span>
+              <span aria-hidden="true">Open →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="topic-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions before you engage</p>
+        <h2 id="topic-faq-heading">Clear answers before a scope is written.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:100ms"><FAQList items={topic.faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA heading={topic.ctaHeading} body={topic.ctaBody} label={topic.ctaLabel} />
+</BaseLayout>
+
+<style>
+  .topic-hero {
+    align-items: stretch;
+  }
+
+  .topic-questions {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topic-questions ul {
+    list-style: none;
+    padding: 0;
+    margin: auto 0 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .topic-questions li {
+    padding: 1rem 0 1rem 1.35rem;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    color: var(--ink-soft);
+  }
+
+  .topic-questions li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.7rem;
+    width: 0.65rem;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .topic-outcomes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .topic-outcomes article {
+    padding: 1.4rem 1.4rem 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .topic-outcomes article:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+  }
+
+  .topic-outcomes article:nth-child(even) {
+    padding-left: 1.4rem;
+  }
+
+  .topic-outcomes .mono,
+  .topic-steps .mono,
+  .topic-insights .mono {
+    color: var(--signal);
+    font-size: 0.66rem;
+  }
+
+  .topic-outcomes h3 {
+    margin: 0.75rem 0 0.45rem;
+    font-size: 1.25rem;
+  }
+
+  .topic-outcomes p,
+  .topic-steps p,
+  .topic-insights p {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .topic-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+  }
+
+  .topic-steps li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  }
+
+  .topic-steps h3 {
+    margin-bottom: 0.35rem;
+  }
+
+  .topic-metrics {
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .topic-metrics div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr);
+    gap: 1.4rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .topic-metrics dt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .topic-metrics dd {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .topic-insights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .topic-insights a {
+    min-width: 0;
+    min-height: 15rem;
+    padding: 1.35rem;
+    background: var(--paper);
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 180ms ease;
+  }
+
+  .topic-insights a:hover,
+  .topic-insights a:focus-visible {
+    background: var(--bg-deep);
+  }
+
+  .topic-insights a:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: -3px;
+  }
+
+  .topic-insights h3 {
+    margin: 0.75rem 0 0.55rem;
+    font-size: 1.2rem;
+  }
+
+  .topic-insights__action {
+    margin-top: auto;
+    padding-top: 1rem;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+
+  .topic-services {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .topic-services a {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1fr) auto;
+    gap: 1.4rem;
+    align-items: baseline;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .topic-services a:hover strong,
+  .topic-services a:focus-visible strong {
+    color: var(--green);
+  }
+
+  .topic-services span {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 720px) {
+    .topic-outcomes,
+    .topic-insights {
+      grid-template-columns: 1fr;
+    }
+
+    .topic-outcomes article:nth-child(odd) {
+      border-right: 0;
+    }
+
+    .topic-outcomes article:nth-child(even) {
+      padding-left: 0;
+    }
+
+    .topic-insights a {
+      min-height: 0;
+    }
+
+    .topic-services a {
+      grid-template-columns: 1fr auto;
+    }
+
+    .topic-services a > span:nth-child(2) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .topic-insights a {
+      transition: none;
+    }
+  }
+</style>

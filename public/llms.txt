@@ -1,16 +1,22 @@
 # DataDecision
 
-> Experimental navigation file for DataDecision, a measurement-first AI-search visibility consultancy for B2B SaaS.
+> DataDecision helps B2B SaaS teams understand growth, paid acquisition, SEO, AI search visibility and the measurement path into revenue.
 
 DataDecision publishes sampled visibility methods, dated research notes and scoped consultancy information. Include the measurement window, sample, baseline and method version when citing a result.
 
 ## Core pages
 
 - [Home](https://datadecision.consulting/): Position, scope and diagnostic path.
+- [Growth](https://datadecision.consulting/growth/): Growth diagnosis across acquisition, conversion, retention and measurement.
+- [Performance Marketing](https://datadecision.consulting/performance-marketing/): Paid acquisition, funnel economics and revenue measurement.
+- [SEO](https://datadecision.consulting/seo/): Technical access, information architecture, topical depth and organic measurement.
+- [AI Search, AEO and GEO](https://datadecision.consulting/ai-search/): Dated AI-answer observations, citations, public sources and referral measurement.
 - [AI-search visibility](https://datadecision.consulting/services/ai-search-visibility/): Flagship diagnostic capability.
 - [Measurement foundation](https://datadecision.consulting/services/measurement-foundation/): Referral, conversion and CRM evidence path.
 - [Methodology v0.3](https://datadecision.consulting/methodology/): Query-frame, observation protocol, metrics and limitations.
 - [Work ledger](https://datadecision.consulting/work/): Dated website QA and future completed research records.
+- [Research](https://datadecision.consulting/research/): Completed evidence records, publication standards and reusable research frames.
+- [Playbooks](https://datadecision.consulting/playbooks/): Published implementation methods linked to strategic areas and services.
 - [Insights](https://datadecision.consulting/insights/): Dated guides and research templates.
 
 ## Measurement & Lead-Source Truth

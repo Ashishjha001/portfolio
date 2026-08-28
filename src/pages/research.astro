@@ -1,0 +1,362 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const completedWork = (await getCollection('work'))
+  .filter((entry) => entry.data.status === 'complete')
+  .sort((a, b) => b.data.observationDate.valueOf() - a.data.observationDate.valueOf());
+const allInsights = await getCollection('insights');
+const selectedInsightIds = [
+  'launch-quarter-self-case-protocol',
+  'small-conversion-samples-inference',
+  'three-ai-surfaces-measurement',
+  'technical-access-verification-checklist',
+];
+const researchNotes = selectedInsightIds
+  .map((id) => allInsights.find((entry) => entry.id === id))
+  .filter((entry) => entry !== undefined);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'DataDecision research and evidence',
+  description:
+    'Dated DataDecision evidence records, research methods and source-backed notes with samples and limitations kept visible.',
+  url: 'https://datadecision.consulting/research/',
+  hasPart: [
+    ...completedWork.map((entry) => ({
+      '@type': 'CreativeWork',
+      name: entry.data.title,
+      url: `https://datadecision.consulting/work/${entry.id}/`,
+    })),
+    ...researchNotes.map((entry) => ({
+      '@type': 'Article',
+      name: entry.data.title,
+      url: `https://datadecision.consulting/insights/${entry.id}/`,
+    })),
+  ],
+};
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
+    date,
+  );
+---
+
+<BaseLayout
+  title="Research methods and evidence | DataDecision"
+  description="Dated evidence records, research methods and source-backed DataDecision notes with the sample, observation window and limitations kept visible."
+  path="/research/"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Research' }]} />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Research and evidence</p>
+      <h1>Research should make a decision easier to defend.</h1>
+      <p class="lede">
+        This is the public record behind our methods. Every completed item keeps its date, sample,
+        method and limitations close to the finding. If those details are not ready, we do not
+        publish a benchmark.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="/work/">Open the work ledger</a>
+        <a class="text-link" href="/methodology/">Read the methodology</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Publication rule</span><span>Evidence before claim</span></div>
+      <dl class="research-rule">
+        <div><dt>Date</dt><dd>When the observation was made</dd></div>
+        <div><dt>Sample</dt><dd>What was and was not examined</dd></div>
+        <div><dt>Method</dt><dd>How the record can be repeated</dd></div>
+        <div><dt>Limits</dt><dd>What the evidence cannot prove</dd></div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section section--ink" aria-labelledby="records-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Completed records</p>
+        <h2 id="records-heading">Evidence that is ready to inspect.</h2>
+        <p class="small">
+          Demonstration runs are labelled as demonstrations. They are not presented as client
+          results or universal benchmarks.
+        </p>
+      </div>
+      <div class="research-records" data-reveal style="--reveal-delay:100ms">
+        {
+          completedWork.map((entry) => (
+            <a href={`/work/${entry.id}/`}>
+              <span class="evidence-label">{entry.data.label}</span>
+              <h3>{entry.data.title}</h3>
+              <p>{entry.data.description}</p>
+              <dl>
+                <div>
+                  <>
+                    <dt>Observed</dt>
+                    <dd>{formatDate(entry.data.observationDate)}</dd>
+                  </>
+                </div>
+                <div>
+                  <>
+                    <dt>Method</dt>
+                    <dd>{entry.data.methodologyVersion}</dd>
+                  </>
+                </div>
+              </dl>
+              <span class="text-link">Inspect the record</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="standard-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Publication standard</p>
+        <h2 id="standard-heading">A finding earns its headline after the frame is fixed.</h2>
+      </div>
+      <ol class="research-process" data-reveal style="--reveal-delay:100ms">
+        <li>
+          <span class="mono">01</span><div>
+            <h3>Write the question</h3><p>
+              State the decision, audience and boundary before collection.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">02</span><div>
+            <h3>Record the method</h3><p>
+              Name the sample, source conditions, exclusions and observation window.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">03</span><div>
+            <h3>Separate finding from inference</h3><p>
+              Show what was observed, what is interpreted and where confidence is limited.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="mono">04</span><div>
+            <h3>Publish the limits beside the result</h3><p>
+              Make the caveat part of the record, not a footnote that disappears.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--bright" aria-labelledby="notes-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Methods and research notes</p>
+        <h2 id="notes-heading">Use the same standards on your own evidence.</h2>
+      </div>
+      <div class="research-notes" data-reveal style="--reveal-delay:100ms">
+        {
+          researchNotes.map((entry, index) => (
+            <a href={`/insights/${entry.id}/`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <>
+                  <h3>{entry.data.title}</h3>
+                  <p>{entry.data.description}</p>
+                </>
+              </div>
+              <span aria-hidden="true">→</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="downloads-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Reusable records</p>
+        <h2 id="downloads-heading">Start with the frame, not the conclusion.</h2>
+      </div>
+      <div class="download-list" data-reveal style="--reveal-delay:100ms">
+        <a href="/downloads/ai-visibility-baseline-template.csv" download>
+          <strong>AI visibility baseline template</strong><span
+            >CSV · Frame and record observations</span
+          >
+        </a>
+        <a href="/downloads/ai-referral-qa-template.csv" download>
+          <strong>AI referral QA template</strong><span>CSV · Test analytics and CRM capture</span>
+        </a>
+        <a href="/downloads/crawler-policy-decision-matrix.csv" download>
+          <strong>Crawler policy decision matrix</strong><span
+            >CSV · Record retrieval and training choices</span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Need a research question framed before collection begins?"
+    body="Share the decision, evidence available and audience for the result. We will tell you whether the question is ready for a scoped study."
+    label="Discuss the research question"
+  />
+</BaseLayout>
+
+<style>
+  .research-rule,
+  .research-rule div,
+  .research-records dl {
+    margin: 0;
+  }
+
+  .research-rule {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .research-rule div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .research-rule dt,
+  .research-records dt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .research-rule dd,
+  .research-records dd {
+    margin: 0;
+  }
+
+  .research-records {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .research-records > a {
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
+    padding: 1.4rem;
+  }
+
+  .research-records h3 {
+    margin: 0.65rem 0;
+  }
+
+  .research-records p,
+  .research-process p,
+  .research-notes p {
+    color: var(--muted);
+  }
+
+  .research-records dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    padding: 1rem 0;
+  }
+
+  .research-records dl div {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .research-process {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .research-process li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .research-process .mono,
+  .research-notes .mono {
+    color: var(--signal);
+    font-size: 0.65rem;
+  }
+
+  .research-notes,
+  .download-list {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .research-notes a {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .research-notes h3 {
+    font-size: 1.12rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .research-notes p {
+    font-size: 0.86rem;
+  }
+
+  .download-list a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .download-list a:hover strong,
+  .download-list a:focus-visible strong {
+    color: var(--green);
+  }
+
+  .download-list span {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    .research-notes a {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .research-notes a > span:last-child {
+      display: none;
+    }
+
+    .download-list a {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>
