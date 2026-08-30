@@ -15,7 +15,8 @@
 export const entityDefinition = {
   /* Identity */
   name: 'Data Decision Consulting',
-  url: 'https://datadecision.consulting',
+  alternateName: ['DataDecision', 'DataDecision Consulting'],
+  url: 'https://datadecision.consulting/',
   email: 'contact@datadecision.consulting',
   slogan: 'Growth you can prove.',
   logo: 'https://datadecision.consulting/logo.png',
@@ -78,6 +79,12 @@ export const entityDefinition = {
   },
 } as const;
 
+export const organizationId = `${entityDefinition.url}#organization`;
+export const websiteId = `${entityDefinition.url}#website`;
+export const founderId = `${entityDefinition.url}#founder`;
+
+export const organizationReference = { '@id': organizationId } as const;
+
 /**
  * Person schema object for the founder. Centralised so About, contact and
  * any page that references the founder uses identical data.
@@ -85,17 +92,14 @@ export const entityDefinition = {
 export const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': founderId,
   name: entityDefinition.founder.name,
   jobTitle: entityDefinition.founder.jobTitle,
   url: entityDefinition.founder.url,
   email: entityDefinition.founder.email,
   sameAs: Object.values(entityDefinition.founder.sameAs),
   alumniOf: { '@type': 'CollegeOrUniversity', name: entityDefinition.founder.alumniOf },
-  worksFor: {
-    '@type': 'Organization',
-    name: entityDefinition.name,
-    url: entityDefinition.url,
-  },
+  worksFor: organizationReference,
 };
 
 /**
@@ -105,7 +109,9 @@ export const founderSchema = {
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': organizationId,
   name: entityDefinition.name,
+  alternateName: [...entityDefinition.alternateName],
   url: entityDefinition.url,
   logo: entityDefinition.logo,
   email: entityDefinition.email,
@@ -113,6 +119,7 @@ export const organizationSchema = {
   description: entityDefinition.description,
   founder: {
     '@type': 'Person',
+    '@id': founderId,
     name: entityDefinition.founder.name,
     jobTitle: entityDefinition.founder.jobTitle,
     url: entityDefinition.founder.url,
@@ -130,6 +137,8 @@ export const organizationSchema = {
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': websiteId,
   name: entityDefinition.name,
   url: entityDefinition.url,
+  publisher: organizationReference,
 };

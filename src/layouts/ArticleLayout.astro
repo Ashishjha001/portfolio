@@ -4,6 +4,7 @@ import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import { getTopicForInsight } from '../data/topicArchitecture';
+import { organizationReference } from '../data/entityDefinition';
 
 interface Props {
   entry: CollectionEntry<'insights'>;
@@ -53,17 +54,8 @@ const schema = [
     ]
       .filter(Boolean)
       .join(', '),
-    author: {
-      '@type': 'Organization',
-      name: data.author,
-      url: 'https://datadecision.consulting/about/',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Data Decision Consulting',
-      url: 'https://datadecision.consulting/',
-      logo: 'https://datadecision.consulting/logo.png',
-    },
+    author: organizationReference,
+    publisher: organizationReference,
     mainEntityOfPage: canonicalUrl,
     url: canonicalUrl,
     image: 'https://datadecision.consulting/og-default.png',
