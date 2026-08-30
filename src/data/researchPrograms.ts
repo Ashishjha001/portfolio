@@ -1,5 +1,5 @@
 /**
- * DataDecision Original Research Engine
+ * Data Decision Consulting Original Research Engine
  *
  * The research section's long-term authority asset. Each program below is a
  * repeatable study with a fixed methodology, a documented sample and visible
@@ -42,7 +42,7 @@ export const researchPrograms: ResearchProgram[] = [
       'Across a fixed buyer-query frame, how often does each compared B2B SaaS provider appear, get cited, and get described accurately inside AI answers?',
     methodology:
       'Reuses the published AI-search visibility methodology v0.3: a fixed query frame, dated observation runs, and the M1–M4 descriptive metrics. Any published index would report the sample, window and version beside the number.',
-    dataSource: 'Scheduled observational runs by DataDecision (no client data used).',
+    dataSource: 'Scheduled observational runs by Data Decision Consulting (no client data used).',
     sample: 'Proposed: 50 approved buyer queries, one market/language, a defined comparison set.',
     collectionPeriod:
       'No data collected yet. First window depends on founder approval of the comparison set.',
@@ -65,7 +65,7 @@ export const researchPrograms: ResearchProgram[] = [
       'Which public source types (review platforms, listings, owned pages, publications) most often underpin AI citations for B2B SaaS, and how concentrated is that reliance?',
     methodology:
       'Citation source classification across the same query frame, aggregated to show source-type share and concentration, with the sample and date attached.',
-    dataSource: 'Observational citation classification by DataDecision.',
+    dataSource: 'Observational citation classification by Data Decision Consulting.',
     sample: 'Depends on the approved visibility frame and comparison set.',
     collectionPeriod: 'Not collected. Will follow the visibility index.',
     definitions: 'Source type taxonomy; concentration share per type.',
@@ -81,14 +81,15 @@ export const researchPrograms: ResearchProgram[] = [
     shortTitle: 'Attribution Benchmark',
     status: 'needs-founder-input',
     researchQuestion:
-      'How defensible are typical B2B SaaS stacks at producing a revenue claim, measured with the DataDecision Attribution Health Score?',
+      'How defensible are typical B2B SaaS stacks at producing a revenue claim, measured with the Data Decision Consulting Attribution Health Score?',
     methodology:
       'Voluntary, anonymized self-assessments scored with the attribution health rubric, reported as an aggregate range with clear sample limits — never as individual client insights.',
-    dataSource: 'Anonymized DataDecision diagnostic inputs with explicit consent.',
+    dataSource: 'Anonymized Data Decision Consulting diagnostic inputs with explicit consent.',
     sample:
       'Depends on opt-in participation; small n will be published as a range, not a statistic.',
     collectionPeriod: 'No data collected yet.',
-    definitions: 'Health-score domains as defined by the DataDecision Attribution Health Score.',
+    definitions:
+      'Health-score domains as defined by the Data Decision Consulting Attribution Health Score.',
     calculations: 'Weighted health score 0–100 plus per-domain breakdown.',
     limitations: 'Self-selected sample; self-assessment bias; small n likely.',
     output: 'Benchmark page with aggregate ranges and development note.',
@@ -103,7 +104,7 @@ export const researchPrograms: ResearchProgram[] = [
     researchQuestion:
       'Where do B2B SaaS funnels most often leak between demand, capture, qualification and close?',
     methodology:
-      'Structured funnel-leakage observations using the DataDecision Funnel Leakage Index against clearly defined, consent-based inputs, reported without client identification.',
+      'Structured funnel-leakage observations using the Data Decision Consulting Funnel Leakage Index against clearly defined, consent-based inputs, reported without client identification.',
     dataSource:
       'Anonymized, consented funnel data or synthetic demonstration runs (labelled as such).',
     sample: 'To be scoped; will report ranges and limits, not fabricated central figures.',
@@ -142,9 +143,9 @@ export const researchPrograms: ResearchProgram[] = [
     researchQuestion:
       'How far can the query-to-page-to-lead-to-revenue chain be traced observationally in B2B SaaS, and where does it most often break?',
     methodology:
-      'Uses the DataDecision Search-to-Revenue Framework to trace clusters to qualified pipeline, labelling where the chain stops because data is missing.',
+      'Uses the Data Decision Consulting Search-to-Revenue Framework to trace clusters to qualified pipeline, labelling where the chain stops because data is missing.',
     dataSource:
-      'DataDecision self-measurement or consented client observations, reported anonymously.',
+      'Data Decision Consulting self-measurement or consented client observations, reported anonymously.',
     sample: 'To be scoped; will not claim revenue attribution the data cannot support.',
     collectionPeriod: 'Not started.',
     definitions: 'Search-to-revenue chain stages as per the framework.',

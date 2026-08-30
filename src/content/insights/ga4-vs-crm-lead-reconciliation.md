@@ -8,7 +8,7 @@ category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 pillar: true
 readingMinutes: 7
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 featured: true
 methodologyVersion: 'Lead reconciliation framework v1.0'
 sources:
@@ -65,7 +65,7 @@ Instead of comparing two totals, compare the journey in stages:
   <p class="visual-note">At every join, record the count that continued, the count that stopped and the reason for the change.</p>
 </figure>
 
-This is the DataDecision **Lead Reconciliation Waterfall**. It shows where the number changed and why.
+This is the Data Decision Consulting **Lead Reconciliation Waterfall**. It shows where the number changed and why.
 
 If 400 submissions become 260 contacts, classify the missing 140:
 

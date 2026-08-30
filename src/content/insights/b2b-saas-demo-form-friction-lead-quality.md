@@ -7,8 +7,8 @@ updatedDate: 2026-08-28
 category: 'Growth'
 cluster: 'Growth'
 readingMinutes: 12
-author: 'DataDecision Research'
-authorNote: 'DataDecision Research is led by founder Ashish Jha. This guide is a decision method, not a claim about results from a client programme.'
+author: 'Data Decision Consulting Research'
+authorNote: 'Data Decision Consulting Research is led by founder Ashish Jha. This guide is a decision method, not a claim about results from a client programme.'
 featured: true
 methodologyVersion: 'Form friction decision method v1.0'
 sources:
@@ -123,7 +123,7 @@ If the sample is small, use the approach in [Honest Inference Under Small Conver
 ## DEMONSTRATION RUN
 
 **Collection date:** 28 August 2026  
-**Dataset or sample:** Synthetic comparison with 1,000 qualified landing visits per variant. This is demonstration data, not DataDecision or client performance.  
+**Dataset or sample:** Synthetic comparison with 1,000 qualified landing visits per variant. This is demonstration data, not Data Decision Consulting or client performance.  
 **Method:** Compare the complete visit-to-accepted-meeting path and seller workload.  
 **Assumptions:** Traffic intent and sales capacity remain stable; both variants work correctly; acceptance criteria are unchanged.  
 **Limitations:** The example omits seasonality, buying-committee effects, delayed opportunities and uncertainty intervals.  

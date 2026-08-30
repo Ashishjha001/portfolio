@@ -7,8 +7,8 @@ updatedDate: 2026-08-28
 category: 'SEO'
 cluster: 'SEO'
 readingMinutes: 13
-author: 'DataDecision Research'
-authorNote: 'DataDecision Research is led by founder Ashish Jha. The example query set is synthetic and demonstrates the method only.'
+author: 'Data Decision Consulting Research'
+authorNote: 'Data Decision Consulting Research is led by founder Ashish Jha. The example query set is synthetic and demonstrates the method only.'
 featured: true
 methodologyVersion: 'Query-to-page ownership map v1.0'
 sources:
@@ -120,7 +120,7 @@ Google’s spam policies define [doorway abuse](https://developers.google.com/se
 ## DEMONSTRATION RUN
 
 **Collection date:** 28 August 2026  
-**Dataset or sample:** Synthetic set of 18 B2B SaaS search questions and seven hypothetical existing URLs. It is not DataDecision Search Console data and is not client evidence.  
+**Dataset or sample:** Synthetic set of 18 B2B SaaS search questions and seven hypothetical existing URLs. It is not Data Decision Consulting Search Console data and is not client evidence.  
 **Method:** Apply the READER–DECISION–EVIDENCE–ACTION test, assign one primary owner and choose retain, improve, create, merge or redirect.  
 **Assumptions:** The hypothetical company sells a workflow product to revenue-operations teams; the existing URLs are indexable and technically sound.  
 **Limitations:** No real rankings, traffic, links, conversions or search-result similarity are used.  

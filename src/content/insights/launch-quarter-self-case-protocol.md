@@ -7,10 +7,10 @@ updatedDate: 2026-08-25
 category: 'Method guide'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Self-case protocol v1.0'
 sources:
-  - label: 'DataDecision methodology v0.3'
+  - label: 'Data Decision Consulting methodology v0.3'
     url: 'https://datadecision.consulting/methodology/'
   - label: 'Google Analytics: campaign URL guidance'
     url: 'https://support.google.com/analytics/answer/10917952'
@@ -21,7 +21,7 @@ sources:
   <p><strong>Publish the measurement frame before the results exist.</strong> A self-case protocol pre-commits what you will observe on day 0, 30, 60 and 90, so later claims are comparisons against a recorded baseline instead of a highlights reel.</p>
 </div>
 
-Every launch claims momentum. Few launches can show the baseline they are measuring momentum against. The protocol below is how DataDecision publishes its own launch evidence, and it is reusable for any product or feature launch.
+Every launch claims momentum. Few launches can show the baseline they are measuring momentum against. The protocol below is how Data Decision Consulting publishes its own launch evidence, and it is reusable for any product or feature launch.
 
 ## The pre-committed frame
 

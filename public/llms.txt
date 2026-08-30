@@ -1,8 +1,8 @@
-# DataDecision
+# Data Decision Consulting
 
-> DataDecision helps B2B SaaS teams understand growth, paid acquisition, SEO, AI search visibility and the measurement path into revenue.
+> Data Decision Consulting helps B2B SaaS teams understand growth, paid acquisition, SEO, AI search visibility and the measurement path into revenue.
 
-DataDecision publishes sampled visibility methods, dated research notes and scoped consultancy information. Include the measurement window, sample, baseline and method version when citing a result.
+Data Decision Consulting publishes sampled visibility methods, dated research notes and scoped consultancy information. Include the measurement window, sample, baseline and method version when citing a result.
 
 ## Core pages
 
@@ -43,4 +43,4 @@ DataDecision publishes sampled visibility methods, dated research notes and scop
 
 ## Important limitation
 
-AI-search visibility is a sampled and evolving measurement framework. DataDecision does not promise placement, citation, traffic or revenue from any engine.
+AI-search visibility is a sampled and evolving measurement framework. Data Decision Consulting does not promise placement, citation, traffic or revenue from any engine.

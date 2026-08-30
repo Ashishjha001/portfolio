@@ -8,8 +8,8 @@ category: 'B2B SaaS Demo-Funnel Diagnosis'
 cluster: 'B2B SaaS Demo-Funnel Diagnosis'
 pillar: true
 readingMinutes: 6
-author: 'DataDecision'
-authorNote: 'DataDecision takes a measurement-first approach: define each funnel stage, reconcile the handoffs and diagnose the first meaningful break before recommending a change.'
+author: 'Data Decision Consulting'
+authorNote: 'Data Decision Consulting takes a measurement-first approach: define each funnel stage, reconcile the handoffs and diagnose the first meaningful break before recommending a change.'
 featured: true
 methodologyVersion: 'Demand-to-Demo diagnostic framework v1.0'
 sources:
@@ -54,7 +54,7 @@ Break the journey into six steps:
   <p class="visual-note">Calculate the conversion between every step. The first stage that weakens tells you where to investigate.</p>
 </figure>
 
-This is the DataDecision **Demand-to-Demo Ladder**.
+This is the Data Decision Consulting **Demand-to-Demo Ladder**.
 
 | What changed?                         | Likely problem                                  |
 | ------------------------------------- | ----------------------------------------------- |

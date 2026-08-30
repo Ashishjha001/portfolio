@@ -26,7 +26,7 @@ export async function GET() {
   const payload = {
     '@schema': 'datadecision:insight-index:v1',
     description:
-      'Public DataDecision insight index. Full article text and schema are served at each url.',
+      'Public Data Decision Consulting insight index. Full article text and schema are served at each url.',
     source: 'https://datadecision.consulting/insights/',
     generatedAt: new Date().toISOString(),
     count: items.length,

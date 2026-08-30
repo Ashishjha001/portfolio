@@ -7,7 +7,7 @@ updatedDate: 2026-08-24
 category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'UTM governance workflow v1.0'
 sources:
   - label: 'Google Analytics: campaign URL guidance'

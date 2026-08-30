@@ -1,7 +1,7 @@
 /**
- * DataDecision — Canonical Concept Index (Layer 36: Source of Truth)
+ * Data Decision Consulting — Canonical Concept Index (Layer 36: Source of Truth)
  *
- * Every concept DataDecision treats as strategically important has ONE
+ * Every concept Data Decision Consulting treats as strategically important has ONE
  * canonical home. This index points each concept to that home (a framework,
  * an insight, a tool or a service) instead of creating competing pages.
  *
@@ -37,7 +37,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Discovery is spreading beyond classic search pages into generated answers; visibility there is becoming part of the buyer journey.',
     howMeasured:
-      'Sampled, dated observations across AI surfaces using a fixed query set — recorded as a DataDecision measurement with a stated sample and limitation.',
+      'Sampled, dated observations across AI surfaces using a fixed query set — recorded as a Data Decision Consulting measurement with a stated sample and limitation.',
     limitation:
       'AI responses vary by model, date, location, personalisation and retrieval — any single observation is not universal truth.',
     canonicalHome: {
@@ -69,7 +69,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Before trusting any revenue attribution, taxonomy, capture, join, reconciliation and assumption governance must hold.',
     howMeasured:
-      'The DataDecision Attribution Health Score: a weighted 0–100 self-review across five domains.',
+      'The Data Decision Consulting Attribution Health Score: a weighted 0–100 self-review across five domains.',
     limitation:
       'Self-assessment depends on honest answers; a higher score is not a licence to claim causality.',
     canonicalHome: {
@@ -87,7 +87,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Maturity determines what decisions the measurement layer can actually support today.',
     howMeasured:
-      'The DataDecision Marketing Measurement Maturity Model stages the capability from baseline through decision-grade.',
+      'The Data Decision Consulting Marketing Measurement Maturity Model stages the capability from baseline through decision-grade.',
     limitation:
       'A maturity level is a self-assessment against defined stages, not a certification.',
     canonicalHome: {
@@ -105,7 +105,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Finding the single largest measurable leak points spend at the step with the most leverage.',
     howMeasured:
-      'The DataDecision Funnel Leakage Index compares conversion between consecutive stages; the largest leak is highlighted.',
+      'The Data Decision Consulting Funnel Leakage Index compares conversion between consecutive stages; the largest leak is highlighted.',
     limitation: 'The index names the step with the largest loss; it does not prove the cause.',
     canonicalHome: { kind: 'framework', id: 'funnel-leakage-index', label: 'Funnel Leakage Index' },
     related: ['growth-bottleneck'],
@@ -118,7 +118,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Isolating the real constraint prevents spend on a loud symptom when the true lever is elsewhere.',
     howMeasured:
-      'The DataDecision Growth Bottleneck Framework scores candidates on importance and changeability to select the first to test.',
+      'The Data Decision Consulting Growth Bottleneck Framework scores candidates on importance and changeability to select the first to test.',
     limitation:
       'Selection is a prioritisation aid; the selected constraint still needs a stage dashboard to confirm.',
     canonicalHome: {
@@ -136,7 +136,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Linking visibility to pipeline makes search defensible to finance rather than a vanity number.',
     howMeasured:
-      'The DataDecision Search-to-Revenue Framework connects query, landing page, engagement and conversion evidence.',
+      'The Data Decision Consulting Search-to-Revenue Framework connects query, landing page, engagement and conversion evidence.',
     limitation:
       'Causal revenue claims require stated baselines and follow the evidence; correlation is not assumed to be causation.',
     canonicalHome: {
@@ -154,7 +154,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'These overlap with SEO but optimise for how answer and generative systems retrieve and present information.',
     howMeasured:
-      'DataDecision treats AEO and GEO as part of AI-search visibility and measures them with the same sampled observation method.',
+      'Data Decision Consulting treats AEO and GEO as part of AI-search visibility and measures them with the same sampled observation method.',
     limitation:
       'AEO/GEO are evolving fields with no settled universal metric; claims stay tied to recorded observations.',
     canonicalHome: {

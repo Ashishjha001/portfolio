@@ -1,5 +1,5 @@
 ---
-title: 'DataDecision website QA record'
+title: 'Data Decision Consulting website QA record'
 description: 'A dated audit of the public website: route coverage, claim controls, content completeness and technical evidence files.'
 label: 'DEMONSTRATION RUN'
 observationDate: 2026-08-24
@@ -21,7 +21,7 @@ status: 'complete'
 
 ## Research question
 
-Can DataDecision launch a complete multi-page evidence system without importing the rejected website’s design, publishing private strategy material or manufacturing credibility?
+Can Data Decision Consulting launch a complete multi-page evidence system without importing the rejected website’s design, publishing private strategy material or manufacturing credibility?
 
 This audit answers only the parts visible in the static build. It does not claim live search inclusion, crawler access, form delivery, conversion performance or AI-answer visibility.
 

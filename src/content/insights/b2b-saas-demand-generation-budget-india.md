@@ -7,8 +7,8 @@ updatedDate: 2026-08-28
 category: 'Performance Marketing'
 cluster: 'Performance Marketing'
 readingMinutes: 13
-author: 'DataDecision Research'
-authorNote: 'DataDecision Research is led by founder Ashish Jha. The ₹ example in this guide is a labelled demonstration, not client evidence or an industry benchmark.'
+author: 'Data Decision Consulting Research'
+authorNote: 'Data Decision Consulting Research is led by founder Ashish Jha. The ₹ example in this guide is a labelled demonstration, not client evidence or an industry benchmark.'
 featured: true
 methodologyVersion: 'INR demand budget model v1.0'
 sources:
@@ -99,7 +99,7 @@ The [INR demand-budget worksheet](/downloads/b2b-saas-inr-demand-budget-template
 ## DEMONSTRATION RUN
 
 **Collection date:** 28 August 2026  
-**Dataset or sample:** Synthetic one-quarter plan for an India-based B2B SaaS company. No client or DataDecision results are used.  
+**Dataset or sample:** Synthetic one-quarter plan for an India-based B2B SaaS company. No client or Data Decision Consulting results are used.  
 **Method:** Work backwards from four target customers through held meetings, bookings and qualified responses; cap spend using an internal CAC limit.  
 **Assumptions:** ₹6 lakh average new-logo ARR; 80% gross margin; 12-month maximum payback boundary; an internally chosen ₹3 lakh CAC ceiling; 25% held-meeting-to-win rate; 80% show rate; 50% qualified-response-to-booking rate.  
 **Limitations:** The example ignores expansion, churn, tax, currency exposure, delayed revenue, sales salaries outside the programme and statistical uncertainty.  

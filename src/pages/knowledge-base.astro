@@ -13,9 +13,9 @@ const insightById = Object.fromEntries(allInsights.map((entry) => [entry.id, ent
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'DataDecision knowledge base',
+  name: 'Data Decision Consulting knowledge base',
   description:
-    'The interconnected DataDecision knowledge graph: clusters, insights, frameworks, research, tools and the questions they answer.',
+    'The interconnected Data Decision Consulting knowledge graph: clusters, insights, frameworks, research, tools and the questions they answer.',
   url: 'https://datadecision.consulting/knowledge-base/',
   hasPart: [
     ...allInsights.map((entry) => ({
@@ -33,15 +33,15 @@ const schema = {
 ---
 
 <BaseLayout
-  title="Knowledge base | DataDecision"
-  description="Browse DataDecision as a knowledge graph: the four strategic clusters, every insight, the proprietary frameworks, original research and the interactive tools behind them."
+  title="Knowledge base | Data Decision Consulting"
+  description="Browse Data Decision Consulting as a knowledge graph: the four strategic clusters, every insight, the proprietary frameworks, original research and the interactive tools behind them."
   path="/knowledge-base/"
   schema={schema}
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knowledge base' }]} />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy" data-reveal>
-      <p class="eyebrow">DataDecision / Knowledge base</p>
+      <p class="eyebrow">Data Decision Consulting / Knowledge base</p>
       <h1>One connected system, not a blog archive.</h1>
       <p class="lede">
         Every cluster links to its insights, frameworks, research and tools. Start from the question
@@ -117,7 +117,7 @@ const schema = {
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Proprietary frameworks</p>
-        <h2 id="frameworks-heading">The DataDecision method, named and reusable.</h2>
+        <h2 id="frameworks-heading">The Data Decision Consulting method, named and reusable.</h2>
         <p class="small">
           Each framework has a definition, inputs, calculation, interpretation and named limits.
           They are tools for making a decision, not branded slogans.
@@ -258,7 +258,9 @@ const schema = {
           <span class="mono">04</span>
           <div>
             <h3>Canonical concepts</h3>
-            <p>The source of truth for each concept DataDecision treats as important.</p>
+            <p>
+              The source of truth for each concept Data Decision Consulting treats as important.
+            </p>
           </div>
         </a>
       </div>

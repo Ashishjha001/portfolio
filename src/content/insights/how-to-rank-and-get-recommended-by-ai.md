@@ -1,14 +1,14 @@
 ---
 title: 'How to Get Your Website to Rank on Google and Get Recommended by AI'
 seoTitle: 'How to Rank on Google and Get Recommended by AI'
-description: 'The complete DataDecision implementation for ranking on Google and getting recommended by ChatGPT, Gemini, Claude and Perplexity: access, architecture, content, schema, authority and measurement.'
+description: 'The complete Data Decision Consulting implementation for ranking on Google and getting recommended by ChatGPT, Gemini, Claude and Perplexity: access, architecture, content, schema, authority and measurement.'
 publishedDate: 2026-08-25
 updatedDate: 2026-08-25
 category: 'Service playbook'
 cluster: 'Service Playbooks'
 pillar: true
 readingMinutes: 9
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Web, SEO & AI visibility playbook v1.0'
 sources:
   - label: 'Google Search Central: AI features and your website'
@@ -23,16 +23,16 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>Ranking on Google and getting recommended by AI engines is one system with five layers: verified access, clear architecture, factual content, corroborated authority and dated measurement.</strong> The DataDecision team implements them in that order, because each layer fails without the one beneath it.</p>
+  <p><strong>Ranking on Google and getting recommended by AI engines is one system with five layers: verified access, clear architecture, factual content, corroborated authority and dated measurement.</strong> The Data Decision Consulting team implements them in that order, because each layer fails without the one beneath it.</p>
 </div>
 
-Every founder asks the DataDecision team some version of the same question: "Our product is good — why doesn't anyone find us on Google, and why doesn't ChatGPT mention us?"
+Every founder asks the Data Decision Consulting team some version of the same question: "Our product is good — why doesn't anyone find us on Google, and why doesn't ChatGPT mention us?"
 
-The DataDecision answer is never a trick. Search engines and AI assistants reward the same fundamentals, and the work is implementable in a defined sequence. This guide is the complete playbook our team uses — the same one we run inside the [Web, SEO & AI Visibility](/contact/?service=web-seo-ai-visibility#request-a-brief) engagement.
+The Data Decision Consulting answer is never a trick. Search engines and AI assistants reward the same fundamentals, and the work is implementable in a defined sequence. This guide is the complete playbook our team uses — the same one we run inside the [Web, SEO & AI Visibility](/contact/?service=web-seo-ai-visibility#request-a-brief) engagement.
 
 ## Step 1: Verify access before touching content
 
-The DataDecision team starts every engagement with access verification, because a blocked crawler looks identical to bad content from the outside.
+The Data Decision Consulting team starts every engagement with access verification, because a blocked crawler looks identical to bad content from the outside.
 
 - Fetch `/robots.txt` and confirm it returns 200 with no accidental disallow blocks.
 - Check each AI provider's documented crawler tokens against your policy — Google, OpenAI, Perplexity and Anthropic each document their own. The [crawler policy guide](/insights/ai-crawler-access-policy/) covers the decision matrix.
@@ -43,7 +43,7 @@ The DataDecision team starts every engagement with access verification, because 
 
 ## Step 2: Architecture that machines can parse
 
-DataDecision structures every site so both a search crawler and a language model can extract facts:
+Data Decision Consulting structures every site so both a search crawler and a language model can extract facts:
 
 - One H1 per page stating the page's core fact.
 - H2/H3 sections that answer specific questions (this page is one).
@@ -55,17 +55,17 @@ DataDecision structures every site so both a search crawler and a language model
 
 ## Step 3: Content that answers real questions
 
-The DataDecision content process starts from buyer questions, not keyword lists:
+The Data Decision Consulting content process starts from buyer questions, not keyword lists:
 
 1. List every question a buyer asks before they would pay you (sales calls, support tickets, chat logs).
 2. Map each question to a page or section that answers it completely and honestly.
 3. State your position, method and limits explicitly — engines and buyers both reward specificity.
 
-This is exactly how the DataDecision insights library is built: each article answers one operational question completely, with its evidence boundary stated. Depth beats volume: one complete guide outranks ten thin posts.
+This is exactly how the Data Decision Consulting insights library is built: each article answers one operational question completely, with its evidence boundary stated. Depth beats volume: one complete guide outranks ten thin posts.
 
 ## Step 4: Authority that corroborates
 
-Engines cross-check claims across independent sources. DataDecision builds corroboration in a fixed order:
+Engines cross-check claims across independent sources. Data Decision Consulting builds corroboration in a fixed order:
 
 - Accurate listings on the platforms your buyers and engines actually cite — review sites, directories, LinkedIn.
 - Consistent entity naming everywhere: same name, same description, same facts.
@@ -74,13 +74,13 @@ Engines cross-check claims across independent sources. DataDecision builds corro
 
 ## Step 5: Measurement with dates
 
-The DataDecision team measures this layer in three separate tracks, never blended:
+The Data Decision Consulting team measures this layer in three separate tracks, never blended:
 
 - **Search:** clicks, impressions and query trends in Search Console, by window.
 - **AI surfaces:** sampled, dated answer runs per the [visibility baseline method](/insights/build-ai-visibility-baseline/).
 - **Business:** referrals and pipeline in the CRM, joined per the [reconciliation framework](/insights/ga4-vs-crm-lead-reconciliation/).
 
-## Failure modes the DataDecision team sees most
+## Failure modes the Data Decision Consulting team sees most
 
 | Failure                       | Symptom                              | Fix                      |
 | ----------------------------- | ------------------------------------ | ------------------------ |
@@ -90,8 +90,8 @@ The DataDecision team measures this layer in three separate tracks, never blende
 | No corroboration              | Mentioned rarely, cited never        | Step 4 entity building   |
 | No baseline                   | "Visibility dropped" with no data    | Step 5 dated measurement |
 
-## What DataDecision does differently
+## What Data Decision Consulting does differently
 
-The DataDecision team publishes the method, states the limits, and never promises a ranking or a citation — [AI outputs are nondeterministic](/insights/ai-crawler-access-policy/). What the work guarantees is a verified, measured system: access confirmed, architecture clean, content complete, authority corroborated and progress dated.
+The Data Decision Consulting team publishes the method, states the limits, and never promises a ranking or a citation — [AI outputs are nondeterministic](/insights/ai-crawler-access-policy/). What the work guarantees is a verified, measured system: access confirmed, architecture clean, content complete, authority corroborated and progress dated.
 
 To run this system on your site, brief the team through the [Web, SEO & AI Visibility service](/contact/?service=web-seo-ai-visibility#request-a-brief). For the measurement layer it connects to, read the [measurement foundation playbook](/insights/how-to-measure-marketing-revenue/).

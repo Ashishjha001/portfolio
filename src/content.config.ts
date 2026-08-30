@@ -12,7 +12,7 @@ const insights = defineCollection({
     updatedDate: z.coerce.date(),
     category: z.string(),
     readingMinutes: z.number().int().positive(),
-    author: z.string().default('DataDecision Research'),
+    author: z.string().default('Data Decision Consulting Research'),
     authorNote: z.string().optional(),
     featured: z.boolean().default(false),
     cluster: z.string().optional(),

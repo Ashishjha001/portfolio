@@ -28,16 +28,16 @@ const ranked = [...priorityOpportunities].sort((a, b) => priorityRank(b) - prior
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'DataDecision Search Intelligence Engine',
+  name: 'Data Decision Consulting Search Intelligence Engine',
   description:
-    'The observable model behind DataDecision search decisions: query intent, opportunity scoring, striking-distance classes, gap engines, AI-search signals, competitor intelligence and prioritised next moves.',
+    'The observable model behind Data Decision Consulting search decisions: query intent, opportunity scoring, striking-distance classes, gap engines, AI-search signals, competitor intelligence and prioritised next moves.',
   url: 'https://datadecision.consulting/search-intelligence/',
 };
 ---
 
 <BaseLayout
-  title="Search Intelligence Engine | DataDecision"
-  description="The transparent model behind DataDecision search decisions: how queries are classified, scored and prioritised — with the logic, limits and data status kept visible."
+  title="Search Intelligence Engine | Data Decision Consulting"
+  description="The transparent model behind Data Decision Consulting search decisions: how queries are classified, scored and prioritised — with the logic, limits and data status kept visible."
   path="/search-intelligence/"
   schema={schema}
 >
@@ -54,9 +54,9 @@ const schema = {
       <p class="eyebrow">Search intelligence / Observability</p>
       <h1>The machine is visible, so every search decision can be audited.</h1>
       <p class="lede">
-        DataDecision turns search into a loop — SEARCH, INSIGHT, ACTION, MEASUREMENT, LEARNING. This
-        page publishes the model: how a query becomes a question, how a question is scored, and how
-        a decision is prioritised. Nothing here is a hidden black box.
+        Data Decision Consulting turns search into a loop — SEARCH, INSIGHT, ACTION, MEASUREMENT,
+        LEARNING. This page publishes the model: how a query becomes a question, how a question is
+        scored, and how a decision is prioritised. Nothing here is a hidden black box.
       </p>
       <div class="button-row">
         <a class="button button--primary" href="#priorities">See the prioritised next moves</a>
@@ -148,8 +148,9 @@ const schema = {
         <p class="eyebrow">Query classification</p>
         <h2 id="intent-heading">The same words can mean very different jobs.</h2>
         <p class="small">
-          Classifying intent before writing lets DataDecision match the answer to the stage of the
-          decision — informative, diagnostic, commercial, implementation, or measurement.
+          Classifying intent before writing lets Data Decision Consulting match the answer to the
+          stage of the decision — informative, diagnostic, commercial, implementation, or
+          measurement.
         </p>
       </div>
       <div class="si-intents" data-reveal style="--reveal-delay:100ms">
@@ -255,8 +256,8 @@ const schema = {
         <p class="eyebrow">Gap engines</p>
         <h2 id="gaps-heading">Three gaps, and the guardrail before every action.</h2>
         <p class="small">
-          DataDecision does not recommend creating content to solve every problem. The gap engines
-          name the condition, the options, and the rule that protects existing depth.
+          Data Decision Consulting does not recommend creating content to solve every problem. The
+          gap engines name the condition, the options, and the rule that protects existing depth.
         </p>
       </div>
       <div class="si-gaps" data-reveal style="--reveal-delay:100ms">
@@ -289,9 +290,9 @@ const schema = {
         <p class="eyebrow">AI-search signals</p>
         <h2 id="aiq-heading">A mention is not a citation. A citation is not a referral.</h2>
         <p class="small">
-          DataDecision measures AI presence in layers so a single glowing summary is not mistaken
-          for earned reach. The query lab shows the representative questions per cluster that are
-          still being observed.
+          Data Decision Consulting measures AI presence in layers so a single glowing summary is not
+          mistaken for earned reach. The query lab shows the representative questions per cluster
+          that are still being observed.
         </p>
       </div>
       <div class="si-signals" data-reveal style="--reveal-delay:100ms">
@@ -357,7 +358,7 @@ const schema = {
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Competitor intelligence</p>
-        <h2 id="comp-heading">Where DataDecision can own the answer.</h2>
+        <h2 id="comp-heading">Where Data Decision Consulting can own the answer.</h2>
         <p class="small">
           A working view of what comparable players own and miss — kept at topical-review level and
           updated from evidence, never from assumption about a named competitor.
@@ -380,7 +381,8 @@ const schema = {
                 <strong>Misses:</strong> {c.misses.join(' · ')}
               </p>
               <p class="si-guardrail">
-                <strong>DataDecision can own:</strong> {c.dataDecisionCanOwn.join(' · ')}
+                <strong>Data Decision Consulting can own:</strong>{' '}
+                {c.dataDecisionCanOwn.join(' · ')}
               </p>
             </article>
           ))

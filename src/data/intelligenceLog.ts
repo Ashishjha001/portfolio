@@ -1,5 +1,5 @@
 /**
- * DataDecision Intelligence Log
+ * Data Decision Consulting Intelligence Log
  *
  * The dated, observable record of the Search Intelligence loop in action.
  * Two provenances live here so their different standards never blur:

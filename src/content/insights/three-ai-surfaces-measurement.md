@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'Measurement'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 6
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Multi-surface observation guide v1.0'
 sources:
   - label: 'OpenAI: publishers and developers FAQ'

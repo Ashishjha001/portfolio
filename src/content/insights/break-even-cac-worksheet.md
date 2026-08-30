@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 6
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Break-even worksheet v1.0'
 sources:
   - label: 'Google Analytics: campaign URL guidance'

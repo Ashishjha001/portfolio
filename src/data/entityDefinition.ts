@@ -1,7 +1,7 @@
 /**
- * DataDecision — Canonical Entity Definition (single source of truth)
+ * Data Decision Consulting — Canonical Entity Definition (single source of truth)
  *
- * Every descriptive claim about the DataDecision entity lives here so that
+ * Every descriptive claim about the Data Decision Consulting entity lives here so that
  * pages, the footer, SEO metadata and structured data derive from one place.
  * This prevents contradictory or drifting descriptions across the site.
  *
@@ -9,12 +9,12 @@
  *
  * Claim rule: no superlatives ("world-class", "leading", "best-in-class")
  * unless independently substantiated. Capabilities are described as what
- * DataDecision focuses on, not as guaranteed outcomes.
+ * Data Decision Consulting focuses on, not as guaranteed outcomes.
  */
 
 export const entityDefinition = {
   /* Identity */
-  name: 'DataDecision',
+  name: 'Data Decision Consulting',
   url: 'https://datadecision.consulting',
   email: 'contact@datadecision.consulting',
   slogan: 'Growth you can prove.',
@@ -64,7 +64,7 @@ export const entityDefinition = {
       instagram: 'https://www.instagram.com/ashish_jh.a/',
     },
     summary:
-      'Ashish Jha founded DataDecision to build a measurement-first practice for AI-search visibility and the path into pipeline.',
+      'Ashish Jha founded Data Decision Consulting to build a measurement-first practice for AI-search visibility and the path into pipeline.',
   },
   /* Relationship graph: what hangs off the entity */
   relationships: {

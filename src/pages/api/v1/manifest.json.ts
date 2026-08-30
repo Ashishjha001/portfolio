@@ -2,7 +2,7 @@ export const prerender = true;
 
 /**
  * Layer 41 - machine-readable API manifest.
- * Lists every public JSON payload DataDecision exposes, so RAG/answer systems
+ * Lists every public JSON payload Data Decision Consulting exposes, so RAG/answer systems
  * and crawlers can discover the structured data surface in one request.
  */
 export async function GET() {
@@ -10,7 +10,7 @@ export async function GET() {
   const payload = {
     '@schema': 'datadecision:api-manifest:v1',
     description:
-      'DataDecision public machine-readable payloads. These expose the canonical entity, frameworks, concepts and insight index as raw JSON with zero parsing effort.',
+      'Data Decision Consulting public machine-readable payloads. These expose the canonical entity, frameworks, concepts and insight index as raw JSON with zero parsing effort.',
     generatedAt: new Date().toISOString(),
     endpoints: [
       { slug: 'entity', label: 'Canonical entity', url: `${base}/api/v1/entity.json` },

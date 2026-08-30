@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'B2B SaaS Demo-Funnel Diagnosis'
 cluster: 'B2B SaaS Demo-Funnel Diagnosis'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'No-show diagnosis flow v1.0'
 sources:
   - label: 'HubSpot: analyze the meetings tool'

@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Window decision table v1.0'
 sources:
   - label: 'Google Analytics: about attribution and attribution modeling'
