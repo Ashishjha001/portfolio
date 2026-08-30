@@ -7,12 +7,12 @@ updatedDate: 2026-08-25
 category: 'Technical access'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Source-infrastructure framework v1.0'
 sources:
   - label: 'Google Search Central: AI features and your website'
     url: 'https://developers.google.com/search/docs/appearance/ai-features'
-  - label: 'DataDecision methodology v0.3'
+  - label: 'Data Decision Consulting methodology v0.3'
     url: 'https://datadecision.consulting/methodology/'
 ---
 

@@ -11,7 +11,7 @@ export async function GET() {
   const payload = {
     '@schema': 'datadecision:concept-index:v1',
     description:
-      'Public DataDecision canonical concept index. Each concept points to a single committed canonical home.',
+      'Public Data Decision Consulting canonical concept index. Each concept points to a single committed canonical home.',
     source: 'https://datadecision.consulting/concepts/',
     generatedAt: new Date().toISOString(),
     count: concepts.length,

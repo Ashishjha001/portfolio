@@ -7,7 +7,7 @@ updatedDate: 2026-08-24
 category: 'B2B SaaS Demo-Funnel Diagnosis'
 cluster: 'B2B SaaS Demo-Funnel Diagnosis'
 readingMinutes: 4
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Pricing-page demand diagnosis v1.0'
 sources:
   - label: 'Google Analytics: Landing Page report'

@@ -1,5 +1,5 @@
 /**
- * DataDecision — AI Search Observatory (Layers 9, 10, 30)
+ * Data Decision Consulting — AI Search Observatory (Layers 9, 10, 30)
  *
  * Tracks how AI systems represent strategically important market questions.
  * The core rule: citation rate and recommendation rate are DIFFERENT things

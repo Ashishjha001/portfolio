@@ -1,5 +1,5 @@
 /**
- * DataDecision Search Intelligence Engine
+ * Data Decision Consulting Search Intelligence Engine
  *
  * The continuous SEARCH -> INSIGHT -> ACTION -> MEASUREMENT -> LEARNING model.
  *
@@ -160,7 +160,7 @@ export const gapEngines: GapEngine[] = [
   {
     type: 'CONTENT',
     name: 'Content gap engine',
-    condition: 'Search demand exists AND DataDecision has no best-answer owner.',
+    condition: 'Search demand exists AND Data Decision Consulting has no best-answer owner.',
     recommendedActions: ['Create', 'Expand', 'Link'],
     guardrail:
       'Before creating anything, check existing Insights, services, pillars, research, tools and playbooks. If intent is already owned, do not duplicate.',

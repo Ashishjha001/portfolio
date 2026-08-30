@@ -7,7 +7,7 @@ updatedDate: 2026-08-24
 category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 6
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'AI-referral revenue path v1.0'
 sources:
   - label: 'Google Analytics: default channel definitions'

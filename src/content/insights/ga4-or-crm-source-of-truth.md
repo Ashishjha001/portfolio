@@ -7,7 +7,7 @@ updatedDate: 2026-08-24
 category: 'Measurement & Lead-Source Truth'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 4
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Metric contract model v1.0'
 sources:
   - label: 'Google Analytics: traffic-source dimensions'

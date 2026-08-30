@@ -7,12 +7,12 @@ updatedDate: 2026-08-25
 category: 'Method guide'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 6
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Vendor due-diligence scorecard v1.0'
 sources:
   - label: 'Google Search Central: AI features and your website'
     url: 'https://developers.google.com/search/docs/appearance/ai-features'
-  - label: 'DataDecision methodology v0.3'
+  - label: 'Data Decision Consulting methodology v0.3'
     url: 'https://datadecision.consulting/methodology/'
 ---
 
@@ -44,7 +44,7 @@ Score each question 0 (no answer), 1 (partial) or 2 (clear, written answer):
 - **7–11:** ask for written method documentation before proceeding.
 - **Below 7:** the score is a vibe; treat outputs as marketing, not measurement.
 
-Compare vendor answers against the [published DataDecision method](/methodology/), which states its own query frame, surfaces, runs and limits in public.
+Compare vendor answers against the [published Data Decision Consulting method](/methodology/), which states its own query frame, surfaces, runs and limits in public.
 
 ## Questions that reveal quality fast
 

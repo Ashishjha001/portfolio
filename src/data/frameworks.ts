@@ -1,5 +1,5 @@
 /**
- * DataDecision Proprietary Framework Engine
+ * Data Decision Consulting Proprietary Framework Engine
  *
  * Each framework follows the same structure so it can be rendered to a
  * diagram, table or downloadable worksheet, and so the weakest component
@@ -44,7 +44,7 @@ export interface Framework {
 export const frameworks: Framework[] = [
   {
     id: 'funnel-leakage-index',
-    name: 'DataDecision Funnel Leakage Index',
+    name: 'Data Decision Consulting Funnel Leakage Index',
     oneLiner: 'A single, honest number for the largest measurable conversion drop in a funnel.',
     owner: 'growth',
     definition:
@@ -72,7 +72,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'ai-search-visibility-score',
-    name: 'DataDecision AI Search Visibility Score',
+    name: 'Data Decision Consulting AI Search Visibility Score',
     oneLiner: 'Converts dated AI-answer observations into a comparable 0–100 sample score.',
     owner: 'ai-search',
     definition:
@@ -107,7 +107,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'attribution-health-score',
-    name: 'DataDecision Attribution Health Score',
+    name: 'Data Decision Consulting Attribution Health Score',
     oneLiner: 'Scores how defensible your measurement stack is at producing a revenue claim.',
     owner: 'performance-marketing',
     definition:
@@ -140,7 +140,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'growth-bottleneck',
-    name: 'DataDecision Growth Bottleneck Framework',
+    name: 'Data Decision Consulting Growth Bottleneck Framework',
     oneLiner:
       'Isolates the first meaningful constraint across acquisition, conversion and retention.',
     owner: 'growth',
@@ -167,7 +167,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'measurement-maturity',
-    name: 'DataDecision Marketing Measurement Maturity Model',
+    name: 'Data Decision Consulting Marketing Measurement Maturity Model',
     oneLiner: 'A five-level model of how defensibly a team can attribute revenue to marketing.',
     owner: 'performance-marketing',
     definition:
@@ -195,7 +195,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'search-to-revenue',
-    name: 'DataDecision Search-to-Revenue Framework',
+    name: 'Data Decision Consulting Search-to-Revenue Framework',
     oneLiner:
       'Connects a query to a page, a visitor, a lead and, where the data supports it, to revenue.',
     owner: 'seo',
@@ -226,7 +226,7 @@ export const frameworks: Framework[] = [
   },
   {
     id: 'ai-citation-index',
-    name: 'DataDecision AI Citation Index',
+    name: 'Data Decision Consulting AI Citation Index',
     oneLiner:
       'Measures how concentrated your AI citations are across sources — dependency risk, not just count.',
     owner: 'ai-search',

@@ -7,8 +7,8 @@ updatedDate: 2026-08-28
 category: 'AI Search, AEO and GEO'
 cluster: 'AI Search, AEO and GEO'
 readingMinutes: 13
-author: 'DataDecision Research'
-authorNote: 'DataDecision Research is led by founder Ashish Jha. The ₹ allocation is a labelled demonstration and not a recommended universal split.'
+author: 'Data Decision Consulting Research'
+authorNote: 'Data Decision Consulting Research is led by founder Ashish Jha. The ₹ allocation is a labelled demonstration and not a recommended universal split.'
 featured: true
 methodologyVersion: 'Search investment decision matrix v1.0'
 sources:
@@ -142,7 +142,7 @@ Use when both search paths create activity but source, conversion and CRM record
 ## DEMONSTRATION RUN
 
 **Collection date:** 28 August 2026  
-**Dataset or sample:** Synthetic readiness review for one hypothetical B2B SaaS site and a ₹10 lakh incremental search budget. No client, DataDecision performance or external benchmark is used.  
+**Dataset or sample:** Synthetic readiness review for one hypothetical B2B SaaS site and a ₹10 lakh incremental search budget. No client, Data Decision Consulting performance or external benchmark is used.  
 **Method:** Score six readiness conditions, identify the earliest constraint and assign money to shared, search-specific, answer-specific and measurement work.  
 **Assumptions:** The site has stable conventional search impressions, incomplete commercial pages, a 40-question AI baseline with repeatable competitor mentions, and a partial CRM join.  
 **Limitations:** Scores depend on judgement; the example does not estimate traffic, citations, pipeline or return.  

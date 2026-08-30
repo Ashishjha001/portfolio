@@ -1,5 +1,5 @@
 /**
- * DataDecision Question Ownership Engine
+ * Data Decision Consulting Question Ownership Engine
  *
  * Maps the important questions each reader brings to a canonical answer, an
  * existing protected Insight, a supporting concept/insight, the relevant
@@ -65,7 +65,7 @@ export const questionHeadings: Record<QuestionIntent, string> = {
   diagnostic: 'What part of the system is broken?',
   decision: 'What should we change?',
   implementation: 'How do we implement the change?',
-  commercial: 'Can DataDecision fix it?',
+  commercial: 'Can Data Decision Consulting fix it?',
 };
 
 export const questionGraphs: QuestionGraph[] = [
@@ -85,7 +85,7 @@ export const questionGraphs: QuestionGraph[] = [
         'What part of the funnel is leaking?',
         'Is the problem traffic quality or conversion?',
         'How should we measure the leak?',
-        'Can DataDecision diagnose it?',
+        'Can Data Decision Consulting diagnose it?',
       ],
     },
     sub: [
@@ -135,7 +135,7 @@ export const questionGraphs: QuestionGraph[] = [
         'Which system is my source of truth — GA4 or CRM?',
         'Why does my CRM say Direct when my campaign had UTMs?',
         'How do I reconcile GA4 lead counts with CRM lead counts?',
-        'Can DataDecision build the measurement foundation?',
+        'Can Data Decision Consulting build the measurement foundation?',
       ],
     },
     sub: [
@@ -196,7 +196,7 @@ export const questionGraphs: QuestionGraph[] = [
         'What stays common between SEO and AI search?',
         'How do I measure AI visibility?',
         'How much revenue came from ChatGPT referrals?',
-        'Can DataDecision assess my AI-search visibility?',
+        'Can Data Decision Consulting assess my AI-search visibility?',
       ],
     },
     sub: [
@@ -256,7 +256,7 @@ export const questionGraphs: QuestionGraph[] = [
       subQuestions: [
         'When does a query need a new page?',
         'When should pages merge or redirect?',
-        'Can DataDecision repair the SEO architecture?',
+        'Can Data Decision Consulting repair the SEO architecture?',
       ],
     },
     sub: [

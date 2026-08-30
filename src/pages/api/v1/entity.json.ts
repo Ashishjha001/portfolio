@@ -4,7 +4,7 @@ export const prerender = true;
 
 /**
  * Layer 41 / Layer 1 — public, machine-readable canonical entity payload.
- * The single source of truth for the DataDecision entity, exposed as JSON for
+ * The single source of truth for the Data Decision Consulting entity, exposed as JSON for
  * RAG systems and entity-resolution tools to read without parsing HTML/UI.
  */
 export async function GET() {

@@ -1,4 +1,4 @@
-# DataDecision crawler policy — reviewed 2026-08-24
+# Data Decision Consulting crawler policy — reviewed 2026-08-24
 # Search discovery, user-requested retrieval and model-training collection are separate choices.
 
 User-agent: *

@@ -7,7 +7,7 @@ updatedDate: 2026-08-24
 category: 'B2B SaaS Demo-Funnel Diagnosis'
 cluster: 'B2B SaaS Demo-Funnel Diagnosis'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Demo-funnel dashboard framework v1.0'
 sources:
   - label: 'Google Analytics: Funnel Exploration'

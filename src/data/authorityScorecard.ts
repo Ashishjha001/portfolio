@@ -1,8 +1,8 @@
 /**
- * DataDecision — Internal Authority Scorecard (Layer 33) + Research Calendar (Layer 38)
+ * Data Decision Consulting — Internal Authority Scorecard (Layer 33) + Research Calendar (Layer 38)
  *
  * This is an INTERNAL management framework, not an objective Google or AI score.
- * Dimensions track progress relative to DataDecision's own goals. Where a
+ * Dimensions track progress relative to Data Decision Consulting's own goals. Where a
  * dimension cannot be honestly scored, its status is need-data rather than a
  * fabricated number.
  */
@@ -121,7 +121,7 @@ export const researchCalendar: ResearchCalendarItem[] = [
     window: 'Months 3–6',
     owner: 'founder-input',
     priority: 'Medium',
-    value: 'Benchmarks the defensibility of DataDecision’s own measurement claims.',
+    value: 'Benchmarks the defensibility of Data Decision Consulting’s own measurement claims.',
     status: 'needs-founder-input',
   },
   {

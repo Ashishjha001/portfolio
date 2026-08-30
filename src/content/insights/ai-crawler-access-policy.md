@@ -5,7 +5,7 @@ publishedDate: 2026-08-24
 updatedDate: 2026-08-24
 category: 'Technical access'
 readingMinutes: 13
-author: 'DataDecision Research'
+author: 'Data Decision Consulting Research'
 featured: true
 methodologyVersion: 'Crawler policy note v1.0'
 sources:
@@ -45,17 +45,17 @@ Passing one layer does not prove the next.
 
 Provider documentation now makes the separation concrete:
 
-| Provider control   | Documented purpose                                                                 | Launch policy used by DataDecision       | Reason                                                       |
-| ------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| `OAI-SearchBot`    | OpenAI search discovery                                                            | Allow                                    | Search visibility is in scope                                |
-| `GPTBot`           | Potential OpenAI model-training collection                                         | Disallow                                 | Training permission is a separate decision                   |
-| `ChatGPT-User`     | User-requested retrieval                                                           | Allow                                    | Supports a user asking ChatGPT to access a public page       |
-| `Claude-SearchBot` | Anthropic search quality/indexing                                                  | Allow                                    | Search visibility is in scope                                |
-| `ClaudeBot`        | Potential Anthropic model-training collection                                      | Disallow                                 | Training permission is separate                              |
-| `Claude-User`      | User-requested retrieval                                                           | Allow                                    | Supports user-directed access                                |
-| `PerplexityBot`    | Perplexity search indexing, not foundation-model training                          | Allow                                    | Provider documents it as a search crawler                    |
-| `Perplexity-User`  | User-requested retrieval                                                           | Provider says it may ignore robots rules | Treat as a request path, not a policy guarantee              |
-| `Google-Extended`  | Controls certain Gemini training and grounding uses; does not affect Google Search | Disallow                                 | Google Search remains allowed through normal search controls |
+| Provider control   | Documented purpose                                                                 | Launch policy used by Data Decision Consulting | Reason                                                       |
+| ------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| `OAI-SearchBot`    | OpenAI search discovery                                                            | Allow                                          | Search visibility is in scope                                |
+| `GPTBot`           | Potential OpenAI model-training collection                                         | Disallow                                       | Training permission is a separate decision                   |
+| `ChatGPT-User`     | User-requested retrieval                                                           | Allow                                          | Supports a user asking ChatGPT to access a public page       |
+| `Claude-SearchBot` | Anthropic search quality/indexing                                                  | Allow                                          | Search visibility is in scope                                |
+| `ClaudeBot`        | Potential Anthropic model-training collection                                      | Disallow                                       | Training permission is separate                              |
+| `Claude-User`      | User-requested retrieval                                                           | Allow                                          | Supports user-directed access                                |
+| `PerplexityBot`    | Perplexity search indexing, not foundation-model training                          | Allow                                          | Provider documents it as a search crawler                    |
+| `Perplexity-User`  | User-requested retrieval                                                           | Provider says it may ignore robots rules       | Treat as a request path, not a policy guarantee              |
+| `Google-Extended`  | Controls certain Gemini training and grounding uses; does not affect Google Search | Disallow                                       | Google Search remains allowed through normal search controls |
 
 These descriptions were checked on **24 August 2026** against [OpenAI](https://help.openai.com/en/articles/12627856-publishers-and-developers-faq), [Anthropic](https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers) and [Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers). Recheck them before adopting the table: names and purposes can change.
 
@@ -121,7 +121,7 @@ It is not:
 - evidence that a page was fetched, indexed or cited;
 - a placement signal you can measure by adding the file alone.
 
-Google’s current [generative AI search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide?hl=en) says Google Search does not use `llms.txt` files for its generative search features and that they neither help nor harm Google Search visibility. DataDecision publishes a small `llms.txt` because it is inexpensive to maintain as a navigation aid, while labeling the file experimental.
+Google’s current [generative AI search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide?hl=en) says Google Search does not use `llms.txt` files for its generative search features and that they neither help nor harm Google Search visibility. Data Decision Consulting publishes a small `llms.txt` because it is inexpensive to maintain as a navigation aid, while labeling the file experimental.
 
 If you add one, set an acceptance criterion you can actually test: valid format, working links, accurate descriptions and a documented owner. Do not set “more AI citations” as the acceptance criterion unless you have a measurement design capable of testing that claim.
 

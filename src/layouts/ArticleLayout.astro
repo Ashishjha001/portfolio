@@ -44,7 +44,13 @@ const schema = [
     wordCount: Math.round(data.readingMinutes * 220),
     isFamilyFriendly: true,
     articleSection: data.cluster ?? data.category,
-    keywords: [data.cluster, data.category, 'DataDecision', 'measurement', 'AI search visibility']
+    keywords: [
+      data.cluster,
+      data.category,
+      'Data Decision Consulting',
+      'measurement',
+      'AI search visibility',
+    ]
       .filter(Boolean)
       .join(', '),
     author: {
@@ -54,7 +60,7 @@ const schema = [
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DataDecision',
+      name: 'Data Decision Consulting',
       url: 'https://datadecision.consulting/',
       logo: 'https://datadecision.consulting/logo.png',
     },
@@ -91,7 +97,7 @@ const schema = [
       ? {
           isBasedOn: {
             '@type': 'CreativeWork',
-            name: `DataDecision methodology ${data.methodologyVersion}`,
+            name: `Data Decision Consulting methodology ${data.methodologyVersion}`,
             url: 'https://datadecision.consulting/methodology/',
           },
         }
@@ -101,7 +107,7 @@ const schema = [
 ---
 
 <BaseLayout
-  title={`${data.seoTitle ?? data.title} | DataDecision`}
+  title={`${data.seoTitle ?? data.title} | Data Decision Consulting`}
   description={data.description}
   path={articleUrl}
   type="article"
@@ -176,7 +182,7 @@ const schema = [
       {
         data.authorNote && (
           <aside class="article-author-note" aria-label="About the publisher">
-            <p class="evidence-label">About DataDecision</p>
+            <p class="evidence-label">About Data Decision Consulting</p>
             <p>{data.authorNote}</p>
           </aside>
         )

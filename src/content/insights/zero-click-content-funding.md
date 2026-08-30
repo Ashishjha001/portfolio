@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'Method guide'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 5
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Funding decision framework v1.0'
 sources:
   - label: 'Google Search Central: AI features and your website'

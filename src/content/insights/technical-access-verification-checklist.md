@@ -7,7 +7,7 @@ updatedDate: 2026-08-25
 category: 'Technical access'
 cluster: 'Measurement & Lead-Source Truth'
 readingMinutes: 6
-author: 'DataDecision'
+author: 'Data Decision Consulting'
 methodologyVersion: 'Access verification checklist v1.0'
 sources:
   - label: 'Google Search Central: Google crawlers and fetchers'

@@ -5,7 +5,7 @@ publishedDate: 2026-08-24
 updatedDate: 2026-08-24
 category: 'Measurement'
 readingMinutes: 11
-author: 'DataDecision Research'
+author: 'Data Decision Consulting Research'
 featured: true
 methodologyVersion: 'Measurement note v1.0'
 sources:

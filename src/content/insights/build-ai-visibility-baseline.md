@@ -5,11 +5,11 @@ publishedDate: 2026-08-24
 updatedDate: 2026-08-24
 category: 'Method guide'
 readingMinutes: 12
-author: 'DataDecision Research'
+author: 'Data Decision Consulting Research'
 featured: true
 methodologyVersion: 'Ledger method v0.3'
 sources:
-  - label: 'DataDecision methodology v0.3'
+  - label: 'Data Decision Consulting methodology v0.3'
     url: 'https://datadecision.consulting/methodology/'
   - label: 'OpenAI: publishers and developers FAQ'
     url: 'https://help.openai.com/en/articles/12627856-publishers-and-developers-faq'
@@ -59,7 +59,7 @@ Avoid “What is our AI score?” unless you can define what the number changes.
 
 ## Step 2: construct the 50-question frame
 
-The standard DataDecision frame uses one market and one language. Divide 50 questions across buyer contexts rather than collecting 50 near-duplicates.
+The standard Data Decision Consulting frame uses one market and one language. Divide 50 questions across buyer contexts rather than collecting 50 near-duplicates.
 
 | Intent class            | Suggested share | Question pattern                                | Review rule                                 |
 | ----------------------- | --------------: | ----------------------------------------------- | ------------------------------------------- |
