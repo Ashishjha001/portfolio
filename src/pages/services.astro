@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import StrategicAreas from '../components/StrategicAreas.astro';
+import { organizationReference } from '../data/entityDefinition';
 
 const services = [
   {
@@ -164,7 +165,7 @@ const schema = {
   hasPart: services.map((service) => ({
     '@type': 'Service',
     name: service.name,
-    provider: { '@type': 'Organization', name: 'Data Decision Consulting' },
+    provider: organizationReference,
     url: `https://datadecision.consulting/contact/?service=${service.slug}`,
   })),
 };

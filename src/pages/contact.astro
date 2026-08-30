@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { entityDefinition, organizationReference } from '../data/entityDefinition';
 ---
 
 <BaseLayout
@@ -13,12 +14,8 @@ import ContactForm from '../components/ContactForm.astro';
     '@type': 'ContactPage',
     name: 'Request a visibility diagnostic',
     url: 'https://datadecision.consulting/contact/',
-    email: 'contact@datadecision.consulting',
-    mainEntity: {
-      '@type': 'Organization',
-      name: 'Data Decision Consulting',
-      email: 'contact@datadecision.consulting',
-    },
+    email: entityDefinition.email,
+    mainEntity: organizationReference,
   }}
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />

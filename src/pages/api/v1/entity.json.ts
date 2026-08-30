@@ -12,7 +12,9 @@ export async function GET() {
     '@schema': 'datadecision:entity:v1',
     organization: {
       '@type': organizationSchema['@type'],
+      '@id': organizationSchema['@id'],
       name: organizationSchema.name,
+      alternateName: organizationSchema.alternateName,
       url: organizationSchema.url,
       logo: organizationSchema.logo,
       email: organizationSchema.email,

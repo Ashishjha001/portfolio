@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SpineStrip from '../../components/SpineStrip.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
+import { organizationReference } from '../../data/entityDefinition';
 
 const faqs = [
   {
@@ -29,7 +30,7 @@ const schema = [
     '@type': 'Service',
     name: 'Growth Measurement Foundation',
     serviceType: 'Marketing measurement and attribution foundation',
-    provider: { '@type': 'Organization', name: 'Data Decision Consulting' },
+    provider: organizationReference,
     areaServed: 'Remote',
     description:
       'A practical measurement foundation connecting acquisition, conversion and CRM stages for B2B SaaS.',

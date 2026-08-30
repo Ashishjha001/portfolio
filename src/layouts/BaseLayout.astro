@@ -9,8 +9,8 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   path?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -19,8 +19,8 @@ interface Props {
 }
 
 const {
-  title,
-  description,
+  title = `${entityDefinition.name} | Measurement-first AI-search visibility for B2B SaaS`,
+  description = entityDefinition.description,
   path = Astro.url.pathname,
   image = '/og-default.png',
   type = 'website',
@@ -30,11 +30,13 @@ const {
 
 const canonical = new URL(path, Astro.site ?? Astro.url.origin).toString();
 const imageUrl = new URL(image, Astro.site ?? Astro.url.origin).toString();
-const schemaItems = schema
-  ? Array.isArray(schema)
-    ? [organizationSchema, websiteSchema, ...schema]
-    : [organizationSchema, websiteSchema, schema]
-  : [organizationSchema, websiteSchema];
+const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const globalSchemaTypes = new Set(['Organization', 'WebSite']);
+const schemaItems = [
+  organizationSchema,
+  websiteSchema,
+  ...suppliedSchema.filter((item) => !globalSchemaTypes.has(String(item['@type'] ?? ''))),
+];
 ---
 
 <!doctype html>
@@ -73,15 +75,17 @@ const schemaItems = schema
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon-datadecision.svg" />
     <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="Data Decision Consulting" />
+    <meta property="og:site_name" content={entityDefinition.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={`${entityDefinition.name} website preview`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={`${entityDefinition.name} website preview`} />
     <title>{title}</title>
     {
       schemaItems.map((item) => (

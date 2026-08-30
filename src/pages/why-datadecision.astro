@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { entityDefinition } from '../data/entityDefinition';
+import { entityDefinition, organizationReference } from '../data/entityDefinition';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -11,11 +11,7 @@ const schema = {
   description:
     'What problem Data Decision Consulting exists to solve, how it thinks and measures, how it differs, and what it does not claim.',
   url: 'https://datadecision.consulting/why-datadecision/',
-  mainEntity: {
-    '@type': 'Organization',
-    name: entityDefinition.name,
-    url: entityDefinition.url,
-  },
+  mainEntity: organizationReference,
 };
 ---
 

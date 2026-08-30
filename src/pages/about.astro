@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import FounderSocialLinks from '../components/FounderSocialLinks.astro';
-import { entityDefinition } from '../data/entityDefinition';
+import { founderSchema, organizationReference } from '../data/entityDefinition';
 ---
 
 <BaseLayout
@@ -16,32 +16,9 @@ import { entityDefinition } from '../data/entityDefinition';
       '@type': 'AboutPage',
       name: 'About Data Decision Consulting',
       url: 'https://datadecision.consulting/about/',
-      mainEntity: {
-        '@type': 'Organization',
-        name: 'Data Decision Consulting',
-        email: 'contact@datadecision.consulting',
-        founder: {
-          '@type': 'Person',
-          name: 'Ashish Jha',
-          sameAs: Object.values(entityDefinition.founder.sameAs),
-        },
-      },
+      mainEntity: organizationReference,
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Ashish Jha',
-      jobTitle: 'Founder',
-      url: 'https://datadecision.consulting/about/',
-      email: 'contact@datadecision.consulting',
-      sameAs: Object.values(entityDefinition.founder.sameAs),
-      alumniOf: { '@type': 'CollegeOrUniversity', name: 'NIT Surat' },
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Data Decision Consulting',
-        url: 'https://datadecision.consulting/',
-      },
-    },
+    founderSchema,
   ]}
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
