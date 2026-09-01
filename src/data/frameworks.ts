@@ -220,7 +220,7 @@ export const frameworks: Framework[] = [
     exampleNote:
       'A diagnostics cluster sends 3,000 sessions/month that become 8 qualified opportunities and 2 won deals; an evergreen cluster sends 10,000 sessions but zero qualified leads. The framework funds the first and investigates the second.',
     insightHref: '/insights/b2b-saas-seo-query-to-page-map/',
-    serviceHref: '/services/#web-seo-ai-visibility',
+    serviceHref: '/services/seo/',
     suggestedAction:
       'Pick your three highest-traffic query clusters and trace each to qualified pipeline. Invest where the chain survives; investigate where it breaks.',
   },

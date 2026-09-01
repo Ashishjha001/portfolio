@@ -252,7 +252,7 @@ export const questionGraphs: QuestionGraph[] = [
       canonicalPage: '/insights/b2b-saas-seo-query-to-page-map/',
       insightIds: ['b2b-saas-seo-query-to-page-map'],
       supportingPage: '/seo/',
-      service: '/services/#web-seo-ai-visibility',
+      service: '/services/seo/',
       subQuestions: [
         'When does a query need a new page?',
         'When should pages merge or redirect?',

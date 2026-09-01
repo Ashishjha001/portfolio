@@ -1,0 +1,38 @@
+source_page,target_url,anchor_text_draft,link_type,priority,notes
+/insights/how-to-rank-and-get-recommended-by-ai/,/services/ai-search-visibility/,AI search visibility services,article→commercial,Now,Primary feeder after retitle; article aside box gains service link alongside pillar link
+/ai-search/,/services/ai-search-visibility/,AI-search visibility services (commercial),pillar→commercial,Now,Pillar already links service; refresh anchor to service phrasing after retitle
+/ai-search/,/services/seo/,SEO services for B2B SaaS,pillar→commercial,Now,Cross-links pillars to new service owner with descriptive non-exact-match anchor
+/seo/,/services/seo/,SEO services for B2B SaaS,pillar→commercial,Now,Same; keep anchor descriptive (not just exact keyword)
+/seo/,/services/ai-search-visibility/,AI search visibility services,pillar→commercial,Now,Existing cross-pillar link; update anchor
+/growth/,/services/measurement-foundation/,GA4 and attribution consulting,pillar→service,Now,Anchor refresh to search phrasing
+/performance-marketing/,/services/measurement-foundation/,GA4 and attribution consulting,pillar→service,Now,Same
+/insights/ga4-vs-crm-lead-reconciliation/,/services/measurement-foundation/,GA4 and attribution consulting,article→commercial,Now,Deepest cluster article feeds the service page
+/insights/ga4-or-crm-source-of-truth/,/services/measurement-foundation/,measurement consulting for GA4 and CRM,article→commercial,Now,Vary anchor wording (no repeated exact-match)
+/insights/ga4-attribution-windows/,/services/measurement-foundation/,attribution consulting,article→commercial,Next,
+/insights/ga4-data-thresholds/,/services/measurement-foundation/,measurement foundation services,article→commercial,Next,
+/insights/utm-governance-b2b/,/services/measurement-foundation/,marketing measurement consulting,article→commercial,Next,
+/insights/hubspot-original-source-vs-ga4/,/services/measurement-foundation/,GA4 and CRM consulting,article→commercial,Next,
+/insights/ga4-vs-crm-lead-reconciliation/,/services/measurement-foundation/ (secondary),attribution assumption register topic — keep primary CTA single,article→commercial,Next,One primary CTA per article (rule 15); secondary contextual link ok
+/insights/technical-access-verification-checklist/,/services/seo/,SEO services for B2B SaaS,article→commercial,Now,After triage expansion; single primary CTA
+/insights/b2b-saas-seo-query-to-page-map/,/services/seo/,B2B SaaS SEO services,article→commercial,Now,
+/insights/how-to-run-profitable-paid-ads/,/performance-marketing/ + /services/measurement-foundation/ (contextual),paid acquisition approach + measurement foundation,article→pillar/service,Next,Keep article's single primary CTA to measurement or pillar
+/insights/demo-requests-dropped-rankings-flat/,/services/seo/,SEO diagnostic services,article→commercial,Next,Symptom article = strong SEO feeder
+/insights/traffic-up-demo-bookings-down/,/growth/,growth diagnosis,pillar→commercial,Exists,Verify existing links sufficient
+/insights/zero-click-content-funding/,/insights/seo-vs-ai-search-budget-allocation/,SEO vs AI search allocation,article→article,Exists,Cluster link — already wired
+/insights/build-ai-visibility-baseline/,/services/ai-search-visibility/,AI visibility audit and services,article→commercial,Now,
+/insights/measuring-ai-referrals-ga4/,/services/measurement-foundation/,measurement consulting,article→commercial,Now,
+/insights/three-ai-surfaces-measurement/,/services/ai-search-visibility/,AI search visibility services,article→commercial,Next,
+/insights/ai-crawler-access-policy/,/services/ai-search-visibility/,AI search visibility services,article→commercial,Next,
+/insights/review-platforms-source-infrastructure/,/services/ai-search-visibility/,AI visibility services,article→commercial,Next,
+/insights/aeo-geo-vendor-due-diligence/,/services/ai-search-visibility/,AI search visibility services (the honest vendor),article→commercial,Now,Natural: due-diligence article → the vendor that passes its own test
+/services/,/services/seo/,SEO services for B2B SaaS,overview→service,Now,Block 01 card gains Explore link (currently only 2 blocks have detail URLs)
+/services/,/services/ai-search-visibility/,AI search visibility services,overview→service,Exists,Verify anchor updated after retitle
+/services/,/services/measurement-foundation/,GA4 and attribution consulting,overview→service,Exists,Same
+/ (homepage),/services/seo/ (via /services/ card or services strip),SEO services for B2B SaaS,home→commercial,Now,Do NOT add a keyword/city list to homepage; one contextual link max
+/services/seo/ (new),/insights/b2b-saas-seo-query-to-page-map/,query-to-page mapping guide,service→article,Now,Service page cites house method guides
+/services/seo/ (new),/insights/how-to-rank-and-get-recommended-by-ai/,how to appear in ChatGPT recommendations,service→article,Now,
+/services/ai-search-visibility/,/methodology/,visibility methodology v0.3,service→trust,Exists,Keep
+/services/measurement-foundation/,/insights/ga4-vs-crm-lead-reconciliation/,GA4 vs CRM reconciliation guide,service→article,Now,
+/tools/,/services/ai-search-visibility/,AI visibility services,tool→commercial,Next,Tools page is a linkable asset; add one service link
+/methodology/,/services/ai-search-visibility/,AI search visibility services,trust→commercial,Next,Methodology readers are high-intent
+/insights/how-to-increase-conversion-rate/,/services/#conversion-lifecycle-growth (anchor for now),conversion and lifecycle services,article→commercial anchor,Later,Until dedicated CRO page exists

@@ -123,7 +123,7 @@ export const topics: TopicDefinition[] = [
       },
       {
         href: '/services/measurement-foundation/',
-        label: 'Measurement foundation',
+        label: 'GA4 and attribution consulting',
         note: 'Repair the path from website activity to CRM, opportunity and revenue.',
       },
     ],
@@ -228,7 +228,7 @@ export const topics: TopicDefinition[] = [
       },
       {
         href: '/services/measurement-foundation/',
-        label: 'Attribution and measurement foundation',
+        label: 'GA4 and attribution consulting',
         note: 'Connect campaign source, conversion and CRM records before trusting the report.',
       },
     ],
@@ -260,7 +260,7 @@ export const topics: TopicDefinition[] = [
     label: 'SEO',
     shortLabel: 'SEO',
     title: 'Build organic demand that has somewhere useful to go.',
-    seoTitle: 'B2B SaaS SEO strategy and technical SEO',
+    seoTitle: 'B2B SaaS SEO Strategy and Technical SEO',
     description:
       'SEO for B2B SaaS teams that need technical access, useful information architecture, topical depth and a measurable path from search demand to pipeline.',
     introduction:
@@ -327,9 +327,9 @@ export const topics: TopicDefinition[] = [
     ],
     serviceLinks: [
       {
-        href: '/services/#web-seo-ai-visibility',
-        label: 'Web, SEO and AI visibility',
-        note: 'Build the technical, editorial and conversion system behind organic discovery.',
+        href: '/services/seo/',
+        label: 'SEO services for B2B SaaS',
+        note: 'The commercial engagement: technical access, architecture, content and measurement as one system.',
       },
       {
         href: '/ai-search/',
@@ -365,7 +365,7 @@ export const topics: TopicDefinition[] = [
     label: 'AI Search, AEO and GEO',
     shortLabel: 'AI Search',
     title: 'Understand where your company appears in AI answers, and why.',
-    seoTitle: 'AI search visibility, AEO and GEO for B2B SaaS',
+    seoTitle: 'AI Search Visibility, AEO and GEO for B2B SaaS',
     description:
       'AI search visibility for B2B SaaS using dated samples, citation review, access checks and referral measurement, without guaranteed placement claims.',
     introduction:
@@ -431,8 +431,8 @@ export const topics: TopicDefinition[] = [
     serviceLinks: [
       {
         href: '/services/ai-search-visibility/',
-        label: 'AI-search visibility diagnostic',
-        note: 'Move from spot checks to a dated baseline, source map and prioritized action plan.',
+        label: 'AI-search visibility services',
+        note: 'The commercial engagement: move from spot checks to a dated baseline, source map and prioritized action plan.',
       },
       {
         href: '/services/measurement-foundation/',

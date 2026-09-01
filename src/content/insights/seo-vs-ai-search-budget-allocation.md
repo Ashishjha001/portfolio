@@ -218,4 +218,4 @@ Run a two-hour evidence review. Mark every proposed task as shared, search-speci
 
 Use the [AI Search pillar](/ai-search/) for the wider observation method and the [SEO pillar](/seo/) for crawl, architecture and commercial search ownership. The [AI-search visibility diagnostic](/services/ai-search-visibility/) is the relevant service when the question panel and source pattern need a defined baseline.
 
-For a scoped investment review, [request an AI-search brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current SEO backlog, query data, answer-surface observations and measurement limits.
+For a scoped investment review, [request an AI-search brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current SEO backlog, query data, answer-surface observations and measurement limits — or read the [AI Search Visibility services](/services/ai-search-visibility/) scope first.

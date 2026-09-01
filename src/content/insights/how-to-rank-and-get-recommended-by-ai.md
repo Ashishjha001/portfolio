@@ -1,9 +1,9 @@
 ---
-title: 'How to Get Your Website to Rank on Google and Get Recommended by AI'
-seoTitle: 'How to Rank on Google and Get Recommended by AI'
-description: 'The complete Data Decision Consulting implementation for ranking on Google and getting recommended by ChatGPT, Gemini, Claude and Perplexity: access, architecture, content, schema, authority and measurement.'
+title: 'How to Appear in ChatGPT Recommendations and Get Recommended by AI'
+seoTitle: 'How to Appear in ChatGPT Recommendations'
+description: 'How to appear in ChatGPT recommendations: the implementation sequence for getting your website to rank on Google and get recommended by ChatGPT, Gemini, Claude and Perplexity — access, architecture, content, authority and dated measurement.'
 publishedDate: 2026-08-25
-updatedDate: 2026-08-25
+updatedDate: 2026-09-01
 category: 'Service playbook'
 cluster: 'Service Playbooks'
 pillar: true
@@ -23,12 +23,12 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>Ranking on Google and getting recommended by AI engines is one system with five layers: verified access, clear architecture, factual content, corroborated authority and dated measurement.</strong> The Data Decision Consulting team implements them in that order, because each layer fails without the one beneath it.</p>
+  <p><strong>Businesses appear in ChatGPT recommendations the same way they rank on Google: one system with five layers — verified access, clear architecture, factual content, corroborated authority and dated measurement.</strong> No tactic makes an AI engine mention you on demand; the work makes you a credible, retrievable source. The Data Decision Consulting team implements the layers in that order, because each one fails without the layer beneath it.</p>
 </div>
 
 Every founder asks the Data Decision Consulting team some version of the same question: "Our product is good — why doesn't anyone find us on Google, and why doesn't ChatGPT mention us?"
 
-The Data Decision Consulting answer is never a trick. Search engines and AI assistants reward the same fundamentals, and the work is implementable in a defined sequence. This guide is the complete playbook our team uses — the same one we run inside the [Web, SEO & AI Visibility](/contact/?service=web-seo-ai-visibility#request-a-brief) engagement.
+The Data Decision Consulting answer is never a trick. Search engines and AI assistants reward the same fundamentals, and the work is implementable in a defined sequence. This guide is the complete playbook our team uses — the same one we run inside the [Web, SEO & AI Visibility engagement](/services/ai-search-visibility/), and the foundation layer of our [SEO services for B2B SaaS](/services/seo/).
 
 ## Step 1: Verify access before touching content
 
@@ -94,4 +94,4 @@ The Data Decision Consulting team measures this layer in three separate tracks, 
 
 The Data Decision Consulting team publishes the method, states the limits, and never promises a ranking or a citation — [AI outputs are nondeterministic](/insights/ai-crawler-access-policy/). What the work guarantees is a verified, measured system: access confirmed, architecture clean, content complete, authority corroborated and progress dated.
 
-To run this system on your site, brief the team through the [Web, SEO & AI Visibility service](/contact/?service=web-seo-ai-visibility#request-a-brief). For the measurement layer it connects to, read the [measurement foundation playbook](/insights/how-to-measure-marketing-revenue/).
+To run this system on your site, brief the team through the [AI Search Visibility services](/services/ai-search-visibility/) or the [B2B SaaS SEO services](/services/seo/). For the measurement layer it connects to, read the [measurement foundation playbook](/insights/how-to-measure-marketing-revenue/).
