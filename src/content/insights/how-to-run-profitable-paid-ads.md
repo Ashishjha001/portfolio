@@ -73,4 +73,4 @@ Campaign URLs follow the [governance taxonomy](/insights/utm-governance-b2b/) so
 - Scaling before the measurement path is proven → fix Step 5 first.
 - Judging a campaign inside two weeks → pre-commit windows and stopping rules.
 
-Paid works when it is the accelerant on a measured system. For the organic and AI-visibility layer that compounds underneath, review the [Web, SEO & AI Visibility](/contact/?service=web-seo-ai-visibility#request-a-brief) engagement.
+Paid works when it is the accelerant on a measured system. For the organic and AI-visibility layer that compounds underneath, review the [SEO services for B2B SaaS](/services/seo/) and [AI Search Visibility services](/services/ai-search-visibility/).

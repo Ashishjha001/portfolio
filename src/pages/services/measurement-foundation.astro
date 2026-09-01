@@ -28,12 +28,12 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Growth Measurement Foundation',
-    serviceType: 'Marketing measurement and attribution foundation',
+    name: 'GA4, Attribution & Measurement Consulting',
+    serviceType: 'GA4 consulting, marketing attribution and marketing analytics consulting',
     provider: organizationReference,
     areaServed: 'Remote',
     description:
-      'A practical measurement foundation connecting acquisition, conversion and CRM stages for B2B SaaS.',
+      'GA4 and attribution consulting for B2B SaaS: reconcile GA4 with your CRM, repair source capture, govern assumptions and connect marketing activity to pipeline.',
   },
   {
     '@context': 'https://schema.org',
@@ -48,25 +48,26 @@ const schema = [
 ---
 
 <BaseLayout
-  title="Growth measurement foundation for B2B SaaS | Data Decision Consulting"
-  description="Repair the gaps between acquisition data, conversion events and CRM stages while keeping attribution assumptions visible."
+  title="GA4, Attribution & Measurement Consulting | Data Decision Consulting"
+  description="GA4 and attribution consulting for B2B SaaS: reconcile GA4 with your CRM, repair source capture, govern attribution assumptions and connect marketing activity to pipeline and revenue."
   path="/services/measurement-foundation/"
   schema={schema}
 >
   <Breadcrumbs
     items={[
       { label: 'Home', href: '/' },
-      { label: 'Growth', href: '/growth/' },
-      { label: 'Measurement foundation' },
+      { label: 'Services', href: '/services/' },
+      { label: 'GA4 & Attribution Consulting' },
     ]}
   />
   <header class="shell page-hero">
     <div class="page-hero__copy" data-reveal>
-      <p class="eyebrow">Measurement foundation</p><h1>
-        When GA4 and your CRM disagree, trace the difference.
+      <p class="eyebrow">GA4 · Attribution · Marketing Analytics</p><h1>
+        GA4 and attribution consulting that ends dashboard disagreements.
       </h1><p class="lede">
-        Trace acquisition, conversion and pipeline as one evidence path. Repair the preventable
-        gaps, document the irreducible ones and give decision-makers a number they can challenge.
+        When GA4 and your CRM disagree, the numbers are not broken — the join is. We trace
+        acquisition, conversion and pipeline as one evidence path, repair the preventable gaps,
+        document the irreducible ones and give decision-makers a number they can challenge.
       </p><div class="button-row">
         <a class="button button--primary" href="/contact/" data-event="cta_primary_click"
           >Request a diagnostic</a
@@ -170,8 +171,58 @@ const schema = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="boundary-heading">
+  <section class="section" aria-labelledby="ga4-scope-heading">
     <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">GA4 consultant scope</p><h2 id="ga4-scope-heading">
+          What a GA4 consultant should fix before anything else.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        <div class="rule-row">
+          <span class="mono">01</span><div>
+            <h3>Source capture</h3><p>
+              Referral definitions, UTM governance and campaign parameters that survive the journey
+              into GA4 — and a test for the ones that quietly do not.
+            </p>
+          </div><span class="rule-row__meta">Inputs first</span>
+        </div><div class="rule-row">
+          <span class="mono">02</span><div>
+            <h3>Attribution windows and thresholds</h3><p>
+              Model settings, data-threshold behaviour and consent effects understood before any
+              report is trusted — not after a number is challenged.
+            </p>
+          </div><span class="rule-row__meta">Settings audit</span>
+        </div><div class="rule-row">
+          <span class="mono">03</span><div>
+            <h3>CRM reconciliation</h3><p>
+              GA4 lead counts joined to CRM records stage by stage, so the two systems can disagree
+              for a stated reason instead of an unstated one.
+            </p>
+          </div><span class="rule-row__meta">One join</span>
+        </div><div class="rule-row">
+          <span class="mono">04</span><div>
+            <h3>Assumption governance</h3><p>
+              Every dashboard definition paired with its exclusions, confidence and known failure
+              modes in a written register the whole team can read.
+            </p>
+          </div><span class="rule-row__meta">Board-readable</span>
+        </div>
+      </div>
+      <p class="small" data-reveal style="--reveal-delay:180ms">
+        The supporting research behind this scope is published: start with the
+        <a class="text-link" href="/insights/ga4-vs-crm-lead-reconciliation/"
+          >GA4 vs CRM reconciliation guide</a
+        >, the <a class="text-link" href="/insights/ga4-or-crm-source-of-truth/"
+          >source-of-truth decision</a
+        > and the <a class="text-link" href="/insights/utm-governance-b2b/">UTM governance note</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="boundary-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid editorial-grid--balanced">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Boundary</p><h2 id="boundary-heading">
@@ -188,7 +239,7 @@ const schema = [
   </section>
 
   <section class="section section--ink" aria-labelledby="mf-questions-heading">
-    <span class="chapter-mark" aria-hidden="true">04</span>
+    <span class="chapter-mark" aria-hidden="true">05</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Questions</p><h2 id="mf-questions-heading">

@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import MethodBadge from '../../components/MethodBadge.astro';
+import FAQList from '../../components/FAQList.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const faqs = [
+  {
+    question: 'How long does B2B SaaS SEO take?',
+    answer:
+      'There is no honest universal timeline. Crawl frequency, competition, domain history, implementation speed and existing demand all change the answer. We define the earliest signals worth watching — indexation, impressions on qualified queries, click-through into a working conversion path — and review against those instead of a promised date.',
+  },
+  {
+    question: 'Do you guarantee rankings?',
+    answer:
+      'No. Ranking depends on relevance, authority, competition and search-engine judgment. Any agency promising guaranteed positions is selling something it does not control. What we can define is the work, the evidence and the review cadence — and show exactly what changed and when.',
+  },
+  {
+    question: 'How is this different from your AI-search visibility service?',
+    answer:
+      'They share one foundation. SEO services strengthen the base layer — access, architecture, content, authority — while the AI-search visibility service measures and improves presence inside generated answers across surfaces like ChatGPT, Gemini and AI Overviews. Most SaaS teams start here and add the AI layer when the foundation is verifiable.',
+  },
+  {
+    question: 'Do you serve India-based SaaS teams?',
+    answer:
+      'Yes. We work remotely with SaaS teams in India and other markets with the same method, written scope and reporting. Pricing conversations for India-based teams can be held in INR.',
+  },
+];
+
+const deliverables = [
+  {
+    index: '01',
+    title: 'Technical access and indexation',
+    body: 'Crawl, render, canonical and indexation checks so important pages are reliably discoverable — verified with dated logs, not assumed.',
+    meta: 'Access first',
+  },
+  {
+    index: '02',
+    title: 'Intent-led page architecture',
+    body: 'Every important buyer question gets one clear owner page, with overlap removed before new content is commissioned.',
+    meta: 'One owner per query',
+  },
+  {
+    index: '03',
+    title: 'Editorial and topical depth',
+    body: 'Cluster planning, briefs and review standards that connect pillars, services, guides and evidence through natural internal links.',
+    meta: 'Depth over volume',
+  },
+  {
+    index: '04',
+    title: 'Measurement into pipeline',
+    body: 'Qualified sessions, conversion paths and pipeline contribution read beside rankings — SEO judged as an acquisition channel, not a scoreboard.',
+    meta: 'Pipeline lens',
+  },
+];
+
+const process = [
+  {
+    index: '01',
+    title: 'Frame the query set',
+    body: 'Define buying intent, market, competitors and the pages that should own each query class before touching anything.',
+  },
+  {
+    index: '02',
+    title: 'Observe and audit',
+    body: 'Record the current access, indexation, content and internal-link state with dates, inside a defined sample.',
+  },
+  {
+    index: '03',
+    title: 'Rank the constraints',
+    body: 'Separate observed breaks from assumptions, then sequence the fixes by expected signal and effort.',
+  },
+  {
+    index: '04',
+    title: 'Publish, measure, decide',
+    body: 'Implement to a written scope, measure against the dated baseline, and let the evidence set the next priority.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'B2B SaaS SEO Services',
+    serviceType: 'Search engine optimization services for B2B SaaS',
+    provider: organizationReference,
+    areaServed: 'Remote',
+    description:
+      'SEO services for B2B SaaS teams: technical access, intent-led architecture, topical depth and pipeline measurement — founder-led and evidence-first, with no ranking guarantees.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="B2B SaaS SEO Services | Data Decision Consulting"
+  description="SEO services for B2B SaaS teams: technical SEO, intent-led page architecture, topical depth and pipeline measurement — founder-led, evidence-first, no ranking guarantees."
+  path="/services/seo/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'B2B SaaS SEO' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">SEO Services / B2B SaaS</p>
+      <h1>SEO services for B2B SaaS, built to be measured.</h1>
+      <p class="lede">
+        Ranking is only useful when it produces qualified pipeline. We build SEO systems for B2B
+        SaaS teams across technical access, information architecture, content and measurement — and
+        we publish the method behind every recommendation.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=web-seo-ai-visibility#request-a-brief"
+          data-event="cta_primary_click">Request an SEO diagnostic</a
+        ><MethodBadge />
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Founder-led</span><span>Remote · evidence-first</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Published method</strong><small>Observation rules, not opinions</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>Dated baselines</strong><small>Before any work begins</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>No ranking promises</strong><small>Claims stay inside the evidence</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="seo-problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem this solves</p><h2 id="seo-problem-heading">
+            Rankings without pipeline are a report, not a result.
+          </h2>
+        </div>
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
+          Most SaaS sites do not fail at SEO basics — they fail at the connection between search
+          demand and pipeline. Pages exist that search engines cannot reliably index. Traffic grows
+          while qualified enquiries stay flat. Content is published with no clear topic or ownership
+          structure. We treat all of it as one system.
+        </p>
+      </div>
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:180ms">
+        <div>
+          <span class="evidence-label">What we fix</span><h3>Working on the wrong layer</h3><ul>
+            <li>Important pages blocked or unreliable in the index.</li>
+            <li>Multiple pages competing for the same buyer question.</li>
+            <li>Content without topic structure or internal-link logic.</li>
+            <li>Organic reporting that stops at clicks.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">What it becomes</span><h3>A measurable channel</h3><ul>
+            <li>One owner page per important query class.</li>
+            <li>Access verified with dated logs.</li>
+            <li>Clusters connected with descriptive anchors.</li>
+            <li>Qualified sessions, conversion and pipeline beside rankings.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="seo-deliverables-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What you receive</p><h2 id="seo-deliverables-heading">
+          The four layers of the engagement.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          deliverables.map((item) => (
+            <div class="rule-row">
+              <span class="mono">{item.index}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+              <span class="rule-row__meta">{item.meta}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="seo-process-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The process</p><h2 id="seo-process-heading">
+          Four steps, in a fixed order.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          process.map((step) => (
+            <div class="rule-row">
+              <span class="mono">{step.index}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+              <span class="rule-row__meta">Step {step.index}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="seo-fit-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="seo-fit-heading">
+          Who this is for — and who it is not for.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>B2B SaaS teams</h3><ul>
+            <li>Seed to Series B teams whose website should produce demand.</li>
+            <li>A site that ranks for something but not for the queries buyers actually use.</li>
+            <li>Teams who want to know what moved, and why, on a date.</li>
+            <li>India-based SaaS teams — served remotely, same method.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Not a fit</span><h3>Look elsewhere if</h3><ul>
+            <li>You want guaranteed #1 positions — no honest provider can sell that.</li>
+            <li>You want volume publishing without ownership structure.</li>
+            <li>You are unwilling to fix measurement before funding growth work.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="seo-trust-heading">
+    <span class="chapter-mark" aria-hidden="true">05</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Why trust a small practice</p><h2 id="seo-trust-heading">
+          A new consultancy should show its receipts.
+        </h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          Data Decision Consulting is a founder-led practice, and it does not yet have a wall of
+          client logos. What it can show you today: the
+          <a class="text-link" href="/methodology/">published methodology</a> behind every observation,
+          a <a class="text-link" href="/work/">dated work ledger</a> with its limitations stated, the
+          <a class="text-link" href="/proof/">evidence hierarchy</a> the firm holds itself to, and a research
+          library that shows the thinking before the pitch — including the
+          <a class="text-link" href="/insights/b2b-saas-seo-query-to-page-map/"
+            >query-to-page mapping method</a
+          > this service runs on and the
+          <a class="text-link" href="/insights/how-to-rank-and-get-recommended-by-ai/"
+            >complete implementation playbook</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="seo-ai-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">SEO in the AI-search era</p><h2 id="seo-ai-heading">
+          The same foundation, a wider set of surfaces.
+        </h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          Accessible pages, clear entities, useful answers and corroborated authority serve
+          conventional search and most AI discovery paths. When you also need to know where you
+          stand in ChatGPT, Gemini and Google AI Overviews — measured, not promised — the
+          <a class="text-link" href="/services/ai-search-visibility/"
+            >AI search visibility services</a
+          >
+          run on top of this same foundation. The supporting thinking is public: read
+          <a class="text-link" href="/insights/seo-aeo-geo-overlap/"
+            >where the disciplines overlap</a
+          >
+          or the
+          <a class="text-link" href="/insights/how-to-rank-and-get-recommended-by-ai/"
+            >combined playbook</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="seo-india-heading">
+    <span class="chapter-mark" aria-hidden="true">07</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">India-based SaaS teams</p><h2 id="seo-india-heading">
+          Served remotely, priced transparently.
+        </h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          We work with India-based SaaS teams under the same written-scope model, with INR pricing
+          conversations available. For demand-generation economics in the Indian market, read the
+          <a class="text-link" href="/insights/b2b-saas-demand-generation-budget-india/"
+            >India demand-generation budget guide</a
+          >; for the finance layer under any channel, the
+          <a class="text-link" href="/insights/break-even-cac-worksheet/"
+            >break-even CAC worksheet</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="seo-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">08</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="seo-faq-heading">
+          What teams ask before starting.
+        </h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Find the organic growth problem before publishing more pages."
+    body="Tell us what the site should be discovered for and where the current journey appears to break. We will review fit before proposing a scope."
+    label="Request an SEO diagnostic"
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/?service=web-seo-ai-visibility"
+      >Request an SEO diagnostic</a
+    >
+  </div>
+</BaseLayout>

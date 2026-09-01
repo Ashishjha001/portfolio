@@ -21,12 +21,12 @@ export const entityDefinition = {
   slogan: 'Growth you can prove.',
   logo: 'https://datadecision.consulting/logo.png',
   description:
-    'Measurement-first AI-search visibility for B2B SaaS, framed around the decision, the evidence and the limitation.',
+    'Founder-led growth and SEO consultancy for B2B SaaS: SEO and AI-search visibility, GA4 measurement and attribution, and scoped implementation — framed around the decision, the evidence and the limitation.',
   oneLineFocus:
-    'Focused on AI-search visibility, measurement foundations and scoped implementation.',
+    'SEO and AI-search visibility, measurement foundations and scoped implementation for B2B SaaS teams.',
   positioning:
-    'A founder-led consultancy for B2B SaaS teams that need a defensible view of AI-search visibility and the measurement path into pipeline.',
-  category: 'Decision intelligence consultancy',
+    'A founder-led growth and SEO consultancy for B2B SaaS teams that need organic search, AI-search visibility and a defensible measurement path into pipeline.',
+  category: 'B2B SaaS growth and SEO consultancy',
   industries: [
     'B2B SaaS',
     'B2B audience measurement',

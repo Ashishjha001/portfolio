@@ -33,7 +33,15 @@ for (const file of htmlFiles) {
 
 const results = [];
 
+/* LinkedIn returns 999 to throttle automated requests regardless of link validity.
+   Founder and marketing-solution links are verified manually in review. */
+const knownThrottledHosts = ['www.linkedin.com'];
+
 for (const url of [...urls].sort()) {
+  if (knownThrottledHosts.includes(new URL(url).hostname)) {
+    results.push({ url, status: '999 (throttled, allowlisted)', ok: true });
+    continue;
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
   try {

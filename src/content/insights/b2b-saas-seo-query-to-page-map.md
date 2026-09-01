@@ -198,4 +198,4 @@ Export the last 6–12 months of page-query data, inventory indexable URLs and m
 
 The [SEO pillar](/seo/) explains how page ownership fits technical access, intent and internal evidence. The [SEO and AI implementation playbook](/insights/how-to-rank-and-get-recommended-by-ai/) covers the wider build sequence. Use the [technical access checklist](/insights/technical-access-verification-checklist/) when the apparent overlap may actually be an indexing problem.
 
-For a scoped architecture review, [request an SEO brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current sitemap, priority products and Search Console window.
+For a scoped architecture review, [request an SEO brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current sitemap, priority products and Search Console window — or read the [SEO services for B2B SaaS](/services/seo/) page first.

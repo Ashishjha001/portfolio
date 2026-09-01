@@ -24,6 +24,7 @@ const descriptions = new Map();
 
 const required = [
   'index.html',
+  'services/seo/index.html',
   'services/ai-search-visibility/index.html',
   'services/measurement-foundation/index.html',
   'methodology/index.html',

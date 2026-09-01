@@ -5,6 +5,7 @@ export const prerender = true;
 const staticRoutes = [
   '/',
   '/services/',
+  '/services/seo/',
   '/services/ai-search-visibility/',
   '/services/measurement-foundation/',
   '/growth/',
@@ -48,7 +49,7 @@ export async function GET() {
         lastmod: entry.data.observationDate.toISOString().slice(0, 10),
       })),
   ];
-  const fallbackLastmod = '2026-08-28';
+  const fallbackLastmod = '2026-09-01';
   const urls = [
     ...staticRoutes.map((path) => ({ path, lastmod: fallbackLastmod })),
     ...contentRoutes,

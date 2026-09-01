@@ -9,6 +9,11 @@ import { organizationReference } from '../../data/entityDefinition';
 
 const faqs = [
   {
+    question: 'Is this an AI SEO service, AEO, or GEO?',
+    answer:
+      'One service, three honest labels. The work covers the search fundamentals AI engines reuse (often called AI SEO), answer-engine optimisation (AEO) for being cited in generated answers, and generative-engine optimisation (GEO) for surfaces like AI Overviews and chat assistants. What stays constant is the dated, sampled measurement behind every recommendation.',
+  },
+  {
     question: 'How stable are the observations?',
     answer:
       'Each result belongs to a defined observation window. Repeated runs can show whether an observation appears again, while engine, session and prompt variance still affect the answer.',
@@ -22,6 +27,11 @@ const faqs = [
     question: 'Does crawler access guarantee a citation?',
     answer:
       'Crawler access supports some retrieval paths, but citations also depend on the product, query, sources and answer-generation process. The diagnostic reviews access as one part of the picture.',
+  },
+  {
+    question: 'What does an AI visibility audit include — and what can it not prove?',
+    answer:
+      'The audit includes a documented query frame, dated mention and citation observations across the approved surfaces, a source map, a technical access review and a measurement-gap review. It cannot prove why an engine omitted you, cannot guarantee future placement, and cannot observe sessions that never click. Those limits are written into the deliverable.',
   },
   {
     question: 'What arrives after 15 business days?',
@@ -57,12 +67,13 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Growth Visibility Diagnostic',
-    serviceType: 'AI-search visibility measurement',
+    name: 'AI Search Visibility Services',
+    serviceType:
+      'AI SEO, answer engine optimisation (AEO) and generative engine optimisation (GEO) services',
     provider: organizationReference,
     areaServed: 'Remote',
     description:
-      'A sampled AI-search visibility baseline and prioritized action plan for B2B SaaS.',
+      'AI-search visibility services for B2B SaaS: dated baselines across search and AI surfaces, source and citation review, and referral measurement, without guaranteed placement claims.',
   },
   {
     '@context': 'https://schema.org',
@@ -77,25 +88,26 @@ const schema = [
 ---
 
 <BaseLayout
-  title="AI-search visibility for B2B SaaS | Data Decision Consulting"
-  description="Measure how your SaaS appears across an agreed set of search and AI surfaces, then choose the highest-value improvements."
+  title="AI SEO & Search Visibility Services | Data Decision Consulting"
+  description="AI SEO and AI-search visibility services for B2B SaaS: dated baselines across ChatGPT, Gemini and Google AI Overviews, AEO and GEO scope, citation and source review, and referral measurement. No placement guarantees."
   path="/services/ai-search-visibility/"
   schema={schema}
 >
   <Breadcrumbs
     items={[
       { label: 'Home', href: '/' },
-      { label: 'AI Search', href: '/ai-search/' },
-      { label: 'AI-search visibility' },
+      { label: 'Services', href: '/services/' },
+      { label: 'AI Search Visibility' },
     ]}
   />
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy" data-reveal>
-      <p class="eyebrow">AI-search visibility</p>
-      <h1>Where does your SaaS appear, and what should you improve next?</h1>
+      <p class="eyebrow">AI SEO · AEO · GEO / Services</p>
+      <h1>AI search visibility services, measured honestly.</h1>
       <p class="lede">
-        Replace anecdotal spot-checks with a documented query frame, dated observations, a source
-        map and a prioritized action plan.
+        Get recommended by ChatGPT, Google AI Overviews, Gemini, Claude and Grok for the queries
+        that matter — with a documented query frame, dated observations, a source map and a
+        prioritized action plan instead of anecdotal spot-checks.
       </p>
       <div class="button-row">
         <a class="button button--primary" href="/contact/" data-event="cta_primary_click"
@@ -125,7 +137,7 @@ const schema = [
     </aside>
   </header>
 
-  <section class="section" aria-labelledby="problem-heading">
+  <section class="section section--ink" aria-labelledby="problem-heading">
     <span class="chapter-mark" aria-hidden="true">01</span>
     <div class="shell">
       <div class="editorial-grid">
@@ -165,7 +177,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--ink" aria-labelledby="deliverables-heading">
+  <section class="section" aria-labelledby="deliverables-heading">
     <span class="chapter-mark" aria-hidden="true">02</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
@@ -176,34 +188,42 @@ const schema = [
       <div class="rule-list" data-reveal style="--reveal-delay:110ms">
         <div class="rule-row">
           <span class="mono">01</span><div>
+            <h3>Shared SEO foundation</h3><p>
+              Technical access, entity clarity, content usefulness and corroborated authority — the
+              layer conventional search and AI engines both reuse.
+            </p>
+          </div><span class="rule-row__meta">Foundation</span>
+        </div>
+        <div class="rule-row">
+          <span class="mono">02</span><div>
             <h3>Visibility baseline</h3><p>
               Dated mention, citation and recommendation observations inside the sampled query set.
             </p>
           </div><span class="rule-row__meta">Window attached</span>
         </div>
         <div class="rule-row">
-          <span class="mono">02</span><div>
+          <span class="mono">03</span><div>
             <h3>Citation and source map</h3><p>
               The public sources visible in the answers, grouped by topic and recurring domain.
             </p>
           </div><span class="rule-row__meta">Source context</span>
         </div>
         <div class="rule-row">
-          <span class="mono">03</span><div>
+          <span class="mono">04</span><div>
             <h3>Competitor comparison</h3><p>
               A consistent comparison against the approved set within the same query frame.
             </p>
           </div><span class="rule-row__meta">Same sample</span>
         </div>
         <div class="rule-row">
-          <span class="mono">04</span><div>
+          <span class="mono">05</span><div>
             <h3>Technical access review</h3><p>
               Robots policy, fetch accessibility, content clarity and implementation risks.
             </p>
           </div><span class="rule-row__meta">Access layer only</span>
         </div>
         <div class="rule-row">
-          <span class="mono">05</span><div>
+          <span class="mono">06</span><div>
             <h3>Measurement gaps and 90-day plan</h3><p>
               Referral-to-CRM gaps plus ranked fixes with owners, effort, expected signal,
               confidence and stopping rules.
@@ -231,7 +251,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--ink" aria-labelledby="fit-heading">
+  <section class="section" aria-labelledby="fit-heading">
     <span class="chapter-mark" aria-hidden="true">04</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
@@ -245,6 +265,7 @@ const schema = [
             <li>A founder or growth leader needs a defensible baseline.</li><li>
               Discovery, conversion and CRM data disagree.
             </li><li>The team can provide inputs and act on a 90-day plan.</li>
+            <li>India-based SaaS teams are served remotely with the same method and reporting.</li>
           </ul>
         </div><div class="comparison__rule"></div><div>
           <span class="evidence-label">Outside launch scope</span><h3>
@@ -259,8 +280,80 @@ const schema = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="questions-heading">
+  <section class="section" aria-labelledby="definitions-heading">
     <span class="chapter-mark" aria-hidden="true">05</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Terms, defined once</p><h2 id="definitions-heading">
+          What AEO and GEO mean in this service.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        <div class="rule-row">
+          <span class="mono">AEO</span><div>
+            <h3>Answer Engine Optimization</h3><p>
+              Structuring pages so generated answers can extract, quote and cite them: direct
+              answers, clear definitions, factual density and machine-parseable structure.
+            </p>
+          </div><span class="rule-row__meta">Answerable pages</span>
+        </div><div class="rule-row">
+          <span class="mono">GEO</span><div>
+            <h3>Generative Engine Optimization</h3><p>
+              Earning presence inside generative surfaces — AI Overviews, chat assistants — where
+              the engine assembles an answer from retrieved sources instead of ranking ten blue
+              links.
+            </p>
+          </div><span class="rule-row__meta">Generated surfaces</span>
+        </div><div class="rule-row">
+          <span class="mono">AI SEO</span><div>
+            <h3>The shared foundation</h3><p>
+              AI engines reuse the fundamentals of conventional SEO — access, entities, useful
+              content, corroborated authority. This service strengthens that shared foundation
+              first, then measures the answer surfaces separately.
+            </p>
+          </div><span class="rule-row__meta">One system</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="audit-honesty-heading">
+    <span class="chapter-mark" aria-hidden="true">06</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">The audit, stated plainly</p><h2 id="audit-honesty-heading">
+          What an AI visibility audit includes — and what it cannot prove.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Included</span><h3>What the audit measures</h3><ul>
+            <li>A documented query frame: buyer questions, market, language, surfaces, dates.</li>
+            <li>Mentions, citations and visible sources inside the sampled runs.</li>
+            <li>Technical access conditions for retrieval paths.</li>
+            <li>Observable AI referrals and their conversion and CRM records.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Limitations</span><h3>What it cannot prove</h3><ul>
+            <li>Why an engine omitted a mention — the reasoning is not observable.</li>
+            <li>Future placement. Answers change by engine, session and time.</li>
+            <li>Sessions that never click, and referrer data that is lost on the way.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" data-reveal style="--reveal-delay:180ms">
+        Free-audit tools can generate a score in minutes; a defensible baseline takes a dated sample
+        and an explicit evidence boundary. Read the
+        <a class="text-link" href="/methodology/">complete method</a> or run the
+        <a class="text-link" href="/insights/build-ai-visibility-baseline/"
+          >baseline procedure yourself</a
+        >.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="questions-heading">
+    <span class="chapter-mark" aria-hidden="true">07</span>
     <div class="shell editorial-grid">
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Questions</p><h2 id="questions-heading">

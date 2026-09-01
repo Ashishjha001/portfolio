@@ -9,6 +9,7 @@ const services = [
     index: '01',
     name: 'Growth Strategy & Measurement',
     slug: 'growth-strategy-measurement',
+    detail: '/services/measurement-foundation/',
     tagline: 'Know what drives growth. Build around what works.',
     doing: [
       'Growth strategy, market research, funnel diagnosis and experiment roadmaps',
@@ -24,6 +25,7 @@ const services = [
     index: '02',
     name: 'Web, SEO & AI Visibility',
     slug: 'web-seo-ai-visibility',
+    detail: '/services/seo/',
     tagline: 'Get discovered on Google. Get understood by AI. Get chosen by customers.',
     doing: [
       'Complete website strategy, UX/UI design and development',
@@ -47,6 +49,7 @@ const services = [
     index: '03',
     name: 'Paid Acquisition & Demand Generation',
     slug: 'paid-acquisition-performance',
+    detail: undefined,
     tagline: 'Turn the right audience into qualified demand.',
     doing: [
       'Google Ads, LinkedIn Ads and Meta Ads',
@@ -68,6 +71,7 @@ const services = [
     index: '04',
     name: 'Conversion & Lifecycle Growth',
     slug: 'conversion-lifecycle-growth',
+    detail: undefined,
     tagline: 'Turn attention into pipeline. Turn customers into lasting revenue.',
     doing: [
       'Conversion Rate Optimization (CRO)',
@@ -90,6 +94,7 @@ const services = [
     index: '05',
     name: 'AI Agent Development',
     slug: 'ai-agent-development',
+    detail: undefined,
     tagline: 'Turn repetitive work into intelligent, controlled workflows.',
     doing: [
       'AI opportunity and workflow mapping',
@@ -111,6 +116,7 @@ const services = [
     index: '06',
     name: 'AI & GPT Integrations',
     slug: 'ai-gpt-integrations',
+    detail: undefined,
     tagline: 'Bring AI into the tools your business already runs on.',
     doing: [
       'AI/GPT integration with existing business systems',
@@ -172,8 +178,8 @@ const schema = {
 ---
 
 <BaseLayout
-  title="Services | Data Decision Consulting"
-  description="Growth systems across strategy and measurement, search and AI visibility, paid acquisition, conversion, and practical AI agents and integrations for B2B SaaS."
+  title="SEO, AI Search & Growth Services for B2B SaaS | Data Decision Consulting"
+  description="Growth services for B2B SaaS across strategy and measurement, SEO and AI-search visibility, paid acquisition, conversion, and practical AI agents and integrations — with one primary owner page per service."
   path="/services/"
   schema={schema}
 >
@@ -234,6 +240,11 @@ const schema = {
               </p>
             </div>
             <div class="service-row__meta">
+              {service.detail && (
+                <a class="text-link service-row__detail" href={service.detail}>
+                  Explore service →
+                </a>
+              )}
               <a
                 class="text-link service-row__cta"
                 href={`/contact/?service=${service.slug}#request-a-brief`}
@@ -441,6 +452,10 @@ const schema = {
     gap: 0.9rem;
     align-content: start;
     justify-items: start;
+  }
+
+  .service-row__detail {
+    font-size: 0.98rem;
   }
 
   .service-row__cta {
