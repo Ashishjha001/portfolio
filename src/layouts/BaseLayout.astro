@@ -108,8 +108,11 @@ const schemaItems = [
     <script is:inline>
       window.dataDecisionEvents = window.dataDecisionEvents || [];
       window.ddTrack = function (name, detail) {
-        const event = { name, detail: detail || {}, timestamp: new Date().toISOString() };
+        const safeDetail = detail || {};
+        const event = { name, detail: safeDetail, timestamp: new Date().toISOString() };
         window.dataDecisionEvents.push(event);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: name, ...safeDetail });
         window.dispatchEvent(new CustomEvent('datadecision:event', { detail: event }));
       };
       document.addEventListener('click', function (event) {
@@ -118,6 +121,7 @@ const schemaItems = [
         window.ddTrack(target.dataset.event, {
           label: target.textContent.trim(),
           path: window.location.pathname,
+          destination: target instanceof HTMLAnchorElement ? target.pathname : undefined,
         });
       });
       document.addEventListener(

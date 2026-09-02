@@ -156,7 +156,11 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
     form.addEventListener('input', () => {
       if (!started) {
         started = true;
-        window.ddTrack?.('form_start', { path: window.location.pathname });
+        window.ddTrack?.('lead_form_started', {
+          path: window.location.pathname,
+          form_id: form.id,
+          service: serviceSelect?.value || 'general-enquiry',
+        });
       }
     });
 
@@ -166,6 +170,11 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
 
       if (!form.checkValidity()) {
         form.reportValidity();
+        window.ddTrack?.('lead_form_validation_error', {
+          path: window.location.pathname,
+          form_id: form.id,
+          error_type: 'required_or_invalid_field',
+        });
         status.textContent = 'Please complete the required fields and correct any invalid values.';
         status.dataset.tone = 'error';
         status.dataset.visible = 'true';
@@ -185,6 +194,11 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
 
       const endpoint = form.dataset.endpoint;
       if (!endpoint) {
+        window.ddTrack?.('lead_form_submit_error', {
+          path: window.location.pathname,
+          form_id: form.id,
+          error_type: 'missing_endpoint',
+        });
         status.textContent =
           'Form delivery is temporarily unavailable. Please email contact@datadecision.consulting instead.';
         status.dataset.tone = 'error';
@@ -215,8 +229,17 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
           'Thanks, your brief has been sent. Ashish will review it and reply by email.';
         status.dataset.tone = 'success';
         status.dataset.visible = 'true';
-        window.ddTrack?.('form_submit_success', { path: window.location.pathname });
+        window.ddTrack?.('lead_form_submitted', {
+          path: window.location.pathname,
+          form_id: form.id,
+          service: String(data.get('selected_service') || 'general-enquiry'),
+        });
       } catch {
+        window.ddTrack?.('lead_form_submit_error', {
+          path: window.location.pathname,
+          form_id: form.id,
+          error_type: 'delivery_failure',
+        });
         status.replaceChildren(
           document.createTextNode('We couldn’t send your brief. Please try again or email '),
         );
