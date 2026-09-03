@@ -35,9 +35,13 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
       <label for="service-selection">Service <span class="small">(change if needed)</span></label>
       <select id="service-selection" name="service_selection" data-service-select>
         <option value="general-enquiry">General enquiry</option>
-        <option value="growth-strategy-measurement">Growth Strategy &amp; Measurement</option>
-        <option value="web-seo-ai-visibility">SEO &amp; AI-Search Visibility (B2B SaaS)</option>
-        <option value="paid-acquisition-performance">Paid Acquisition &amp; Performance</option>
+        <option value="growth-strategy-measurement"
+          >Growth Strategy &amp; Measurement / Market Research</option
+        >
+        <option value="web-seo-ai-visibility"
+          >SEO &amp; AI-Search Visibility / Website Development</option
+        >
+        <option value="paid-acquisition-performance">Google &amp; Meta Ads Management</option>
         <option value="conversion-lifecycle-growth">Conversion &amp; Lifecycle Growth</option>
         <option value="ai-agent-development">AI Agent Development</option>
         <option value="ai-gpt-integrations">AI &amp; GPT Integrations</option>
@@ -111,9 +115,9 @@ const accessKey = '220c5ddb-418c-40bd-82f1-1766f5d8b393';
 
     /* Selected service: read ?service= from the URL, keep editable dropdown in sync */
     const serviceLabels: Record<string, string> = {
-      'growth-strategy-measurement': 'Growth Strategy & Measurement',
-      'web-seo-ai-visibility': 'SEO & AI-Search Visibility (B2B SaaS)',
-      'paid-acquisition-performance': 'Paid Acquisition & Performance',
+      'growth-strategy-measurement': 'Growth Strategy & Measurement / Market Research',
+      'web-seo-ai-visibility': 'SEO & AI-Search Visibility / Website Development',
+      'paid-acquisition-performance': 'Google & Meta Ads Management',
       'conversion-lifecycle-growth': 'Conversion & Lifecycle Growth',
       'ai-agent-development': 'AI Agent Development',
       'ai-gpt-integrations': 'AI & GPT Integrations',

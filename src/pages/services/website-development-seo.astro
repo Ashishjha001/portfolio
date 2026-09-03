@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import FAQList from '../../components/FAQList.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const faqs = [
+  {
+    question: 'Do you build new websites or improve existing ones?',
+    answer:
+      'Both. Many clients need a rebuild — an aging site cannot carry a growth strategy. Others need their existing site restructured: architecture, SEO, conversion paths and measurement. We diagnose first, then recommend the smaller of the two fixes that solves the problem.',
+  },
+  {
+    question: 'Why build SEO and measurement into the website instead of adding them later?',
+    answer:
+      'Retrofitting is where budgets die. Access, page architecture, schema, performance and conversion paths are structural decisions — cheap on day one, expensive to rewrite later. This site itself is the demonstration: SEO and AI-search visibility were architecture, not an afterthought.',
+  },
+  {
+    question: 'What platforms do you build on?',
+    answer:
+      'Modern static and composable stacks where they serve the goal — like this site — and conventional platforms where your team needs them. The choice follows your content operations and measurement needs, never our convenience.',
+  },
+  {
+    question: 'How long does a website project take?',
+    answer:
+      'A focused marketing site can run in weeks when the scope is fixed before kickoff: pages, sections, content and measurement defined in writing. You get a dated delivery window after the brief, not a generic answer.',
+  },
+];
+
+const scope = [
+  {
+    index: '01',
+    title: 'Strategy and architecture first',
+    body: 'Page architecture mapped to buyer questions and search intent — one owner page per query class, no cannibalisation, no orphaned sections.',
+    meta: 'Intent-led',
+  },
+  {
+    index: '02',
+    title: 'Design that serves the decision',
+    body: 'Fast, accessible, conversion-focused design systems built for clarity — every section earns its place by moving a buyer forward.',
+    meta: 'Clarity over decoration',
+  },
+  {
+    index: '03',
+    title: 'SEO and AI-search visibility built in',
+    body: 'Technical SEO, schema, internal-link architecture and AEO/GEO structured into the build so search engines and AI-answer systems can retrieve and understand the site.',
+    meta: 'Born optimized',
+  },
+  {
+    index: '04',
+    title: 'Conversion paths that pre-qualify',
+    body: 'Landing pages, forms and CTAs engineered so the enquiries you receive are worth answering — one primary action per page, friction where it filters.',
+    meta: 'Qualified leads',
+  },
+  {
+    index: '05',
+    title: 'Measurement installed, not bolted on',
+    body: 'GA4, events, CRM joins and dashboards configured as part of the build — so every claim about the site\u2019s performance is checkable from launch week.',
+    meta: 'Provable',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Website Development and SEO Services',
+    serviceType:
+      'Website design and development with built-in SEO, AI-search visibility and conversion measurement',
+    provider: organizationReference,
+    areaServed: 'Remote',
+    description:
+      'Website development with SEO built in: intent-led architecture, fast accessible design, schema and AEO/GEO from day one, conversion paths that pre-qualify, and measurement installed at launch.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Website Development & SEO Services | Data Decision Consulting"
+  description="Website development with SEO built in from day one: intent-led architecture, fast accessible design, schema and AI-search visibility, conversion paths that pre-qualify, and measurement installed at launch."
+  path="/services/website-development-seo/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Website Development & SEO' },
+    ]}
+  />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Website Development / Services</p>
+      <h1>Websites built to be found, understood and chosen.</h1>
+      <p class="lede">
+        When search, conversion and measurement are added after the visual build, teams often pay
+        for avoidable rework. We plan the system together: architecture mapped to buyer questions,
+        SEO and AI-search visibility structured into the build, conversion paths that pre-qualify,
+        and measurement installed for launch. The site you are reading is the working demonstration.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=web-seo-ai-visibility#request-a-brief"
+          data-event="cta_primary_click">Request a website brief</a
+        >
+        <a class="text-link" href="/insights/how-to-rank-and-get-recommended-by-ai/"
+          >Read the implementation playbook</a
+        >
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Build once</span><span>Optimize by design</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>SEO in the architecture</strong><small>Not bolted on later</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>Structured for retrieval</strong><small>Search and AI-answer surfaces</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>Measured from launch</strong><small>GA4 to CRM on day one</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="wd-problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem this solves</p><h2 id="wd-problem-heading">
+            A website is either a growth engine or an online brochure.
+          </h2>
+        </div>
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
+          A brochure may look polished while leaving discovery, conversion and measurement as
+          afterthoughts. A growth site is engineered: pages answer buyer questions, search and
+          AI-answer systems can retrieve the content, important journeys have a next step, and the
+          numbers behind the site are checkable. That is the standard we build toward.
+        </p>
+      </div>
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:180ms">
+        <div>
+          <span class="evidence-label">What we replace</span><h3>The brochure pattern</h3><ul>
+            <li>Pretty pages that own no search demand.</li>
+            <li>SEO commissioned after the build freezes.</li>
+            <li>Forms that collect enquiries nobody wanted.</li>
+            <li>Analytics nobody configured.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">What you get</span><h3>The growth engine</h3><ul>
+            <li>One owner page per buyer question.</li>
+            <li>Access, schema and AEO in the build.</li>
+            <li>Conversion paths that pre-qualify.</li>
+            <li>Measurement live from launch week.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="wd-scope-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What the build includes</p><h2 id="wd-scope-heading">
+          The complete website engagement.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          scope.map((item) => (
+            <div class="rule-row">
+              <span class="mono">{item.index}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+              <span class="rule-row__meta">{item.meta}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="wd-fit-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="wd-fit-heading">
+          Who this is for — and who it is not for.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>Teams ready for the engine</h3><ul>
+            <li>Founders whose site should produce demand, not just exist.</li>
+            <li>Companies funding a rebuild and wanting SEO in it.</li>
+            <li>Teams tired of pretty sites that convert nobody.</li>
+            <li>India-based businesses — INR pricing available.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Not a fit</span><h3>Look elsewhere if</h3><ul>
+            <li>You want a design contest, not a growth system.</li>
+            <li>You plan to "add SEO later".</li>
+            <li>You need a complex web application, not a marketing engine.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="wd-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="wd-faq-heading">What teams ask before starting.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Brief us on the website your growth plan needs."
+    body="Tell us your market, your buyers and what the site must produce. We will confirm the architecture before the build."
+    label="Request a website brief"
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/?service=web-seo-ai-visibility"
+      >Request a website brief</a
+    >
+  </div>
+</BaseLayout>

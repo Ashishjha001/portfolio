@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import FAQList from '../../components/FAQList.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const faqs = [
+  {
+    question: 'What does a market research engagement actually deliver?',
+    answer:
+      'A decision file: your buyer\u2019s actual search and AI-asked questions, the competitors appearing for those questions, the gaps in their offers, your position in generated answers, and a prioritized list of moves ranked by expected signal and effort — with every source dated and every limitation stated.',
+  },
+  {
+    question: 'How is this different from a competitor look-alike audit?',
+    answer:
+      'Most audits describe what competitors do. We start from the buyer\u2019s question set — including what they ask ChatGPT and Gemini — and work backward to what your business should publish, build and claim. The output is your strategy, not a copy of theirs.',
+  },
+  {
+    question: 'Can you research any market or industry?',
+    answer:
+      'Public-source research works in any market where buyers search and publish. Depth varies: where we have direct context (B2B SaaS, Gujarat industry, digital marketing itself) the analysis goes deeper, and we say so when a market needs primary research we cannot conduct honestly from public data.',
+  },
+  {
+    question: 'Do you use AI tools for the research?',
+    answer:
+      'AI tools assist collection — and we treat their output as evidence with dates and sample boundaries, not oracles. Every number in the deliverable is either from a named public source, a dated observation, or labelled as an assumption. No invented benchmarks, ever.',
+  },
+];
+
+const scope = [
+  {
+    index: '01',
+    title: 'Buyer-question research',
+    body: 'The queries your buyers use and the questions they ask AI assistants — collected from autocomplete, search results, communities and answer engines, dated and grouped by intent.',
+    meta: 'Demand truth',
+  },
+  {
+    index: '02',
+    title: 'Competitive landscape',
+    body: 'Who appears for those questions on Google and in AI answers, what they claim, what they cannot prove, and where the defensible gaps are.',
+    meta: 'SERP + answers',
+  },
+  {
+    index: '03',
+    title: 'Positioning and offer analysis',
+    body: 'How your offer reads against the field: pricing signals, proof patterns, differentiation and the honest claims only your business can make.',
+    meta: 'Your edge',
+  },
+  {
+    index: '04',
+    title: 'Channel and content map',
+    body: 'Which channels and content types the market actually rewards — with a keyword-to-page architecture and internal-link plan ready to execute.',
+    meta: 'Executable map',
+  },
+  {
+    index: '05',
+    title: 'Prioritized action plan',
+    body: 'Ranked moves with owner, effort, expected signal, confidence label and stopping rule — the same decision-file format every Data Decision engagement ends with.',
+    meta: 'Decision file',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Market Research and Competitor Analysis Services',
+    serviceType:
+      'Market research, competitor analysis and search-demand intelligence for B2B companies',
+    provider: organizationReference,
+    areaServed: 'Remote',
+    description:
+      'In-depth market research for companies: buyer-question and search-demand analysis, competitive landscape across Google and AI answers, positioning analysis and a prioritized action plan with dated sources.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Market Research & Competitor Analysis Services | Data Decision Consulting"
+  description="In-depth market research for your company: buyer questions, search and AI-answer demand, competitor gaps, positioning analysis and a prioritized action plan — every source dated, no invented benchmarks."
+  path="/services/market-research/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Market Research' },
+    ]}
+  />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Market Intelligence / Services</p>
+      <h1>Market research that ends in decisions, not decks.</h1>
+      <p class="lede">
+        We research your market the way we research our own: buyer questions collected from search
+        and AI answers, competitors mapped where they actually appear, gaps identified, and a
+        prioritized plan your team can execute — with dates on every source and honesty about every
+        limitation.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=growth-strategy-measurement#request-a-brief"
+          data-event="cta_primary_click">Request a research brief</a
+        >
+        <a class="text-link" href="/research/">See our published research methods</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Dated sources</span><span>Decision-ready</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Buyer questions first</strong><small>Search + AI-answer demand</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>Competitors where they appear</strong><small>Google and answer engines</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>Ranked actions</strong><small>Signal, effort, confidence, stopping rule</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="mr-problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem this solves</p><h2 id="mr-problem-heading">
+            Most market research describes the market. Ours changes your next move.
+          </h2>
+        </div>
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
+          Generic research reports recycle the same industry statistics and end in a strategy nobody
+          executes. We start where your buyers actually are — their search queries, their
+          AI-assistant questions, the communities they trust — and end with ranked actions your team
+          can start the same week.
+        </p>
+      </div>
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:180ms">
+        <div>
+          <span class="evidence-label">What we replace</span><h3>Common research failures</h3><ul>
+            <li>Benchmark charts with unnamed samples.</li>
+            <li>Competitor lists from a single tool\u2019s database.</li>
+            <li>Findings that ignore how buyers now ask AI.</li>
+            <li>Decks with no owner, sequence or stopping rule.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">What you get</span><h3>A defensible decision file</h3><ul>
+            <li>Every source named and dated.</li>
+            <li>Buyer demand from search AND AI answers.</li>
+            <li>Gaps ranked by expected signal.</li>
+            <li>A research method you can audit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="mr-scope-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What the research covers</p><h2 id="mr-scope-heading">
+          The complete market-research engagement.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          scope.map((item) => (
+            <div class="rule-row">
+              <span class="mono">{item.index}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+              <span class="rule-row__meta">{item.meta}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="mr-fit-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="mr-fit-heading">
+          Who this is for — and who it is not for.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>Teams at a decision point</h3><ul>
+            <li>Founders entering a new market or segment.</li>
+            <li>Teams whose category is shifting to AI discovery.</li>
+            <li>Companies funding a website or product rebuild.</li>
+            <li>Marketers who must defend a plan to a board.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Not a fit</span><h3>Look elsewhere if</h3><ul>
+            <li>You want a report to justify a decision already made.</li>
+            <li>You need primary research requiring field interviews.</li>
+            <li>You want fabricated market-size numbers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="mr-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="mr-faq-heading">What teams ask before starting.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Brief us on the decision the research must support."
+    body="Tell us the market, the decision and the deadline. We will confirm what public evidence can and cannot answer before scoping."
+    label="Request a research brief"
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/?service=growth-strategy-measurement"
+      >Request a research brief</a
+    >
+  </div>
+</BaseLayout>

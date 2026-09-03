@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import FAQList from '../../components/FAQList.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const faqs = [
+  {
+    question: 'Do you manage Meta Ads directly, or only consult?',
+    answer:
+      'Both. We can run your Facebook and Instagram campaigns end to end — creative, audiences, retargeting and measurement — or support your in-house team on strategy, creative testing and attribution while they operate the accounts.',
+  },
+  {
+    question: 'Why do our Meta Ads get clicks but no sales?',
+    answer:
+      'Common causes include a mismatch between the ad promise, the landing page and the product experience, or measurement that cannot see what happened after the click. We diagnose the chain — creative to landing page to conversion event to CRM — and fix the link that is actually broken.',
+  },
+  {
+    question: 'How do you handle Meta\u2019s attribution and signal loss?',
+    answer:
+      'Consent and tracking-preference effects are measured, not ignored. We configure Meta Pixel advanced matching and the Conversions API where appropriate, keep confidence proportional to what is observable, and label the unobserved remainder in reporting instead of inventing it.',
+  },
+  {
+    question: 'What creative testing do you run?',
+    answer:
+      'Structured creative sequences with pre-written stopping rules and sample-size honesty. Small B2B samples cannot support endless A/B myths; we design tests the data can actually answer, and kill losers cheaply.',
+  },
+];
+
+const scope = [
+  {
+    index: '01',
+    title: 'Audience and creative strategy',
+    body: 'Offer-driven creative sequences matched to audience intent — prospecting, retargeting and retention treated as separate systems with separate economics.',
+    meta: 'Creative system',
+  },
+  {
+    index: '02',
+    title: 'Landing-path engineering',
+    body: 'Ads, landing pages, forms and follow-up built as one conversion path. Message match verified before spend scales.',
+    meta: 'One path',
+  },
+  {
+    index: '03',
+    title: 'Signal and conversion setup',
+    body: 'Meta Pixel and Conversions API configuration, advanced matching, consent-aware measurement, and GA4-to-CRM joins so reported results survive scrutiny.',
+    meta: 'Survive scrutiny',
+  },
+  {
+    index: '04',
+    title: 'D2C and B2B retargeting',
+    body: 'Lifecycle retargeting built from real funnel stages — cart, demo, pricing-page — not generic interest stacks.',
+    meta: 'Stage-aware',
+  },
+  {
+    index: '05',
+    title: 'Economics and reporting cadence',
+    body: 'CPA, MER and contribution-margin reporting with attribution assumptions written down. Reviews follow the decision cycle, not the calendar.',
+    meta: 'MER over ROAS',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Meta Ads Management Services',
+    serviceType:
+      'Facebook and Instagram ads management, creative testing and measurement for B2B SaaS and D2C brands',
+    provider: organizationReference,
+    areaServed: 'Remote',
+    description:
+      'Meta Ads management for SaaS and D2C teams: creative systems, landing-path engineering, Conversions API measurement and MER-based economics with attribution assumptions stated.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Meta Ads Management Services | Data Decision Consulting"
+  description="Facebook and Instagram Ads management for SaaS and D2C: creative systems, landing-path engineering, Conversions API measurement and MER-based economics — clicks that reach people who buy."
+  path="/services/meta-ads-management/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Meta Ads Management' },
+    ]}
+  />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Paid Social / Services</p>
+      <h1>Meta Ads that reach the people who actually buy.</h1>
+      <p class="lede">
+        Facebook and Instagram can deliver attention at any price — the work is making that
+        attention qualified, measured and economically honest. We run Meta Ads as a complete system:
+        creative, audience, landing path, signal setup and reporting your finance team can
+        interrogate.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=paid-acquisition-performance#request-a-brief"
+          data-event="cta_primary_click">Request an ads diagnostic</a
+        >
+        <a class="text-link" href="/insights/how-to-run-profitable-paid-ads/"
+          >Read the profitable-ads playbook</a
+        >
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Creative-led</span><span>MER-based</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Creative system</strong><small>Sequences, not random posts</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>Signal repair</strong><small>CAPI + advanced matching</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>Stated assumptions</strong><small>Attribution written down</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="ma-problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem this solves</p><h2 id="ma-problem-heading">
+            Clicks are easy. Profitable attention is engineered.
+          </h2>
+        </div>
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
+          Meta accounts commonly underperform when creative stops converting, tracking under-reports
+          after consent changes, or several campaigns claim the same revenue. We rebuild the chain
+          from creative to conversion event to CRM before asking for more budget.
+        </p>
+      </div>
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:180ms">
+        <div>
+          <span class="evidence-label">What we fix</span><h3>Common failure modes</h3><ul>
+            <li>Attention that never matches the landing page.</li>
+            <li>Reported conversions that finance disputes.</li>
+            <li>Retargeting stacks that burn the same audience.</li>
+            <li>Creative fatigue discovered months late.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">What it becomes</span><h3>
+            A qualified-attention engine
+          </h3><ul>
+            <li>Creative sequences with stopping rules.</li>
+            <li>CAPI and advanced matching configured.</li>
+            <li>Stage-aware retargeting from real funnel data.</li>
+            <li>MER and contribution-margin reporting.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="ma-scope-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What we manage</p><h2 id="ma-scope-heading">
+          The complete Meta Ads engagement.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          scope.map((item) => (
+            <div class="rule-row">
+              <span class="mono">{item.index}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+              <span class="rule-row__meta">{item.meta}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ma-fit-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="ma-fit-heading">
+          Who this is for — and who it is not for.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>Qualified-attention buyers</h3><ul>
+            <li>D2C and ecommerce brands with real products.</li>
+            <li>B2B SaaS teams running demand generation.</li>
+            <li>Teams that want finance-grade reporting.</li>
+            <li>India-based brands — INR pricing available.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Not a fit</span><h3>Look elsewhere if</h3><ul>
+            <li>You buy audiences and spray promotions.</li>
+            <li>You want vanity ROAS without signal repair.</li>
+            <li>You refuse consent-aware measurement.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="ma-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="ma-faq-heading">What teams ask before starting.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Fix the chain before funding more attention."
+    body="Share the account history, reporting disagreement and economics. We will tell you what can be diagnosed from the current evidence."
+    label="Request an ads diagnostic"
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/?service=paid-acquisition-performance"
+      >Request an ads diagnostic</a
+    >
+  </div>
+</BaseLayout>

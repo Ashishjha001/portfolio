@@ -60,9 +60,49 @@ All work on branch `seo/research-package` (created from `codex/rebuild-v2` @ `ed
 - All other 43 insight articles, evidence/trust pages, API endpoints
 - Contact form value keys (`?service=` params remain compatible)
 
-## Pending (blocked on later gates / founder data)
+## 2026-09-03 — Phase 2: Service expansion and evidence-gated location launch
 
-- GSC/Keyword Planner exports to upgrade keyword-master.csv confidence levels (founder action)
-- Ranking-failure triage expansion of technical-access checklist (Next priority — day 36–60)
-- Gated pages: `/industries/manufacturing-seo-surat/`, `/services/website-development-seo/` (Gate C)
-- LinkedIn company page, Clutch/GoodFirms profiles (authority plan)
+The founder confirmed that the four expanded service capabilities are genuinely deliverable. The release keeps those service pages while applying a stricter publication gate to local SEO pages.
+
+### New indexable pages (6)
+
+| URL                                  | Purpose                                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `/services/google-ads-management/`   | Google Ads strategy, execution, conversion measurement and CRM-connected optimization       |
+| `/services/meta-ads-management/`     | Meta Ads management, creative testing, Pixel/CAPI setup and revenue-aware reporting         |
+| `/services/market-research/`         | Buyer, category, competitor and demand research tied to a documented business decision      |
+| `/services/website-development-seo/` | Website strategy and development with SEO, AI-search readiness and measurement in the scope |
+| `/locations/`                        | Explains the evidence gate for dedicated market pages and the remote delivery model         |
+| `/locations/surat/`                  | Surat page for manufacturers, exporters and B2B teams, supported by linked public sources   |
+
+### Location quality gate
+
+- Removed seven templated location routes from the build, sitemap, validator and internal navigation: Ahmedabad, Vadodara, Rajkot, New York, San Francisco, Florida and Dubai.
+- Surat remains the first dedicated market page because the repository's research identified it as the initial candidate and official Gujarat sources provide specific industry context.
+- The page states that service is remote, avoids LocalBusiness and PostalAddress schema, rejects ranking guarantees, labels the research date and links the underlying sources.
+- A new location page should be released only after it has distinct search evidence, market research, useful local context and a defensible delivery story. A city-name substitution is not enough.
+
+### Accuracy and technical changes
+
+- Corrected Meta terminology: Advanced Matching and Conversions API replace the Google-specific phrase “enhanced conversions.”
+- Qualified broad claims about campaign failure patterns, Google Ads offline-conversion visibility, delivery timelines and AI citation readiness.
+- Kept all supported service capabilities while separating deliverable work from outcomes controlled by ad platforms, search engines and buyers.
+- Footer and services hub now link only to the published location hub and Surat page.
+- Sitemap gives the six Phase 2 routes an accurate `2026-09-03` modification date; validator requires the same routes.
+- Contact form values remain unchanged, preserving existing query parameters and submission handling.
+
+### Verification
+
+- `npm run format:check` ✅
+- `npm run check` ✅ 0 errors (2 pre-existing unused-variable hints)
+- `npm run build` ✅ 78 static pages
+- `npm run validate` ✅ 78 HTML files, required routes, internal links, metadata, schema and claim guardrails
+- `npm run check:external` ✅ 66 external links
+- Responsive browser QA at 390×844 and 1440×900 ✅ all six new routes have one H1, one canonical, structured data and no positive horizontal overflow
+- Sitemap ✅ 77 indexable URLs, including the six Phase 2 routes and excluding the seven held location drafts
+
+## Pending
+
+- Validate market demand in Google Search Console before releasing any additional location route.
+- Build primary research or documented client evidence that earns links and supports future market pages.
+- Complete verified company profiles and direct outreach; new pages alone do not guarantee rankings or clients.

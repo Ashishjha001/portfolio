@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQList from '../../components/FAQList.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const services = [
+  {
+    index: '01',
+    title: 'SEO built around products and buyer questions',
+    body: 'Technical access, page architecture, content and internal links designed around the products, capabilities and questions buyers actually research.',
+    href: '/services/seo/',
+    label: 'B2B SEO services',
+  },
+  {
+    index: '02',
+    title: 'AI-search visibility with a dated baseline',
+    body: 'A defined query set, documented observations and source analysis across approved AI-answer surfaces—without promises of placement or citations.',
+    href: '/services/ai-search-visibility/',
+    label: 'AI-search visibility',
+  },
+  {
+    index: '03',
+    title: 'Google and Meta Ads tied to qualified demand',
+    body: 'Campaign strategy, landing pages, conversion setup and optimization using business outcomes rather than clicks alone.',
+    href: '/services/google-ads-management/',
+    label: 'Google Ads management',
+  },
+  {
+    index: '04',
+    title: 'Measurement from first visit to revenue',
+    body: 'GA4, CRM joins, attribution assumptions and reporting that help teams see which work is producing qualified pipeline.',
+    href: '/services/measurement-foundation/',
+    label: 'Measurement consulting',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Do you have an office in Surat?',
+    answer:
+      'No. Data Decision Consulting is an India-based, founder-led practice serving Surat businesses remotely. We do not claim a Surat office, local staff or local reviews. The scope, communication cadence and delivery responsibility are agreed in writing before work starts.',
+  },
+  {
+    question: 'Which Surat businesses are the best fit?',
+    answer:
+      'The clearest fit is a manufacturer, exporter or B2B service company with a defined product, a real sales process and a need to reach buyers beyond referrals. We confirm the market, language, commercial goal and measurement access before recommending a programme.',
+  },
+  {
+    question: 'Can you guarantee first-page rankings in Surat?',
+    answer:
+      'No. Rankings depend on relevance, competition, authority and search-engine decisions. We can define the work, record the baseline and show what changed; we cannot honestly guarantee a position controlled by a third party.',
+  },
+  {
+    question: 'Can the engagement include the website and paid advertising?',
+    answer:
+      'Yes. Website development, SEO, AI-search visibility, Google Ads, Meta Ads and measurement can be included when the diagnostic shows they are required. The exact channels, deliverables, fee and acceptance criteria are fixed in the written scope.',
+  },
+  {
+    question: 'Can Surat clients be quoted in INR?',
+    answer:
+      'Yes. India-based clients can discuss and receive pricing in INR. The final fee and timing depend on the approved scope rather than a generic package.',
+  },
+];
+
+const sources = [
+  {
+    label: 'District at a Glance — District Surat, Government of Gujarat',
+    href: 'https://surat.nic.in/district-at-a-glance/',
+    note: 'Identifies Surat as an industrial and commercial centre known for textile and diamond businesses.',
+  },
+  {
+    label: 'South Gujarat external profile — Industries Commissionerate, Gujarat',
+    href: 'https://ic.gujarat.gov.in/documents/news/External-profile-South-Gujarat-Final-07092017.pdf',
+    note: 'Provides dated regional context for textile, diamond, engineering and related sectors.',
+  },
+  {
+    label: 'District Industries Centre — District Surat, Government of Gujarat',
+    href: 'https://surat.nic.in/district-industries-centre/',
+    note: 'Describes the district support structure for small and village industries.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'B2B SEO and digital growth services for Surat manufacturers and exporters',
+    serviceType:
+      'Remote SEO, AI-search visibility, paid acquisition and marketing measurement services',
+    provider: organizationReference,
+    areaServed: [
+      { '@type': 'City', name: 'Surat' },
+      { '@type': 'State', name: 'Gujarat' },
+    ],
+    url: 'https://datadecision.consulting/locations/surat/',
+    description:
+      'Remote, founder-led SEO and digital growth services for Surat manufacturers, exporters and B2B teams, with written scope and evidence-led measurement.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="B2B SEO Services for Surat Manufacturers & Exporters | Data Decision Consulting"
+  description="Remote SEO, AI-search visibility, Google and Meta Ads, website and measurement services for Surat manufacturers, exporters and B2B teams. Founder-led, with scope and evidence defined in writing."
+  path="/locations/surat/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Locations', href: '/locations/' },
+      { label: 'Surat' },
+    ]}
+  />
+
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Surat, Gujarat · Remote service</p>
+      <h1>SEO and digital growth for Surat manufacturers and exporters.</h1>
+      <p class="lede">
+        Turn product knowledge, buyer questions and sales data into a clearer path from discovery to
+        qualified enquiry. We can deliver the website, SEO, AI-search visibility, paid acquisition
+        and measurement—but only the channels your diagnosis and written scope require.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=web-seo-ai-visibility#request-a-brief"
+          data-event="cta_primary_click">Request a growth diagnostic</a
+        >
+        <a class="text-link" href="/methodology/">See the method</a>
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio">
+        <span>Market page · 01</span><span>Evidence reviewed 03 Sep 2026</span>
+      </div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt>
+          <dd>
+            <strong>Manufacturing context</strong><small>Textile, diamond and engineering</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt>
+          <dd><strong>Remote delivery</strong><small>No unverified local-office claim</small></dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt>
+          <dd>
+            <strong>Written scope</strong><small>Channels, fee and acceptance criteria</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="surat-context-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Why this market page exists</p>
+        <h2 id="surat-context-heading">
+          Surat has a specific commercial story—not a swapped city name.
+        </h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms">
+        <p class="lede">
+          Gujarat government sources identify Surat as an industrial and commercial centre known for
+          textile and diamond businesses. Regional material also identifies engineering and related
+          manufacturing activity. That makes product-level discovery, export enquiries and
+          measurable lead generation more useful starting points than generic “more traffic” work.
+        </p>
+        <p class="measure">
+          This is public-source market research, not a claim that we have a Surat office or a client
+          result in every listed sector. We validate the buyer, language and search demand for each
+          engagement before implementation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="surat-services-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What we can deliver</p>
+        <h2 id="surat-services-heading">One growth system, scoped around the real constraint.</h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          services.map((service) => (
+            <div class="rule-row">
+              <span class="mono">{service.index}</span>
+              <div>
+                <h3>
+                  <a href={service.href}>{service.title}</a>
+                </h3>
+                <p>{service.body}</p>
+              </div>
+              <a class="rule-row__meta" href={service.href}>
+                {service.label} →
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="surat-process-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid editorial-grid--balanced">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">How the work starts</p>
+        <h2 id="surat-process-heading">Research the buying path before funding the channel.</h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">First</span>
+          <h3>Frame the commercial question</h3>
+          <p>
+            Product, buyer, geography, language, sales path and the outcome the work must support.
+          </p>
+        </div>
+        <div class="comparison__rule"></div>
+        <div>
+          <span class="evidence-label">Then</span>
+          <h3>Choose the smallest useful scope</h3>
+          <p>Only the pages, channels and measurement work needed to test and improve that path.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="surat-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p>
+        <h2 id="surat-faq-heading">What Surat teams should ask before starting.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="surat-sources-heading">
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Market sources</p>
+        <h2 id="surat-sources-heading">The context behind this page.</h2>
+        <p>
+          Reviewed 3 September 2026. Older source material is labelled and used only for context.
+        </p>
+      </div>
+      <ul class="source-list" data-reveal style="--reveal-delay:110ms">
+        {
+          sources.map((source) => (
+            <li>
+              <a class="text-link" href={source.href}>
+                {source.label}
+              </a>
+              <p>{source.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Start with the Surat growth question—not a generic package."
+    body="Tell us what you sell, who should find it and what a qualified enquiry means. We will review fit before proposing a scope."
+    label="Request a growth diagnostic"
+  />
+
+  <style>
+    .source-list {
+      display: grid;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .source-list li {
+      padding-block: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .source-list p {
+      max-width: 62ch;
+      margin-top: 0.45rem;
+      color: var(--muted);
+    }
+
+    .rule-row__meta {
+      color: var(--signal);
+      text-decoration: none;
+    }
+  </style>
+</BaseLayout>
