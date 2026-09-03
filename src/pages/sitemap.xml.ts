@@ -8,6 +8,12 @@ const staticRoutes = [
   '/services/seo/',
   '/services/ai-search-visibility/',
   '/services/measurement-foundation/',
+  '/services/google-ads-management/',
+  '/services/meta-ads-management/',
+  '/services/market-research/',
+  '/services/website-development-seo/',
+  '/locations/',
+  '/locations/surat/',
   '/growth/',
   '/performance-marketing/',
   '/seo/',
@@ -50,8 +56,19 @@ export async function GET() {
       })),
   ];
   const fallbackLastmod = '2026-09-01';
+  const phaseTwoRoutes = new Set([
+    '/services/google-ads-management/',
+    '/services/meta-ads-management/',
+    '/services/market-research/',
+    '/services/website-development-seo/',
+    '/locations/',
+    '/locations/surat/',
+  ]);
   const urls = [
-    ...staticRoutes.map((path) => ({ path, lastmod: fallbackLastmod })),
+    ...staticRoutes.map((path) => ({
+      path,
+      lastmod: phaseTwoRoutes.has(path) ? '2026-09-03' : fallbackLastmod,
+    })),
     ...contentRoutes,
   ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

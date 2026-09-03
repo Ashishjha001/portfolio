@@ -28,3 +28,7 @@ pnpm-debug.log*
 # local-only analysis and visual QA
 /work/
 /screenshots/
+
+# AI agent tooling (marketing skills install, not site code)
+.claude/
+skills-lock.json

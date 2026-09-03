@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import FAQList from '../../components/FAQList.astro';
+import { organizationReference } from '../../data/entityDefinition';
+
+const faqs = [
+  {
+    question: 'Do you manage Google Ads directly, or only consult?',
+    answer:
+      'Both. We can build and run your campaigns end to end — search, shopping, Performance Max and YouTube — or work alongside your in-house team on strategy, measurement and creative while they operate the platform.',
+  },
+  {
+    question: 'How do you stop wasted ad spend?',
+    answer:
+      'Before scaling anything, we join search terms to accepted pipeline — not just clicks. Waste is usually unqualified traffic converting into leads sales rejects. We expose that with CRM reconciliation, then cut it with tighter targeting, negative keywords and landing pages that pre-qualify.',
+  },
+  {
+    question: 'What is break-even CAC and why do you compute it first?',
+    answer:
+      'Break-even CAC is the maximum you can pay to acquire a customer before the economics go negative. We compute it from your contribution margin and payback expectations before spending, so every bidding decision has a ceiling defined by your business, not the ad platform.',
+  },
+  {
+    question: 'How much budget do I need?',
+    answer:
+      'There is no honest universal number — it depends on your market, competition and sales capacity. What we can do is model the minimum viable budget from expected response rates and your unit economics, published as a worksheet you can challenge.',
+  },
+];
+
+const scope = [
+  {
+    index: '01',
+    title: 'Search campaigns that pre-qualify',
+    body: 'Keyword and intent mapping, negative-keyword architecture, ad copy matched to buying intent, and landing pages that filter as well as convert.',
+    meta: 'Intent first',
+  },
+  {
+    index: '02',
+    title: 'Shopping, Performance Max and YouTube',
+    body: 'Product feeds, asset groups and creative sequences built from your unit economics — never platform defaults left on autopilot.',
+    meta: 'Full platform',
+  },
+  {
+    index: '03',
+    title: 'Conversion and click-ID measurement',
+    body: 'Server-side or enhanced conversion setup, GA4 and CRM joins, and offline conversion imports so Google optimizes toward revenue, not form fills.',
+    meta: 'Revenue signals',
+  },
+  {
+    index: '04',
+    title: 'Break-even CAC and bid ceilings',
+    body: 'Contribution-margin math that sets your real cost limits before launch, with payback assumptions written down and reviewable.',
+    meta: 'Economics first',
+  },
+  {
+    index: '05',
+    title: 'Creative and landing-page iteration',
+    body: 'Ad creative, landing pages and offer tests sequenced by expected signal — with stopping rules so losing experiments die cheaply.',
+    meta: 'Test discipline',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Google Ads Management Services',
+    serviceType:
+      'Google Ads campaign management, optimization and measurement for B2B SaaS and ecommerce',
+    provider: organizationReference,
+    areaServed: 'Remote',
+    description:
+      'Google Ads management for B2B teams: search, shopping and Performance Max campaigns optimized toward qualified pipeline and break-even CAC, with conversion measurement tied to CRM revenue.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Google Ads Management Services | Data Decision Consulting"
+  description="Google Ads management optimized for revenue, not clicks: search, shopping and Performance Max campaigns built on break-even CAC, CRM-tied measurement and disciplined creative testing."
+  path="/services/google-ads-management/"
+  schema={schema}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: 'Google Ads Management' },
+    ]}
+  />
+  <header class="shell page-hero page-hero--compact">
+    <div class="page-hero__copy" data-reveal>
+      <p class="eyebrow">Paid Search / Services</p>
+      <h1>Google Ads management that answers to revenue.</h1>
+      <p class="lede">
+        A campaign can look efficient inside the ad platform and still be expensive for the
+        business. We run Google Ads — search, shopping, Performance Max, YouTube — with the
+        audience, offer, landing path and CRM measurement treated as one system, and every bid
+        ceiling defined by your actual unit economics.
+      </p>
+      <div class="button-row">
+        <a
+          class="button button--primary"
+          href="/contact/?service=paid-acquisition-performance#request-a-brief"
+          data-event="cta_primary_click">Request an ads diagnostic</a
+        >
+        <a class="text-link" href="/insights/how-to-run-profitable-paid-ads/"
+          >Read the profitable-ads playbook</a
+        >
+      </div>
+    </div>
+    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
+      <div class="folio"><span>Full-funnel</span><span>Revenue-tied bidding</span></div>
+      <dl class="evidence-list">
+        <div class="evidence-line">
+          <dt class="evidence-line__number">01</dt><dd>
+            <strong>Break-even CAC first</strong><small>Bid ceilings from your economics</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">02</dt><dd>
+            <strong>CRM-joined measurement</strong><small>Optimize to pipeline, not forms</small>
+          </dd>
+        </div>
+        <div class="evidence-line">
+          <dt class="evidence-line__number">03</dt><dd>
+            <strong>Creative with stopping rules</strong><small>Losing tests die cheap</small>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="section" aria-labelledby="ga-problem-heading">
+    <span class="chapter-mark" aria-hidden="true">01</span>
+    <div class="shell">
+      <div class="editorial-grid">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The problem this solves</p><h2 id="ga-problem-heading">
+            Platform-reported efficiency is not business efficiency.
+          </h2>
+        </div>
+        <p class="lede" data-reveal style="--reveal-delay:110ms">
+          Without a reliable offline-conversion connection, Google Ads cannot distinguish a form
+          submission from a lead your sales team accepted, a meeting that showed up, or revenue that
+          closed. We fix that measurement path before scaling the spend.
+        </p>
+      </div>
+      <div class="comparison visual-followup" data-reveal style="--reveal-delay:180ms">
+        <div>
+          <span class="evidence-label">What we fix</span><h3>Common failure modes</h3><ul>
+            <li>Leads that sales silently rejects.</li>
+            <li>Every channel claiming the same revenue.</li>
+            <li>No defined ceiling on acquisition cost.</li>
+            <li>Auto-apply recommendations quietly reshaping campaigns.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">What it becomes</span><h3>A measured system</h3><ul>
+            <li>Bids anchored to break-even CAC.</li>
+            <li>Conversions imported from the CRM.</li>
+            <li>Search terms joined to accepted pipeline.</li>
+            <li>Tests with pre-written stopping rules.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="ga-scope-heading">
+    <span class="chapter-mark" aria-hidden="true">02</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">What we manage</p><h2 id="ga-scope-heading">
+          The complete Google Ads engagement.
+        </h2>
+      </div>
+      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+        {
+          scope.map((item) => (
+            <div class="rule-row">
+              <span class="mono">{item.index}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+              <span class="rule-row__meta">{item.meta}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ga-fit-heading">
+    <span class="chapter-mark" aria-hidden="true">03</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Fit</p><h2 id="ga-fit-heading">
+          Who this is for — and who it is not for.
+        </h2>
+      </div>
+      <div class="comparison" data-reveal style="--reveal-delay:110ms">
+        <div>
+          <span class="evidence-label">Strong fit</span><h3>
+            Teams ready for economics-led paid
+          </h3><ul>
+            <li>B2B SaaS and D2C brands with known unit economics.</li>
+            <li>Teams spending on ads with pipeline data sales trusts.</li>
+            <li>Founders who want to see the ceiling before the spend.</li>
+            <li>India-based teams — INR pricing available.</li>
+          </ul>
+        </div><div class="comparison__rule"></div><div>
+          <span class="evidence-label">Not a fit</span><h3>Look elsewhere if</h3><ul>
+            <li>You want guaranteed ROAS — no honest provider can promise it.</li>
+            <li>You want to scale spend before fixing measurement.</li>
+            <li>You have no sales capacity to accept the leads.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink" aria-labelledby="ga-faq-heading">
+    <span class="chapter-mark" aria-hidden="true">04</span>
+    <div class="shell editorial-grid">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow">Questions</p><h2 id="ga-faq-heading">What teams ask before starting.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:110ms"><FAQList items={faqs} /></div>
+    </div>
+  </section>
+
+  <FinalCTA
+    heading="Find the acquisition bottleneck before adding budget."
+    body="Share the channel, offer and reporting question. We will tell you what can be diagnosed from the current evidence."
+    label="Request an ads diagnostic"
+  />
+  <div class="mobile-cta" data-mobile-cta hidden>
+    <a class="button button--primary" href="/contact/?service=paid-acquisition-performance"
+      >Request an ads diagnostic</a
+    >
+  </div>
+</BaseLayout>
