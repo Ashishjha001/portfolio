@@ -1,5 +1,7 @@
 ---
 import { topics } from '../data/topicArchitecture';
+import { TrendingUp, Target, Search, Sparkles } from 'lucide-astro';
+import LearnArrow from './LearnArrow.astro';
 
 interface Props {
   heading?: string;
@@ -7,182 +9,87 @@ interface Props {
   compact?: boolean;
 }
 
-const {
-  heading = 'Four ways into the same growth system.',
-  current,
-  compact = false,
-} = Astro.props;
+const { heading = 'Four ways into the same growth system.', current } = Astro.props;
+
+/* Per-area identity: distinct icon + abstract wash + accent. */
+const areaMeta: Record<string, { icon: typeof TrendingUp; wash: string; note: string }> = {
+  growth: {
+    icon: TrendingUp,
+    wash: 'radial-gradient(120% 90% at 12% 100%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 55%)',
+    note: 'Rising path, connected nodes',
+  },
+  'performance-marketing': {
+    icon: Target,
+    wash: 'radial-gradient(110% 100% at 90% 100%, color-mix(in srgb, var(--amber) 12%, transparent), transparent 60%)',
+    note: 'Target and conversion path',
+  },
+  seo: {
+    icon: Search,
+    wash: 'radial-gradient(120% 100% at 10% 0%, color-mix(in srgb, var(--signal) 9%, transparent), transparent 58%)',
+    note: 'Search window, page hierarchy',
+  },
+  'ai-search': {
+    icon: Sparkles,
+    wash: 'radial-gradient(130% 110% at 92% 0%, color-mix(in srgb, var(--mint-accent) 14%, transparent), transparent 58%)',
+    note: 'Query, citation network, answer orbit',
+  },
+};
+const fallbackMeta = areaMeta.seo!;
 ---
 
-<section class:list={['strategic-areas', { 'strategic-areas--compact': compact }]}>
-  <div class="shell strategic-areas__head">
-    <p class="eyebrow">Strategic areas</p>
-    <h2>{heading}</h2>
+<section class="strategic-areas-v2" aria-labelledby="strategic-areas-heading">
+  <div class="shell">
+    <div class="strategic-areas-v2__head">
+      <p class="eyebrow">Strategic areas</p>
+      <h2 id="strategic-areas-heading">{heading}</h2>
+    </div>
+    <div class="area-grid">
+      {
+        topics.map((topic, i) => {
+          const meta = areaMeta[topic.slug] ?? fallbackMeta;
+          const Icon = meta!.icon;
+          return (
+            <a
+              class:list={['dd-card', 'area-card', 'dd-stagger']}
+              style={`--area-wash: ${meta.wash}; --card-i: ${i};`}
+              href={`/${topic.slug}/`}
+              aria-current={current === topic.slug ? 'page' : undefined}
+              data-reveal-ignore
+            >
+              <span class="area-card__num" aria-hidden="true">
+                {topic.index}
+              </span>
+              <span class="area-card__icon">
+                <Icon strokeWidth={1.75} aria-hidden="true" />
+              </span>
+              <h3>{topic.label}</h3>
+              <p>{topic.description}</p>
+              <span class="dd-card__arrow">
+                Explore <LearnArrow />
+              </span>
+            </a>
+          );
+        })
+      }
+    </div>
   </div>
-  <nav class="shell strategic-areas__grid" aria-label="Data Decision Consulting strategic areas">
-    {
-      topics.map((topic) => (
-        <a
-          class:list={['strategic-area', { 'is-current': current === topic.slug }]}
-          href={`/${topic.slug}/`}
-          aria-current={current === topic.slug ? 'page' : undefined}
-        >
-          <span class="mono">{topic.index}</span>
-          <strong>{topic.label}</strong>
-          <span>{topic.description}</span>
-          <span class="strategic-area__action" aria-hidden="true">
-            Explore →
-          </span>
-        </a>
-      ))
-    }
-  </nav>
 </section>
 
 <style>
-  .strategic-areas {
+  .strategic-areas-v2 {
+    padding: clamp(2.5rem, 5vw, 4.5rem) 0;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
-    padding: clamp(2.5rem, 5vw, 4.5rem) 0;
   }
 
-  .strategic-areas__head {
+  .strategic-areas-v2__head {
     display: grid;
-    grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1.45fr);
-    gap: 2rem;
-    align-items: end;
-    margin-bottom: 1.6rem;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
   }
 
-  .strategic-areas__head h2 {
-    max-width: 24ch;
-    font-size: clamp(1.7rem, 3.2vw, 2.7rem);
-  }
-
-  .strategic-areas__grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    border-top: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .strategic-area {
-    min-width: 0;
-    padding: 1.3rem;
-    color: inherit;
-    text-decoration: none;
-    border-right: 1px solid var(--rule);
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    gap: 0.7rem;
-    transition:
-      background-color 180ms ease,
-      color 180ms ease;
-  }
-
-  .strategic-area:last-child {
-    border-right: 0;
-  }
-
-  .strategic-area:hover,
-  .strategic-area:focus-visible,
-  .strategic-area.is-current {
-    color: var(--paper);
-    background: var(--green);
-  }
-
-  .strategic-area:focus-visible {
-    outline: 3px solid var(--signal);
-    outline-offset: 3px;
-  }
-
-  .strategic-area .mono {
-    color: var(--signal);
-    font-size: 0.66rem;
-  }
-
-  .strategic-area strong {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-    line-height: 1.05;
-  }
-
-  .strategic-area > span:nth-child(3) {
-    color: var(--muted);
-    font-size: 0.82rem;
-    line-height: 1.55;
-  }
-
-  .strategic-area:hover > span:nth-child(3),
-  .strategic-area:focus-visible > span:nth-child(3),
-  .strategic-area.is-current > span:nth-child(3) {
-    color: color-mix(in srgb, var(--paper) 76%, transparent);
-  }
-
-  .strategic-area__action {
-    font-weight: 600;
-    font-size: 0.82rem;
-  }
-
-  .strategic-areas--compact .strategic-areas__head {
-    display: none;
-  }
-
-  .strategic-areas--compact {
-    padding: 0;
-    border-top: 0;
-  }
-
-  @media (max-width: 900px) {
-    .strategic-areas__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .strategic-area:nth-child(2) {
-      border-right: 0;
-    }
-
-    .strategic-area:nth-child(-n + 2) {
-      border-bottom: 1px solid var(--rule);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .strategic-areas__head {
-      grid-template-columns: 1fr;
-      gap: 0.55rem;
-    }
-
-    .strategic-areas__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .strategic-area,
-    .strategic-area:nth-child(2) {
-      border-right: 0;
-      border-bottom: 1px solid var(--rule);
-      grid-template-columns: 3ch 1fr auto;
-      grid-template-rows: auto auto;
-      align-items: baseline;
-    }
-
-    .strategic-area:last-child {
-      border-bottom: 0;
-    }
-
-    .strategic-area > span:nth-child(3) {
-      grid-column: 2 / -1;
-    }
-
-    .strategic-area__action {
-      grid-column: 3;
-      grid-row: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .strategic-area {
-      transition: none;
-    }
+  .strategic-areas-v2__head h2 {
+    max-width: 26ch;
+    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
   }
 </style>

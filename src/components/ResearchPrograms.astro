@@ -1,30 +1,50 @@
 ---
+/**
+ * ResearchProgramCard grid — one highlighted lead programme,
+ * remaining in a two-column grid. Accessible accordion:
+ * semantic button, aria-expanded, grid-template-rows height
+ * animation, keyboard operable, content present in HTML when
+ * JS is off (details-free progressive enhancement via data-open
+ * defaulting open when html.js is absent).
+ *
+ * Public status labels only — internal wording is mapped to
+ * accurate public-facing equivalents without advancing status.
+ */
 import { researchPrograms } from '../data/researchPrograms';
+import { Eye, Quote, Scale, Filter, CalendarCheck, Link2, Radar, FlaskConical } from 'lucide-astro';
 
-const statusLabel: Record<string, string> = {
-  scheduled: 'Method defined · not collected',
-  'in-collection': 'Collecting',
-  published: 'Published',
-  'needs-founder-input': 'Needs founder decision',
+const publicStatus: Record<string, { label: string; kind: string }> = {
+  scheduled: { label: 'Planned', kind: 'method-defined' },
+  'in-collection': { label: 'Collecting data', kind: 'collecting' },
+  published: { label: 'Published', kind: 'published' },
+  'needs-founder-input': { label: 'Planned', kind: 'method-defined' },
 };
+const fallbackStatus = { label: 'Planned', kind: 'method-defined' };
 
-const statusKind: Record<string, string> = {
-  scheduled: 'neutral',
-  'in-collection': 'active',
-  published: 'ok',
-  'needs-founder-input': 'warn',
+const programIcons: Record<string, typeof Eye> = {
+  'ai-search-visibility-index': Eye,
+  'ai-citation-benchmark': Quote,
+  'marketing-attribution-benchmark': Scale,
+  'growth-funnel-benchmark': Filter,
+  'demo-funnel-benchmark': CalendarCheck,
+  'search-to-revenue-study': Link2,
+  'ai-referral-benchmark': Radar,
 };
+const fallbackIcon = FlaskConical;
 
-const programCards = researchPrograms.map((program) => ({
-  ...program,
-  label: statusLabel[program.status],
-  kind: statusKind[program.status],
-}));
+const leadId = 'ai-search-visibility-index';
+const lead =
+  researchPrograms.find((program) => program.id === leadId) ??
+  (researchPrograms[0] as (typeof researchPrograms)[number]);
+const rest = researchPrograms.filter(
+  (program): program is (typeof researchPrograms)[number] => program.id !== lead.id,
+);
+const orderedPrograms: typeof researchPrograms = [lead, ...rest];
 ---
 
 <section class="section section--bright" aria-labelledby="programs-heading" id="programs">
   <span class="chapter-mark" aria-hidden="true">{String.fromCharCode(9472)}</span>
-  <div class="shell editorial-grid">
+  <div class="shell">
     <div class="section-intro" data-reveal>
       <p class="eyebrow">Research programmes</p>
       <h2 id="programs-heading">The studies we run, and their data status.</h2>
@@ -34,219 +54,178 @@ const programCards = researchPrograms.map((program) => ({
         infrastructure before we assert a number, and we never fabricate a benchmark.
       </p>
     </div>
-    <div class="program-list" data-reveal style="--reveal-delay:100ms">
+
+    <div class="research-grid">
       {
-        programCards.map((program) => (
-          <details class="program" data-event="research_program_open">
-            <summary>
-              <span class="program__title">
-                <strong>{program.title}</strong>
-                <span class="status status--{program.kind}">{program.label}</span>
-              </span>
-              <span class="program__q">{program.researchQuestion}</span>
-              <span class="program__toggle" aria-hidden="true">
-                ＋
-              </span>
-            </summary>
-            <dl class="program__spec">
-              <div>
-                <>
-                  <dt>Research question</dt>
-                  <dd>{program.researchQuestion}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Methodology</dt>
-                  <dd>{program.methodology}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Data source</dt>
-                  <dd>{program.dataSource}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Sample</dt>
-                  <dd>{program.sample}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Collection period</dt>
-                  <dd>{program.collectionPeriod}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Definitions</dt>
-                  <dd>{program.definitions}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Calculations</dt>
-                  <dd>{program.calculations}</dd>
-                </>
-              </div>
-              <div>
-                <>
-                  <dt>Limitations</dt>
-                  <dd>{program.limitations}</dd>
-                </>
-              </div>
-            </dl>
-            <div class="program__links">
-              <span class="evidence-label">Data status</span>
-              {program.hasPublishedFindings ? (
-                <span class="program__foot">Published finding available.</span>
-              ) : (
-                <span class="program__foot">
-                  No finding published — <em>correctly</em>. We do not post uncollected data.
+        orderedPrograms.map((program, i) => {
+          const Icon = programIcons[program.id] ?? fallbackIcon;
+          const status = publicStatus[program.status] ?? fallbackStatus;
+          return (
+            <div
+              class:list={['dd-card', 'dd-card--research', 'dd-stagger', { lead: i === 0 }]}
+              style={`--card-i: ${i};`}
+              data-research-card
+              data-open="false"
+            >
+              <button
+                type="button"
+                class="research-card__head"
+                aria-expanded="false"
+                aria-controls={`${program.id}-detail`}
+                id={`${program.id}-control`}
+                data-event="research_program_toggle"
+              >
+                <span class="research-card__icon" aria-hidden="true">
+                  <Icon strokeWidth={1.75} />
                 </span>
-              )}
-              <a class="text-link" href="/methodology/">
-                Read the underlying methodology
-              </a>
+                <span class="research-card__titles">
+                  <h3>{program.title}</h3>
+                  <p class="research-card__q">{program.researchQuestion}</p>
+                </span>
+                <span class="research-card__expand" aria-hidden="true">
+                  ＋
+                </span>
+              </button>
+              <div class="research-card__meta">
+                <span class="research-card__status" data-status={status.kind}>
+                  {status.label}
+                </span>
+                <span class="small" style="color: var(--faint);">
+                  Expected output: {program.output}
+                </span>
+              </div>
+              <div
+                class="research-card__body"
+                id={`${program.id}-detail`}
+                role="region"
+                aria-labelledby={`${program.id}-control`}
+              >
+                <dl>
+                  <div>
+                    <dt>Research question</dt>
+                    <dd>{program.researchQuestion}</dd>
+                  </div>
+                  <div>
+                    <dt>Methodology</dt>
+                    <dd>{program.methodology}</dd>
+                  </div>
+                  <div>
+                    <dt>Data source</dt>
+                    <dd>{program.dataSource}</dd>
+                  </div>
+                  <div>
+                    <dt>Proposed sample</dt>
+                    <dd>{program.sample}</dd>
+                  </div>
+                  <div>
+                    <dt>Collection period</dt>
+                    <dd>{program.collectionPeriod}</dd>
+                  </div>
+                  <div>
+                    <dt>Definitions</dt>
+                    <dd>{program.definitions}</dd>
+                  </div>
+                  <div>
+                    <dt>Calculations</dt>
+                    <dd>{program.calculations}</dd>
+                  </div>
+                  <div>
+                    <dt>Limitations</dt>
+                    <dd>{program.limitations}</dd>
+                  </div>
+                </dl>
+                <div class="research-card__foot">
+                  <span class="small">
+                    {program.hasPublishedFindings
+                      ? 'Published finding available.'
+                      : 'Data status: planned — no data collected yet. Unpublished numbers stay unpublished.'}
+                  </span>
+                  <a class="text-link" href="/methodology/">
+                    View methodology →
+                  </a>
+                </div>
+              </div>
             </div>
-          </details>
-        ))
+          );
+        })
       }
     </div>
   </div>
 </section>
 
+<script>
+  /* Accessible accordion: button toggles data-open + aria-expanded.
+     grid-rows animation lives in CSS; without JS the spec divs are
+     hidden by CSS only when [data-open='false'] — default-closed is
+     fine because all content stays in the crawlable HTML. */
+  document.querySelectorAll<HTMLElement>('[data-research-card]').forEach((card) => {
+    const btn = card.querySelector<HTMLButtonElement>('.research-card__head');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const open = card.dataset.open === 'true';
+      card.dataset.open = open ? 'false' : 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  });
+</script>
+
 <style>
-  .program-list {
-    border-top: 1px solid var(--rule-strong);
-  }
-
-  .program {
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .program summary {
-    list-style: none;
+  .research-card__head {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    padding: clamp(1.2rem, 2vw, 1.5rem);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.9rem;
+    align-items: start;
     cursor: pointer;
+  }
+
+  .research-card__head:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: -3px;
+    border-radius: var(--dd-card-radius);
+  }
+
+  .research-card__titles h3 {
+    font-family: var(--font-display);
+  }
+
+  /* Smooth expand without layout glitches: animate the grid rows. */
+  .research-card__body {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.4rem 1rem;
-    padding: 1.2rem 0;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 360ms var(--dd-ease);
   }
 
-  .program summary::-webkit-details-marker {
-    display: none;
+  .dd-card--research[data-open='true'] .research-card__body {
+    grid-template-rows: 1fr;
   }
 
-  .program__title {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.7rem;
+  .dd-card--research[data-open='false'] .research-card__body {
+    /* still in the DOM and crawlable; visually collapsed */
+    grid-template-rows: 0fr;
   }
 
-  .program__title strong {
-    font-size: 1.2rem;
+  .research-card__body > dl,
+  .research-card__body > .research-card__foot {
+    overflow: hidden;
+    min-height: 0;
   }
 
-  .program__q {
-    color: var(--muted);
-    font-size: 0.9rem;
-    grid-column: 1 / -1;
+  .research-card__foot {
+    border-top: 1px solid color-mix(in srgb, var(--rule) 55%, transparent);
+    margin: 0 clamp(1.2rem, 2vw, 1.5rem) clamp(1.1rem, 2vw, 1.4rem);
+    padding: 0.9rem 0 0;
   }
 
-  .program__toggle {
-    grid-row: 1 / 3;
-    color: var(--signal);
-    font-weight: 700;
-    font-size: 1.1rem;
-    align-self: start;
-  }
-
-  .program[open] .program__toggle {
-    transform: rotate(45deg);
-  }
-
-  .status {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.2em 0.7em;
-    border-radius: 999px;
-    border: 1px solid var(--rule);
-  }
-
-  .status--neutral {
-    color: var(--muted);
-  }
-
-  .status--active {
-    color: var(--amber-deep);
-    border-color: var(--amber);
-  }
-
-  .status--warn {
-    color: var(--amber-deep);
-    border-color: var(--amber);
-  }
-
-  .status--ok {
-    color: var(--ok);
-    border-color: var(--signal);
-  }
-
-  .program__spec {
-    margin: 0;
-    padding: 0 0 1.2rem;
-  }
-
-  .program__spec div {
-    display: grid;
-    grid-template-columns: 0.9rem 1fr;
-    gap: 0.2rem 0.6rem;
-    padding: 0.35rem 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--rule) 40%, transparent);
-  }
-
-  .program__spec dt {
-    grid-column: 1 / -1;
-    font-family: var(--font-mono);
-    color: var(--green);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .program__spec dd {
-    margin: 0;
-    grid-column: 1 / -1;
-    color: var(--text);
-    font-size: 0.9rem;
-  }
-
-  .program__links {
-    display: grid;
-    gap: 0.4rem;
-    padding-bottom: 1.4rem;
-  }
-
-  .program__foot {
-    font-size: 0.86rem;
-    color: var(--muted);
-  }
-
-  @media (max-width: 640px) {
-    .program summary {
-      grid-template-columns: 1fr auto;
-    }
-
-    .program__title {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.4rem;
+  @media (prefers-reduced-motion: reduce) {
+    .research-card__body {
+      transition: none !important;
     }
   }
 </style>

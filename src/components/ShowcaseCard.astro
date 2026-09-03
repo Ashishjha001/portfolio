@@ -1,0 +1,29 @@
+---
+/* transitions.dev pattern 19 — card hover tilt with cursor-tracked glare.
+   Outer .t-tilt is the flat hit area; inner .t-tilt-card rotates.
+   Tilt JS is wired globally in BaseLayout (pointer-only, skips touch,
+   flattens under prefers-reduced-motion). */
+import LearnArrow from './LearnArrow.astro';
+
+interface Props {
+  href: string;
+  index: string;
+  title: string;
+  body: string;
+  label: string;
+}
+
+const { href, index, title, body, label } = Astro.props;
+---
+
+<a class="showcase__item" href={href} data-index={index} data-tilt>
+  <div class="showcase__icon"><slot /></div>
+  <div>
+    <h3>{title}</h3>
+    <p>{body}</p>
+  </div>
+  <span class="showcase__link">
+    {label}
+    <LearnArrow />
+  </span>
+</a>

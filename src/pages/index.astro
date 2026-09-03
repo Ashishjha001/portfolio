@@ -6,7 +6,10 @@ import MethodBadge from '../components/MethodBadge.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import FounderSocialLinks from '../components/FounderSocialLinks.astro';
+import LearnArrow from '../components/LearnArrow.astro';
+import ShowcaseCard from '../components/ShowcaseCard.astro';
 import { entityDefinition } from '../data/entityDefinition';
+import { Search, Sparkles, BarChart3, MousePointerClick, Globe, LineChart } from 'lucide-astro';
 
 const measurementCluster = (await getCollection('insights'))
   .filter((entry) => entry.data.cluster === 'Measurement & Lead-Source Truth')
@@ -62,6 +65,57 @@ const methodSteps = [
   },
 ];
 
+const showcaseServices = [
+  {
+    index: '01',
+    href: '/services/seo/',
+    icon: Search,
+    title: 'SEO Services',
+    body: 'Technical SEO, intent-led architecture and topical depth that turn rankings into qualified pipeline.',
+    label: 'SEO services',
+  },
+  {
+    index: '02',
+    href: '/services/ai-search-visibility/',
+    icon: Sparkles,
+    title: 'AI Search Visibility',
+    body: 'Get recommended by ChatGPT, Gemini and AI Overviews — measured baselines, no placement guarantees.',
+    label: 'AEO & GEO',
+  },
+  {
+    index: '03',
+    href: '/services/measurement-foundation/',
+    icon: BarChart3,
+    title: 'GA4 & Attribution',
+    body: 'Reconcile GA4 with your CRM, repair source capture and end the dashboard disagreements.',
+    label: 'Measurement',
+  },
+  {
+    index: '04',
+    href: '/services/google-ads-management/',
+    icon: MousePointerClick,
+    title: 'Google Ads',
+    body: 'Search, shopping and Performance Max optimized toward break-even CAC and CRM-tied revenue.',
+    label: 'Paid search',
+  },
+  {
+    index: '05',
+    href: '/services/meta-ads-management/',
+    icon: LineChart,
+    title: 'Meta Ads',
+    body: 'Facebook and Instagram creative systems with Conversions API measurement and MER economics.',
+    label: 'Paid social',
+  },
+  {
+    index: '06',
+    href: '/services/website-development-seo/',
+    icon: Globe,
+    title: 'Website Development',
+    body: 'Complete websites with SEO, schema and measurement built in from day one — like this one.',
+    label: 'Build + SEO',
+  },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -87,7 +141,9 @@ const schema = {
     <p class="hero__query hero__query--c mono" aria-hidden="true">best seo partner for saas</p>
     <div class="shell">
       <div class="hero__copy">
-        <p class="eyebrow" data-reveal>AI Search × SEO × Growth</p>
+        <p class="eyebrow t-stagger">
+          <span class="t-stagger-line t-stagger-line--1">AI Search × SEO × Growth</span>
+        </p>
         <h1 class="hero__title hero__title--rotator">
           <span class="sr-only">
             Growth you can prove: SEO, AI-search visibility and measurement consulting for B2B SaaS.
@@ -105,10 +161,12 @@ const schema = {
             </span>
           </span>
         </h1>
-        <p class="lede hero__lede" data-reveal style="--reveal-delay:160ms">
-          We build the complete digital growth engine for B2B SaaS — from your website to SEO,
-          AI-search visibility, measurement, paid acquisition and conversion — with the evidence
-          attached to every decision.
+        <p class="lede hero__lede t-stagger">
+          <span class="t-stagger-line t-stagger-line--2">
+            We build the complete digital growth engine for B2B SaaS — from your website to SEO,
+            AI-search visibility, measurement, paid acquisition and conversion — with the evidence
+            attached to every decision.
+          </span>
         </p>
         <div class="button-row hero__actions" data-reveal style="--reveal-delay:220ms">
           <a
@@ -122,6 +180,43 @@ const schema = {
             See How It Works
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 01b: Services showcase -->
+  <section class="showcase" aria-labelledby="showcase-heading">
+    <div class="shell">
+      <div class="showcase__head">
+        <p class="eyebrow">What we build</p>
+        <h2 id="showcase-heading" class="t-stagger">
+          <span class="t-stagger-line t-stagger-line--1">One growth engine.</span>
+          <span class="t-stagger-line t-stagger-line--2">Six ways it compounds.</span>
+        </h2>
+        <p class="small" style="max-width: 52ch; margin: 0; color: var(--muted);">
+          Every service shares the same foundation: a dated baseline, a published method and
+          measurement your board can challenge. Start where the constraint is.
+        </p>
+      </div>
+      <div class="showcase__grid">
+        {
+          showcaseServices.map((service) => (
+            <ShowcaseCard
+              href={service.href}
+              index={service.index}
+              title={service.title}
+              body={service.body}
+              label={service.label}
+            >
+              <service.icon strokeWidth={1.75} aria-hidden="true" />
+            </ShowcaseCard>
+          ))
+        }
+      </div>
+      <div style="text-align: center; margin-top: clamp(1.6rem, 3vw, 2.4rem);">
+        <a class="button button--primary" href="/services/" data-event="showcase_all_services">
+          Explore all services
+        </a>
       </div>
     </div>
   </section>
@@ -158,7 +253,10 @@ const schema = {
           </span>
           <h2 id="tools-card-heading">Run our checks yourself. Right now.</h2>
         </div>
-        <span class="tools-card__cta" aria-hidden="true">Open the tools →</span>
+        <span class="tools-card__cta" aria-hidden="true">
+          Open the tools
+          <LearnArrow />
+        </span>
       </a>
     </div>
   </section>

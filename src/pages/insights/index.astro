@@ -4,38 +4,61 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 import StrategicAreas from '../../components/StrategicAreas.astro';
+import InsightCard from '../../components/InsightCard.astro';
+import FeaturedInsightCard from '../../components/FeaturedInsightCard.astro';
+import ClusterArt from '../../components/ClusterArt.astro';
 
 const insights = (await getCollection('insights')).sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
 );
+
 const measurementClusterName = 'Measurement & Lead-Source Truth';
-const measurementClusterEntries = insights.filter(
-  (entry) => entry.data.cluster === measurementClusterName,
-);
-const measurementPillar = measurementClusterEntries.find((entry) => entry.data.pillar);
-const measurementSupporting = measurementClusterEntries
-  .filter((entry) => !entry.data.pillar)
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 const demoClusterName = 'B2B SaaS Demo-Funnel Diagnosis';
-const demoClusterEntries = insights.filter((entry) => entry.data.cluster === demoClusterName);
-const demoPillar = demoClusterEntries.find((entry) => entry.data.pillar);
-const demoSupporting = demoClusterEntries
-  .filter((entry) => !entry.data.pillar)
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 const playbooksClusterName = 'Service Playbooks';
-const playbooksClusterEntries = insights.filter(
-  (entry) => entry.data.cluster === playbooksClusterName,
-);
-const playbooksPillar = playbooksClusterEntries.find((entry) => entry.data.pillar);
-const playbooksSupporting = playbooksClusterEntries
-  .filter((entry) => !entry.data.pillar)
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const clusters = [
+  {
+    id: 'cluster-measurement',
+    index: '01',
+    name: measurementClusterName,
+    heading: 'Start with the reconciliation problem.',
+    note: 'One foundational guide and focused checks connect website activity to CRM records, opportunity and revenue.',
+  },
+  {
+    id: 'cluster-demo',
+    index: '02',
+    name: demoClusterName,
+    heading: 'Find the first break between demand and a held meeting.',
+    note: 'A diagnostic framework and focused checks connect qualified visits to requests, routing, booked meetings and pipeline.',
+  },
+  {
+    id: 'cluster-playbooks',
+    index: '03',
+    name: playbooksClusterName,
+    heading: 'How Data Decision Consulting implements every service, step by step.',
+    note: 'Complete implementation playbooks for each pillar: what the team builds, in what order, with the artifacts and limits stated.',
+  },
+];
+
+function clusterEntries(name: string) {
+  const entries = insights.filter((entry) => entry.data.cluster === name);
+  const pillar = entries.find((entry) => entry.data.pillar);
+  const supporting = entries
+    .filter((entry) => !entry.data.pillar)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+  return { pillar, supporting };
+}
+
+const measurement = clusterEntries(measurementClusterName);
+const demo = clusterEntries(demoClusterName);
+const playbooks = clusterEntries(playbooksClusterName);
+const clusterMap = new Map([
+  [measurementClusterName, measurement],
+  [demoClusterName, demo],
+  [playbooksClusterName, playbooks],
+]);
 const clusteredNames = new Set([measurementClusterName, demoClusterName, playbooksClusterName]);
 const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.cluster ?? ''));
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(
-    date,
-  );
 ---
 
 <BaseLayout
@@ -69,174 +92,77 @@ const formatDate = (date: Date) =>
 
   <StrategicAreas heading="Explore the library through the decision you are trying to make." />
 
-  <section class="section" aria-labelledby="measurement-cluster-heading">
-    <span class="chapter-mark" aria-hidden="true">01</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
-        <p class="cluster-index">Cluster 01</p>
-        <p class="eyebrow">{measurementClusterName}</p>
-        <h2 id="measurement-cluster-heading">Start with the reconciliation problem.</h2>
-        <p class="small">
-          One foundational guide and five focused checks connect website activity to CRM records,
-          opportunity and revenue.
-        </p>
-      </div>
-      <div>
-        {
-          measurementPillar && (
-            <a class="cluster-pillar" href={`/insights/${measurementPillar.id}/`} data-reveal>
-              <span class="evidence-label">Foundational guide / 01</span>
-              <h2>{measurementPillar.data.title}</h2>
-              <p>{measurementPillar.data.description}</p>
-              <span class="cluster-pillar__meta">
-                Published {formatDate(measurementPillar.data.publishedDate)} ·{' '}
-                {measurementPillar.data.readingMinutes} min read
-              </span>
-            </a>
-          )
-        }
-        <div
-          class="insight-index cluster-support-list"
-          aria-label="Measurement and Lead-Source Truth supporting insights"
-          data-reveal
-          style="--reveal-delay:110ms"
-        >
-          {
-            measurementSupporting.map((entry, index) => (
-              <a class="insight-row" href={`/insights/${entry.id}/`}>
-                <span class="mono">{String(index + 2).padStart(2, '0')} / Supporting insight</span>
-                <div>
-                  <h3>{entry.data.title}</h3>
-                  <p>{entry.data.description}</p>
-                </div>
-                <span class="small">
-                  {formatDate(entry.data.publishedDate)}
-                  <br />
-                  {entry.data.readingMinutes} min read
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Cluster browse chips: anchor navigation (crawlable, JS-free) -->
+  <nav class="shell insight-browse" aria-label="Browse insights by strategic area">
+    <a class="insight-browse__chip" href="#cluster-measurement">Measurement &amp; attribution</a>
+    <a class="insight-browse__chip" href="#cluster-demo">Demo-funnel diagnosis</a>
+    <a class="insight-browse__chip" href="#cluster-playbooks">Service playbooks</a>
+    <a class="insight-browse__chip" href="#cluster-more">Strategic &amp; technical guides</a>
+    <span class="insight-browse__count mono" aria-label="Total published insights">
+      {insights.length} insights · 4 areas
+    </span>
+  </nav>
 
-  <section class="section section--ink" aria-labelledby="demo-cluster-heading">
-    <span class="chapter-mark" aria-hidden="true">02</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
-        <p class="cluster-index">Cluster 02</p>
-        <p class="eyebrow">{demoClusterName}</p>
-        <h2 id="demo-cluster-heading">Find the first break between demand and a held meeting.</h2>
-        <p class="small">
-          One diagnostic framework and five focused checks connect qualified visits to requests,
-          routing, booked meetings and pipeline.
-        </p>
-      </div>
-      <div>
-        {
-          demoPillar && (
-            <a class="cluster-pillar" href={`/insights/${demoPillar.id}/`} data-reveal>
-              <span class="evidence-label">Foundational guide / 01</span>
-              <h2>{demoPillar.data.title}</h2>
-              <p>{demoPillar.data.description}</p>
-              <span class="cluster-pillar__meta">
-                Published {formatDate(demoPillar.data.publishedDate)} ·{' '}
-                {demoPillar.data.readingMinutes} min read
-              </span>
-            </a>
-          )
-        }
-        <div
-          class="insight-index cluster-support-list"
-          aria-label="B2B SaaS Demo-Funnel Diagnosis supporting insights"
-          data-reveal
-          style="--reveal-delay:110ms"
-        >
-          {
-            demoSupporting.map((entry, index) => (
-              <a class="insight-row" href={`/insights/${entry.id}/`}>
-                <span class="mono">{String(index + 2).padStart(2, '0')} / Supporting insight</span>
-                <div>
-                  <h3>{entry.data.title}</h3>
-                  <p>{entry.data.description}</p>
-                </div>
-                <span class="small">
-                  {formatDate(entry.data.publishedDate)}
-                  <br />
-                  {entry.data.readingMinutes} min read
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--bright" aria-labelledby="playbooks-heading">
-    <span class="chapter-mark" aria-hidden="true">03</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
-        <p class="cluster-index">Cluster 03</p>
-        <p class="eyebrow">{playbooksClusterName}</p>
-        <h2 id="playbooks-heading">
-          How Data Decision Consulting implements every service, step by step.
-        </h2>
-        <p class="small">
-          Complete implementation playbooks for each pillar: what the Data Decision Consulting team
-          builds, in what order, with the artifacts and limits stated.
-        </p>
-      </div>
-      <div>
-        {
-          playbooksPillar && (
-            <a class="cluster-pillar" href={`/insights/${playbooksPillar.id}/`} data-reveal>
-              <span class="evidence-label">Foundational playbook / 01</span>
-              <h2>{playbooksPillar.data.title}</h2>
-              <p>{playbooksPillar.data.description}</p>
-              <span class="cluster-pillar__meta">
-                Published {formatDate(playbooksPillar.data.publishedDate)} ·{' '}
-                {playbooksPillar.data.readingMinutes} min read
-              </span>
-            </a>
-          )
-        }
-        <div
-          class="insight-index cluster-support-list"
-          aria-label="Service Playbooks supporting guides"
-          data-reveal
-          style="--reveal-delay:110ms"
-        >
-          {
-            playbooksSupporting.map((entry, index) => (
-              <a class="insight-row" href={`/insights/${entry.id}/`}>
-                <span class="mono">{String(index + 2).padStart(2, '0')} / Playbook</span>
-                <div>
-                  <h3>{entry.data.title}</h3>
-                  <p>{entry.data.description}</p>
-                </div>
-                <span class="small">
-                  {formatDate(entry.data.publishedDate)}
-                  <br />
-                  {entry.data.readingMinutes} min read
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
+  {
+    clusters.map((cluster) => {
+      const { pillar, supporting } = clusterMap.get(cluster.name)!;
+      return (
+        <section class="section" aria-labelledby={`${cluster.id}-heading`} id={cluster.id}>
+          <span class="chapter-mark" aria-hidden="true">
+            {cluster.index}
+          </span>
+          <div class="shell">
+            <div class="section-intro" data-reveal>
+              <p class="cluster-index">Cluster {cluster.index}</p>
+              <p class="eyebrow">{cluster.name}</p>
+              <h2 id={`${cluster.id}-heading`}>{cluster.heading}</h2>
+              <p class="small">{cluster.note}</p>
+              <p class="mono insight-cluster-count">
+                {supporting.length + (pillar ? 1 : 0)} insights in this cluster
+              </p>
+            </div>
+            <div class="insight-cards">
+              {pillar && (
+                <FeaturedInsightCard
+                  href={`/insights/${pillar.id}/`}
+                  cluster={pillar.data.cluster ?? pillar.data.category}
+                  category={pillar.data.category}
+                  typeLabel="Foundational guide"
+                  title={pillar.data.title}
+                  excerpt={pillar.data.description}
+                  date={pillar.data.publishedDate}
+                  dateLabel="Published"
+                  readingMinutes={pillar.data.readingMinutes}
+                />
+              )}
+              {supporting.map((entry, i) => (
+                <InsightCard
+                  href={`/insights/${entry.id}/`}
+                  cluster={entry.data.cluster ?? entry.data.category}
+                  category={entry.data.category}
+                  typeLabel="Supporting insight"
+                  title={entry.data.title}
+                  excerpt={entry.data.description}
+                  date={entry.data.publishedDate}
+                  dateLabel="Published"
+                  readingMinutes={entry.data.readingMinutes}
+                  index={i + 1}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
 
   {
     otherInsights.length > 0 && (
-      <section class="section" aria-labelledby="more-heading">
+      <section class="section section--bright" aria-labelledby="more-heading" id="cluster-more">
         <span class="chapter-mark" aria-hidden="true">
-          03
+          04
         </span>
-        <div class="shell editorial-grid">
+        <div class="shell">
           <div class="section-intro" data-reveal>
             <p class="cluster-index">Cluster 04</p>
             <p class="eyebrow">Strategic and technical guides</p>
@@ -245,23 +171,22 @@ const formatDate = (date: Date) =>
               Additional Data Decision Consulting guidance remains available in the same published
               library.
             </p>
+            <p class="mono insight-cluster-count">{otherInsights.length} insights in this area</p>
           </div>
-          <div class="insight-index" data-reveal style="--reveal-delay:110ms">
-            {otherInsights.map((entry, index) => (
-              <a class="insight-row" href={`/insights/${entry.id}/`}>
-                <span class="mono">
-                  {String(index + 1).padStart(2, '0')} / {entry.data.category}
-                </span>
-                <div>
-                  <h3>{entry.data.title}</h3>
-                  <p>{entry.data.description}</p>
-                </div>
-                <span class="small">
-                  Updated {formatDate(entry.data.updatedDate)}
-                  <br />
-                  {entry.data.readingMinutes} min read
-                </span>
-              </a>
+          <div class="insight-cards">
+            {otherInsights.map((entry, i) => (
+              <InsightCard
+                href={`/insights/${entry.id}/`}
+                cluster={entry.data.cluster ?? entry.data.category}
+                category={entry.data.category}
+                typeLabel={entry.data.featured ? 'Featured guide' : 'Insight'}
+                title={entry.data.title}
+                excerpt={entry.data.description}
+                date={entry.data.updatedDate}
+                dateLabel="Updated"
+                readingMinutes={entry.data.readingMinutes}
+                index={i}
+              />
             ))}
           </div>
         </div>
@@ -294,3 +219,65 @@ const formatDate = (date: Date) =>
   </section>
   <FinalCTA heading="Turn a measurement question into a scoped brief." />
 </BaseLayout>
+
+<style>
+  .insight-browse {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    padding-block: 1.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .insight-browse__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5em 1em;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: inherit;
+    text-decoration: none;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .insight-browse__chip:hover,
+  .insight-browse__chip:focus-visible {
+    background: var(--green);
+    color: var(--paper);
+    border-color: var(--green);
+  }
+
+  .insight-browse__chip:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  .insight-browse__count {
+    margin-left: auto;
+    color: var(--faint);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .insight-browse__count {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  .insight-cluster-count {
+    color: var(--faint);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+  }
+</style>
