@@ -305,6 +305,177 @@ const schemaItems = [
           { passive: true },
         );
       }
+
+      /* Motion layer v2 — transitions.dev patterns
+         (staggered text reveals, card tilt, smooth scroll). */
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        /* t-18: staggered text reveal — plays once when scrolled into view */
+        var staggers = Array.prototype.slice.call(document.querySelectorAll('.t-stagger'));
+        if (staggers.length) {
+          if (reduced.matches || !('IntersectionObserver' in window)) {
+            staggers.forEach(function (block) {
+              block.classList.add('is-shown');
+            });
+          } else {
+            var pendingStaggers = new Set(staggers);
+            var staggerObserver = new IntersectionObserver(
+              function (entries) {
+                entries.forEach(function (entry) {
+                  if (!entry.isIntersecting) return;
+                  var el = entry.target;
+                  if (!pendingStaggers.has(el)) return;
+                  pendingStaggers.delete(el);
+                  el.classList.add('is-shown');
+                  staggerObserver.unobserve(el);
+                  if (!pendingStaggers.size) staggerObserver.disconnect();
+                });
+              },
+              { threshold: 0.35 },
+            );
+            staggers.forEach(function (block) {
+              staggerObserver.observe(block);
+            });
+          }
+        }
+
+        /* t-18b: card grid stagger — .dd-stagger cards reveal
+           sequentially when their container enters the viewport. */
+        var ddCards = Array.prototype.slice.call(document.querySelectorAll('.dd-stagger'));
+        if (ddCards.length) {
+          if (reduced.matches || !('IntersectionObserver' in window)) {
+            ddCards.forEach(function (card) {
+              card.classList.add('is-shown');
+            });
+          } else {
+            var pendingCards = new Set(ddCards);
+            var cardObserver = new IntersectionObserver(
+              function (entries) {
+                entries.forEach(function (entry) {
+                  if (!entry.isIntersecting) return;
+                  var el = entry.target;
+                  if (!pendingCards.has(el)) return;
+                  pendingCards.delete(el);
+                  /* Reveal this card and any card siblings already in view */
+                  var siblings = el.parentElement
+                    ? Array.prototype.slice.call(el.parentElement.children)
+                    : [el];
+                  siblings.forEach(function (sib) {
+                    if (pendingCards.has(sib)) {
+                      pendingCards.delete(sib);
+                      sib.classList.add('is-shown');
+                      cardObserver.unobserve(sib);
+                    }
+                  });
+                  el.classList.add('is-shown');
+                  cardObserver.unobserve(el);
+                });
+              },
+              { threshold: 0.12, rootMargin: '0px 0px -4% 0px' },
+            );
+            ddCards.forEach(function (card) {
+              cardObserver.observe(card);
+            });
+          }
+        }
+
+        /* t-19: card hover tilt — pointer-only, skips touch, flattens
+           under reduced motion. Tracks the OUTER wrapper so the tilting
+           card can't rotate its own hit area away from the cursor. */
+        var tilts = Array.prototype.slice.call(document.querySelectorAll('[data-tilt]'));
+        if (tilts.length && !reduced.matches && window.matchMedia('(hover: hover)').matches) {
+          var MAX_TILT = 4.5;
+          tilts.forEach(function (wrapper) {
+            var card = wrapper.querySelector('.t-tilt-card') || wrapper;
+            if (!card) return;
+            if (!card.classList.contains('t-tilt-card')) {
+              card.classList.add('t-tilt-card');
+              var glare = document.createElement('div');
+              glare.className = 't-tilt-glare';
+              glare.setAttribute('aria-hidden', 'true');
+              card.appendChild(glare);
+            }
+            var glareEl = card.querySelector('.t-tilt-glare');
+            var raf = null;
+            var onMove = function (event) {
+              var rect = wrapper.getBoundingClientRect();
+              var px = (event.clientX - rect.left) / rect.width;
+              var py = (event.clientY - rect.top) / rect.height;
+              if (raf) return;
+              raf = requestAnimationFrame(function () {
+                raf = null;
+                card.style.setProperty('--tilt-ry', (px - 0.5) * 2 * MAX_TILT + 'deg');
+                card.style.setProperty('--tilt-rx', (0.5 - py) * 2 * MAX_TILT + 'deg');
+                if (glareEl) {
+                  card.style.setProperty('--tilt-gx', px * 100 + '%');
+                  card.style.setProperty('--tilt-gy', py * 100 + '%');
+                }
+              });
+            };
+            var onEnter = function () {
+              card.classList.add('is-tilting', 'is-hover');
+            };
+            var onLeave = function () {
+              card.classList.remove('is-tilting', 'is-hover');
+              card.style.setProperty('--tilt-rx', '0deg');
+              card.style.setProperty('--tilt-ry', '0deg');
+              if (raf) {
+                cancelAnimationFrame(raf);
+                raf = null;
+              }
+            };
+            wrapper.addEventListener('pointermove', onMove);
+            wrapper.addEventListener('pointerenter', onEnter);
+            wrapper.addEventListener('pointerleave', onLeave);
+          });
+        }
+      })();
+
+      /* Lenis smooth scrolling — loaded only when motion is welcome.
+         Syncs to the reduced-motion preference and pauses when the
+         tab is hidden. Fails silently if the module is unavailable. */
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduced.matches) return;
+        import('lenis')
+          .then(function (mod) {
+            var Lenis = mod.default;
+            var lenis = new Lenis({
+              duration: 1.05,
+              easing: function (t) {
+                return Math.min(1, 1.001 - Math.pow(2, -10 * t));
+              },
+              smoothWheel: true,
+            });
+            var running = true;
+            var rafLoop = function (time) {
+              lenis.raf(time);
+              requestAnimationFrame(rafLoop);
+            };
+            requestAnimationFrame(rafLoop);
+            document.addEventListener('visibilitychange', function () {
+              if (document.hidden && running) {
+                lenis.destroy();
+                running = false;
+              }
+            });
+            /* Keep anchor jumps working with Lenis active */
+            document.addEventListener('click', function (event) {
+              var anchor = event.target.closest('a[href^="#"]');
+              if (!anchor) return;
+              var id = anchor.getAttribute('href');
+              if (!id || id === '#') return;
+              var target = document.querySelector(id);
+              if (!target) return;
+              event.preventDefault();
+              lenis.scrollTo(target, { offset: -80 });
+            });
+          })
+          .catch(function () {
+            /* Lenis is an enhancement — native scrolling is fine. */
+          });
+      })();
     </script>
   </body>
 </html>
