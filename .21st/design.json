@@ -47,7 +47,7 @@
     "motion": {
       "duration": "entrances 550-750ms, hovers 180-250ms",
       "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
-      "rules": "opacity/transform only, one-shot reveals at 18% visibility, count-up once, no loops/parallax/glow/network graphics",
+      "rules": "opacity/transform only, one-shot reveals at 18% visibility, count-up once; homepage hero permits one muted decorative source-video loop plus restrained desktop-only pointer and scroll depth",
       "preference": "reduced-motion shows final states instantly"
     },
     "density": "immersive editorial"
@@ -149,6 +149,16 @@
       "choice": "Homepage mobile flow is compact and text-led",
       "alternatives": ["Retain desktop card density", "Keep the founder monogram placeholder"],
       "reason": "At widths below 768px, homepage editorial leads and their content use explicit flow gaps, method and insight cards use compact type and padding, and reveal motion is opacity-only. The founder monogram placeholder is removed; credibility is presented as concise text until a real photograph is supplied."
+    },
+    {
+      "date": "2026-09-04",
+      "choice": "Immersive full-width Flow-generated homepage hero",
+      "alternatives": [
+        "Keep the text-only hero",
+        "Place the video in a bordered card",
+        "Use a JavaScript-rendered 3D scene"
+      ],
+      "reason": "The approved headline and platform rotator remain untouched while the supplied cream-and-green animation becomes a masked full-hero visual with its focal object held to the right and a wide cream readability zone on the left. The rotating platform name is the dominant second line, the long supporting paragraph is removed, and mobile, reduced-motion and data-saver contexts use a 15 KB poster instead of loading the loop."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"
