@@ -1,0 +1,368 @@
+---
+const poster = '/media/hero/decision-intelligence-poster.webp';
+---
+
+<div class="hero-media" data-hero-media aria-hidden="true">
+  <div class="hero-media__motion" data-hero-media-motion>
+    <div class="hero-media__frame">
+      <img
+        class="hero-media__poster"
+        src={poster}
+        alt=""
+        width="1280"
+        height="720"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <video
+        class="hero-media__video"
+        data-hero-video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster={poster}
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <source data-src="/media/hero/decision-intelligence-hero.webm" type="video/webm" />
+        <source data-src="/media/hero/decision-intelligence-hero.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</div>
+
+<script>
+  type SaveDataConnection = Navigator & {
+    connection?: { saveData?: boolean };
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-hero-media]').forEach((media) => {
+    const hero = media.closest<HTMLElement>('.hero');
+    const video = media.querySelector<HTMLVideoElement>('[data-hero-video]');
+    const sources = video ? Array.from(video.querySelectorAll<HTMLSourceElement>('source')) : [];
+    if (!hero || !video || !sources.length) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const compactScreen = window.matchMedia('(max-width: 767px)');
+    const finePointer = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
+    const saveData = (navigator as SaveDataConnection).connection?.saveData === true;
+    let sourcesAttached = false;
+    let heroVisible = true;
+
+    const shouldPlayVideo = () => !reduceMotion.matches && !compactScreen.matches && !saveData;
+
+    const attachSources = () => {
+      if (sourcesAttached) return;
+      sources.forEach((source) => {
+        const src = source.dataset.src;
+        if (src) source.src = src;
+      });
+      sourcesAttached = true;
+      video.load();
+    };
+
+    const detachSources = () => {
+      video.pause();
+      media.classList.remove('is-video-ready');
+      if (!sourcesAttached) return;
+      sources.forEach((source) => source.removeAttribute('src'));
+      sourcesAttached = false;
+      video.load();
+    };
+
+    const syncPlayback = () => {
+      if (!shouldPlayVideo()) {
+        detachSources();
+        return;
+      }
+
+      attachSources();
+      if (heroVisible && !document.hidden) {
+        void video.play().catch(() => {
+          media.classList.remove('is-video-ready');
+        });
+      } else {
+        video.pause();
+      }
+    };
+
+    video.addEventListener('canplay', () => media.classList.add('is-video-ready'));
+    video.addEventListener('error', () => media.classList.remove('is-video-ready'));
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        heroVisible = entry?.isIntersecting ?? true;
+        syncPlayback();
+      },
+      { rootMargin: '120px 0px' },
+    );
+    visibilityObserver.observe(hero);
+
+    reduceMotion.addEventListener('change', syncPlayback);
+    compactScreen.addEventListener('change', syncPlayback);
+    document.addEventListener('visibilitychange', syncPlayback);
+    syncPlayback();
+
+    let pointerFrame = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const renderPointer = () => {
+      currentX += (targetX - currentX) * 0.09;
+      currentY += (targetY - currentY) * 0.09;
+      media.style.setProperty('--media-x', `${currentX.toFixed(2)}px`);
+      media.style.setProperty('--media-y', `${currentY.toFixed(2)}px`);
+      media.style.setProperty('--media-rx', `${(-currentY * 0.055).toFixed(3)}deg`);
+      media.style.setProperty('--media-ry', `${(currentX * 0.065).toFixed(3)}deg`);
+
+      if (Math.abs(targetX - currentX) > 0.04 || Math.abs(targetY - currentY) > 0.04) {
+        pointerFrame = window.requestAnimationFrame(renderPointer);
+      } else {
+        pointerFrame = 0;
+      }
+    };
+
+    const schedulePointer = () => {
+      if (!pointerFrame) pointerFrame = window.requestAnimationFrame(renderPointer);
+    };
+
+    hero.addEventListener('pointermove', (event) => {
+      if (!finePointer.matches || reduceMotion.matches) return;
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      targetX = Math.max(-12, Math.min(12, x * 24));
+      targetY = Math.max(-8, Math.min(8, y * 16));
+      schedulePointer();
+    });
+
+    hero.addEventListener('pointerleave', () => {
+      targetX = 0;
+      targetY = 0;
+      schedulePointer();
+    });
+
+    let scrollFrame = 0;
+    const renderScrollDepth = () => {
+      scrollFrame = 0;
+      if (reduceMotion.matches || compactScreen.matches) {
+        media.style.setProperty('--media-scroll-y', '0px');
+        media.style.setProperty('--media-scale', '1');
+        return;
+      }
+
+      const rect = hero.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / Math.max(rect.height, 1)));
+      media.style.setProperty('--media-scroll-y', `${(-14 * progress).toFixed(2)}px`);
+      media.style.setProperty('--media-scale', (1 + 0.028 * progress).toFixed(4));
+    };
+
+    const scheduleScrollDepth = () => {
+      if (!scrollFrame) scrollFrame = window.requestAnimationFrame(renderScrollDepth);
+    };
+
+    window.addEventListener('scroll', scheduleScrollDepth, { passive: true });
+    window.addEventListener('resize', scheduleScrollDepth, { passive: true });
+    reduceMotion.addEventListener('change', scheduleScrollDepth);
+    compactScreen.addEventListener('change', scheduleScrollDepth);
+    renderScrollDepth();
+  });
+</script>
+
+<style>
+  .hero-media {
+    --media-x: 0px;
+    --media-y: 0px;
+    --media-rx: 0deg;
+    --media-ry: 0deg;
+    --media-scroll-y: 0px;
+    --media-scale: 1;
+    --source-scale: 0.9;
+    --source-shift-x: 0.75%;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    isolation: isolate;
+    contain: layout paint;
+  }
+
+  .hero-media::before {
+    content: '';
+    position: absolute;
+    inset: 9% -8% 5% 48%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14, 110, 84, 0.16), transparent 69%);
+    filter: blur(34px);
+    opacity: 0.68;
+  }
+
+  .hero-media__motion {
+    position: absolute;
+    inset: -3% -2% -3% -1%;
+    transform: translate3d(var(--media-x), calc(var(--media-y) + var(--media-scroll-y)), 0)
+      rotateX(var(--media-rx)) rotateY(var(--media-ry)) scale(var(--media-scale));
+    transform-origin: 76% 50%;
+  }
+
+  .hero-media__frame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--bg);
+    -webkit-mask-image: radial-gradient(
+      ellipse 83% 108% at 86% 50%,
+      #000 46%,
+      rgba(0, 0, 0, 0.9) 63%,
+      rgba(0, 0, 0, 0.3) 83%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 83% 108% at 86% 50%,
+      #000 46%,
+      rgba(0, 0, 0, 0.9) 63%,
+      rgba(0, 0, 0, 0.3) 83%,
+      transparent 100%
+    );
+  }
+
+  .hero-media__frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(
+        90deg,
+        var(--bg) 0%,
+        var(--bg) 31%,
+        rgba(244, 240, 231, 0.98) 42%,
+        rgba(244, 240, 231, 0.8) 53%,
+        rgba(244, 240, 231, 0.36) 65%,
+        transparent 79%
+      ),
+      linear-gradient(180deg, var(--bg) 0%, transparent 13%, transparent 84%, var(--bg) 100%);
+  }
+
+  .hero-media__poster,
+  .hero-media__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    filter: saturate(0.94) contrast(1.02);
+    mix-blend-mode: multiply;
+    transform: translate3d(var(--source-shift-x), 0, 0) scale(var(--source-scale));
+    transform-origin: right center;
+  }
+
+  .hero-media__poster {
+    opacity: 0.92;
+  }
+
+  .hero-media__video {
+    opacity: 0;
+    transition: opacity 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-media.is-video-ready .hero-media__video {
+    opacity: 0.94;
+  }
+
+  .hero-media.is-video-ready .hero-media__poster {
+    opacity: 0;
+  }
+
+  @media (max-width: 899px) {
+    .hero-media {
+      --source-scale: 0.88;
+      --source-shift-x: 0%;
+    }
+
+    .hero-media__motion {
+      inset: -2% -5% -2% -10%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-media {
+      --source-scale: 0.88;
+      --source-shift-x: 0%;
+      inset: auto 0 0;
+      width: 100%;
+      height: clamp(280px, 44svh, 360px);
+    }
+
+    .hero-media__motion {
+      inset: -8% -7% -8% -18%;
+      transform: none;
+    }
+
+    .hero-media__frame {
+      -webkit-mask-image: radial-gradient(
+        ellipse 96% 104% at 92% 58%,
+        #000 44%,
+        rgba(0, 0, 0, 0.84) 65%,
+        rgba(0, 0, 0, 0.22) 84%,
+        transparent 100%
+      );
+      mask-image: radial-gradient(
+        ellipse 96% 104% at 92% 58%,
+        #000 44%,
+        rgba(0, 0, 0, 0.84) 65%,
+        rgba(0, 0, 0, 0.22) 84%,
+        transparent 100%
+      );
+    }
+
+    .hero-media__video {
+      display: none;
+    }
+
+    .hero-media__poster {
+      opacity: 0.94;
+      object-position: right center;
+    }
+
+    .hero-media__frame::after {
+      background:
+        linear-gradient(
+          90deg,
+          var(--bg) 0%,
+          rgba(244, 240, 231, 0.9) 22%,
+          rgba(244, 240, 231, 0.46) 43%,
+          transparent 68%
+        ),
+        linear-gradient(
+          180deg,
+          var(--bg) 0%,
+          rgba(244, 240, 231, 0.68) 14%,
+          transparent 39%,
+          transparent 78%,
+          var(--bg) 100%
+        );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-media__motion {
+      transform: none;
+    }
+
+    .hero-media__video {
+      display: none;
+    }
+
+    .hero-media__poster {
+      opacity: 0.94;
+    }
+  }
+</style>

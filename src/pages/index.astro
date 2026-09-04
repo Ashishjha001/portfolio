@@ -8,6 +8,7 @@ import FinalCTA from '../components/FinalCTA.astro';
 import FounderSocialLinks from '../components/FounderSocialLinks.astro';
 import LearnArrow from '../components/LearnArrow.astro';
 import ShowcaseCard from '../components/ShowcaseCard.astro';
+import HeroMedia from '../components/HeroMedia.astro';
 import { entityDefinition } from '../data/entityDefinition';
 import { Search, Sparkles, BarChart3, MousePointerClick, Globe, LineChart } from 'lucide-astro';
 
@@ -136,10 +137,8 @@ const schema = {
   <!-- Chapter 01: Opening statement -->
   <section class="hero" data-chapter aria-label="Introduction">
     <span class="chapter-mark" aria-hidden="true">01</span>
-    <p class="hero__query hero__query--a mono" aria-hidden="true">best crm for b2b saas</p>
-    <p class="hero__query hero__query--b mono" aria-hidden="true">top ai visibility agency</p>
-    <p class="hero__query hero__query--c mono" aria-hidden="true">best seo partner for saas</p>
-    <div class="shell">
+    <HeroMedia />
+    <div class="shell hero__layout">
       <div class="hero__copy">
         <p class="eyebrow t-stagger">
           <span class="t-stagger-line t-stagger-line--1">AI Search × SEO × Growth</span>
@@ -153,21 +152,13 @@ const schema = {
             <span class="line" style="--line:0"><span>Get Recommended by</span></span>
             <span class="line rotator" style="--line:1" data-rotator data-platform="chatgpt">
               <span class="rotator__word is-current" data-platform="chatgpt">ChatGPT</span>
-              <span class="rotator__word" data-platform="overviews" hidden>Google AI Overviews</span
-              >
+              <span class="rotator__word" data-platform="overviews" hidden>AI Overviews</span>
               <span class="rotator__word" data-platform="gemini" hidden>Gemini</span>
               <span class="rotator__word" data-platform="claude" hidden>Claude</span>
               <span class="rotator__word" data-platform="grok" hidden>Grok</span>
             </span>
           </span>
         </h1>
-        <p class="lede hero__lede t-stagger">
-          <span class="t-stagger-line t-stagger-line--2">
-            We build the complete digital growth engine for B2B SaaS: from your website to SEO,
-            AI-search visibility, measurement, paid acquisition and conversion: with the evidence
-            attached to every decision.
-          </span>
-        </p>
         <div class="button-row hero__actions" data-reveal style="--reveal-delay:220ms">
           <a
             class="button button--primary"

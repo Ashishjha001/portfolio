@@ -1090,9 +1090,52 @@ html.js .scope-card.is-revealed .caveat {
   position: relative;
   display: grid;
   align-content: center;
-  min-height: min(100svh, 860px);
-  padding: calc(var(--header-h) + 2rem) 0 3.25rem;
+  min-height: min(100svh, 980px);
+  padding: calc(var(--header-h) + clamp(2.25rem, 6vh, 5rem)) 0 clamp(3rem, 7vh, 5.5rem);
   overflow: clip;
+  isolation: isolate;
+}
+
+.hero__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: clamp(540px, 66svh, 720px);
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+  width: min(72%, 1020px);
+  min-width: 0;
+  max-width: 1020px;
+}
+
+@media (min-width: 900px) {
+  .hero .hero__title--rotator {
+    font-size: clamp(4.8rem, 7.25vw, 7rem);
+    letter-spacing: -0.035em;
+  }
+
+  .hero__title--rotator .line:not(.rotator) {
+    font-size: 0.68em;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__actions {
+    margin-top: clamp(2rem, 4vh, 3rem);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1100px) {
+  .hero__copy {
+    width: 76%;
+  }
+
+  .hero .hero__title--rotator {
+    font-size: clamp(4rem, 7.4vw, 5.15rem);
+  }
 }
 
 @media (min-width: 1000px) and (max-height: 820px) {
@@ -1101,8 +1144,8 @@ html.js .scope-card.is-revealed .caveat {
     padding-bottom: 2rem;
   }
 
-  .hero__title {
-    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  .hero .hero__title--rotator {
+    font-size: clamp(4.1rem, 6.6vw, 5.8rem);
   }
 
   .hero__grid {
@@ -3912,39 +3955,6 @@ html.js:not(.reduced-motion) .hero__title .line.rotator {
   letter-spacing: 0.14em;
 }
 
-/* faint background search signals */
-.hero__query {
-  position: absolute;
-  margin: 0;
-  color: var(--ink);
-  opacity: 0.055;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  pointer-events: none;
-  user-select: none;
-}
-
-.hero__query--a {
-  top: 22%;
-  left: 4%;
-}
-
-.hero__query--b {
-  top: 14%;
-  right: 6%;
-}
-
-.hero__query--c {
-  bottom: 18%;
-  right: 12%;
-}
-
-@media (max-width: 900px) {
-  .hero__query {
-    display: none;
-  }
-}
-
 /* ============================================================
    Reduced motion — global kill switch
    ============================================================ */
@@ -4353,13 +4363,44 @@ section[id] {
 /* ---------- mobile polish ---------- */
 
 @media (max-width: 767px) {
+  .hero .hero__title--rotator {
+    font-size: clamp(2rem, 8.5vw, 2.25rem);
+    line-height: 1.04;
+  }
+
+  .hero__title--rotator .line:not(.rotator) {
+    font-size: 0.82em;
+  }
+
   .hero__hint {
     display: none;
   }
 
   .hero {
+    align-content: start;
     padding-top: calc(var(--header-h) + 1.5rem);
-    min-height: auto;
+    padding-bottom: min(38svh, 19rem);
+    min-height: clamp(660px, 86svh, 740px);
+  }
+
+  .hero__layout {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero__copy {
+    width: 100%;
+    max-width: 39rem;
+  }
+
+  .hero__actions {
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .hero__actions .button--primary {
+    width: 100%;
+    justify-content: center;
   }
 
   .section {
