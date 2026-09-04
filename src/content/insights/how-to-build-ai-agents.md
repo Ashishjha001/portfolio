@@ -1,7 +1,7 @@
 ---
 title: 'How to Build AI Agents for Your Business: A Practical Implementation Guide'
 seoTitle: 'How to Build AI Agents for Business: Practical Guide'
-description: 'The Data Decision Consulting implementation for business AI agents: workflow selection, design, guardrails, human review, testing and handover — without the hype.'
+description: 'The Data Decision Consulting implementation for business AI agents: workflow selection, design, guardrails, human review, testing and handover: without the hype.'
 publishedDate: 2026-08-25
 updatedDate: 2026-08-25
 category: 'Service playbook'
@@ -18,10 +18,10 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>A useful AI agent is a defined workflow with clear inputs, bounded outputs and a human review step — not an autonomous employee.</strong> The Data Decision Consulting team builds agents for processes that are repetitive, rule-describable and measurable, and refuses projects that cannot state their success condition.</p>
+  <p><strong>A useful AI agent is a defined workflow with clear inputs, bounded outputs and a human review step: not an autonomous employee.</strong> The Data Decision Consulting team builds agents for processes that are repetitive, rule-describable and measurable, and refuses projects that cannot state their success condition.</p>
 </div>
 
-The Data Decision Consulting team is called when a founder says: "My team spends ten hours a week on research, reporting and data entry that a machine should be doing." The value is real. So are the failure modes — which is why this playbook is built around control, not autonomy.
+The Data Decision Consulting team is called when a founder says: "My team spends ten hours a week on research, reporting and data entry that a machine should be doing." The value is real. So are the failure modes: which is why this playbook is built around control, not autonomy.
 
 This is the implementation inside [AI Agent Development](/contact/?service=ai-agent-development#request-a-brief).
 
@@ -36,7 +36,7 @@ The Data Decision Consulting team scores candidate workflows on four filters:
 | Verifiable output    | Can a human check correctness in minutes?    | Fact-based summary, not judgement  |
 | Bounded blast radius | If it is wrong, what breaks?                 | Internal draft, not a client email |
 
-Workflows that fail two or more filters are not agent projects yet. They are process projects — fix the process first.
+Workflows that fail two or more filters are not agent projects yet. They are process projects: fix the process first.
 
 ## Step 2: Design the agent on paper
 
@@ -65,7 +65,7 @@ Production agents ship with review proportional to blast radius: every run revie
 
 ## Step 5: Test, measure, hand over
 
-- **Test set:** 20–50 real historical cases with known-correct outputs, scored before and after changes.
+- **Test set:** 20 to 50 real historical cases with known-correct outputs, scored before and after changes.
 - **Metrics:** accuracy against the test set, time saved per week, escalation rate.
 - **Handover:** documentation, run logs, and a named owner trained on maintenance.
 

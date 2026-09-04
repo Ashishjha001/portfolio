@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 export const prerender = true;
 
 /**
- * Layer 41 — public, machine-readable insight index.
+ * Layer 41: public, machine-readable insight index.
  * A clean summary of every protected Insight (metadata only; full substance
  * lives on each article page). Lets RAG/answer systems discover the canon.
  */

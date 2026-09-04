@@ -1,5 +1,5 @@
 /**
- * Data Decision Consulting — Canonical Entity Definition (single source of truth)
+ * Data Decision Consulting: Canonical Entity Definition (single source of truth)
  *
  * Every descriptive claim about the Data Decision Consulting entity lives here so that
  * pages, the footer, SEO metadata and structured data derive from one place.
@@ -21,7 +21,7 @@ export const entityDefinition = {
   slogan: 'Growth you can prove.',
   logo: 'https://datadecision.consulting/logo.png',
   description:
-    'Founder-led growth and SEO consultancy for B2B SaaS: SEO and AI-search visibility, GA4 measurement and attribution, and scoped implementation — framed around the decision, the evidence and the limitation.',
+    'Founder-led growth and SEO consultancy for B2B SaaS: SEO and AI-search visibility, GA4 measurement and attribution, and scoped implementation: framed around the decision, the evidence and the limitation.',
   oneLineFocus:
     'SEO and AI-search visibility, measurement foundations and scoped implementation for B2B SaaS teams.',
   positioning:

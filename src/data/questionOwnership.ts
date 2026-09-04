@@ -101,7 +101,7 @@ export const questionGraphs: QuestionGraph[] = [
         service: '/services/#growth-strategy-measurement',
       },
       {
-        question: 'Pricing-page visits doubled but demo requests stayed flat — what does it mean?',
+        question: 'Pricing-page visits doubled but demo requests stayed flat: what does it mean?',
         label: 'Pricing intent mismatch',
         category: 'Growth Leaders',
         intent: 'diagnostic',
@@ -132,7 +132,7 @@ export const questionGraphs: QuestionGraph[] = [
       supportingPage: '/performance-marketing/',
       service: '/services/measurement-foundation/',
       subQuestions: [
-        'Which system is my source of truth — GA4 or CRM?',
+        'Which system is my source of truth: GA4 or CRM?',
         'Why does my CRM say Direct when my campaign had UTMs?',
         'How do I reconcile GA4 lead counts with CRM lead counts?',
         'Can Data Decision Consulting build the measurement foundation?',
@@ -140,7 +140,7 @@ export const questionGraphs: QuestionGraph[] = [
     },
     sub: [
       {
-        question: 'Which system should be my source of truth — GA4 or CRM?',
+        question: 'Which system should be my source of truth: GA4 or CRM?',
         label: 'Source of truth selection',
         category: 'Data Leaders',
         intent: 'decision',
@@ -201,7 +201,7 @@ export const questionGraphs: QuestionGraph[] = [
     },
     sub: [
       {
-        question: 'What do SEO, AEO and GEO actually share — and how do they differ?',
+        question: 'What do SEO, AEO and GEO actually share: and how do they differ?',
         label: 'SEO vs AEO vs GEO overlap',
         category: 'Marketing Leaders',
         intent: 'informational',
@@ -312,7 +312,7 @@ export const searchOpportunities: OpportunityRecord[] = [
     cluster: 'seo',
     category: 'QUICK_WIN',
     title: 'Query-to-page mapping',
-    note: 'Owned by a strong 28 Aug insight; the READER–DECISION–EVIDENCE–ACTION test is the canonical answer.',
+    note: 'Owned by a strong 28 Aug insight; the READER,DECISION,EVIDENCE,ACTION test is the canonical answer.',
     relatedInsight: 'b2b-saas-seo-query-to-page-map',
   },
   {
@@ -334,7 +334,7 @@ export const searchOpportunities: OpportunityRecord[] = [
     id: 'op-landing-page-isolation',
     cluster: 'growth',
     category: 'CONTENT_GAP',
-    title: 'Message mismatch or form friction — landing page isolation test',
+    title: 'Message mismatch or form friction: landing page isolation test',
     note: 'Planned P2 (#17). No current owner; would extend form-friction work without duplicating it.',
     relatedInsight: 'b2b-saas-demo-form-friction-lead-quality',
   },
@@ -349,7 +349,7 @@ export const searchOpportunities: OpportunityRecord[] = [
     id: 'op-metric-authority',
     cluster: 'performance-marketing',
     category: 'AUTHORITY_GAP',
-    title: 'Which metric can authorize spend — MER, ROAS or contribution margin?',
+    title: 'Which metric can authorize spend: MER, ROAS or contribution margin?',
     note: 'Planned P1 (#13). Tie to CAC worksheet and source-of-truth safeguards.',
     relatedInsight: 'break-even-cac-worksheet',
   },

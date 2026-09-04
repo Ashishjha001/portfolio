@@ -62,16 +62,16 @@ A form field earns its place only when its value changes a real action before th
 
 HubSpot’s current [forms documentation](https://knowledge.hubspot.com/forms/create-and-edit-forms) supports conditional logic and redirects based on responses. That makes selective questions possible. It does not establish that every available question should be asked.
 
-## Use the KEEP–MOVE–REMOVE field test
+## Use the KEEP,MOVE,REMOVE field test
 
 Score each visible field against four questions.
 
-| Test                  | Question                                                                               | Evidence to collect                                        |
-| --------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| K — Keep              | Does this value change routing, preparation, protection or consent before the meeting? | Owner and resulting action                                 |
-| M — Move              | Can the same value be enriched, inferred from page context or collected after booking? | Enrichment coverage and error rate                         |
-| R — Remove            | If the field disappears, what specific failure becomes more likely?                    | Historical failure count, not opinion                      |
-| Q — Quality guardrail | Which downstream rate or workload could worsen?                                        | Accepted-meeting rate, opportunity rate, follow-up minutes |
+| Test                 | Question                                                                               | Evidence to collect                                        |
+| -------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| K: Keep              | Does this value change routing, preparation, protection or consent before the meeting? | Owner and resulting action                                 |
+| M: Move              | Can the same value be enriched, inferred from page context or collected after booking? | Enrichment coverage and error rate                         |
+| R: Remove            | If the field disappears, what specific failure becomes more likely?                    | Historical failure count, not opinion                      |
+| Q: Quality guardrail | Which downstream rate or workload could worsen?                                        | Accepted-meeting rate, opportunity rate, follow-up minutes |
 
 The outcome is one of four decisions:
 

@@ -34,7 +34,7 @@ For B2B SaaS with multi-week cycles, a short window systematically undercounts c
 
 | Situation                      | Defensible setting         | Reason                              |
 | ------------------------------ | -------------------------- | ----------------------------------- |
-| Sales-led, 1–3 month cycles    | 90-day click               | Covers the real consideration span  |
+| Sales-led, 1 to 3 month cycles | 90-day click               | Covers the real consideration span  |
 | Self-serve, days-long cycles   | 30-day click               | Matches the fast loop               |
 | Board asks "what did paid do?" | Keep one setting, label it | Comparisons across settings mislead |
 | CRM reports disagree with GA4  | Do not reconcile by force  | Different systems, different rules  |

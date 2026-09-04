@@ -18,7 +18,7 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>Profitable paid acquisition is an offer problem, a targeting problem and a math problem — in that order.</strong> The Data Decision Consulting team never starts with ad creative, and never sets a budget before the break-even math is done with finance.</p>
+  <p><strong>Profitable paid acquisition is an offer problem, a targeting problem and a math problem: in that order.</strong> The Data Decision Consulting team never starts with ad creative, and never sets a budget before the break-even math is done with finance.</p>
 </div>
 
 "We ran Google Ads, it was expensive, we stopped." The Data Decision Consulting team hears this constantly, and the post-mortem almost always finds the same three gaps: no defined offer, no measurement path into the CRM, and no pre-agreed break-even line.

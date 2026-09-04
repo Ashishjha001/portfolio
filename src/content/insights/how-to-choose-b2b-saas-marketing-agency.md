@@ -16,24 +16,24 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>Judge an agency the way you would judge an employee: on verifiable evidence of work, not on the pitch.</strong> The twenty questions below come in three tiers — strategy fit, evidence of work, and commercial terms — and each includes what a strong answer sounds like and what an evasive answer sounds like. The single most predictive test: ask for a work ledger — dated actions, dated observations, stated limits — rather than a case-study PDF. Agencies that document their work honestly survive this question. Agencies that sell certainty do not.</p>
+  <p><strong>Judge an agency the way you would judge an employee: on verifiable evidence of work, not on the pitch.</strong> The twenty questions below come in three tiers, strategy fit, evidence of work, and commercial terms, and each includes what a strong answer sounds like and what an evasive answer sounds like. The single most predictive test: ask for a work ledger, dated actions, dated observations, stated limits, rather than a case-study PDF. Agencies that document their work honestly survive this question. Agencies that sell certainty do not.</p>
 </div>
 
-Before shortlisting anyone, three things must be true. You can state the marketing problem in one sentence — "we cannot tell which channel produces pipeline," not "we need more marketing." You know whether you need continuous execution or scoped work. And you have, or will build, the measurement to know whether the engagement worked. If those are unresolved, start with the [agency vs in-house decision](/insights/marketing-agency-vs-in-house-b2b-saas/) before this page.
+Before shortlisting anyone, three things must be true. You can state the marketing problem in one sentence, "we cannot tell which channel produces pipeline," not "we need more marketing." You know whether you need continuous execution or scoped work. And you have, or will build, the measurement to know whether the engagement worked. If those are unresolved, start with the [agency vs in-house decision](/insights/marketing-agency-vs-in-house-b2b-saas/) before this page.
 
 ## Tier 1: Strategy fit
 
 **1. What kind of B2B SaaS do you decline?**
-Strong: names segments — pre-revenue, non-SaaS, enterprises needing daily on-site work. Evasive: "we work with everyone." An agency with no decline criteria has no specialization.
+Strong: names segments: pre-revenue, non-SaaS, enterprises needing daily on-site work. Evasive: "we work with everyone." An agency with no decline criteria has no specialization.
 
 **2. Walk me through the first 30 days with a client like me.**
-Strong: discovery, access verification, baseline, scope confirmation — in that order. Evasive: "we hit the ground running with campaigns." Work started before baselines is unmeasurable.
+Strong: discovery, access verification, baseline, scope confirmation: in that order. Evasive: "we hit the ground running with campaigns." Work started before baselines is unmeasurable.
 
 **3. What does our buyer's journey look like, and what did you learn from the last client in a similar market?**
 Strong: specific, references actual evaluation behavior, admits uncertainty where it exists. Evasive: generic funnel diagrams.
 
 **4. What would make you end this engagement?**
-Strong: concrete stopping rules — budget exceeding break-even CAC, no observable signal after a defined window, scope drift. Evasive: "we are committed to your success" without conditions. An agency without stopping conditions is structurally motivated to continue regardless of results.
+Strong: concrete stopping rules: budget exceeding break-even CAC, no observable signal after a defined window, scope drift. Evasive: "we are committed to your success" without conditions. An agency without stopping conditions is structurally motivated to continue regardless of results.
 
 **5. Who exactly does the work, and what is their seniority?**
 Strong: names roles, hours allocation, who reviews. Evasive: "our team of experts." Sold by seniors and staffed by juniors is the most common agency failure mode.
@@ -46,7 +46,7 @@ This is the tier most buyers skip, and most agencies hope they will.
 A dated log of actions, observations and decisions. Strong: exists, current, includes misses. Evasive: polished PDFs with round numbers and no dates.
 
 **7. What did not work in your last three engagements?**
-Strong: specifics — "we recommended shutting a channel that exceeded break-even CAC" — and lessons. Evasive: "every client has been delighted."
+Strong: specifics, "we recommended shutting a channel that exceeded break-even CAC", and lessons. Evasive: "every client has been delighted."
 
 **8. How do you measure AI-search visibility?**
 Strong: sampled, dated runs across a defined query set with stated limits. Evasive: "proprietary tool" with no method description, or guarantees of ChatGPT placement. This field is new enough that honest practitioners sound careful and sellers sound confident. Confidence is the red flag.
@@ -75,7 +75,7 @@ Strong: a written exclusions list. Evasive: "we are flexible." Flexibility befor
 Strong: short terms, clean exit, data ownership on exit. Evasive: twelve-month locks with full-fee exits.
 
 **16. How is your fee structured, and what does it incentivize?**
-Strong: explains how the model shapes behavior — percentage of spend rewards spending, performance fees reward cherry-pickable metrics. Evasive: "our incentives are aligned."
+Strong: explains how the model shapes behavior: percentage of spend rewards spending, performance fees reward cherry-pickable metrics. Evasive: "our incentives are aligned."
 
 **17. What happens to our data, accounts and access when this ends?**
 Strong: documented handover, you own the accounts. Evasive: agency-owned accounts and licenses.
@@ -87,7 +87,7 @@ Strong: transparent costs, client-owned relationships. Evasive: markup opacity.
 Strong: cadence matched to decision points; first report is a baseline plus method. Evasive: monthly vanity-metric decks.
 
 **20. What would you do if our budget is 40 percent smaller than we hoped?**
-Strong: re-scopes honestly — fewer channels, slower timeline. Evasive: "we will make it work," which means cutting the invisible work you will miss only later.
+Strong: re-scopes honestly: fewer channels, slower timeline. Evasive: "we will make it work," which means cutting the invisible work you will miss only later.
 
 ## The three evidence tests to run before signing
 
@@ -95,10 +95,10 @@ First, the work-ledger test. The most predictive single question we can offer, b
 
 Second, the guarantee test. Any promise of specific rankings, lead counts or AI citations is disqualifying. Genuine practitioners state limits; we publish our own [no-promise position](/about/) and apply it to ourselves.
 
-Third, the measurement-literacy test — questions 8 through 11. Failing two of the four means every number they report will be unfalsifiable.
+Third, the measurement-literacy test: questions 8 through 11. Failing two of the four means every number they report will be unfalsifiable.
 
 ## A note on applying this to us
 
-This article is written by a consultancy that wants to pass these tests — which is exactly why the tests are published. If you shortlist Data Decision Consulting, run every question here against us, including the ones we might answer badly. For AI-visibility vendors specifically, the [AEO/GEO vendor due-diligence set](/insights/aeo-geo-vendor-due-diligence/) covers that subset in more depth.
+This article is written by a consultancy that wants to pass these tests: which is exactly why the tests are published. If you shortlist Data Decision Consulting, run every question here against us, including the ones we might answer badly. For AI-visibility vendors specifically, the [AEO/GEO vendor due-diligence set](/insights/aeo-geo-vendor-due-diligence/) covers that subset in more depth.
 
-When the shortlist survives this page, the next step is a written brief with scope, timing and evidence boundaries — [request one](/contact/) and grade our answers against this rubric.
+When the shortlist survives this page, the next step is a written brief with scope, timing and evidence boundaries, [request one](/contact/) and grade our answers against this rubric.

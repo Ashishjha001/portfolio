@@ -20,10 +20,10 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>You know which channels drive revenue when a named decision, a source taxonomy, a capture path and an attribution rule all agree — and the agreement is documented.</strong> The Data Decision Consulting team builds that agreement in five layers; this guide is the implementation.</p>
+  <p><strong>You know which channels drive revenue when a named decision, a source taxonomy, a capture path and an attribution rule all agree: and the agreement is documented.</strong> The Data Decision Consulting team builds that agreement in five layers; this guide is the implementation.</p>
 </div>
 
-The question the Data Decision Consulting team hears most from founders: "We spend on five channels and nobody can tell us which one works." The stack usually grew backwards — dashboard first, questions never.
+The question the Data Decision Consulting team hears most from founders: "We spend on five channels and nobody can tell us which one works." The stack usually grew backwards: dashboard first, questions never.
 
 Here is the build order the Data Decision Consulting team implements inside the [Growth Strategy & Measurement](/contact/?service=growth-strategy-measurement#request-a-brief) engagement.
 
@@ -47,7 +47,7 @@ The Data Decision Consulting team implements the [UTM governance system](/insigh
 
 ## Step 3: Implement capture on the website
 
-GA4 configured against the decisions: key events named for actions that matter, campaign tagging per the taxonomy, internal traffic filtered, and the form capture path verified end-to-end. The Data Decision Consulting team tests this with real submissions — the [capture-path diagnosis](/insights/crm-direct-traffic-despite-utm-tags/) is the checklist.
+GA4 configured against the decisions: key events named for actions that matter, campaign tagging per the taxonomy, internal traffic filtered, and the form capture path verified end-to-end. The Data Decision Consulting team tests this with real submissions: the [capture-path diagnosis](/insights/crm-direct-traffic-despite-utm-tags/) is the checklist.
 
 ## Step 4: Preserve the source into the CRM
 
@@ -55,13 +55,13 @@ The join between anonymous visit and named record is where most stacks break. Th
 
 - Hidden capture fields for campaign parameters on every form.
 - CRM properties that receive and keep those values through stage changes.
-- A reconciliation worksheet comparing GA4 sessions to CRM contacts monthly — the [reconciliation framework](/insights/ga4-vs-crm-lead-reconciliation/) defines the buckets.
+- A reconciliation worksheet comparing GA4 sessions to CRM contacts monthly: the [reconciliation framework](/insights/ga4-vs-crm-lead-reconciliation/) defines the buckets.
 
 **Test:** a test lead reaches the CRM carrying its source, medium and campaign.
 
 ## Step 5: Choose and document the attribution rule
 
-First-touch, last-touch or multi-touch — each answers a different question, and none is "correct". The Data Decision Consulting team picks the rule that matches the sales cycle, records the choice and the date in an [assumption register](/insights/attribution-assumption-register/), and never mixes windows in one report.
+First-touch, last-touch or multi-touch: each answers a different question, and none is "correct". The Data Decision Consulting team picks the rule that matches the sales cycle, records the choice and the date in an [assumption register](/insights/attribution-assumption-register/), and never mixes windows in one report.
 
 ## The reports that survive scrutiny
 

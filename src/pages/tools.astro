@@ -24,8 +24,8 @@ const schema = {
       <h1>Six small tools we use on every engagement. Free, no signup.</h1>
       <p class="lede">
         The same checks the Data Decision Consulting team runs before campaigns launch and before
-        blaming content for weak AI visibility. They run entirely in your browser — nothing you
-        enter is stored or sent to us.
+        blaming content for weak AI visibility. They run entirely in your browser: nothing you enter
+        is stored or sent to us.
       </p>
     </div>
   </header>
@@ -37,7 +37,7 @@ const schema = {
         <span class="evidence-label">Tool 01 / Campaign links</span>
         <h2 id="utm-heading">UTM builder &amp; validator</h2>
         <p class="tool-intro">
-          Build campaign links that follow the Data Decision Consulting taxonomy — or paste an
+          Build campaign links that follow the Data Decision Consulting taxonomy: or paste an
           existing URL to check it against the same rules.
         </p>
       </div>
@@ -98,7 +98,7 @@ const schema = {
         <h2 id="crawler-heading">AI crawler access checker</h2>
         <p class="tool-intro">
           Enter your domain and the checker reads your robots.txt and reports how the major AI
-          crawlers are treated — the verification the Data Decision Consulting team runs before
+          crawlers are treated: the verification the Data Decision Consulting team runs before
           diagnosing weak AI visibility.
         </p>
       </div>
@@ -135,7 +135,7 @@ const schema = {
         <h2 id="snapshot-heading">Website snapshot audit</h2>
         <p class="tool-intro">
           The thirty-second check the Data Decision Consulting team runs on any page: title,
-          description, canonical, headings and structured data — the basics every search engine and
+          description, canonical, headings and structured data: the basics every search engine and
           AI model reads first.
         </p>
       </div>
@@ -167,7 +167,7 @@ const schema = {
         <h2 id="funnel-heading">Funnel leakage calculator</h2>
         <p class="tool-intro">
           Enter the counts at each stage of a funnel and see the conversion rate and leakage at
-          every step, plus the single largest measurable leak — the Data Decision Consulting Funnel
+          every step, plus the single largest measurable leak: the Data Decision Consulting Funnel
           Leakage Index. No data leaves your browser.
         </p>
       </div>
@@ -239,7 +239,7 @@ const schema = {
         <span class="evidence-label">Tool 05 / Economics</span>
         <h2 id="cac-heading">Break-even CAC calculator</h2>
         <p class="tool-intro">
-          A finance-driven acquisition ceiling from contribution margin and payback — so acquisition
+          A finance-driven acquisition ceiling from contribution margin and payback: so acquisition
           targets come from your numbers, not someone else's benchmark.
         </p>
       </div>
@@ -292,8 +292,8 @@ const schema = {
         <h2 id="attribution-heading">Attribution health check</h2>
         <p class="tool-intro">
           A structured self-review across the five domains that must hold before any revenue claim
-          is trustworthy — taxonomy, capture, join, reconciliation and assumption governance. Score
-          each 0–20 and see your weighted Data Decision Consulting Attribution Health Score.
+          is trustworthy: taxonomy, capture, join, reconciliation and assumption governance. Score
+          each 0 to 20 and see your weighted Data Decision Consulting Attribution Health Score.
         </p>
       </div>
       <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
@@ -370,8 +370,8 @@ const schema = {
         <h2 id="tools-cta-heading">The tools find symptoms. The engagement fixes the system.</h2>
         <p class="small">
           Every tool above is one check from a full diagnostic. The Data Decision Consulting team
-          runs the complete version — access, architecture, content, funnel, economics, measurement
-          — inside each service.
+          runs the complete version: access, architecture, content, funnel, economics, measurement ,
+          inside each service.
         </p>
       </div>
       <div class="button-row" data-reveal style="--reveal-delay:110ms">
@@ -491,23 +491,23 @@ const schema = {
       position: relative;
     }
 
-    .tool-findings li::before {
+    .tool-findings li:before {
       position: absolute;
       left: 0;
       font-weight: 700;
     }
 
-    .tool-findings li.ok::before {
+    .tool-findings li.ok:before {
       content: '✓';
       color: var(--signal);
     }
 
-    .tool-findings li.warn::before {
+    .tool-findings li.warn:before {
       content: '!';
       color: var(--amber);
     }
 
-    .tool-findings li.bad::before {
+    .tool-findings li.bad:before {
       content: '✕';
       color: var(--error);
     }
@@ -776,29 +776,28 @@ const schema = {
         const med = sp.get('utm_medium');
         const emailIn = /[^@\s]+@[^@\s]+\.[^@\s]+/.test(raw);
 
-        if (!src) addFinding('bad', 'utm_source missing — the visit cannot be attributed.');
+        if (!src) addFinding('bad', 'utm_source missing: the visit cannot be attributed.');
         else addFinding('ok', `utm_source present: "${src}"`);
 
-        if (!med) addFinding('warn', 'utm_medium missing — channel grouping will suffer.');
+        if (!med) addFinding('warn', 'utm_medium missing: channel grouping will suffer.');
         else addFinding('ok', `utm_medium present: "${med}"`);
 
         [src, med, sp.get('utm_campaign'), sp.get('utm_content')].forEach((value) => {
           if (!value) return;
           if (value !== value.toLowerCase())
-            addFinding('warn', `"${value}" has uppercase — values should be lowercase.`);
-          if (/\s/.test(value))
-            addFinding('warn', `"${value}" contains a space — use underscores.`);
+            addFinding('warn', `"${value}" has uppercase: values should be lowercase.`);
+          if (/\s/.test(value)) addFinding('warn', `"${value}" contains a space: use underscores.`);
         });
 
         if (emailIn)
           addFinding(
             'bad',
-            'An email address appears in the URL — personal data must never go in UTMs.',
+            'An email address appears in the URL: personal data must never go in UTMs.',
           );
         if (parsed.pathname === '/' && (src || med))
           addFinding('warn', 'UTMs on the homepage usually mean internal or accidental tagging.');
         if (!findings?.querySelector('.bad, .warn'))
-          addFinding('ok', 'Clean campaign link — follows the taxonomy.');
+          addFinding('ok', 'Clean campaign link: follows the taxonomy.');
       };
 
       checkBtn?.addEventListener('click', validate);
@@ -897,7 +896,7 @@ const schema = {
           for (const [token, description] of TOKENS) {
             const matches = groups.filter((g) => g.agent.toLowerCase() === token.toLowerCase());
             let state = 'unknown';
-            let detail = 'Not mentioned in robots.txt — defaults apply (usually allowed).';
+            let detail = 'Not mentioned in robots.txt: defaults apply (usually allowed).';
             if (matches.length) {
               const fullBlock = matches.some((g) =>
                 g.disallow.some((d) => d === '/' && !g.allow.length),
@@ -994,16 +993,16 @@ const schema = {
 
           if (title)
             add('ok', `Title found (${title.length} chars): "${String(title).slice(0, 80)}"`);
-          else add('bad', 'No title found — the single most important on-page element is missing.');
+          else add('bad', 'No title found: the single most important on-page element is missing.');
           if (desc) add('ok', `Meta description found: "${String(desc).slice(0, 90)}"`);
           else add('warn', 'No meta description detected.');
           if (h1s === 1) add('ok', 'One H1 heading found.');
           else if (h1s === 0) add('warn', 'No H1 heading detected on the page.');
-          else add('warn', `${h1s} H1 headings detected — pages should have exactly one.`);
+          else add('warn', `${h1s} H1 headings detected: pages should have exactly one.`);
           if (canonical) add('ok', 'Canonical reference detected.');
           else add('warn', 'No canonical reference detected.');
           if (hasSchema) add('ok', 'Structured data (JSON-LD) detected.');
-          else add('warn', 'No structured data detected — add Organization/Service schema.');
+          else add('warn', 'No structured data detected: add Organization/Service schema.');
         } catch {
           status.textContent =
             'Could not retrieve that page through the browser (it may block proxy fetches). Try another URL or verify manually.';
@@ -1063,7 +1062,7 @@ const schema = {
         finding.className = 'funnel-finding' + (max.leakage > 0.6 ? ' warn' : '');
         finding.innerHTML = `<strong>Largest measurable leak: ${max.name} (${pct(max.leakage)}).</strong> ${
           max.leakage > 0.6
-            ? 'More than half the eligible base is lost at this step. This points to where a stage-level diagnostic should go first — but the index only names the step; it does not prove the cause.'
+            ? 'More than half the eligible base is lost at this step. This points to where a stage-level diagnostic should go first: but the index only names the step; it does not prove the cause.'
             : 'No single step loses more than half of its eligible base in your sample. Compare the same measure over time before assuming a defect.'
         }`;
         results.appendChild(finding);
@@ -1105,7 +1104,7 @@ const schema = {
 
         const note = document.createElement('div');
         note.className = 'cac-finding';
-        note.innerHTML = `Based on contribution of <strong>${fmt(contribution)}</strong> per customer and a <strong>${fmt(paybackVal)}-month</strong> payback target. This is the acquisition ceiling before sales cost share and market response — treat it as a cap, not a spend target.`;
+        note.innerHTML = `Based on contribution of <strong>${fmt(contribution)}</strong> per customer and a <strong>${fmt(paybackVal)}-month</strong> payback target. This is the acquisition ceiling before sales cost share and market response: treat it as a cap, not a spend target.`;
         results.appendChild(note);
       };
 
@@ -1151,7 +1150,7 @@ const schema = {
         note.className = 'cac-finding' + (min && min.value < 10 ? ' warn' : '');
         if (min) {
           note.innerHTML = filled.some((d) => d.value < 10)
-            ? `<strong>Lowest domain: ${min.name} (${min.value}/20).</strong> A decision-critical domain below 10 is usually the constraint — fix the source before funding volume or a fancier tool.`
+            ? `<strong>Lowest domain: ${min.name} (${min.value}/20).</strong> A decision-critical domain below 10 is usually the constraint: fix the source before funding volume or a fancier tool.`
             : `All scored domains are 10 or above. Compare the same scores over time; a stable, honest profile beats an inflated one. The score is not a license to claim causality.`;
         } else {
           note.textContent = 'Enter at least one domain score to see a health reading.';

@@ -3,7 +3,7 @@ import { concepts } from '../../../data/concepts';
 export const prerender = true;
 
 /**
- * Layer 41 — public, machine-readable canonical concept payload.
+ * Layer 41: public, machine-readable canonical concept payload.
  * Exposes every canonical concept (definition, why it matters, how measured,
  * limitation, canonical home) as raw JSON for RAG/answer systems.
  */

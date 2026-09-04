@@ -153,9 +153,27 @@ textarea {
   font: inherit;
 }
 
+input,
+select,
+textarea {
+  font-size: max(1rem, 0.95rem);
+}
+
 button,
 summary {
   cursor: pointer;
+}
+
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[role='tab'],
+[role='tablist'] a {
+  touch-action: manipulation;
 }
 
 :focus-visible {
@@ -5539,4 +5557,40 @@ html.js .dd-stagger.is-shown {
     transform: none;
     box-shadow: none;
   }
+}
+
+/* ---------- mobile hardening ---------- */
+
+@media (max-width: 640px) {
+  .prose table,
+  .scope-table {
+    min-width: 34rem;
+  }
+
+  .prose th,
+  .prose td,
+  .scope-table th,
+  .scope-table td {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .prose img,
+  .prose video,
+  .prose iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .prose pre {
+    font-size: 0.78rem;
+    padding: 0.9rem 1rem;
+  }
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
 }

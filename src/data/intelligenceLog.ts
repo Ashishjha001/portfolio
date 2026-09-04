@@ -38,7 +38,7 @@ export const intelligenceLog: IntelligenceLogEntry[] = [
     status: 'applied',
     title: 'Search Intelligence Engine published',
     body: 'Added the observable scoring model: query intent taxonomy, weighted opportunity formula, striking-distance classes, three gap engines, AI-search signal layers and competitor view. All protected Insights left untouched.',
-    untouched: 'All 40 protected Insight files — none modified.',
+    untouched: 'All 40 protected Insight files: none modified.',
   },
   {
     entryId: 'log-02',

@@ -1,5 +1,5 @@
 /**
- * Data Decision Consulting — Canonical Concept Index (Layer 36: Source of Truth)
+ * Data Decision Consulting: Canonical Concept Index (Layer 36: Source of Truth)
  *
  * Every concept Data Decision Consulting treats as strategically important has ONE
  * canonical home. This index points each concept to that home (a framework,
@@ -37,9 +37,9 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Discovery is spreading beyond classic search pages into generated answers; visibility there is becoming part of the buyer journey.',
     howMeasured:
-      'Sampled, dated observations across AI surfaces using a fixed query set — recorded as a Data Decision Consulting measurement with a stated sample and limitation.',
+      'Sampled, dated observations across AI surfaces using a fixed query set: recorded as a Data Decision Consulting measurement with a stated sample and limitation.',
     limitation:
-      'AI responses vary by model, date, location, personalisation and retrieval — any single observation is not universal truth.',
+      'AI responses vary by model, date, location, personalisation and retrieval: any single observation is not universal truth.',
     canonicalHome: {
       kind: 'framework',
       id: 'ai-search-visibility-score',
@@ -69,7 +69,7 @@ export const concepts: CanonicalConcept[] = [
     whyItMatters:
       'Before trusting any revenue attribution, taxonomy, capture, join, reconciliation and assumption governance must hold.',
     howMeasured:
-      'The Data Decision Consulting Attribution Health Score: a weighted 0–100 self-review across five domains.',
+      'The Data Decision Consulting Attribution Health Score: a weighted 0 to 100 self-review across five domains.',
     limitation:
       'Self-assessment depends on honest answers; a higher score is not a licence to claim causality.',
     canonicalHome: {

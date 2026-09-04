@@ -3,7 +3,7 @@ import { frameworks } from '../../../data/frameworks';
 export const prerender = true;
 
 /**
- * Layer 41 — public, machine-readable framework payload.
+ * Layer 41: public, machine-readable framework payload.
  * Exposes every Data Decision Consulting framework (definition, inputs, calculation,
  * interpretation, limitations) as raw JSON so that RAG/answer systems can
  * parse the logic with zero transformation effort.
