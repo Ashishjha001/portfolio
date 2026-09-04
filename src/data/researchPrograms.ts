@@ -41,7 +41,7 @@ export const researchPrograms: ResearchProgram[] = [
     researchQuestion:
       'Across a fixed buyer-query frame, how often does each compared B2B SaaS provider appear, get cited, and get described accurately inside AI answers?',
     methodology:
-      'Reuses the published AI-search visibility methodology v0.3: a fixed query frame, dated observation runs, and the M1–M4 descriptive metrics. Any published index would report the sample, window and version beside the number.',
+      'Reuses the published AI-search visibility methodology v0.3: a fixed query frame, dated observation runs, and the M1,M4 descriptive metrics. Any published index would report the sample, window and version beside the number.',
     dataSource: 'Scheduled observational runs by Data Decision Consulting (no client data used).',
     sample: 'Proposed: 50 approved buyer queries, one market/language, a defined comparison set.',
     collectionPeriod:
@@ -83,14 +83,14 @@ export const researchPrograms: ResearchProgram[] = [
     researchQuestion:
       'How defensible are typical B2B SaaS stacks at producing a revenue claim, measured with the Data Decision Consulting Attribution Health Score?',
     methodology:
-      'Voluntary, anonymized self-assessments scored with the attribution health rubric, reported as an aggregate range with clear sample limits — never as individual client insights.',
+      'Voluntary, anonymized self-assessments scored with the attribution health rubric, reported as an aggregate range with clear sample limits: never as individual client insights.',
     dataSource: 'Anonymized Data Decision Consulting diagnostic inputs with explicit consent.',
     sample:
       'Depends on opt-in participation; small n will be published as a range, not a statistic.',
     collectionPeriod: 'No data collected yet.',
     definitions:
       'Health-score domains as defined by the Data Decision Consulting Attribution Health Score.',
-    calculations: 'Weighted health score 0–100 plus per-domain breakdown.',
+    calculations: 'Weighted health score 0 to 100 plus per-domain breakdown.',
     limitations: 'Self-selected sample; self-assessment bias; small n likely.',
     output: 'Benchmark page with aggregate ranges and development note.',
     relatedInsights: ['attribution-assumption-register', 'marketing-measurement-stack-build-order'],

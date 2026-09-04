@@ -1,7 +1,7 @@
 export const prerender = true;
 
 /**
- * Layer 41 - machine-readable API manifest.
+ * Layer 41: machine-readable API manifest.
  * Lists every public JSON payload Data Decision Consulting exposes, so RAG/answer systems
  * and crawlers can discover the structured data surface in one request.
  */

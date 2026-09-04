@@ -18,7 +18,7 @@
 import type { Cluster } from './questionOwnership';
 
 /* ------------------------------------------------------------------ */
-/* Layer 1 — Query intent classification                              */
+/* Layer 1: Query intent classification                              */
 /* ------------------------------------------------------------------ */
 
 export const queryIntentClasses = [
@@ -75,7 +75,7 @@ export const queryIntentClasses = [
 export type QueryIntentId = (typeof queryIntentClasses)[number]['id'];
 
 /* ------------------------------------------------------------------ */
-/* Layer 2 — Opportunity scoring (documented logic)                   */
+/* Layer 2: Opportunity scoring (documented logic)                   */
 /* ------------------------------------------------------------------ */
 
 /**
@@ -84,11 +84,11 @@ export type QueryIntentId = (typeof queryIntentClasses)[number]['id'];
  * maximum only if every factor is perfect; real scores are far lower.
  */
 export interface OpportunityScore {
-  demand: number; // 0..1 — search volume / question frequency evidence
-  intent: number; // 0..1 — commercial/diagnostic intent weight
-  relevance: number; // 0..1 — does it sit inside a strategic cluster
-  conversion: number; // 0..1 — how directly it can feed a lead path
-  feasibility: number; // 0..1 — effort, data, and authority required
+  demand: number; // 0..1: search volume / question frequency evidence
+  intent: number; // 0..1: commercial/diagnostic intent weight
+  relevance: number; // 0..1: does it sit inside a strategic cluster
+  conversion: number; // 0..1: how directly it can feed a lead path
+  feasibility: number; // 0..1: effort, data, and authority required
 }
 
 export const OPPORTUNITY_WEIGHTS = {
@@ -110,7 +110,7 @@ export function opportunityScore(score: OpportunityScore): number {
 }
 
 /* ------------------------------------------------------------------ */
-/* Layers 3–5 — Striking distance, content gap, authority gap         */
+/* Layers 3 to 5: Striking distance, content gap, authority gap         */
 /* ------------------------------------------------------------------ */
 
 export type StrikingDistanceClass =
@@ -125,24 +125,24 @@ export const strikingDistanceClasses: Record<
   { label: string; description: string }
 > = {
   RANKING_IMPROVEMENT: {
-    label: 'Position 4–10',
-    description: 'Ranking improvement opportunity — visible but not near the top.',
+    label: 'Position 4 to 10',
+    description: 'Ranking improvement opportunity: visible but not near the top.',
   },
   AUTHORITY_CONTENT_LINK: {
-    label: 'Position 11–20',
-    description: 'Authority, content or internal-link opportunity — needs support to rise.',
+    label: 'Position 11 to 20',
+    description: 'Authority, content or internal-link opportunity: needs support to rise.',
   },
   SERP_PRESENTATION: {
     label: 'High impressions + low CTR',
-    description: 'SERP presentation opportunity — titles and descriptions are not earning clicks.',
+    description: 'SERP presentation opportunity: titles and descriptions are not earning clicks.',
   },
   DEMAND_EXPANSION: {
     label: 'High CTR + low impressions',
-    description: 'Demand expansion opportunity — the result clicks well but is rarely shown.',
+    description: 'Demand expansion opportunity: the result clicks well but is rarely shown.',
   },
   CRO_OPPORTUNITY: {
     label: 'High traffic + low conversion',
-    description: 'Conversion opportunity — traffic arrives but does not continue to a next step.',
+    description: 'Conversion opportunity: traffic arrives but does not continue to a next step.',
   },
 };
 
@@ -190,12 +190,12 @@ export const gapEngines: GapEngine[] = [
       'Source infrastructure',
       'Citation-visible evidence',
     ],
-    guardrail: 'Build genuine usefulness and source authority — never manipulate AI systems.',
+    guardrail: 'Build genuine usefulness and source authority: never manipulate AI systems.',
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Layer 6 — AI Search Query Lab                                        */
+/* Layer 6: AI Search Query Lab                                        */
 /* ------------------------------------------------------------------ */
 
 export interface AiQuery {
@@ -249,7 +249,7 @@ export const aiSearchQueryLab: Record<Cluster, AiQuery[]> = {
 export const aiSignalLayers = [
   {
     layer: 'Mention',
-    definition: 'The entity appears in the answer text — does not imply endorsement or a source.',
+    definition: 'The entity appears in the answer text: does not imply endorsement or a source.',
   },
   {
     layer: 'Citation',
@@ -270,7 +270,7 @@ export const aiSignalLayers = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Layer 8 — Competitor intelligence                                   */
+/* Layer 8: Competitor intelligence                                   */
 /* ------------------------------------------------------------------ */
 
 export interface CompetitorProfile {
@@ -323,7 +323,7 @@ export const competitorIntelligence: CompetitorProfile[] = [
       'Zero-click content funding frameworks',
     ],
     dataDecisionCanOwn: [
-      'Reader–Decision–Evidence–Action assignment',
+      'Reader,Decision,Evidence,Action assignment',
       'Search-to-revenue traceability',
     ],
     dataStatus: 'topical-review',
@@ -346,7 +346,7 @@ export const competitorIntelligence: CompetitorProfile[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Layer 35 — Priority scoring                                          */
+/* Layer 35: Priority scoring                                          */
 /* ------------------------------------------------------------------ */
 
 export interface PriorityOpportunity {
@@ -421,7 +421,7 @@ export const priorityOpportunities: PriorityOpportunity[] = [
   },
   {
     id: 'si-landing-page-isolation',
-    title: 'Message mismatch or form friction — landing page isolation test',
+    title: 'Message mismatch or form friction: landing page isolation test',
     cluster: 'growth',
     category: 'CRO',
     action: 'CREATE',
@@ -436,7 +436,7 @@ export const priorityOpportunities: PriorityOpportunity[] = [
   },
   {
     id: 'si-metric-authority',
-    title: 'Which metric can authorize spend — MER, ROAS or contribution margin?',
+    title: 'Which metric can authorize spend: MER, ROAS or contribution margin?',
     cluster: 'performance-marketing',
     category: 'CONTENT',
     action: 'CREATE',

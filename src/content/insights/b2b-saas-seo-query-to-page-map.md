@@ -48,7 +48,7 @@ Google’s [canonicalization documentation](https://developers.google.com/search
 
 The practical risk is broader than two pages “competing.” The site may split internal links, send buyers to the wrong conversion path, make maintenance harder and leave Google to choose a representative that the business did not intend.
 
-## Use the READER–DECISION–EVIDENCE–ACTION test
+## Use the READER,DECISION,EVIDENCE,ACTION test
 
 Before assigning a query to a URL, define four properties.
 
@@ -121,7 +121,7 @@ Google’s spam policies define [doorway abuse](https://developers.google.com/se
 
 **Collection date:** 28 August 2026  
 **Dataset or sample:** Synthetic set of 18 B2B SaaS search questions and seven hypothetical existing URLs. It is not Data Decision Consulting Search Console data and is not client evidence.  
-**Method:** Apply the READER–DECISION–EVIDENCE–ACTION test, assign one primary owner and choose retain, improve, create, merge or redirect.  
+**Method:** Apply the READER,DECISION,EVIDENCE,ACTION test, assign one primary owner and choose retain, improve, create, merge or redirect.  
 **Assumptions:** The hypothetical company sells a workflow product to revenue-operations teams; the existing URLs are indexable and technically sound.  
 **Limitations:** No real rankings, traffic, links, conversions or search-result similarity are used.  
 **What it can prove:** How the ownership method separates page roles.  
@@ -194,8 +194,8 @@ That can be healthy. Split only when the combined page no longer serves the read
 
 ## Recommended next action
 
-Export the last 6–12 months of page-query data, inventory indexable URLs and map the 25 most commercially relevant query families first. Give each family one accountable page owner. Resolve overlaps before commissioning new copy.
+Export the last 6 to 12 months of page-query data, inventory indexable URLs and map the 25 most commercially relevant query families first. Give each family one accountable page owner. Resolve overlaps before commissioning new copy.
 
 The [SEO pillar](/seo/) explains how page ownership fits technical access, intent and internal evidence. The [SEO and AI implementation playbook](/insights/how-to-rank-and-get-recommended-by-ai/) covers the wider build sequence. Use the [technical access checklist](/insights/technical-access-verification-checklist/) when the apparent overlap may actually be an indexing problem.
 
-For a scoped architecture review, [request an SEO brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current sitemap, priority products and Search Console window — or read the [SEO services for B2B SaaS](/services/seo/) page first.
+For a scoped architecture review, [request an SEO brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current sitemap, priority products and Search Console window: or read the [SEO services for B2B SaaS](/services/seo/) page first.

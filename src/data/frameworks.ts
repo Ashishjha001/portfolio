@@ -53,14 +53,14 @@ export const frameworks: Framework[] = [
       'Turns a dashboard of conversion rates into one decision: which stage deserves the next diagnostic and the next change. It stops teams funding the noisiest stage instead of the largest leak.',
     inputs: ['Sequenced funnel stage counts', 'A defined eligible base per stage'],
     calculation:
-      'For each adjacent pair (stage A to B), leakage = (A - B) / A. The index = the max leakage pair, reported with its stage names and the eligible counts so it can be re-computed.',
+      'For each adjacent pair (stage A to B), leakage = (A minus B) divided by A. The index = the max leakage pair, reported with its stage names and the eligible counts so it can be re-computed.',
     interpretation:
-      'A high index between lead generation and qualification identifies where the biggest measurable loss sits — but it only points you to that step; it does not prove the cause, which still needs stage-specific diagnosis.',
+      'A high index between lead generation and qualification identifies where the biggest measurable loss sits: but it only points you to that step; it does not prove the cause, which still needs stage-specific diagnosis.',
     limitations: [
       'Only as good as the stage definitions and event capture',
       'Requires a shared eligible base; mixing counts across sources corrupts the index',
       'Leakage between stages can be intentional (filters), not a defect',
-      'No universal "good" index exists — compare over time, not to a benchmark',
+      'No universal "good" index exists: compare over time, not to a benchmark',
     ],
     exampleNote:
       'Traffic 100,000 → leads 1,000 → demos 200 → qualified 100 → customers 20. Stage leakages: leads/demo 80%, demo/qualified 50%, qualified/customer 80%. The index flags both the top-of-funnel and the qualification-to-close drop as joint largest, directing diagnosis to whether traffic is the source or the bottleneck is below.',
@@ -73,10 +73,10 @@ export const frameworks: Framework[] = [
   {
     id: 'ai-search-visibility-score',
     name: 'Data Decision Consulting AI Search Visibility Score',
-    oneLiner: 'Converts dated AI-answer observations into a comparable 0–100 sample score.',
+    oneLiner: 'Converts dated AI-answer observations into a comparable 0 to 100 sample score.',
     owner: 'ai-search',
     definition:
-      'A descriptive score built from mention presence, citation presence, description accuracy and comparison share across a fixed query frame — always reported with the sample, window and method kept visible.',
+      'A descriptive score built from mention presence, citation presence, description accuracy and comparison share across a fixed query frame: always reported with the sample, window and method kept visible.',
     purpose:
       'Replaces scattered screenshots with one repeatable number that can be re-measured over time to detect change, without ever pretending the sample is a universal ranking.',
     inputs: [
@@ -113,7 +113,7 @@ export const frameworks: Framework[] = [
     definition:
       'A structured self-review of whether the source taxonomy, capture, join, reconciliation and assumption governance can support the revenue decisions the team actually makes.',
     purpose:
-      'Flags the weakest link in the measurement chain — taxonomy, capture, join, reconciliation or assumptions — so the team improves the component that matters first, instead of buying a fancier tool.',
+      'Flags the weakest link in the measurement chain, taxonomy, capture, join, reconciliation or assumptions, so the team improves the component that matters first, instead of buying a fancier tool.',
     inputs: [
       'Source taxonomy coverage',
       'Capture reliability score',
@@ -122,7 +122,7 @@ export const frameworks: Framework[] = [
       'Assumption register presence',
     ],
     calculation:
-      'A weighted checklist across five domains (taxonomy, capture, join, reconciliation, governance). Each domain scores 0–20, weighted to reflect the team’s decision importance, for a 0–100 health score.',
+      'A weighted checklist across five domains (taxonomy, capture, join, reconciliation, governance). Each domain scores 0 to 20, weighted to reflect the team’s decision importance, for a 0 to 100 health score.',
     interpretation:
       'A low score in a decision-critical domain means that domain is the constraint; funding volume or a new platform cannot fix an attribution problem at the source.',
     limitations: [
@@ -173,7 +173,7 @@ export const frameworks: Framework[] = [
     definition:
       'A staged model from ungoverned (no taxonomy, no reconciliation) through documented, reconciled, decision-linked to experimentally validated, describing the evidence each level can support.',
     purpose:
-      'Gives a shared language for where the measurement stack is and what the next level requires — so improvements are sequenced rather than random tool purchases.',
+      'Gives a shared language for where the measurement stack is and what the next level requires: so improvements are sequenced rather than random tool purchases.',
     inputs: [
       'Current-state assessment of taxonomy, capture, join, reconciliation, governance, experiment capability',
     ],
@@ -187,7 +187,7 @@ export const frameworks: Framework[] = [
       'Experiments remain the only way to move from association to cause',
     ],
     exampleNote:
-      'A Level-2 team (tagged but not reconciled) should not present a Level-4 "incrementality proven" claim in a board deck — the model flags that the evidence does not exist yet.',
+      'A Level-2 team (tagged but not reconciled) should not present a Level-4 "incrementality proven" claim in a board deck: the model flags that the evidence does not exist yet.',
     insightHref: '/insights/marketing-measurement-stack-build-order/',
     serviceHref: '/services/measurement-foundation/',
     suggestedAction:
@@ -213,7 +213,7 @@ export const frameworks: Framework[] = [
     interpretation:
       'A query cluster that converts to qualified pipeline is a keeper; one that stops at clicks is either an awareness asset (funded differently) or a measurement gap to close before more investment.',
     limitations: [
-      'Attribution to revenue is rarely complete — some visits lose source data',
+      'Attribution to revenue is rarely complete: some visits lose source data',
       'Never claim revenue attribution the data cannot support',
       'Long sales cycles delay the observed conversion',
     ],
@@ -228,7 +228,7 @@ export const frameworks: Framework[] = [
     id: 'ai-citation-index',
     name: 'Data Decision Consulting AI Citation Index',
     oneLiner:
-      'Measures how concentrated your AI citations are across sources — dependency risk, not just count.',
+      'Measures how concentrated your AI citations are across sources: dependency risk, not just count.',
     owner: 'ai-search',
     definition:
       'A measure of how your AI-answer citations are distributed across owned pages vs third-party sources, warning when one source type underpins an outsized share of mentions.',
@@ -245,7 +245,7 @@ export const frameworks: Framework[] = [
       'Concentration ratios need the query frame and date to be comparable',
     ],
     exampleNote:
-      'If 70% of citations come from one review platform, a policy or content change there could remove most of your AI mentions — the index flags this as the dependency to reduce first.',
+      'If 70% of citations come from one review platform, a policy or content change there could remove most of your AI mentions: the index flags this as the dependency to reduce first.',
     insightHref: '/insights/review-platforms-source-infrastructure/',
     methodologyHref: '/methodology/',
     serviceHref: '/services/ai-search-visibility/',

@@ -59,7 +59,7 @@ The investments diverge at the observation and repair layer.
 | External evidence   | Links, references, reputation                          | Sources used or cited across observed answers                                 |
 | Measurement         | Search Console, analytics, CRM                         | Surface log, Google AI report where available, referrals, CRM                 |
 
-## Use the SHARED–SEARCH–ANSWER–REVENUE framework
+## Use the SHARED,SEARCH,ANSWER,REVENUE framework
 
 Score the decision across four layers before allocating money.
 
@@ -218,4 +218,4 @@ Run a two-hour evidence review. Mark every proposed task as shared, search-speci
 
 Use the [AI Search pillar](/ai-search/) for the wider observation method and the [SEO pillar](/seo/) for crawl, architecture and commercial search ownership. The [AI-search visibility diagnostic](/services/ai-search-visibility/) is the relevant service when the question panel and source pattern need a defined baseline.
 
-For a scoped investment review, [request an AI-search brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current SEO backlog, query data, answer-surface observations and measurement limits — or read the [AI Search Visibility services](/services/ai-search-visibility/) scope first.
+For a scoped investment review, [request an AI-search brief](/contact/?service=web-seo-ai-visibility#request-a-brief) with the current SEO backlog, query data, answer-surface observations and measurement limits: or read the [AI Search Visibility services](/services/ai-search-visibility/) scope first.

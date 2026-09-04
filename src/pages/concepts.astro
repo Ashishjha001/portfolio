@@ -31,7 +31,7 @@ const schema = {
   '@type': 'CollectionPage',
   name: 'Data Decision Consulting canonical concepts',
   description:
-    'The canonical source of truth for the concepts Data Decision Consulting treats as strategically important — each pointing to one committed home.',
+    'The canonical source of truth for the concepts Data Decision Consulting treats as strategically important: each pointing to one committed home.',
   url: 'https://datadecision.consulting/concepts/',
 };
 ---
@@ -75,7 +75,7 @@ const schema = {
         <h2 id="concepts-heading">Canonical definitions with a committed home.</h2>
         <p class="small">
           Every definition records what it is, why it matters, how it is measured and its limitation
-          — then points to the canonical source.
+          , then points to the canonical source.
         </p>
       </div>
       <div class="concepts" data-reveal style="--reveal-delay:100ms">
@@ -109,11 +109,11 @@ const schema = {
                 <div class="concept__home">
                   {href ? (
                     <a class="text-link" href={href}>
-                      Canonical home — {c.canonicalHome.label}
+                      Canonical home, {c.canonicalHome.label}
                     </a>
                   ) : (
                     <span class="small">
-                      Canonical home <strong>recommended</strong> — not yet committed.
+                      Canonical home <strong>recommended</strong>, not yet committed.
                     </span>
                   )}
                 </div>

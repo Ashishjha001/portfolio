@@ -21,7 +21,7 @@ sources:
   <p><strong>Conversion rate rises when you fix the step with the largest measured drop, one change at a time, with a pre-committed sample.</strong> The Data Decision Consulting team never starts with a redesign; it starts with the funnel numbers and ends with customers who stay.</p>
 </div>
 
-"We need more traffic" is usually the wrong diagnosis. The Data Decision Consulting team's first audit question is: of the people who already arrive, where do they leave — and why?
+"We need more traffic" is usually the wrong diagnosis. The Data Decision Consulting team's first audit question is: of the people who already arrive, where do they leave: and why?
 
 This is the implementation the team runs inside [Conversion & Lifecycle Growth](/contact/?service=conversion-lifecycle-growth#request-a-brief).
 
@@ -31,14 +31,14 @@ Using [funnel exploration](https://support.google.com/analytics/answer/9317498) 
 
 | Stage          | Volume | Drop from previous | Drop rate |
 | -------------- | ------ | ------------------ | --------- |
-| Visits         | 4,200  | —                  | —         |
+| Visits         | 4,200  | ,                  | ,         |
 | Key page views | 1,150  | 3,050              | 73%       |
 | Form starts    | 210    | 940                | 82%       |
 | Submissions    | 96     | 114                | 54%       |
 | Qualified      | 41     | 55                 | 57%       |
 | Meetings held  | 22     | 19                 | 46%       |
 
-The largest drop is not always the fixable one — but now the effort goes where the data points, not where opinions point.
+The largest drop is not always the fixable one: but now the effort goes where the data points, not where opinions point.
 
 ## Step 2: Diagnose the biggest drop
 
@@ -53,16 +53,16 @@ The [form analytics](https://knowledge.hubspot.com/forms/analyze-form-submission
 
 ## Step 3: Experiment with pre-committed rules
 
-One change per test, a named metric, a minimum sample and a deadline — the [small-sample rules](/insights/small-conversion-samples-inference/) apply. The Data Decision Consulting team prioritizes by expected impact × effort, and writes the hypothesis before the change ships.
+One change per test, a named metric, a minimum sample and a deadline: the [small-sample rules](/insights/small-conversion-samples-inference/) apply. The Data Decision Consulting team prioritizes by expected impact × effort, and writes the hypothesis before the change ships.
 
 **Example hypothesis:** "Removing the phone field from the demo form will increase submissions by 15%+ without reducing lead quality (measured by sales-accepted rate over 30 days)."
 
-## Step 4: Lifecycle — the stages after the win
+## Step 4: Lifecycle: the stages after the win
 
 The Data Decision Consulting team implements the post-conversion path with the same rigor:
 
 - **Nurture:** emails matched to the buyer's stage, not a generic drip.
-- **Scoring and routing:** leads reach the right rep while intent is warm — the [routing diagnosis](/insights/demo-request-routing-sales-vs-sdr/) covers the model.
+- **Scoring and routing:** leads reach the right rep while intent is warm: the [routing diagnosis](/insights/demo-request-routing-sales-vs-sdr/) covers the model.
 - **Handoff:** marketing-to-sales transfer with the full context attached.
 - **Retention:** usage and engagement signals that predict churn, reviewed monthly.
 

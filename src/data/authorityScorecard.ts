@@ -1,5 +1,5 @@
 /**
- * Data Decision Consulting — Internal Authority Scorecard (Layer 33) + Research Calendar (Layer 38)
+ * Data Decision Consulting: Internal Authority Scorecard (Layer 33) + Research Calendar (Layer 38)
  *
  * This is an INTERNAL management framework, not an objective Google or AI score.
  * Dimensions track progress relative to Data Decision Consulting's own goals. Where a
@@ -85,13 +85,13 @@ export interface ResearchCalendarItem {
 
 /**
  * 12-month research roadmap. Prioritised studies are only run when a credible
- * data source exists — never for the sake of filling a calendar.
+ * data source exists: never for the sake of filling a calendar.
  */
 export const researchCalendar: ResearchCalendarItem[] = [
   {
     id: 'rc-01',
     study: 'AI Citation Dependency: source concentration risk',
-    window: 'Months 1–3',
+    window: 'Months 1 to 3',
     owner: 'founder-input',
     priority: 'High',
     value: 'Turns the AI Citation Index into a measurement-backed authority asset.',
@@ -100,7 +100,7 @@ export const researchCalendar: ResearchCalendarItem[] = [
   {
     id: 'rc-02',
     study: 'AI Search Visibility baseline (first cycle)',
-    window: 'Months 1–3',
+    window: 'Months 1 to 3',
     owner: 'researcher',
     priority: 'High',
     value: 'First dated, sampled observation over the fixed query set.',
@@ -109,7 +109,7 @@ export const researchCalendar: ResearchCalendarItem[] = [
   {
     id: 'rc-03',
     study: 'Search-to-Revenue traceability illustration',
-    window: 'Months 3–6',
+    window: 'Months 3 to 6',
     owner: 'founder-input',
     priority: 'Medium',
     value: 'Demonstrates how visibility can be traced into pipeline, with limits shown.',
@@ -118,7 +118,7 @@ export const researchCalendar: ResearchCalendarItem[] = [
   {
     id: 'rc-04',
     study: 'Attribution Health benchmark (self)',
-    window: 'Months 3–6',
+    window: 'Months 3 to 6',
     owner: 'founder-input',
     priority: 'Medium',
     value: 'Benchmarks the defensibility of Data Decision Consulting’s own measurement claims.',
@@ -127,7 +127,7 @@ export const researchCalendar: ResearchCalendarItem[] = [
   {
     id: 'rc-05',
     study: 'Growth funnel stage-variance observation',
-    window: 'Months 6–9',
+    window: 'Months 6 to 9',
     owner: 'researcher',
     priority: 'Low',
     value: 'Extends the Funnel Leakage Index with real stage evidence.',

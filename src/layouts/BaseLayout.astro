@@ -68,7 +68,7 @@ const schemaItems = [
       })(window, document, 'script', 'dataLayer', 'GTM-NJPG9FPZ');
     </script>
     <!-- End Google Tag Manager -->
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#F7F3EA" />
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
@@ -306,12 +306,12 @@ const schemaItems = [
         );
       }
 
-      /* Motion layer v2 — transitions.dev patterns
+      /* Motion layer v2: transitions.dev patterns
          (staggered text reveals, card tilt, smooth scroll). */
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-        /* t-18: staggered text reveal — plays once when scrolled into view */
+        /* t-18: staggered text reveal: plays once when scrolled into view */
         var staggers = Array.prototype.slice.call(document.querySelectorAll('.t-stagger'));
         if (staggers.length) {
           if (reduced.matches || !('IntersectionObserver' in window)) {
@@ -340,7 +340,7 @@ const schemaItems = [
           }
         }
 
-        /* t-18b: card grid stagger — .dd-stagger cards reveal
+        /* t-18b: card grid stagger, .dd-stagger cards reveal
            sequentially when their container enters the viewport. */
         var ddCards = Array.prototype.slice.call(document.querySelectorAll('.dd-stagger'));
         if (ddCards.length) {
@@ -380,7 +380,7 @@ const schemaItems = [
           }
         }
 
-        /* t-19: card hover tilt — pointer-only, skips touch, flattens
+        /* t-19: card hover tilt: pointer-only, skips touch, flattens
            under reduced motion. Tracks the OUTER wrapper so the tilting
            card can't rotate its own hit area away from the cursor. */
         var tilts = Array.prototype.slice.call(document.querySelectorAll('[data-tilt]'));
@@ -432,7 +432,7 @@ const schemaItems = [
         }
       })();
 
-      /* Lenis smooth scrolling — loaded only when motion is welcome.
+      /* Lenis smooth scrolling: loaded only when motion is welcome.
          Syncs to the reduced-motion preference and pauses when the
          tab is hidden. Fails silently if the module is unavailable. */
       (function () {
@@ -473,7 +473,7 @@ const schemaItems = [
             });
           })
           .catch(function () {
-            /* Lenis is an enhancement — native scrolling is fine. */
+            /* Lenis is an enhancement: native scrolling is fine. */
           });
       })();
     </script>

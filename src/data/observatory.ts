@@ -1,5 +1,5 @@
 /**
- * Data Decision Consulting — AI Search Observatory (Layers 9, 10, 30)
+ * Data Decision Consulting: AI Search Observatory (Layers 9, 10, 30)
  *
  * Tracks how AI systems represent strategically important market questions.
  * The core rule: citation rate and recommendation rate are DIFFERENT things
@@ -8,7 +8,7 @@
  *
  * Data ethics: no observation is treated as universal truth. AI responses vary
  * by model, date, location, personalisation and retrieval system. Where no
- * observation has been recorded for a query, its status is need-data — never
+ * observation has been recorded for a query, its status is need-data: never
  * a guessed number.
  */
 

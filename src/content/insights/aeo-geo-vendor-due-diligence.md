@@ -40,8 +40,8 @@ Score each question 0 (no answer), 1 (partial) or 2 (clear, written answer):
 
 ## Reading the results
 
-- **12–16:** the vendor can be evaluated on fit and price.
-- **7–11:** ask for written method documentation before proceeding.
+- **12 to 16:** the vendor can be evaluated on fit and price.
+- **7 to 11:** ask for written method documentation before proceeding.
 - **Below 7:** the score is a vibe; treat outputs as marketing, not measurement.
 
 Compare vendor answers against the [published Data Decision Consulting method](/methodology/), which states its own query frame, surfaces, runs and limits in public.

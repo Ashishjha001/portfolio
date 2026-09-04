@@ -37,7 +37,7 @@ const schema = {
 
 <BaseLayout
   title="Search Intelligence Engine | Data Decision Consulting"
-  description="The transparent model behind Data Decision Consulting search decisions: how queries are classified, scored and prioritised — with the logic, limits and data status kept visible."
+  description="The transparent model behind Data Decision Consulting search decisions: how queries are classified, scored and prioritised: with the logic, limits and data status kept visible."
   path="/search-intelligence/"
   schema={schema}
 >
@@ -54,7 +54,7 @@ const schema = {
       <p class="eyebrow">Search intelligence / Observability</p>
       <h1>The machine is visible, so every search decision can be audited.</h1>
       <p class="lede">
-        Data Decision Consulting turns search into a loop — SEARCH, INSIGHT, ACTION, MEASUREMENT,
+        Data Decision Consulting turns search into a loop: SEARCH, INSIGHT, ACTION, MEASUREMENT,
         LEARNING. This page publishes the model: how a query becomes a question, how a question is
         scored, and how a decision is prioritised. Nothing here is a hidden black box.
       </p>
@@ -149,7 +149,7 @@ const schema = {
         <h2 id="intent-heading">The same words can mean very different jobs.</h2>
         <p class="small">
           Classifying intent before writing lets Data Decision Consulting match the answer to the
-          stage of the decision — informative, diagnostic, commercial, implementation, or
+          stage of the decision: informative, diagnostic, commercial, implementation, or
           measurement.
         </p>
       </div>
@@ -195,11 +195,11 @@ const schema = {
         {
           (
             [
-              ['demand', 'Demand', '0..1 — search volume or question-frequency evidence'],
-              ['intent', 'Intent', '0..1 — commercial or diagnostic weight'],
-              ['relevance', 'Relevance', '0..1 — sits inside a strategic cluster'],
-              ['conversion', 'Conversion', '0..1 — how directly it feeds a lead path'],
-              ['feasibility', 'Feasibility', '0..1 — effort, data and authority required'],
+              ['demand', 'Demand', '0..1: search volume or question-frequency evidence'],
+              ['intent', 'Intent', '0..1: commercial or diagnostic weight'],
+              ['relevance', 'Relevance', '0..1: sits inside a strategic cluster'],
+              ['conversion', 'Conversion', '0..1: how directly it feeds a lead path'],
+              ['feasibility', 'Feasibility', '0..1: effort, data and authority required'],
             ] as const
           ).map(([id, label, desc]) => (
             <div class="si-factor">
@@ -319,7 +319,7 @@ const schema = {
         <h2 id="qolab-heading">The representative questions under observation.</h2>
         <p class="small">
           A fixed, recorded set of questions per cluster. Running the same set repeatedly shows
-          movement honestly — and any item not yet recorded is marked need-data rather than guessed.
+          movement honestly: and any item not yet recorded is marked need-data rather than guessed.
         </p>
       </div>
       <div class="si-lab" data-reveal style="--reveal-delay:100ms">
@@ -360,7 +360,7 @@ const schema = {
         <p class="eyebrow">Competitor intelligence</p>
         <h2 id="comp-heading">Where Data Decision Consulting can own the answer.</h2>
         <p class="small">
-          A working view of what comparable players own and miss — kept at topical-review level and
+          A working view of what comparable players own and miss: kept at topical-review level and
           updated from evidence, never from assumption about a named competitor.
         </p>
       </div>
@@ -638,7 +638,7 @@ const schema = {
     padding: 1rem 0;
   }
 
-  .si-lab__row summary::-webkit-details-marker {
+  .si-lab__row summary:-webkit-details-marker {
     display: none;
   }
 

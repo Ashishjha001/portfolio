@@ -18,7 +18,7 @@ sources:
 
 <div class="answer-first">
   <p class="evidence-label">Answer first</p>
-  <p><strong>A good AI integration answers questions from your own approved systems, respects the permissions those systems already have, and is tested like software.</strong> The Data Decision Consulting team implements integrations inside existing workflows — never as another disconnected tool to check.</p>
+  <p><strong>A good AI integration answers questions from your own approved systems, respects the permissions those systems already have, and is tested like software.</strong> The Data Decision Consulting team implements integrations inside existing workflows: never as another disconnected tool to check.</p>
 </div>
 
 The pattern the Data Decision Consulting team keeps meeting: the team pays for GPT, pastes data into a chat window daily, and the output never reaches the CRM, the report or the decision. The intelligence exists; the plumbing does not.
@@ -27,7 +27,7 @@ This is the implementation inside [AI & GPT Integrations](/contact/?service=ai-g
 
 ## Step 1: Map systems and name the jobs
 
-The Data Decision Consulting team inventories what the business runs — CRM, analytics, email, docs, drive, support — and lists the recurring questions people ask across them:
+The Data Decision Consulting team inventories what the business runs, CRM, analytics, email, docs, drive, support, and lists the recurring questions people ask across them:
 
 - "What changed in pipeline this week and why?"
 - "Summarize every support ticket about onboarding."
@@ -37,7 +37,7 @@ Each question becomes a candidate integration with a named owner and a definitio
 
 ## Step 2: Design retrieval, not guessing
 
-For questions about your own data, the Data Decision Consulting team implements retrieval (RAG): the AI answers from indexed, approved documents and records — with citations — instead of generating from memory.
+For questions about your own data, the Data Decision Consulting team implements retrieval (RAG): the AI answers from indexed, approved documents and records, with citations, instead of generating from memory.
 
 Design decisions that matter:
 
@@ -58,7 +58,7 @@ The output lands where work happens: a CRM field, a weekly report, a Slack diges
 
 | Phase      | What the Data Decision Consulting team does         |
 | ---------- | --------------------------------------------------- |
-| Test set   | 30–50 real questions with known-good answers        |
+| Test set   | 30 to 50 real questions with known-good answers     |
 | Evaluation | Scored answers, source accuracy, refusal behaviour  |
 | Monitoring | Logs of queries, sources used, failures             |
 | Rollout    | Pilot group, feedback loop, then team-wide          |

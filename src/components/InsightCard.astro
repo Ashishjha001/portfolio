@@ -1,9 +1,9 @@
 ---
 /**
- * InsightCard — editorial card for supporting insights.
+ * InsightCard: editorial card for supporting insights.
  * Cluster art via ClusterArt (decorative inline SVG), full-card
  * click, semantic <article>, dates + reading time preserved.
- * Valid HTML: no block elements inside <a> via span wrappers —
+ * Valid HTML: no block elements inside <a> via span wrappers,
  * the anchor wraps flow content directly.
  */
 import ClusterArt from './ClusterArt.astro';
@@ -89,7 +89,7 @@ const formatDate = (d: Date) =>
     outline: none;
   }
 
-  /* Title renders as display:block spans styled as headings — valid
+  /* Title renders as display:block spans styled as headings: valid
      inline-content flow inside the anchor, clamped safely. */
   .insight-card__title {
     display: -webkit-box;
