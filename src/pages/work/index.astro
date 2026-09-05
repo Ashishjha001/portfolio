@@ -19,7 +19,7 @@ const formatDate = (date: Date) =>
   path="/work/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work' }]} />
-  <header class="shell page-hero page-hero--compact">
+  <header class="shell page-hero page-hero--compact page-hero--single">
     <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Work ledger</p><h1>Published records with the context to judge them.</h1><p
         class="lede"
@@ -28,12 +28,6 @@ const formatDate = (date: Date) =>
         will appear only with permission and verified facts.
       </p>
     </div>
-    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
-      <div class="folio"><span>Label key</span><span>01 definition</span></div><div class="caveat">
-        <span class="evidence-label">DEMONSTRATION RUN</span>A dated public-data or Data Decision
-        Consulting self-measurement record. The label separates it from client work.
-      </div>
-    </aside>
   </header>
   <section class="section">
     <span class="chapter-mark" aria-hidden="true">01</span>

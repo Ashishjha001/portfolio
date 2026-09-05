@@ -437,7 +437,8 @@ const schemaItems = [
          tab is hidden. Fails silently if the module is unavailable. */
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (reduced.matches) return;
+        var desktopPointer = window.matchMedia('(min-width: 1024px) and (pointer: fine)');
+        if (reduced.matches || !desktopPointer.matches) return;
         import('lenis')
           .then(function (mod) {
             var Lenis = mod.default;
@@ -448,17 +449,14 @@ const schemaItems = [
               },
               smoothWheel: true,
             });
-            var running = true;
             var rafLoop = function (time) {
               lenis.raf(time);
               requestAnimationFrame(rafLoop);
             };
             requestAnimationFrame(rafLoop);
             document.addEventListener('visibilitychange', function () {
-              if (document.hidden && running) {
-                lenis.destroy();
-                running = false;
-              }
+              if (document.hidden) lenis.stop();
+              else lenis.start();
             });
             /* Keep anchor jumps working with Lenis active */
             document.addEventListener('click', function (event) {

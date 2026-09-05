@@ -9,35 +9,55 @@ interface Props {
   compact?: boolean;
 }
 
-const { heading = 'Four ways into the same growth system.', current } = Astro.props;
+const {
+  heading = 'Four ways into the same growth system.',
+  current,
+  compact = false,
+} = Astro.props;
 
-/* Per-area identity: distinct icon + abstract wash + accent. */
-const areaMeta: Record<string, { icon: typeof TrendingUp; wash: string; note: string }> = {
+/* Per-area identity: distinct icon + saturated editorial signal field. */
+const areaMeta: Record<
+  string,
+  { icon: typeof TrendingUp; base: string; accent: string; deep: string }
+> = {
   growth: {
     icon: TrendingUp,
-    wash: 'radial-gradient(120% 90% at 12% 100%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 55%)',
-    note: 'Rising path, connected nodes',
+    base: '#06483c',
+    accent: '#44e0ae',
+    deep: '#075344',
   },
   'performance-marketing': {
     icon: Target,
-    wash: 'radial-gradient(110% 100% at 90% 100%, color-mix(in srgb, var(--amber) 12%, transparent), transparent 60%)',
-    note: 'Target and conversion path',
+    base: '#70280f',
+    accent: '#ff9c67',
+    deep: '#833818',
   },
   seo: {
     icon: Search,
-    wash: 'radial-gradient(120% 100% at 10% 0%, color-mix(in srgb, var(--signal) 9%, transparent), transparent 58%)',
-    note: 'Search window, page hierarchy',
+    base: '#073c55',
+    accent: '#67d8ed',
+    deep: '#07506d',
   },
   'ai-search': {
     icon: Sparkles,
-    wash: 'radial-gradient(130% 110% at 92% 0%, color-mix(in srgb, var(--mint-accent) 14%, transparent), transparent 58%)',
-    note: 'Query, citation network, answer orbit',
+    base: '#36216d',
+    accent: '#c4a4ff',
+    deep: '#4b2d8c',
   },
 };
 const fallbackMeta = areaMeta.seo!;
+const areaActions: Record<string, string> = {
+  growth: 'See the growth system',
+  'performance-marketing': 'See performance marketing',
+  seo: 'See the SEO system',
+  'ai-search': 'See the AI-search system',
+};
 ---
 
-<section class="strategic-areas-v2" aria-labelledby="strategic-areas-heading">
+<section
+  class:list={['strategic-areas-v2', { 'strategic-areas-v2--compact': compact }]}
+  aria-labelledby="strategic-areas-heading"
+>
   <div class="shell">
     <div class="strategic-areas-v2__head">
       <p class="eyebrow">Strategic areas</p>
@@ -50,22 +70,32 @@ const fallbackMeta = areaMeta.seo!;
           const Icon = meta!.icon;
           return (
             <a
-              class:list={['dd-card', 'area-card', 'dd-stagger']}
-              style={`--area-wash: ${meta.wash}; --card-i: ${i};`}
+              class:list={['area-card', 't-tilt', 'dd-stagger']}
+              style={`--area-base:${meta.base}; --area-accent:${meta.accent}; --area-deep:${meta.deep}; --card-i:${i};`}
               href={`/${topic.slug}/`}
               aria-current={current === topic.slug ? 'page' : undefined}
               data-reveal-ignore
+              data-tilt
             >
-              <span class="area-card__num" aria-hidden="true">
-                {topic.index}
-              </span>
-              <span class="area-card__icon">
-                <Icon strokeWidth={1.75} aria-hidden="true" />
-              </span>
-              <h3>{topic.label}</h3>
-              <p>{topic.description}</p>
-              <span class="dd-card__arrow">
-                Explore <LearnArrow />
+              <span class="area-card__surface t-tilt-card">
+                <span class="area-card__visual" aria-hidden="true">
+                  <span class="area-card__matrix" />
+                  <span class="area-card__orbit" />
+                  <span class="area-card__num mono">{topic.index}</span>
+                  <span class="area-card__icon">
+                    <Icon strokeWidth={1.7} />
+                  </span>
+                </span>
+                <span class="area-card__content">
+                  <span>
+                    <span class="area-card__eyebrow mono">Decision area</span>
+                    <h3>{topic.label}</h3>
+                    <p>{topic.description}</p>
+                  </span>
+                  <span class="dd-card__arrow">
+                    {areaActions[topic.slug] ?? `See ${topic.label}`} <LearnArrow />
+                  </span>
+                </span>
               </span>
             </a>
           );
@@ -91,5 +121,93 @@ const fallbackMeta = areaMeta.seo!;
   .strategic-areas-v2__head h2 {
     max-width: 26ch;
     font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  }
+
+  .strategic-areas-v2--compact {
+    padding: 1.1rem 0;
+  }
+
+  .strategic-areas-v2--compact .strategic-areas-v2__head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .strategic-areas-v2--compact .area-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-top: 0;
+  }
+
+  .strategic-areas-v2--compact .area-card,
+  .strategic-areas-v2--compact .area-card__surface {
+    min-height: 0;
+  }
+
+  .strategic-areas-v2--compact .area-card__surface {
+    grid-template-columns: 4rem minmax(0, 1fr);
+    min-height: 5.2rem;
+    border-radius: 10px;
+  }
+
+  .strategic-areas-v2--compact .area-card__content {
+    justify-content: center;
+    gap: 0;
+    padding: 0.8rem;
+  }
+
+  .strategic-areas-v2--compact .area-card__content p,
+  .strategic-areas-v2--compact .area-card__eyebrow,
+  .strategic-areas-v2--compact .dd-card__arrow,
+  .strategic-areas-v2--compact .area-card__orbit {
+    display: none;
+  }
+
+  .strategic-areas-v2--compact .area-card__content h3 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    line-height: 1.25;
+  }
+
+  .strategic-areas-v2--compact .area-card .area-card__num {
+    top: 0.65rem;
+    left: 0.65rem;
+    font-size: 0.55rem;
+  }
+
+  .strategic-areas-v2--compact .area-card .area-card__icon {
+    left: 0.65rem;
+    bottom: 0.65rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+
+  .strategic-areas-v2--compact .area-card .area-card__icon :global(svg) {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (max-width: 860px) {
+    .strategic-areas-v2--compact .area-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 430px) {
+    .strategic-areas-v2--compact .area-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .strategic-areas-v2--compact .area-card__surface {
+      min-height: 4.75rem;
+    }
   }
 </style>

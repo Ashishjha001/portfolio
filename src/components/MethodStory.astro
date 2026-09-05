@@ -1,5 +1,7 @@
 ---
 // Concise, scroll-linked overview of the four method steps.
+import { ScanSearch, Database, GitMerge, ListChecks } from 'lucide-astro';
+
 interface Step {
   index: string;
   title: string;
@@ -11,70 +13,44 @@ interface Props {
 }
 
 const { steps } = Astro.props;
+
+const methodVisuals = [
+  { icon: ScanSearch, tone: 'frame' },
+  { icon: Database, tone: 'evidence' },
+  { icon: GitMerge, tone: 'connect' },
+  { icon: ListChecks, tone: 'decide' },
+];
 ---
 
-<div class="method-story" data-method-story>
-  <div class="method-story__rail" aria-hidden="true">
-    <span class="method-story__rail-fill"></span>
-  </div>
+<div class="method-story">
   <ol class="method-story__steps">
     {
-      steps.map((step) => (
-        <li class="method-step" data-method-step>
-          <span class="mono">{step.index}</span>
-          <h3>{step.title}</h3>
-          <p>{step.body}</p>
-        </li>
-      ))
+      steps.map((step, index) => {
+        const visual = methodVisuals[index] ?? methodVisuals[0]!;
+        const Icon = visual.icon;
+        return (
+          <li
+            class="method-step t-tilt"
+            data-tone={visual.tone}
+            data-reveal
+            data-tilt
+            style={`--reveal-delay:${index * 70}ms`}
+          >
+            <div class="method-step__surface t-tilt-card">
+              <div class="method-step__visual" aria-hidden="true">
+                <span class="method-step__matrix" />
+                <span class="method-step__orbit" />
+                <Icon strokeWidth={1.65} />
+              </div>
+              <div class="method-step__copy">
+                <span class="mono">{step.index}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </div>
+          </li>
+        );
+      })
     }
   </ol>
 </div>
-
-<script>
-  const story = document.querySelector<HTMLElement>('[data-method-story]');
-
-  if (story) {
-    const steps = Array.from(story.querySelectorAll<HTMLElement>('[data-method-step]'));
-    const fill = story.querySelector<HTMLElement>('.method-story__rail-fill');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    const activateAll = () => {
-      steps.forEach((step) => step.classList.add('is-active'));
-      if (fill) fill.style.transform = 'scaleY(1)';
-    };
-
-    if (reduced.matches || !('IntersectionObserver' in window)) {
-      activateAll();
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-active');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-      steps.forEach((step) => observer.observe(step));
-
-      let frame: number | undefined;
-      const updateFill = () => {
-        frame = undefined;
-        if (!fill) return;
-        const rect = story.getBoundingClientRect();
-        const anchor = window.innerHeight * 0.72;
-        const progress = (anchor - rect.top) / rect.height;
-        const clamped = Math.max(0, Math.min(progress, 1));
-        fill.style.setProperty('transform', `scaleY(${clamped})`);
-      };
-      const onScroll = () => {
-        if (!frame) frame = requestAnimationFrame(updateFill);
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      updateFill();
-    }
-  }
-</script>

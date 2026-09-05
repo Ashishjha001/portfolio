@@ -1,15 +1,9 @@
 ---
-/**
- * FeaturedInsightCard: large editorial card for a cluster's
- * foundational guide (pillar). Same card system as InsightCard,
- * horizontal art + body layout on desktop.
- */
-import ClusterArt from './ClusterArt.astro';
+/** Flagship editorial treatment for a cluster's foundational guide. */
 import LearnArrow from './LearnArrow.astro';
 
 interface Props {
   href: string;
-  cluster?: string;
   category: string;
   typeLabel: string;
   title: string;
@@ -17,59 +11,87 @@ interface Props {
   date: Date;
   dateLabel: string;
   readingMinutes: number;
+  image: string;
+  imagePosition?: string;
+  index?: number;
 }
 
-const { href, cluster, category, typeLabel, title, excerpt, date, dateLabel, readingMinutes } =
-  Astro.props;
+const {
+  href,
+  category,
+  typeLabel,
+  title,
+  excerpt,
+  date,
+  dateLabel,
+  readingMinutes,
+  image,
+  imagePosition = '50% 50%',
+  index = 0,
+} = Astro.props;
 
 const formatDate = (d: Date) =>
   new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }).format(d);
 ---
 
-<article class="dd-card insight-card featured-insight dd-stagger" style="--card-i: 0;">
+<article class="dd-card insight-card featured-insight dd-stagger" style={`--card-i: ${index};`}>
   <a href={href} aria-label={`Read the foundational guide: ${title}`}>
-    <span class="insight-card__art">
-      <ClusterArt cluster={cluster ?? category} />
-    </span>
-    <span class="insight-card__body">
-      <span class="insight-card__meta">
+    <div class="insight-card__art">
+      <img
+        src={image}
+        alt=""
+        width="1120"
+        height="1120"
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 760px) calc(100vw - 2.5rem), 46vw"
+        style={`object-position: ${imagePosition};`}
+      />
+    </div>
+    <div class="insight-card__body">
+      <div class="insight-card__meta">
         <span class="dd-card__badge">{category}</span>
         <span>{typeLabel}</span>
-      </span>
-      <span class="insight-card__title">{title}</span>
+      </div>
+      <h3 class="insight-card__title">{title}</h3>
       <p class="insight-card__excerpt">{excerpt}</p>
-      <span class="insight-card__foot">
-        <span>
-          {dateLabel}
-          {formatDate(date)} · {readingMinutes} min read
+      <div class="insight-card__foot">
+        <span class="insight-card__date">
+          <span class="visually-hidden">{dateLabel} </span>
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          <span aria-hidden="true"> · </span>{readingMinutes} min read
         </span>
         <span class="dd-card__arrow" aria-hidden="true">
           Read the guide <LearnArrow />
         </span>
-      </span>
-    </span>
+      </div>
+    </div>
   </a>
 </article>
 
 <style>
+  .featured-insight {
+    min-width: 0;
+  }
+
   .featured-insight a {
     display: grid;
-    grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
     height: 100%;
     color: inherit;
     text-decoration: none;
   }
 
   .featured-insight:focus-within {
-    outline: 3px solid var(--signal);
-    outline-offset: 3px;
+    outline: 2px solid var(--signal);
+    outline-offset: 4px;
   }
 
   .featured-insight a:focus-visible {
     outline: none;
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 760px) {
     .featured-insight a {
       grid-template-columns: 1fr;
     }

@@ -6,7 +6,7 @@ import FinalCTA from '../../components/FinalCTA.astro';
 import StrategicAreas from '../../components/StrategicAreas.astro';
 import InsightCard from '../../components/InsightCard.astro';
 import FeaturedInsightCard from '../../components/FeaturedInsightCard.astro';
-import ClusterArt from '../../components/ClusterArt.astro';
+import { getInsightImage } from '../../data/insightImages';
 
 const insights = (await getCollection('insights')).sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
@@ -59,6 +59,14 @@ const clusterMap = new Map([
 ]);
 const clusteredNames = new Set([measurementClusterName, demoClusterName, playbooksClusterName]);
 const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.cluster ?? ''));
+
+const orderedClusterEntries = clusters.flatMap(({ name }) => {
+  const { pillar, supporting } = clusterMap.get(name)!;
+  return [...(pillar ? [pillar] : []), ...supporting];
+});
+const orderedEntries = [...orderedClusterEntries, ...otherInsights];
+const imageIndexById = new Map(orderedEntries.map((entry, index) => [entry.id, index]));
+const imageForEntry = (id: string) => getInsightImage(imageIndexById.get(id) ?? 0);
 ---
 
 <BaseLayout
@@ -67,7 +75,7 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
   path="/insights/"
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Insights' }]} />
-  <header class="shell page-hero page-hero--compact">
+  <header class="shell page-hero page-hero--compact page-hero--single insights-hero">
     <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Insights</p>
       <h1>Practical guidance for decisions your dashboards cannot settle.</h1>
@@ -76,18 +84,6 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
         path into pipeline.
       </p>
     </div>
-    <aside class="page-hero__aside" data-reveal style="--reveal-delay:120ms">
-      <div class="folio">
-        <span>Published library</span><span
-          >{insights.length.toString().padStart(2, '0')} complete</span
-        >
-      </div>
-      <div class="caveat">
-        <span class="evidence-label">Editorial standard</span>
-        Each note answers one operational question, names its evidence boundary and links to the source
-        documentation.
-      </div>
-    </aside>
   </header>
 
   <StrategicAreas heading="Explore the library through the decision you are trying to make." />
@@ -107,12 +103,16 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
     clusters.map((cluster) => {
       const { pillar, supporting } = clusterMap.get(cluster.name)!;
       return (
-        <section class="section" aria-labelledby={`${cluster.id}-heading`} id={cluster.id}>
+        <section
+          class="section insights-section"
+          aria-labelledby={`${cluster.id}-heading`}
+          id={cluster.id}
+        >
           <span class="chapter-mark" aria-hidden="true">
             {cluster.index}
           </span>
           <div class="shell">
-            <div class="section-intro" data-reveal>
+            <div class="section-intro insights-section__intro" data-reveal>
               <p class="cluster-index">Cluster {cluster.index}</p>
               <p class="eyebrow">{cluster.name}</p>
               <h2 id={`${cluster.id}-heading`}>{cluster.heading}</h2>
@@ -122,33 +122,42 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
               </p>
             </div>
             <div class="insight-cards">
-              {pillar && (
-                <FeaturedInsightCard
-                  href={`/insights/${pillar.id}/`}
-                  cluster={pillar.data.cluster ?? pillar.data.category}
-                  category={pillar.data.category}
-                  typeLabel="Foundational guide"
-                  title={pillar.data.title}
-                  excerpt={pillar.data.description}
-                  date={pillar.data.publishedDate}
-                  dateLabel="Published"
-                  readingMinutes={pillar.data.readingMinutes}
-                />
-              )}
-              {supporting.map((entry, i) => (
-                <InsightCard
-                  href={`/insights/${entry.id}/`}
-                  cluster={entry.data.cluster ?? entry.data.category}
-                  category={entry.data.category}
-                  typeLabel="Supporting insight"
-                  title={entry.data.title}
-                  excerpt={entry.data.description}
-                  date={entry.data.publishedDate}
-                  dateLabel="Published"
-                  readingMinutes={entry.data.readingMinutes}
-                  index={i + 1}
-                />
-              ))}
+              {pillar &&
+                (() => {
+                  const image = imageForEntry(pillar.id);
+                  return (
+                    <FeaturedInsightCard
+                      href={`/insights/${pillar.id}/`}
+                      category={pillar.data.category}
+                      typeLabel="Foundational guide"
+                      title={pillar.data.title}
+                      excerpt={pillar.data.description}
+                      date={pillar.data.publishedDate}
+                      dateLabel="Published"
+                      readingMinutes={pillar.data.readingMinutes}
+                      image={image.src}
+                      imagePosition={image.position}
+                    />
+                  );
+                })()}
+              {supporting.map((entry, i) => {
+                const image = imageForEntry(entry.id);
+                return (
+                  <InsightCard
+                    href={`/insights/${entry.id}/`}
+                    category={entry.data.category}
+                    typeLabel="Supporting insight"
+                    title={entry.data.title}
+                    excerpt={entry.data.description}
+                    date={entry.data.publishedDate}
+                    dateLabel="Published"
+                    readingMinutes={entry.data.readingMinutes}
+                    index={i % 3}
+                    image={image.src}
+                    imagePosition={image.position}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>
@@ -158,12 +167,16 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
 
   {
     otherInsights.length > 0 && (
-      <section class="section section--bright" aria-labelledby="more-heading" id="cluster-more">
+      <section
+        class="section section--bright insights-section"
+        aria-labelledby="more-heading"
+        id="cluster-more"
+      >
         <span class="chapter-mark" aria-hidden="true">
           04
         </span>
         <div class="shell">
-          <div class="section-intro" data-reveal>
+          <div class="section-intro insights-section__intro" data-reveal>
             <p class="cluster-index">Cluster 04</p>
             <p class="eyebrow">Strategic and technical guides</p>
             <h2 id="more-heading">Growth, performance, SEO and AI-search guidance.</h2>
@@ -174,20 +187,24 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
             <p class="mono insight-cluster-count">{otherInsights.length} insights in this area</p>
           </div>
           <div class="insight-cards">
-            {otherInsights.map((entry, i) => (
-              <InsightCard
-                href={`/insights/${entry.id}/`}
-                cluster={entry.data.cluster ?? entry.data.category}
-                category={entry.data.category}
-                typeLabel={entry.data.featured ? 'Featured guide' : 'Insight'}
-                title={entry.data.title}
-                excerpt={entry.data.description}
-                date={entry.data.updatedDate}
-                dateLabel="Updated"
-                readingMinutes={entry.data.readingMinutes}
-                index={i}
-              />
-            ))}
+            {otherInsights.map((entry, i) => {
+              const image = imageForEntry(entry.id);
+              return (
+                <InsightCard
+                  href={`/insights/${entry.id}/`}
+                  category={entry.data.category}
+                  typeLabel={entry.data.featured ? 'Featured guide' : 'Insight'}
+                  title={entry.data.title}
+                  excerpt={entry.data.description}
+                  date={entry.data.updatedDate}
+                  dateLabel="Updated"
+                  readingMinutes={entry.data.readingMinutes}
+                  index={i % 3}
+                  image={image.src}
+                  imagePosition={image.position}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -221,23 +238,42 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
 </BaseLayout>
 
 <style>
+  .insights-hero {
+    padding-block: clamp(2.8rem, 5vw, 5rem);
+  }
+
+  .insights-hero .page-hero__copy h1 {
+    max-width: 18ch;
+    font-size: clamp(2.5rem, 5.4vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .insights-hero .lede {
+    max-width: 58ch;
+  }
+
   .insight-browse {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     align-items: center;
-    padding-block: 1.6rem;
-    border-top: 1px solid var(--rule);
+    padding-block: 1.15rem;
+    border-block: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
   }
 
   .insight-browse__chip {
     display: inline-flex;
     align-items: center;
-    padding: 0.5em 1em;
+    padding: 0.55em 1em;
     border: 1px solid var(--rule);
     border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
     color: inherit;
     text-decoration: none;
     transition:
@@ -279,5 +315,58 @@ const otherInsights = insights.filter((entry) => !clusteredNames.has(entry.data.
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-top: 0.8rem;
+  }
+
+  .insights-section {
+    padding-block: clamp(3.4rem, 5.5vw, 5.5rem);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
+  .insights-section__intro {
+    position: static;
+    max-width: 62rem;
+    padding-bottom: clamp(0.4rem, 1.5vw, 1rem);
+  }
+
+  .insights-section__intro h2 {
+    max-width: 21ch;
+    font-size: clamp(2rem, 3.8vw, 3.7rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .insights-section__intro .small {
+    max-width: 62ch;
+    font-size: clamp(0.94rem, 1.15vw, 1.05rem);
+  }
+
+  @media (max-width: 767px) {
+    .insights-hero {
+      padding-block: 2.6rem 3.4rem;
+    }
+
+    .insights-hero .page-hero__copy h1 {
+      font-size: clamp(2.55rem, 12vw, 4rem);
+      line-height: 1;
+    }
+
+    .insight-browse {
+      gap: 0.5rem;
+      padding-block: 1rem;
+    }
+
+    .insight-browse__chip {
+      padding: 0.62em 0.82em;
+      font-size: 0.6rem;
+    }
+
+    .insights-section {
+      padding-block: 3.2rem;
+    }
+
+    .insights-section__intro h2 {
+      font-size: clamp(2rem, 9vw, 2.8rem);
+    }
   }
 </style>
