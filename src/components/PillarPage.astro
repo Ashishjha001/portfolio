@@ -217,7 +217,7 @@ const schema = [
               <ul>
                 {clusterFrameworks.map((framework) => (
                   <li>
-                    <a href="/knowledge-base/#{framework.id}">{framework.name}</a>
+                    <a href={`/knowledge-base/#${framework.id}`}>{framework.name}</a>
                     {framework.toolHref && (
                       <a class="kg-tool" href={framework.toolHref}>
                         Tool →

@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import StrategicAreas from '../components/StrategicAreas.astro';
+import LearnArrow from '../components/LearnArrow.astro';
+import { BarChart3, Search, Megaphone, Target, Bot, Sparkles } from 'lucide-astro';
 import { organizationReference } from '../data/entityDefinition';
 
 const services = [
@@ -9,6 +10,8 @@ const services = [
     index: '01',
     name: 'Growth Strategy & Measurement',
     slug: 'growth-strategy-measurement',
+    tone: 'growth',
+    icon: BarChart3,
     detail: '/services/market-research/',
     tagline: 'Know what drives growth. Build around what works.',
     doing: [
@@ -29,6 +32,8 @@ const services = [
     index: '02',
     name: 'Web, SEO & AI Visibility',
     slug: 'web-seo-ai-visibility',
+    tone: 'search',
+    icon: Search,
     detail: '/services/seo/',
     tagline: 'Get discovered on Google. Get understood by AI. Get chosen by customers.',
     doing: [
@@ -58,6 +63,8 @@ const services = [
     index: '03',
     name: 'Paid Acquisition & Demand Generation',
     slug: 'paid-acquisition-performance',
+    tone: 'paid',
+    icon: Megaphone,
     detail: '/services/google-ads-management/',
     tagline: 'Turn the right audience into qualified demand.',
     doing: [
@@ -84,6 +91,8 @@ const services = [
     index: '04',
     name: 'Conversion & Lifecycle Growth',
     slug: 'conversion-lifecycle-growth',
+    tone: 'conversion',
+    icon: Target,
     detail: undefined,
     tagline: 'Turn attention into pipeline. Turn customers into lasting revenue.',
     doing: [
@@ -107,6 +116,8 @@ const services = [
     index: '05',
     name: 'AI Agent Development',
     slug: 'ai-agent-development',
+    tone: 'agents',
+    icon: Bot,
     detail: undefined,
     tagline: 'Turn repetitive work into intelligent, controlled workflows.',
     doing: [
@@ -129,6 +140,8 @@ const services = [
     index: '06',
     name: 'AI & GPT Integrations',
     slug: 'ai-gpt-integrations',
+    tone: 'integrations',
+    icon: Sparkles,
     detail: undefined,
     tagline: 'Bring AI into the tools your business already runs on.',
     doing: [
@@ -198,83 +211,198 @@ const schema = {
 >
   <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
 
-  <!-- S1: Editorial hero -->
-  <header class="shell page-hero page-hero--compact">
-    <div class="page-hero__copy" data-reveal>
-      <p class="eyebrow">Data Decision Consulting / Services</p>
-      <h1>Growth systems that turn attention into revenue.</h1>
-      <p class="lede">
-        From building your website to SEO, AI search visibility, content, paid acquisition,
-        conversion and analytics: we build the complete digital growth engine behind your business.
-      </p>
-      <div class="button-row">
-        <a
-          class="button button--primary"
-          href="/contact/#request-a-brief"
-          data-event="cta_primary_click">Request a brief →</a
-        >
+  <!-- S1: Immersive service-system hero -->
+  <header class="services-hero">
+    <div class="shell services-hero__grid">
+      <div class="services-hero__copy" data-reveal>
+        <p class="eyebrow">Data Decision Consulting / Services</p>
+        <h1>Growth systems that turn attention into revenue.</h1>
+        <p class="services-hero__lede">
+          Website, search, paid growth, measurement and practical AI, connected around one
+          commercial goal.
+        </p>
+        <div class="button-row">
+          <a
+            class="button services-hero__button"
+            href="/contact/#request-a-brief"
+            data-event="cta_primary_click">Request a brief →</a
+          >
+          <a class="services-hero__secondary" href="#service-deck">Explore the systems</a>
+        </div>
+        <p class="hero__badge mono" data-reveal style="--reveal-delay:160ms">
+          Baseline first · Scope recorded · Evidence attached
+        </p>
       </div>
-      <p class="hero__badge mono" data-reveal style="--reveal-delay:160ms">
-        Baseline first · Scope recorded · Evidence attached
-      </p>
+
+      <div
+        class="services-engine-shell"
+        data-services-engine
+        data-reveal
+        style="--reveal-delay:100ms"
+      >
+        <div class="services-engine" role="group" aria-label="Explore the connected growth engine">
+          <span class="services-engine__grid" aria-hidden="true"></span>
+          <span class="services-engine__orbit services-engine__orbit--outer" aria-hidden="true"
+          ></span>
+          <span class="services-engine__orbit services-engine__orbit--inner" aria-hidden="true"
+          ></span>
+          <button
+            class="services-engine__node services-engine__node--search is-active"
+            type="button"
+            aria-pressed="true"
+            data-engine-node
+            data-label="Search visibility"
+            data-description="Build discoverability across Google and AI answers, then connect it to qualified demand."
+            data-href="#web-seo-ai-visibility"
+            data-link-label="See web, SEO and AI visibility">Search</button
+          >
+          <button
+            class="services-engine__node services-engine__node--paid"
+            type="button"
+            aria-pressed="false"
+            data-engine-node
+            data-label="Demand generation"
+            data-description="Create qualified demand with paid acquisition, useful creative and clear pipeline measurement."
+            data-href="#paid-acquisition-performance"
+            data-link-label="See paid acquisition and demand">Demand</button
+          >
+          <button
+            class="services-engine__node services-engine__node--data"
+            type="button"
+            aria-pressed="false"
+            data-engine-node
+            data-label="Measurement"
+            data-description="Reconcile analytics, CRM and revenue so the next growth decision has a defensible baseline."
+            data-href="#growth-strategy-measurement"
+            data-link-label="See growth strategy and measurement">Data</button
+          >
+          <button
+            class="services-engine__node services-engine__node--ai"
+            type="button"
+            aria-pressed="false"
+            data-engine-node
+            data-label="Practical AI"
+            data-description="Build controlled agents and integrations around real workflows, access rules and human review."
+            data-href="#ai-agent-development"
+            data-link-label="See AI agent development">AI</button
+          >
+          <span class="services-engine__beam" aria-hidden="true"></span>
+          <span class="services-engine__hub" aria-hidden="true">
+            <span class="mono">One connected</span>
+            <strong>Growth engine</strong>
+          </span>
+        </div>
+        <div class="services-engine__explain" aria-live="polite">
+          <span class="mono" data-engine-label>Search visibility</span>
+          <p data-engine-description>
+            Build discoverability across Google and AI answers, then connect it to qualified demand.
+          </p>
+          <a href="#web-seo-ai-visibility" data-engine-link>See web, SEO and AI visibility →</a>
+        </div>
+      </div>
     </div>
+
+    <nav class="shell services-jump" aria-label="Jump to a service">
+      {
+        services.map((service) => (
+          <a href={`#${service.slug}`}>
+            <span class="mono">{service.index}</span>
+            {service.name}
+          </a>
+        ))
+      }
+    </nav>
   </header>
 
-  <StrategicAreas heading="Start with the area closest to the business question." />
+  <!-- S2: Progressive-disclosure service deck -->
+  <section class="services-catalog" id="service-deck" aria-labelledby="service-deck-heading">
+    <div class="shell">
+      <div class="services-catalog__head" data-reveal>
+        <p class="eyebrow">Choose the constraint</p>
+        <h2 id="service-deck-heading">Six systems. One accountable partner.</h2>
+        <p>Start with the problem closest to revenue. Open the full scope only when you need it.</p>
+      </div>
 
-  <!-- S3: Services index -->
-  <section class="services-index" aria-label="Service ledger">
-    {
-      services.map((service, i) => (
-        <article
-          class:list={['service-row', { 'service-row--tint': i % 2 === 1 }]}
-          data-reveal
-          style={`--reveal-delay:${(i % 2) * 70}ms`}
-          id={service.slug}
-        >
-          <div class="shell service-row__grid">
-            <span class="service-row__num" aria-hidden="true">
-              {service.index}
-            </span>
-            <div class="service-row__body">
-              <h2>{service.name}</h2>
-              <p class="service-row__tagline">{service.tagline}</p>
-              <div class="service-row__receive">
-                <span class="evidence-label">What we do</span>
-                <ul>
-                  {service.doing.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <p class="service-row__best">
-                <span class="evidence-label">Best for</span>
-                {service.bestFor}
-              </p>
-            </div>
-            <div class="service-row__meta">
-              {service.detail && (
-                <a class="text-link service-row__detail" href={service.detail}>
-                  Explore service →
-                </a>
-              )}
-              {service.extraLinks?.map((link) => (
-                <a class="text-link service-row__detail" href={link.href}>
-                  {link.label} →
-                </a>
-              ))}
-              <a
-                class="text-link service-row__cta"
-                href={`/contact/?service=${service.slug}#request-a-brief`}
-                data-event="service_brief_click"
+      <div class="service-deck">
+        {
+          services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <article
+                class="service-panel"
+                data-tone={service.tone}
+                data-reveal
+                style={`--reveal-delay:${(i % 3) * 70}ms`}
+                id={service.slug}
               >
-                Request a brief →
-              </a>
-            </div>
-          </div>
-        </article>
-      ))
-    }
+                <div class="service-panel__signal" aria-hidden="true">
+                  <span class="service-panel__matrix" />
+                  <span class="service-panel__orbit" />
+                  <span class="service-panel__index mono">{service.index}</span>
+                  <span class="service-panel__icon">
+                    <Icon strokeWidth={1.65} />
+                  </span>
+                </div>
+
+                <div class="service-panel__body">
+                  <div>
+                    <span class="service-panel__label mono">Growth system {service.index}</span>
+                    <h2>{service.name}</h2>
+                    <p class="service-panel__tagline">{service.tagline}</p>
+                  </div>
+
+                  <div class="service-panel__fit">
+                    <span class="mono">Best for</span>
+                    <p>{service.bestFor}</p>
+                  </div>
+
+                  {service.doing.length > 0 && (
+                    <details class="service-panel__details" data-event="service_scope_expand">
+                      <summary>
+                        <span>See what this includes</span>
+                        <span class="service-panel__count mono">
+                          {service.doing.length} capabilities
+                        </span>
+                        <span class="service-panel__plus" aria-hidden="true" />
+                      </summary>
+                      <div class="service-panel__details-body">
+                        <ul aria-label={`${service.name} capabilities`}>
+                          {service.doing.map((item) => (
+                            <li>{item}</li>
+                          ))}
+                        </ul>
+                        {service.extraLinks && (
+                          <div class="service-panel__related" aria-label="Related service pages">
+                            {service.extraLinks.map((link) => (
+                              <a href={link.href}>{link.label}</a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  )}
+
+                  <div class="service-panel__actions">
+                    {service.detail && (
+                      <a class="service-panel__explore" href={service.detail}>
+                        See {service.name} <LearnArrow />
+                      </a>
+                    )}
+                    <a
+                      class="service-panel__brief"
+                      href={`/contact/?service=${service.slug}#request-a-brief`}
+                      data-event="service_brief_click"
+                    >
+                      Request a brief →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
   </section>
 
   <!-- S3.5: Locations strip -->
@@ -289,9 +417,8 @@ const schema = {
           <h2 id="services-locations-heading">Remote service, evidence before location claims.</h2>
         </div>
         <p class="small" data-reveal style="--reveal-delay:100ms">
-          Every engagement runs on the same published method. Surat is our first dedicated market
-          page because it has a documented public-research basis. Teams elsewhere can start with the
-          relevant service page while we validate their market, buyer and measurement access.
+          Surat is our first research-backed market page. Other teams can begin with the service
+          that matches their problem.
         </p>
       </div>
       <div class="services-locations__grid" data-reveal style="--reveal-delay:160ms">
@@ -302,31 +429,25 @@ const schema = {
   </section>
 
   <!-- S4: How engagements work -->
-  <section class="section section--ink" aria-labelledby="path-heading">
-    <span class="chapter-mark" aria-hidden="true">↳</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
+  <section class="services-path" aria-labelledby="path-heading">
+    <div class="shell">
+      <div class="services-path__head" data-reveal>
         <p class="eyebrow">How engagements work</p>
-        <h2 id="path-heading">A defined path from question to measurable work.</h2>
-        <p class="small" style="margin-top:1.2rem;">
-          The stages below are the engagement lifecycle behind every service above, not separate
-          products.
-        </p>
+        <h2 id="path-heading">From question to measurable work.</h2>
+        <p>One defined path behind every service.</p>
       </div>
-      <div class="rule-list" data-reveal style="--reveal-delay:110ms">
+      <ol class="services-path__steps">
         {
-          stages.map((stage) => (
-            <div class="rule-row">
+          stages.map((stage, i) => (
+            <li data-reveal style={`--reveal-delay:${i * 60}ms`}>
+              <span class="services-path__dot" aria-hidden="true" />
               <span class="mono">{stage.index}</span>
-              <div>
-                <h3>{stage.name}</h3>
-                <p>{stage.body}</p>
-              </div>
-              <span class="rule-row__meta">Stage {stage.index}</span>
-            </div>
+              <h3>{stage.name}</h3>
+              <p>{stage.body}</p>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -350,6 +471,42 @@ const schema = {
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-services-engine]').forEach((engine) => {
+    const nodes = Array.from(engine.querySelectorAll<HTMLButtonElement>('[data-engine-node]'));
+    const label = engine.querySelector<HTMLElement>('[data-engine-label]');
+    const description = engine.querySelector<HTMLElement>('[data-engine-description]');
+    const link = engine.querySelector<HTMLAnchorElement>('[data-engine-link]');
+    if (!nodes.length || !label || !description || !link) return;
+
+    const activate = (node: HTMLButtonElement, track = false) => {
+      nodes.forEach((item) => {
+        const active = item === node;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      label.textContent = node.dataset.label ?? '';
+      description.textContent = node.dataset.description ?? '';
+      link.href = node.dataset.href ?? '#service-deck';
+      link.textContent = `${node.dataset.linkLabel ?? 'See the service'} →`;
+      if (track && window.ddTrack) {
+        window.ddTrack('services_engine_select', {
+          label: node.dataset.label ?? node.textContent?.trim() ?? '',
+          path: window.location.pathname,
+        });
+      }
+    };
+
+    nodes.forEach((node) => {
+      node.addEventListener('click', () => activate(node, true));
+      node.addEventListener('focus', () => activate(node));
+      if (window.matchMedia('(hover: hover)').matches) {
+        node.addEventListener('pointerenter', () => activate(node));
+      }
+    });
+  });
+</script>
 
 <style>
   .hero__badge {
@@ -553,6 +710,1006 @@ const schema = {
 
     .service-row__num {
       padding-top: 0;
+    }
+  }
+
+  /* Immersive services direction -------------------------------- */
+
+  .services-hero {
+    position: relative;
+    overflow: hidden;
+    color: #f8f4e9;
+    background:
+      radial-gradient(circle at 79% 23%, rgba(68, 224, 174, 0.2), transparent 23rem),
+      radial-gradient(circle at 94% 72%, rgba(196, 164, 255, 0.14), transparent 22rem), #071612;
+    border-block: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(90deg, transparent 8%, #000 65%, transparent);
+  }
+
+  .services-hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+    min-height: clamp(30rem, 58vh, 36rem);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .services-hero__copy {
+    max-width: 760px;
+  }
+
+  .services-hero .eyebrow {
+    color: #63d6ae;
+  }
+
+  .services-hero h1 {
+    max-width: 13ch;
+    color: #fffdf7;
+    font-size: clamp(3.2rem, 6.6vw, 6.6rem);
+    line-height: 0.93;
+    letter-spacing: -0.045em;
+  }
+
+  .services-hero__lede {
+    max-width: 57ch;
+    margin: 1.5rem 0 0;
+    color: #cfe2da;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.55;
+  }
+
+  .services-hero .button-row {
+    align-items: center;
+    margin-top: 1.8rem;
+  }
+
+  .services-hero__button {
+    border-color: #63d6ae;
+    background: #63d6ae;
+    color: #071612;
+  }
+
+  .services-hero__button:hover,
+  .services-hero__button:focus-visible {
+    border-color: #fffdf7;
+    background: #fffdf7;
+    color: #071612;
+  }
+
+  .services-hero__secondary {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fffdf7;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .services-hero__secondary:hover,
+  .services-hero__secondary:focus-visible {
+    border-color: #63d6ae;
+    color: #63d6ae;
+  }
+
+  .services-hero .hero__badge {
+    border-color: rgba(255, 255, 255, 0.26);
+    color: #b9d4c9;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .services-engine-shell {
+    position: relative;
+    justify-self: end;
+    width: min(100%, 31rem);
+  }
+
+  .services-engine {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(68, 224, 174, 0.2), transparent 15%),
+      rgba(255, 255, 255, 0.025);
+    box-shadow:
+      inset 0 0 80px rgba(68, 224, 174, 0.06),
+      0 42px 90px -54px rgba(68, 224, 174, 0.58);
+  }
+
+  .services-engine__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.075) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle, #000, transparent 72%);
+  }
+
+  .services-engine__orbit {
+    position: absolute;
+    inset: 12%;
+    border: 1px solid rgba(99, 214, 174, 0.44);
+    border-radius: 50%;
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .services-engine__orbit--inner {
+    inset: 27%;
+    border-color: rgba(196, 164, 255, 0.42);
+    border-style: dashed;
+  }
+
+  .services-engine__beam {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    width: 1px;
+    height: 80%;
+    background: linear-gradient(transparent, #63d6ae, transparent);
+    box-shadow: 0 0 16px rgba(99, 214, 174, 0.7);
+    transform: rotate(42deg);
+    transform-origin: center;
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .services-engine__hub {
+    position: absolute;
+    inset: 35%;
+    z-index: 2;
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    text-align: center;
+    background: rgba(7, 22, 18, 0.84);
+    box-shadow: 0 0 45px rgba(68, 224, 174, 0.2);
+    animation: services-engine-pulse 1.15s ease-in-out 3;
+  }
+
+  .services-engine__hub .mono {
+    color: #63d6ae;
+    font-size: 0.56rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .services-engine__hub strong {
+    display: block;
+    margin-top: 0.2rem;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    line-height: 1;
+  }
+
+  .services-engine__node {
+    position: absolute;
+    z-index: 2;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    color: #fffdf7;
+    background: rgba(7, 22, 18, 0.88);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 220ms ease,
+      background-color 220ms ease;
+  }
+
+  .services-engine__node.is-active,
+  .services-engine__node:hover,
+  .services-engine__node:focus-visible {
+    border-color: #63d6ae;
+    background: rgba(12, 79, 61, 0.96);
+    color: #fffdf7;
+    transform: translateY(-3px);
+  }
+
+  .services-engine__node:focus-visible {
+    outline: 2px solid #fffdf7;
+    outline-offset: 3px;
+  }
+
+  .services-engine__node--search {
+    top: 9%;
+    left: 38%;
+  }
+
+  .services-engine__node--paid {
+    right: 4%;
+    top: 45%;
+  }
+
+  .services-engine__node--data {
+    bottom: 9%;
+    left: 40%;
+  }
+
+  .services-engine__node--ai {
+    left: 5%;
+    top: 46%;
+  }
+
+  .services-engine:hover .services-engine__orbit--outer {
+    transform: rotate(20deg) scale(1.04);
+  }
+
+  .services-engine:hover .services-engine__orbit--inner {
+    transform: rotate(-28deg) scale(1.08);
+  }
+
+  .services-engine:hover .services-engine__beam {
+    transform: rotate(112deg);
+  }
+
+  .services-engine__explain {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    gap: 0.35rem;
+    width: min(90%, 24rem);
+    margin: -3.1rem auto 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    background: rgba(7, 22, 18, 0.94);
+    box-shadow: 0 20px 48px -34px rgba(68, 224, 174, 0.66);
+  }
+
+  .services-engine__explain .mono {
+    color: #63d6ae;
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .services-engine__explain p {
+    margin: 0;
+    color: #cfe2da;
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .services-engine__explain a {
+    width: fit-content;
+    color: #fffdf7;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-decoration-color: rgba(99, 214, 174, 0.5);
+  }
+
+  @keyframes services-engine-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 36px rgba(68, 224, 174, 0.14);
+    }
+    50% {
+      box-shadow: 0 0 56px rgba(68, 224, 174, 0.3);
+    }
+  }
+
+  .services-jump {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    padding-bottom: 1.2rem;
+  }
+
+  .services-jump a {
+    display: grid;
+    align-content: start;
+    gap: 0.45rem;
+    min-height: 5.8rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cfe2da;
+    font-size: 0.77rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .services-jump a:first-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .services-jump a .mono {
+    color: #63d6ae;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .services-jump a:hover,
+  .services-jump a:focus-visible {
+    border-top-color: #63d6ae;
+    color: #fffdf7;
+    background: rgba(255, 255, 255, 0.055);
+  }
+
+  .services-catalog {
+    scroll-margin-top: 88px;
+    padding-block: clamp(3.25rem, 5.5vw, 5.5rem);
+    color: #f8f4e9;
+    background:
+      radial-gradient(circle at 8% 8%, rgba(103, 216, 237, 0.08), transparent 25rem),
+      radial-gradient(circle at 92% 52%, rgba(196, 164, 255, 0.08), transparent 26rem), #0a1c17;
+  }
+
+  .services-catalog__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+    gap: 1rem 3rem;
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3.4rem);
+  }
+
+  .services-catalog__head .eyebrow {
+    grid-column: 1 / -1;
+    color: #63d6ae;
+  }
+
+  .services-catalog__head h2 {
+    max-width: 16ch;
+    color: #fffdf7;
+    font-size: clamp(2.3rem, 4.6vw, 4.6rem);
+    line-height: 0.98;
+  }
+
+  .services-catalog__head > p:last-child {
+    margin: 0;
+    color: #b9d4c9;
+    line-height: 1.6;
+  }
+
+  .service-deck {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: start;
+  }
+
+  .service-panel {
+    --service-base: #06483c;
+    --service-accent: #44e0ae;
+    --service-deep: #075344;
+    scroll-margin-top: 90px;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--service-accent) 34%, rgba(255, 255, 255, 0.14));
+    border-radius: 16px;
+    background: #f8f4e9;
+    color: #14181f;
+    box-shadow: 0 22px 60px -44px color-mix(in srgb, var(--service-accent) 55%, transparent);
+    transition:
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 240ms ease,
+      box-shadow 240ms ease;
+  }
+
+  .service-panel[data-tone='search'] {
+    --service-base: #073c55;
+    --service-accent: #67d8ed;
+    --service-deep: #07506d;
+  }
+
+  .service-panel[data-tone='paid'] {
+    --service-base: #70280f;
+    --service-accent: #ff9c67;
+    --service-deep: #833818;
+  }
+
+  .service-panel[data-tone='conversion'] {
+    --service-base: #244b1e;
+    --service-accent: #aedf65;
+    --service-deep: #315f27;
+  }
+
+  .service-panel[data-tone='agents'] {
+    --service-base: #36216d;
+    --service-accent: #c4a4ff;
+    --service-deep: #4b2d8c;
+  }
+
+  .service-panel[data-tone='integrations'] {
+    --service-base: #4c225e;
+    --service-accent: #ee9ee6;
+    --service-deep: #633074;
+  }
+
+  .service-panel:hover,
+  .service-panel:focus-within {
+    border-color: var(--service-accent);
+    box-shadow: 0 34px 76px -46px color-mix(in srgb, var(--service-accent) 72%, transparent);
+    transform: translateY(-5px);
+  }
+
+  .service-panel__signal {
+    position: relative;
+    isolation: isolate;
+    height: 7rem;
+    overflow: hidden;
+    color: #fffdf7;
+    background:
+      radial-gradient(
+        circle at 82% 22%,
+        color-mix(in srgb, var(--service-accent) 78%, transparent),
+        transparent 28%
+      ),
+      linear-gradient(
+        132deg,
+        var(--service-base),
+        color-mix(in srgb, var(--service-base) 55%, var(--service-accent))
+      );
+    border-bottom: 1px solid color-mix(in srgb, var(--service-accent) 42%, transparent);
+  }
+
+  .service-panel__matrix {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.13) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(90deg, #000, transparent 84%);
+    opacity: 0.62;
+    transition: background-position 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-panel__orbit {
+    position: absolute;
+    width: 11rem;
+    aspect-ratio: 1;
+    top: -6rem;
+    right: -1.6rem;
+    border: 1px solid color-mix(in srgb, var(--service-accent) 90%, white 10%);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 20px color-mix(in srgb, var(--service-accent) 12%, transparent),
+      0 0 0 44px color-mix(in srgb, var(--service-accent) 7%, transparent);
+    transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-panel:hover .service-panel__matrix,
+  .service-panel:focus-within .service-panel__matrix {
+    background-position: 13px -9px;
+  }
+
+  .service-panel:hover .service-panel__orbit,
+  .service-panel:focus-within .service-panel__orbit {
+    transform: scale(1.14) rotate(20deg);
+  }
+
+  .service-panel__index {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.2rem;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+  }
+
+  .service-panel__icon {
+    position: absolute;
+    left: 1.2rem;
+    bottom: 1.1rem;
+    z-index: 2;
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-panel__icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .service-panel:hover .service-panel__icon,
+  .service-panel:focus-within .service-panel__icon {
+    transform: translateY(-4px) rotate(-3deg);
+  }
+
+  .service-panel__body {
+    display: grid;
+    gap: 0.9rem;
+    padding: clamp(1.1rem, 1.7vw, 1.35rem);
+  }
+
+  .service-panel__label {
+    color: var(--service-deep);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .service-panel h2 {
+    margin: 0.52rem 0 0;
+    font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+    line-height: 1.05;
+  }
+
+  .service-panel__tagline {
+    margin: 0.65rem 0 0;
+    color: #50564e;
+    font-size: 0.94rem;
+    font-weight: 600;
+    line-height: 1.48;
+  }
+
+  .service-panel__fit {
+    padding: 0.9rem 1rem;
+    border-left: 3px solid var(--service-accent);
+    background: color-mix(in srgb, var(--service-accent) 8%, #f8f4e9);
+  }
+
+  .service-panel__fit .mono {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--service-deep);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .service-panel__fit p {
+    margin: 0;
+    color: #424940;
+    font-size: 0.82rem;
+    line-height: 1.48;
+  }
+
+  .service-panel__details-body ul {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .service-panel__details-body li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: #50564e;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .service-panel__details-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.5rem;
+    height: 2px;
+    background: var(--service-deep);
+  }
+
+  .service-panel__details {
+    border-block: 1px solid color-mix(in srgb, var(--service-base) 16%, transparent);
+  }
+
+  .service-panel__details summary {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.65rem;
+    color: var(--service-deep);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .service-panel__count {
+    margin-left: auto;
+    color: #6d716a;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .service-panel__details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .service-panel__details summary:focus-visible {
+    outline: 2px solid var(--service-deep);
+    outline-offset: 3px;
+  }
+
+  .service-panel__plus {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .service-panel__plus::before,
+  .service-panel__plus::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.8rem;
+    height: 1px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform 220ms ease;
+  }
+
+  .service-panel__plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .service-panel__details[open] .service-panel__plus::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .service-panel__details-body {
+    display: grid;
+    gap: 1rem;
+    padding: 0.25rem 0 1rem;
+  }
+
+  .service-panel__related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .service-panel__related a {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid color-mix(in srgb, var(--service-base) 24%, transparent);
+    border-radius: 999px;
+    color: var(--service-deep);
+    font-size: 0.72rem;
+    text-decoration: none;
+  }
+
+  .service-panel__related a:hover,
+  .service-panel__related a:focus-visible {
+    border-color: var(--service-deep);
+    background: color-mix(in srgb, var(--service-accent) 9%, transparent);
+  }
+
+  .service-panel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.15rem;
+  }
+
+  .service-panel__explore,
+  .service-panel__brief {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--service-deep);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .service-panel__brief {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--service-deep);
+    border-radius: 3px;
+    background: var(--service-deep);
+    color: #fffdf7;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .service-panel__brief:hover,
+  .service-panel__brief:focus-visible {
+    background: transparent;
+    color: var(--service-deep);
+  }
+
+  .services-locations {
+    background: #eee8dc;
+  }
+
+  .services-path {
+    padding-block: clamp(3.25rem, 5.5vw, 5.25rem);
+    color: #f8f4e9;
+    background:
+      radial-gradient(circle at 8% 20%, rgba(103, 216, 237, 0.1), transparent 22rem), #0c4f3d;
+  }
+
+  .services-path__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
+    gap: 0.8rem 3rem;
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .services-path__head .eyebrow {
+    grid-column: 1 / -1;
+    color: #63d6ae;
+  }
+
+  .services-path__head h2 {
+    max-width: 16ch;
+    color: #fffdf7;
+    font-size: clamp(2.2rem, 4.2vw, 4rem);
+    line-height: 1;
+  }
+
+  .services-path__head > p:last-child {
+    margin: 0;
+    color: #cfe2da;
+  }
+
+  .services-path__steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .services-path__steps::before {
+    content: '';
+    position: absolute;
+    left: 1.4rem;
+    right: 1.4rem;
+    top: 1.45rem;
+    height: 1px;
+    background: linear-gradient(90deg, #63d6ae, rgba(255, 255, 255, 0.16));
+  }
+
+  .services-path__steps li {
+    position: relative;
+    min-height: 10rem;
+    padding: 3.3rem 1rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.055);
+    transition:
+      transform 230ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .services-path__steps li:hover {
+    border-color: rgba(99, 214, 174, 0.7);
+    background: rgba(255, 255, 255, 0.085);
+    transform: translateY(-4px);
+  }
+
+  .services-path__dot {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 2;
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 3px solid #0c4f3d;
+    border-radius: 50%;
+    background: #63d6ae;
+    box-shadow: 0 0 0 1px #63d6ae;
+  }
+
+  .services-path__steps .mono {
+    color: #63d6ae;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .services-path__steps h3 {
+    margin: 1.1rem 0 0.4rem;
+    color: #fffdf7;
+    font-size: 1.2rem;
+  }
+
+  .services-path__steps p {
+    margin: 0;
+    color: #cfe2da;
+    font-size: 0.81rem;
+    line-height: 1.48;
+  }
+
+  .services-path + .section--green {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background:
+      radial-gradient(circle at 80% 50%, rgba(196, 164, 255, 0.12), transparent 24rem), #071612;
+  }
+
+  @media (max-width: 1180px) {
+    .service-deck {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .services-jump {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .services-hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: 0;
+      padding-bottom: 2.5rem;
+    }
+
+    .services-engine {
+      justify-self: center;
+      width: min(100%, 27rem);
+    }
+
+    .services-engine-shell {
+      justify-self: center;
+      width: min(100%, 27rem);
+    }
+
+    .services-catalog__head,
+    .services-path__head {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .services-path__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .services-path__steps::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .services-hero__grid {
+      gap: 2.4rem;
+      padding-block: 3.25rem 2rem;
+    }
+
+    .services-hero h1 {
+      font-size: clamp(2.85rem, 14vw, 4.4rem);
+    }
+
+    .services-hero__lede {
+      font-size: 1rem;
+    }
+
+    .services-engine-shell {
+      width: min(100%, 18rem);
+    }
+
+    .services-engine__node {
+      font-size: 0.51rem;
+    }
+
+    .services-engine__explain {
+      width: 94%;
+      margin-top: -1.9rem;
+    }
+
+    .services-jump {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 0.9rem;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+
+    .services-jump::-webkit-scrollbar {
+      display: none;
+    }
+
+    .services-jump a {
+      flex: 0 0 10.5rem;
+      min-height: 5rem;
+      scroll-snap-align: start;
+    }
+
+    .services-catalog {
+      padding-block: 3.5rem;
+    }
+
+    .services-catalog__head {
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .services-catalog__head h2 {
+      max-width: 12ch;
+      font-size: clamp(2.25rem, 11vw, 3.15rem);
+    }
+
+    .services-catalog__head > p:last-child {
+      max-width: 34rem;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .service-deck {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .service-panel:hover,
+    .service-panel:focus-within {
+      transform: none;
+    }
+
+    .services-path__steps {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .services-path__steps li {
+      min-height: 0;
+      padding: 1.1rem 1rem 1.1rem 3.4rem;
+    }
+
+    .services-path__dot {
+      top: 1.28rem;
+    }
+
+    .services-path__steps h3 {
+      margin-top: 0.55rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-engine__hub {
+      animation: none;
+    }
+
+    .services-engine__orbit,
+    .services-engine__beam,
+    .services-engine__node,
+    .service-panel,
+    .service-panel__matrix,
+    .service-panel__orbit,
+    .service-panel__icon,
+    .services-path__steps li {
+      transition: none !important;
+      transform: none !important;
     }
   }
 </style>

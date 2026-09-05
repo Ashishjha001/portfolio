@@ -159,6 +159,55 @@
         "Use a JavaScript-rendered 3D scene"
       ],
       "reason": "The approved headline and platform rotator remain untouched while the supplied cream-and-green animation becomes a masked full-hero visual with its focal object held to the right and a wide cream readability zone on the left. The rotating platform name is the dominant second line, the long supporting paragraph is removed, and mobile, reduced-motion and data-saver contexts use a 15 KB poster instead of loading the loop."
+    },
+    {
+      "date": "2026-09-04",
+      "choice": "Twelve-image editorial system for the Insights library",
+      "alternatives": [
+        "Keep the repeated cluster diagrams",
+        "Assign images randomly at runtime",
+        "Hand-pick a unique asset for every article"
+      ],
+      "reason": "The Insights listing now treats the supplied blue-green abstract imagery as a publication system: a deterministic index cycles through all twelve optimized WebP assets before repeating, while featured guides use a cinematic split layout and supporting articles use a restrained 3/2/1-column editorial grid. The cards keep the Ledger cream, green, serif and border language, and use only the existing reveal utility for motion."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Compact homepage method cards and single-column utility-page heroes",
+      "alternatives": [
+        "Keep the tall scroll-linked method rail",
+        "Keep low-information hero side panels"
+      ],
+      "reason": "The homepage method now presents four short decision steps in a responsive 4/2/1 card grid, reducing section height and reading effort. The Insights, Work and Knowledge Base heroes use focused single-column introductions after their decorative low-information side panels were removed."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "High-contrast service signal cards",
+      "alternatives": [
+        "Keep the faded cream icon cards",
+        "Add stock imagery to every service",
+        "Use one visual treatment for all six services"
+      ],
+      "reason": "The homepage service grid now uses six distinct, saturated CSS signal fields within the existing Ledger card language. Layered grids, orbits and beams create visual identity without image payloads, while the existing reveal, pointer-tilt and glare utilities add restrained motion. Google Ads and Meta Ads are consolidated into Paid Media & Demand, and Custom AI Agents is introduced as the sixth outcome-based service."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Immersive service-system page with progressive disclosure",
+      "alternatives": [
+        "Keep the long service ledger",
+        "Show every capability in open card grids",
+        "Use generic stock photography"
+      ],
+      "reason": "The Services page now opens with a dark interactive growth-engine map and moves directly into six saturated service-system cards. Core value and fit stay visible while complete capability lists and related links remain in semantic details panels for buyers who need depth. The homepage method and shared strategic-area portals use the same high-contrast signal language, while each retains a distinct composition."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Fast-first sitewide interaction and progressive disclosure pass",
+      "alternatives": [
+        "Add more decorative animation",
+        "Delete long-form SEO content",
+        "Keep every repeated card and section at full height"
+      ],
+      "reason": "Above-fold inner-page copy now renders at full contrast without waiting for a reveal observer. Shared sections, rows, homepage service cards, Insights imagery and Services capability cards use a tighter rhythm. Secondary service depth remains crawlable inside semantic disclosure, topic-page strategic navigation becomes a compact route switcher, and the Services hero diagram now provides keyboard-accessible explanations and contextual links. Lenis loads only for desktop fine pointers; reduced motion and mobile keep native scrolling."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"

@@ -11,19 +11,34 @@ interface Props {
   title: string;
   body: string;
   label: string;
+  tone: string;
 }
 
-const { href, index, title, body, label } = Astro.props;
+const { href, index, title, body, label, tone } = Astro.props;
+const staggerIndex = Math.max(0, Number(index) - 1);
 ---
 
-<a class="showcase__item" href={href} data-index={index} data-tilt>
-  <div class="showcase__icon"><slot /></div>
-  <div>
-    <h3>{title}</h3>
-    <p>{body}</p>
+<a class="showcase__item t-tilt" href={href} data-tone={tone} data-tilt>
+  <div class="showcase__reveal dd-stagger" style={`--card-i:${staggerIndex}`}>
+    <div class="showcase__surface t-tilt-card">
+      <div class="showcase__visual" aria-hidden="true">
+        <span class="showcase__matrix"></span>
+        <span class="showcase__orbit"></span>
+        <span class="showcase__beam"></span>
+        <div class="showcase__icon"><slot /></div>
+        <span class="showcase__index mono">{index}</span>
+      </div>
+      <div class="showcase__content">
+        <div>
+          <span class="showcase__kicker mono">{label}</span>
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </div>
+        <span class="showcase__link">
+          See {title}
+          <LearnArrow />
+        </span>
+      </div>
+    </div>
   </div>
-  <span class="showcase__link">
-    {label}
-    <LearnArrow />
-  </span>
 </a>

@@ -9,8 +9,7 @@ import FounderSocialLinks from '../components/FounderSocialLinks.astro';
 import LearnArrow from '../components/LearnArrow.astro';
 import ShowcaseCard from '../components/ShowcaseCard.astro';
 import HeroMedia from '../components/HeroMedia.astro';
-import { entityDefinition } from '../data/entityDefinition';
-import { Search, Sparkles, BarChart3, MousePointerClick, Globe, LineChart } from 'lucide-astro';
+import { Search, Sparkles, BarChart3, Megaphone, Globe, Bot } from 'lucide-astro';
 
 const measurementCluster = (await getCollection('insights'))
   .filter((entry) => entry.data.cluster === 'Measurement & Lead-Source Truth')
@@ -46,23 +45,23 @@ const faqs = [
 const methodSteps = [
   {
     index: '01',
-    title: 'Frame the query set',
-    body: 'Define buying intent, market, language, competitors and collection conditions before checking any result.',
+    title: 'Frame the question',
+    body: 'Define the market, buyer and decision.',
   },
   {
     index: '02',
-    title: 'Observe the surfaces',
-    body: 'Record dated answers, mentions and sources across the approved engine set inside a clearly defined sample.',
+    title: 'Capture evidence',
+    body: 'Record dated answers, sources and signals.',
   },
   {
     index: '03',
-    title: 'Audit the measurement path',
-    body: 'Test whether referral, conversion and CRM records can connect discovery to pipeline.',
+    title: 'Connect the data',
+    body: 'Trace discovery through CRM and pipeline.',
   },
   {
     index: '04',
-    title: 'Rank the next decisions',
-    body: 'Attach an owner, effort, expected signal, confidence label and stopping rule to each recommended action.',
+    title: 'Prioritize action',
+    body: 'Choose the next move, owner and success signal.',
   },
 ];
 
@@ -74,6 +73,7 @@ const showcaseServices = [
     title: 'SEO Services',
     body: 'Technical SEO, intent-led architecture and topical depth that turn rankings into qualified pipeline.',
     label: 'SEO services',
+    tone: 'search',
   },
   {
     index: '02',
@@ -82,6 +82,7 @@ const showcaseServices = [
     title: 'AI Search Visibility',
     body: 'Get recommended by ChatGPT, Gemini and AI Overviews: measured baselines, no placement guarantees.',
     label: 'AEO & GEO',
+    tone: 'visibility',
   },
   {
     index: '03',
@@ -90,22 +91,25 @@ const showcaseServices = [
     title: 'GA4 & Attribution',
     body: 'Reconcile GA4 with your CRM, repair source capture and end the dashboard disagreements.',
     label: 'Measurement',
+    tone: 'measurement',
   },
   {
     index: '04',
-    href: '/services/google-ads-management/',
-    icon: MousePointerClick,
-    title: 'Google Ads',
-    body: 'Search, shopping and Performance Max optimized toward break-even CAC and CRM-tied revenue.',
-    label: 'Paid search',
+    href: '/services/#paid-acquisition-performance',
+    icon: Megaphone,
+    title: 'Paid Media & Demand',
+    body: 'Google, Meta and LinkedIn campaigns built around qualified pipeline, creative testing and clear CAC targets.',
+    label: 'Paid acquisition',
+    tone: 'paid',
   },
   {
     index: '05',
-    href: '/services/meta-ads-management/',
-    icon: LineChart,
-    title: 'Meta Ads',
-    body: 'Facebook and Instagram creative systems with Conversions API measurement and MER economics.',
-    label: 'Paid social',
+    href: '/services/#ai-agent-development',
+    icon: Bot,
+    title: 'Custom AI Agents',
+    body: 'Purpose-built agents for research, qualification, reporting and internal workflows, with human review and guardrails.',
+    label: 'AI automation',
+    tone: 'agents',
   },
   {
     index: '06',
@@ -114,6 +118,7 @@ const showcaseServices = [
     title: 'Website Development',
     body: 'Complete websites with SEO, schema and measurement built in from day one: like this one.',
     label: 'Build + SEO',
+    tone: 'build',
   },
 ];
 
@@ -184,10 +189,6 @@ const schema = {
           <span class="t-stagger-line t-stagger-line--1">One growth engine.</span>
           <span class="t-stagger-line t-stagger-line--2">Six ways it compounds.</span>
         </h2>
-        <p class="small" style="max-width: 52ch; margin: 0; color: var(--muted);">
-          Every service shares the same foundation: a dated baseline, a published method and
-          measurement your board can challenge. Start where the constraint is.
-        </p>
       </div>
       <div class="showcase__grid">
         {
@@ -198,6 +199,7 @@ const schema = {
               title={service.title}
               body={service.body}
               label={service.label}
+              tone={service.tone}
             >
               <service.icon strokeWidth={1.75} aria-hidden="true" />
             </ShowcaseCard>
@@ -206,7 +208,7 @@ const schema = {
       </div>
       <div style="text-align: center; margin-top: clamp(1.6rem, 3vw, 2.4rem);">
         <a class="button button--primary" href="/services/" data-event="showcase_all_services">
-          Explore all services
+          Compare all six services
         </a>
       </div>
     </div>
@@ -219,13 +221,15 @@ const schema = {
     aria-labelledby="home-method-heading"
   >
     <span class="chapter-mark" aria-hidden="true">02</span>
-    <div class="shell editorial-grid">
-      <div class="section-intro" data-reveal>
-        <p class="eyebrow">The method</p>
-        <h2 id="home-method-heading">Four steps from question to action.</h2>
-        <MethodBadge />
-        <div class="button-row">
-          <a class="text-link" href="/methodology/">Read the complete method</a>
+    <div class="shell home-method__layout">
+      <div class="home-method__head">
+        <div class="section-intro" data-reveal>
+          <p class="eyebrow">The method</p>
+          <h2 id="home-method-heading">Four steps. One clear decision.</h2>
+        </div>
+        <div class="home-method__actions" data-reveal style="--reveal-delay:90ms">
+          <MethodBadge />
+          <a class="text-link" href="/methodology/">See the complete method</a>
         </div>
       </div>
       <MethodStory steps={methodSteps} />
@@ -245,7 +249,7 @@ const schema = {
           <h2 id="tools-card-heading">Run our checks yourself. Right now.</h2>
         </div>
         <span class="tools-card__cta" aria-hidden="true">
-          Open the tools
+          Use the free tools
           <LearnArrow />
         </span>
       </a>
@@ -263,7 +267,7 @@ const schema = {
       <div class="section-intro" data-reveal>
         <p class="eyebrow">Measurement &amp; Lead-Source Truth</p>
         <h2 id="home-insights-heading">Resolve the questions between analytics and revenue.</h2>
-        <a class="text-link" href="/insights/">View all insights</a>
+        <a class="text-link" href="/insights/">Browse all measurement insights</a>
       </div>
       <div class="home-insights">
         {

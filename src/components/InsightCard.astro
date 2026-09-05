@@ -1,17 +1,9 @@
 ---
-/**
- * InsightCard: editorial card for supporting insights.
- * Cluster art via ClusterArt (decorative inline SVG), full-card
- * click, semantic <article>, dates + reading time preserved.
- * Valid HTML: no block elements inside <a> via span wrappers,
- * the anchor wraps flow content directly.
- */
-import ClusterArt from './ClusterArt.astro';
+/** Premium, full-link editorial card used across the Insights library. */
 import LearnArrow from './LearnArrow.astro';
 
 interface Props {
   href: string;
-  cluster?: string;
   category: string;
   typeLabel: string;
   title: string;
@@ -20,11 +12,12 @@ interface Props {
   dateLabel: string;
   readingMinutes: number;
   index?: number;
+  image: string;
+  imagePosition?: string;
 }
 
 const {
   href,
-  cluster,
   category,
   typeLabel,
   title,
@@ -33,6 +26,8 @@ const {
   dateLabel,
   readingMinutes,
   index = 0,
+  image,
+  imagePosition = '50% 50%',
 } = Astro.props;
 
 const formatDate = (d: Date) =>
@@ -41,30 +36,44 @@ const formatDate = (d: Date) =>
 
 <article class="dd-card insight-card dd-stagger" style={`--card-i: ${index};`}>
   <a href={href} aria-label={`Read insight: ${title}`}>
-    <span class="insight-card__art">
-      <ClusterArt cluster={cluster ?? category} />
-    </span>
-    <span class="insight-card__body">
-      <span class="insight-card__meta">
+    <div class="insight-card__art">
+      <img
+        src={image}
+        alt=""
+        width="1120"
+        height="1120"
+        loading="lazy"
+        decoding="async"
+        sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1099px) 50vw, 33vw"
+        style={`object-position: ${imagePosition};`}
+      />
+    </div>
+    <div class="insight-card__body">
+      <div class="insight-card__meta">
         <span class="dd-card__badge">{category}</span>
         <span>{typeLabel}</span>
-      </span>
-      <span class="insight-card__title">{title}</span>
-      <span class="insight-card__excerpt">{excerpt}</span>
-      <span class="insight-card__foot">
-        <span>
-          {dateLabel}
-          {formatDate(date)} · {readingMinutes} min read
+      </div>
+      <h3 class="insight-card__title">{title}</h3>
+      <p class="insight-card__excerpt">{excerpt}</p>
+      <div class="insight-card__foot">
+        <span class="insight-card__date">
+          <span class="visually-hidden">{dateLabel} </span>
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          <span aria-hidden="true"> · </span>{readingMinutes} min read
         </span>
         <span class="dd-card__arrow" aria-hidden="true">
           Read <LearnArrow />
         </span>
-      </span>
-    </span>
+      </div>
+    </div>
   </a>
 </article>
 
 <style>
+  .insight-card {
+    min-width: 0;
+  }
+
   .insight-card a {
     display: flex;
     flex-direction: column;
@@ -73,32 +82,30 @@ const formatDate = (d: Date) =>
     text-decoration: none;
   }
 
-  .insight-card:hover,
   .insight-card:focus-within {
-    transform: translateY(-4px);
-    border-color: var(--signal);
-    box-shadow: 0 16px 34px -20px rgba(20, 24, 31, 0.32);
-  }
-
-  .insight-card:focus-within {
-    outline: 3px solid var(--signal);
-    outline-offset: 3px;
+    outline: 2px solid var(--signal);
+    outline-offset: 4px;
   }
 
   .insight-card a:focus-visible {
     outline: none;
   }
 
-  /* Title renders as display:block spans styled as headings: valid
-     inline-content flow inside the anchor, clamped safely. */
   .insight-card__title {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-family: var(--font-display);
-    font-size: 1.06rem;
+    margin: 0;
+    font-size: clamp(1.12rem, 1.45vw, 1.3rem);
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.22;
+  }
+
+  @media (max-width: 639px) {
+    .insight-card__title {
+      font-size: clamp(1.2rem, 5.4vw, 1.42rem);
+    }
   }
 </style>
