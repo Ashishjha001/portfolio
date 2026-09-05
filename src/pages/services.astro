@@ -4,6 +4,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import LearnArrow from '../components/LearnArrow.astro';
 import { BarChart3, Search, Megaphone, Target, Bot, Sparkles } from 'lucide-astro';
 import { organizationReference } from '../data/entityDefinition';
+import { insightImages } from '../data/insightImages';
 
 const services = [
   {
@@ -27,6 +28,7 @@ const services = [
     ],
     bestFor:
       'Companies that need a clear growth strategy and reliable visibility from marketing activity to pipeline and revenue.',
+    image: insightImages[1],
   },
   {
     index: '02',
@@ -58,6 +60,7 @@ const services = [
     ],
     bestFor:
       'Companies that want us to build or transform their complete digital presence for search, AI discovery, authority and conversion.',
+    image: insightImages[3],
   },
   {
     index: '03',
@@ -86,6 +89,7 @@ const services = [
     ],
     bestFor:
       'Companies that want to create demand now while their organic and AI-search visibility compounds over time.',
+    image: insightImages[5],
   },
   {
     index: '04',
@@ -111,6 +115,7 @@ const services = [
     ],
     bestFor:
       'Companies already generating traffic or leads but losing opportunities between first visit, conversion, sales and retention.',
+    image: insightImages[7],
   },
   {
     index: '05',
@@ -135,6 +140,7 @@ const services = [
     ],
     bestFor:
       'Teams that want practical AI automation tied to measurable business outcomes rather than AI experimentation for its own sake.',
+    image: insightImages[9],
   },
   {
     index: '06',
@@ -158,6 +164,7 @@ const services = [
     ],
     bestFor:
       'Companies that want AI embedded into their existing technology and workflows instead of adding another disconnected tool.',
+    image: insightImages[11],
   },
 ];
 
@@ -336,8 +343,15 @@ const schema = {
                 id={service.slug}
               >
                 <div class="service-panel__signal" aria-hidden="true">
-                  <span class="service-panel__matrix" />
-                  <span class="service-panel__orbit" />
+                  <img
+                    src={service.image?.src ?? ''}
+                    alt=""
+                    width="1120"
+                    height="1120"
+                    loading="lazy"
+                    decoding="async"
+                    style={`object-position:${service.image?.position ?? '50% 50%'}`}
+                  />
                   <span class="service-panel__index mono">{service.index}</span>
                   <span class="service-panel__icon">
                     <Icon strokeWidth={1.65} />
@@ -1710,6 +1724,297 @@ const schema = {
     .services-path__steps li {
       transition: none !important;
       transform: none !important;
+    }
+  }
+
+  /* Light editorial direction: the Services page stays aligned with the
+     supplied image library and never relies on a dark chapter for impact. */
+  .services-hero {
+    color: var(--ink);
+    background: #f7f3ea;
+    border-block-color: var(--rule);
+  }
+
+  .services-hero::before {
+    background-image:
+      linear-gradient(rgba(14, 110, 84, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 110, 84, 0.055) 1px, transparent 1px);
+    mask-image: linear-gradient(90deg, transparent 18%, #000 76%, transparent);
+  }
+
+  .services-hero .eyebrow,
+  .services-hero .hero__badge {
+    color: var(--signal);
+  }
+
+  .services-hero h1 {
+    color: var(--ink);
+  }
+
+  .services-hero__lede {
+    color: var(--ink-soft);
+  }
+
+  .services-hero__button {
+    border-color: var(--signal);
+    color: #fffdf8;
+    background: var(--signal);
+  }
+
+  .services-hero__button:hover,
+  .services-hero__button:focus-visible {
+    border-color: var(--green-dark);
+    color: #fffdf8;
+    background: var(--green-dark);
+  }
+
+  .services-hero__secondary {
+    color: var(--signal);
+    text-decoration-color: rgba(14, 110, 84, 0.42);
+  }
+
+  .services-hero__secondary:hover,
+  .services-hero__secondary:focus-visible {
+    color: var(--green-dark);
+    text-decoration-color: var(--green-dark);
+  }
+
+  .services-engine {
+    border-color: rgba(14, 110, 84, 0.28);
+    background: #fbfaf6;
+    box-shadow: 0 24px 60px -46px rgba(14, 110, 84, 0.52);
+  }
+
+  .services-engine__grid {
+    background-image:
+      linear-gradient(rgba(14, 110, 84, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 110, 84, 0.08) 1px, transparent 1px);
+  }
+
+  .services-engine__orbit {
+    border-color: rgba(14, 110, 84, 0.28);
+  }
+
+  .services-engine__beam {
+    background: linear-gradient(90deg, transparent, #0e6e54, transparent);
+    box-shadow: none;
+  }
+
+  .services-engine__hub {
+    border-color: rgba(14, 110, 84, 0.42);
+    color: var(--ink);
+    background: rgba(255, 253, 248, 0.96);
+    box-shadow: 0 16px 36px -28px rgba(14, 110, 84, 0.6);
+  }
+
+  .services-engine__hub .mono {
+    color: var(--signal);
+  }
+
+  .services-engine__node {
+    border-color: rgba(14, 110, 84, 0.34);
+    color: var(--green-dark);
+    background: rgba(255, 253, 248, 0.97);
+  }
+
+  .services-engine__node.is-active,
+  .services-engine__node:hover,
+  .services-engine__node:focus-visible {
+    border-color: var(--signal);
+    color: #fffdf8;
+    background: var(--signal);
+  }
+
+  .services-engine__node:focus-visible {
+    outline-color: var(--green-dark);
+  }
+
+  .services-engine__explain {
+    border-color: var(--rule);
+    background: rgba(255, 253, 248, 0.98);
+    box-shadow: 0 18px 42px -34px rgba(14, 110, 84, 0.55);
+  }
+
+  .services-engine__explain .mono,
+  .services-engine__explain a {
+    color: var(--signal);
+  }
+
+  .services-engine__explain p {
+    color: var(--muted);
+  }
+
+  .services-jump {
+    padding-top: 1rem;
+  }
+
+  .services-jump a,
+  .services-jump a:first-child {
+    border-color: var(--rule);
+    color: var(--ink-soft);
+    background: rgba(255, 253, 248, 0.58);
+  }
+
+  .services-jump a .mono {
+    color: var(--signal);
+  }
+
+  .services-jump a:hover,
+  .services-jump a:focus-visible {
+    border-top-color: var(--signal);
+    color: var(--green-dark);
+    background: #eaf2ed;
+  }
+
+  .services-catalog {
+    color: var(--ink);
+    background: #efeae0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .services-catalog__head .eyebrow {
+    color: var(--signal);
+  }
+
+  .services-catalog__head h2 {
+    color: var(--ink);
+  }
+
+  .services-catalog__head > p:last-child {
+    color: var(--muted);
+  }
+
+  .service-panel {
+    border-color: color-mix(in srgb, var(--service-deep) 20%, var(--rule));
+    background: #fbfaf6;
+    box-shadow: 0 20px 42px -38px rgba(20, 24, 31, 0.42);
+  }
+
+  .service-panel:hover,
+  .service-panel:focus-within {
+    border-color: color-mix(in srgb, var(--service-deep) 52%, var(--rule));
+    box-shadow: 0 26px 52px -42px rgba(20, 24, 31, 0.5);
+  }
+
+  .service-panel__signal {
+    height: clamp(9.5rem, 13vw, 11.5rem);
+    color: var(--ink);
+    background: #e8e4dc;
+    border-bottom-color: var(--rule);
+  }
+
+  .service-panel__signal img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.001);
+    transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-panel__signal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 62%, rgba(11, 49, 41, 0.16));
+  }
+
+  .service-panel:hover .service-panel__signal img,
+  .service-panel:focus-within .service-panel__signal img {
+    transform: scale(1.035);
+  }
+
+  .service-panel__index {
+    padding: 0.32rem 0.48rem;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 999px;
+    color: var(--green-dark);
+    background: rgba(255, 253, 248, 0.9);
+  }
+
+  .service-panel__icon {
+    border-color: rgba(255, 255, 255, 0.78);
+    border-radius: 50%;
+    color: var(--green-dark);
+    background: rgba(255, 253, 248, 0.92);
+    box-shadow: 0 8px 20px -14px rgba(15, 73, 57, 0.75);
+    backdrop-filter: none;
+  }
+
+  .service-panel:hover .service-panel__icon,
+  .service-panel:focus-within .service-panel__icon {
+    transform: translateY(-3px);
+  }
+
+  .services-path {
+    color: var(--ink);
+    background: #e8f1eb;
+    border-block: 1px solid var(--rule);
+  }
+
+  .services-path__head .eyebrow,
+  .services-path__steps .mono {
+    color: var(--signal);
+  }
+
+  .services-path__head h2,
+  .services-path__steps h3 {
+    color: var(--ink);
+  }
+
+  .services-path__head > p:last-child,
+  .services-path__steps p {
+    color: var(--muted);
+  }
+
+  .services-path__steps::before {
+    background: linear-gradient(90deg, var(--signal), var(--rule));
+  }
+
+  .services-path__steps li {
+    border-color: rgba(14, 110, 84, 0.24);
+    background: rgba(255, 253, 248, 0.72);
+  }
+
+  .services-path__steps li:hover {
+    border-color: rgba(14, 110, 84, 0.58);
+    background: #fbfaf6;
+  }
+
+  .services-path__dot {
+    border-color: #e8f1eb;
+    background: var(--signal);
+    box-shadow: 0 0 0 1px var(--signal);
+  }
+
+  .services-path + .section--green {
+    border-top-color: var(--rule);
+    color: var(--ink);
+    background: #f7f3ea;
+  }
+
+  .services-path + .section--green h2 {
+    color: var(--ink);
+  }
+
+  .services-path + .section--green p,
+  .services-path + .section--green .cta-band__note {
+    color: var(--muted);
+  }
+
+  @media (max-width: 680px) {
+    .services-hero h1 {
+      font-size: clamp(2.35rem, 11.5vw, 3.35rem);
+    }
+
+    .services-engine-shell {
+      width: min(100%, 20rem);
+    }
+
+    .service-panel__signal {
+      height: 10.25rem;
     }
   }
 </style>

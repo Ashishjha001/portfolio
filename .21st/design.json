@@ -208,6 +208,36 @@
         "Keep every repeated card and section at full height"
       ],
       "reason": "Above-fold inner-page copy now renders at full contrast without waiting for a reveal observer. Shared sections, rows, homepage service cards, Insights imagery and Services capability cards use a tighter rhythm. Secondary service depth remains crawlable inside semantic disclosure, topic-page strategic navigation becomes a compact route switcher, and the Services hero diagram now provides keyboard-accessible explanations and contextual links. Lenis loads only for desktop fine pointers; reduced motion and mobile keep native scrolling."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Supplied editorial imagery and light-only service experience",
+      "alternatives": [
+        "Keep generated CSS signal artwork",
+        "Keep the dark Services chapters",
+        "Keep the four-step homepage method block"
+      ],
+      "reason": "The homepage and Services cards now share the twelve supplied editorial images, split into complementary six-image sets. Generated grid, orbit and beam artwork is removed from those cards. The homepage method is reduced to one clear link, mobile service cards keep images above their copy, and every Services chapter uses paper, ivory or pale-green surfaces rather than black or dark-green backgrounds."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Compact responsive footer",
+      "alternatives": [
+        "Keep the long consultancy description",
+        "Remove navigation links",
+        "Show every navigation group expanded on mobile"
+      ],
+      "reason": "The footer keeps all useful internal links but removes the oversized repeated positioning copy. Four link groups share one desktop row and become closed native disclosure groups on mobile, making the footer substantially shorter without weakening navigation or accessibility."
+    },
+    {
+      "date": "2026-09-05",
+      "choice": "Green free-tools callout band",
+      "alternatives": [
+        "Keep the free-tools card on cream",
+        "Use a large promotional panel",
+        "Change the approved tools copy"
+      ],
+      "reason": "The homepage free-tools callout now sits inside a compact brand-green band while its warm-paper card matches the neighboring methodology link in height, grid rhythm and interaction. The stronger chapter break improves visibility without adding copy or increasing page length."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"
