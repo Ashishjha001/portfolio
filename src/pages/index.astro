@@ -1,8 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MethodStory from '../components/MethodStory.astro';
-import MethodBadge from '../components/MethodBadge.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import FounderSocialLinks from '../components/FounderSocialLinks.astro';
@@ -10,6 +8,7 @@ import LearnArrow from '../components/LearnArrow.astro';
 import ShowcaseCard from '../components/ShowcaseCard.astro';
 import HeroMedia from '../components/HeroMedia.astro';
 import { Search, Sparkles, BarChart3, Megaphone, Globe, Bot } from 'lucide-astro';
+import { insightImages } from '../data/insightImages';
 
 const measurementCluster = (await getCollection('insights'))
   .filter((entry) => entry.data.cluster === 'Measurement & Lead-Source Truth')
@@ -42,29 +41,6 @@ const faqs = [
   },
 ];
 
-const methodSteps = [
-  {
-    index: '01',
-    title: 'Frame the question',
-    body: 'Define the market, buyer and decision.',
-  },
-  {
-    index: '02',
-    title: 'Capture evidence',
-    body: 'Record dated answers, sources and signals.',
-  },
-  {
-    index: '03',
-    title: 'Connect the data',
-    body: 'Trace discovery through CRM and pipeline.',
-  },
-  {
-    index: '04',
-    title: 'Prioritize action',
-    body: 'Choose the next move, owner and success signal.',
-  },
-];
-
 const showcaseServices = [
   {
     index: '01',
@@ -74,6 +50,7 @@ const showcaseServices = [
     body: 'Technical SEO, intent-led architecture and topical depth that turn rankings into qualified pipeline.',
     label: 'SEO services',
     tone: 'search',
+    image: insightImages[0],
   },
   {
     index: '02',
@@ -83,6 +60,7 @@ const showcaseServices = [
     body: 'Get recommended by ChatGPT, Gemini and AI Overviews: measured baselines, no placement guarantees.',
     label: 'AEO & GEO',
     tone: 'visibility',
+    image: insightImages[2],
   },
   {
     index: '03',
@@ -92,6 +70,7 @@ const showcaseServices = [
     body: 'Reconcile GA4 with your CRM, repair source capture and end the dashboard disagreements.',
     label: 'Measurement',
     tone: 'measurement',
+    image: insightImages[4],
   },
   {
     index: '04',
@@ -101,6 +80,7 @@ const showcaseServices = [
     body: 'Google, Meta and LinkedIn campaigns built around qualified pipeline, creative testing and clear CAC targets.',
     label: 'Paid acquisition',
     tone: 'paid',
+    image: insightImages[6],
   },
   {
     index: '05',
@@ -110,6 +90,7 @@ const showcaseServices = [
     body: 'Purpose-built agents for research, qualification, reporting and internal workflows, with human review and guardrails.',
     label: 'AI automation',
     tone: 'agents',
+    image: insightImages[8],
   },
   {
     index: '06',
@@ -119,6 +100,7 @@ const showcaseServices = [
     body: 'Complete websites with SEO, schema and measurement built in from day one: like this one.',
     label: 'Build + SEO',
     tone: 'build',
+    image: insightImages[10],
   },
 ];
 
@@ -200,6 +182,8 @@ const schema = {
               body={service.body}
               label={service.label}
               tone={service.tone}
+              imageSrc={service.image?.src ?? ''}
+              imagePosition={service.image?.position ?? '50% 50%'}
             >
               <service.icon strokeWidth={1.75} aria-hidden="true" />
             </ShowcaseCard>
@@ -214,25 +198,14 @@ const schema = {
     </div>
   </section>
 
-  <!-- Chapter 02: Method -->
-  <section
-    class="section section--ink home-method"
-    data-chapter
-    aria-labelledby="home-method-heading"
-  >
-    <span class="chapter-mark" aria-hidden="true">02</span>
-    <div class="shell home-method__layout">
-      <div class="home-method__head">
-        <div class="section-intro" data-reveal>
-          <p class="eyebrow">The method</p>
-          <h2 id="home-method-heading">Four steps. One clear decision.</h2>
-        </div>
-        <div class="home-method__actions" data-reveal style="--reveal-delay:90ms">
-          <MethodBadge />
-          <a class="text-link" href="/methodology/">See the complete method</a>
-        </div>
-      </div>
-      <MethodStory steps={methodSteps} />
+  <!-- Chapter 02: Method link -->
+  <section class="home-method-link" aria-labelledby="home-method-heading">
+    <div class="shell">
+      <a class="home-method-link__card" href="/methodology/" data-event="methodology_cta_click">
+        <span class="home-method-link__label mono">The method</span>
+        <span id="home-method-heading">See how we move from evidence to action.</span>
+        <span class="home-method-link__action">Explore the methodology <LearnArrow /></span>
+      </a>
     </div>
   </section>
 
@@ -241,13 +214,11 @@ const schema = {
     <div class="shell">
       <a class="tools-card" href="/tools/" data-event="tools_card_click" data-reveal>
         <span class="tools-card__rule" aria-hidden="true"></span>
-        <div class="tools-card__main">
-          <span class="tools-card__label mono">
-            <span class="tools-card__dot" aria-hidden="true"></span>
-            Free tools · No signup · Run in your browser
-          </span>
-          <h2 id="tools-card-heading">Run our checks yourself. Right now.</h2>
-        </div>
+        <span class="tools-card__label mono">
+          <span class="tools-card__dot" aria-hidden="true"></span>
+          Free tools · No signup · Run in your browser
+        </span>
+        <h2 id="tools-card-heading">Run our checks yourself. Right now.</h2>
         <span class="tools-card__cta" aria-hidden="true">
           Use the free tools
           <LearnArrow />

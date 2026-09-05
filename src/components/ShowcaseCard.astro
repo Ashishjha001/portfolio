@@ -12,9 +12,11 @@ interface Props {
   body: string;
   label: string;
   tone: string;
+  imageSrc: string;
+  imagePosition?: string;
 }
 
-const { href, index, title, body, label, tone } = Astro.props;
+const { href, index, title, body, label, tone, imageSrc, imagePosition = '50% 50%' } = Astro.props;
 const staggerIndex = Math.max(0, Number(index) - 1);
 ---
 
@@ -22,9 +24,15 @@ const staggerIndex = Math.max(0, Number(index) - 1);
   <div class="showcase__reveal dd-stagger" style={`--card-i:${staggerIndex}`}>
     <div class="showcase__surface t-tilt-card">
       <div class="showcase__visual" aria-hidden="true">
-        <span class="showcase__matrix"></span>
-        <span class="showcase__orbit"></span>
-        <span class="showcase__beam"></span>
+        <img
+          src={imageSrc}
+          alt=""
+          width="1120"
+          height="1120"
+          loading="lazy"
+          decoding="async"
+          style={`object-position:${imagePosition}`}
+        />
         <div class="showcase__icon"><slot /></div>
         <span class="showcase__index mono">{index}</span>
       </div>
