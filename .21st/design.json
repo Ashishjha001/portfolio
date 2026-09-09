@@ -13,7 +13,7 @@
   },
   "design": {
     "colorMode": "light",
-    "direction": "Ledger (restored) + editorial motion layer",
+    "direction": "Modern cream-and-green growth interface",
     "colors": {
       "paper": "#F7F3EA",
       "paperBright": "#FBFAF6",
@@ -34,15 +34,15 @@
       "darkSectionBorder": "rgba(255,255,255,0.18)"
     },
     "typography": {
-      "display": "Newsreader Variable (serif)",
+      "display": "IBM Plex Sans, semibold",
       "body": "IBM Plex Sans",
       "evidence": "IBM Plex Mono",
       "note": "Font imports restored after silent regression."
     },
     "radius": {
-      "control": "2px",
-      "surface": "4px",
-      "small": "3px"
+      "control": "8px",
+      "surface": "14–20px",
+      "small": "6px"
     },
     "motion": {
       "duration": "entrances 550-750ms, hovers 180-250ms",
@@ -238,6 +238,16 @@
         "Change the approved tools copy"
       ],
       "reason": "The homepage free-tools callout now sits inside a compact brand-green band while its warm-paper card matches the neighboring methodology link in height, grid rhythm and interaction. The stronger chapter break improves visibility without adding copy or increasing page length."
+    },
+    {
+      "date": "2026-09-09",
+      "choice": "Mobile hero playback and a problem-led tool selector",
+      "reason": "Enable the existing muted inline hero video on mobile as requested. Pause outside the hero and when the tab is hidden; preserve manual pause and provide explicit playback for reduced-motion, data-saver or blocked-autoplay contexts. Replace the repeated method/tools banners with three keyboard-accessible problem tabs linking to real tools and guides. Shorten introductory marketing copy without removing evidence records, methodology detail or service capability lists."
+    },
+    {
+      "date": "2026-09-09",
+      "choice": "Continuous decorative video and a modern, clickable interface",
+      "reason": "User explicitly rejected visible playback controls and dated design. The existing muted inline video loops without controls and retries on interaction if autoplay is blocked. Replace serif display typography and folio numerals with sans-serif headings, remove numbered navigation and redundant homepage process bands, use goal filters and image-led service cards, and present articles with clear reading links. Preserve the established green and cream palette, substantive service information and keyboard interactions."
     }
   ],
   "generatedAt": "2026-08-25T00:00:00.000Z"
