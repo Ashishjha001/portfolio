@@ -7,8 +7,18 @@ import FinalCTA from '../components/FinalCTA.astro';
 import StartFinder from '../components/StartFinder.astro';
 import ShowcaseCard from '../components/ShowcaseCard.astro';
 import HeroMedia from '../components/HeroMedia.astro';
-import { Search, Sparkles, BarChart3, Megaphone, Globe, Bot } from 'lucide-astro';
-import { insightImages } from '../data/insightImages';
+import {
+  Search,
+  Sparkles,
+  BarChart3,
+  Megaphone,
+  Globe,
+  Bot,
+  ArrowUpRight,
+  ArrowRight,
+  ArrowDown,
+} from 'lucide-astro';
+import '../styles/home-next.css';
 
 const measurementCluster = (await getCollection('insights'))
   .filter((entry) => entry.data.cluster === 'Measurement & Lead-Source Truth')
@@ -46,31 +56,28 @@ const showcaseServices = [
     index: '01',
     href: '/services/seo/',
     icon: Search,
-    title: 'SEO Services',
+    title: 'Build organic demand.',
     body: 'Technical SEO and content built for qualified discovery.',
     label: 'SEO services',
     tone: 'search',
-    image: insightImages[0],
   },
   {
     index: '02',
     href: '/services/ai-search-visibility/',
     icon: Sparkles,
-    title: 'AI Search Visibility',
-    body: 'Understand your visibility in AI answers. No placement guarantees.',
-    label: 'AEO & GEO',
+    title: 'Show up in AI answers.',
+    body: 'Find where your brand appears, what shapes the answer and what to improve.',
+    label: 'AI search visibility',
     tone: 'visibility',
-    image: insightImages[2],
   },
   {
     index: '03',
     href: '/services/measurement-foundation/',
     icon: BarChart3,
-    title: 'GA4 & Attribution',
+    title: 'Know what drives pipeline.',
     body: 'Connect GA4, campaign sources and your CRM.',
-    label: 'Measurement',
+    label: 'GA4 & attribution',
     tone: 'measurement',
-    image: insightImages[4],
   },
   {
     index: '04',
@@ -80,7 +87,6 @@ const showcaseServices = [
     body: 'Google, Meta and LinkedIn campaigns measured against qualified pipeline.',
     label: 'Paid acquisition',
     tone: 'paid',
-    image: insightImages[6],
   },
   {
     index: '05',
@@ -90,7 +96,6 @@ const showcaseServices = [
     body: 'Automate research and reporting with human review and guardrails.',
     label: 'AI automation',
     tone: 'agents',
-    image: insightImages[8],
   },
   {
     index: '06',
@@ -100,7 +105,6 @@ const showcaseServices = [
     body: 'Fast websites with SEO, schema and measurement built in.',
     label: 'Build + SEO',
     tone: 'build',
-    image: insightImages[10],
   },
 ];
 
@@ -121,45 +125,66 @@ const schema = {
   path="/"
   schema={schema}
 >
-  <div class="home-refresh">
-    <!-- Chapter 01: Opening statement -->
-    <section class="hero" data-chapter aria-label="Introduction">
-      <span class="chapter-mark" aria-hidden="true">01</span>
-      <HeroMedia />
-      <div class="shell hero__layout">
-        <div class="hero__copy">
-          <p class="eyebrow t-stagger">
-            <span class="t-stagger-line t-stagger-line--1">AI Search × SEO × Growth</span>
+  <div class="home-next">
+    <section class="signal-hero" aria-labelledby="hero-heading">
+      <div class="shell signal-hero__grid">
+        <div class="signal-hero__copy">
+          <p class="hero-kicker"><span aria-hidden="true"></span> For ambitious B2B SaaS teams</p>
+          <h1 id="hero-heading">Turn discovery<br />into <em>demand.</em></h1>
+          <p class="signal-hero__intro">
+            Be easier to find. Harder to overlook. Connect SEO and AI visibility to the pipeline
+            that matters.
           </p>
-          <h1 class="hero__title hero__title--rotator">
-            <span class="sr-only">
-              Growth you can prove: SEO, AI-search visibility and measurement consulting for B2B
-              SaaS. Data Decision Consulting builds complete growth engines for B2B SaaS.
-            </span>
-            <span aria-hidden="true">
-              <span class="line" style="--line:0"><span>Get Recommended by</span></span>
-              <span class="line rotator" style="--line:1" data-rotator data-platform="chatgpt">
-                <span class="rotator__word is-current" data-platform="chatgpt">ChatGPT</span>
-                <span class="rotator__word" data-platform="overviews" hidden>AI Overviews</span>
-                <span class="rotator__word" data-platform="gemini" hidden>Gemini</span>
-                <span class="rotator__word" data-platform="claude" hidden>Claude</span>
-                <span class="rotator__word" data-platform="grok" hidden>Grok</span>
-              </span>
-            </span>
-          </h1>
-          <div class="button-row hero__actions" data-reveal style="--reveal-delay:220ms">
+          <div class="signal-hero__actions">
             <a
               class="button button--primary"
               href="/contact/?service=web-seo-ai-visibility#request-a-brief"
               data-event="cta_primary_click"
+              >Find my growth opportunity <ArrowUpRight size={19} aria-hidden="true" /></a
             >
-              Get a Free AI Visibility Audit
-            </a>
-            <a class="text-link" href="/methodology/" data-event="methodology_cta_click">
-              See How It Works
-            </a>
+            <a class="hero-explore" href="#home-services"
+              >Explore services <ArrowDown size={17} aria-hidden="true" /></a
+            >
+          </div>
+          <div class="hero-principles">
+            <span>Founder-led.</span><span>Evidence-first.</span><span>Built to act on.</span>
           </div>
         </div>
+        <div class="signal-hero__visual">
+          <span class="visual-caption"
+            ><Sparkles size={15} aria-hidden="true" /> A new era of discovery</span
+          >
+          <HeroMedia />
+          <a
+            class="visual-question"
+            href="/services/ai-search-visibility/"
+            data-event="hero_ai_service_click"
+            ><span>When buyers ask AI,<br /><strong>does your brand come up?</strong></span><span
+              class="visual-question__arrow"><ArrowUpRight size={22} aria-hidden="true" /></span
+            ></a
+          >
+        </div>
+      </div>
+      <div class="shell discovery-links" aria-label="Explore our core services">
+        <p>From the first search<br /><strong>to the next customer.</strong></p>
+        <a href="/services/seo/"
+          ><Search size={21} aria-hidden="true" /><span>Organic search</span><ArrowUpRight
+            size={17}
+            aria-hidden="true"
+          /></a
+        >
+        <a href="/services/ai-search-visibility/"
+          ><Sparkles size={21} aria-hidden="true" /><span>AI visibility</span><ArrowUpRight
+            size={17}
+            aria-hidden="true"
+          /></a
+        >
+        <a href="/services/measurement-foundation/"
+          ><BarChart3 size={21} aria-hidden="true" /><span>Revenue clarity</span><ArrowUpRight
+            size={17}
+            aria-hidden="true"
+          /></a
+        >
       </div>
     </section>
 
@@ -167,8 +192,11 @@ const schema = {
     <section id="home-services" class="showcase" aria-labelledby="showcase-heading">
       <div class="shell">
         <div class="showcase__head">
-          <p class="eyebrow">What we build</p>
-          <h2 id="showcase-heading" class="t-stagger">Find your next growth move.</h2>
+          <div>
+            <p class="eyebrow">Your next advantage</p><h2 id="showcase-heading">
+              Make the next move<br />the right one.
+            </h2>
+          </div><p>Choose the gap you want to close.<br />We’ll help you connect the pieces.</p>
         </div>
         <div
           class="service-filters"
@@ -206,19 +234,15 @@ const schema = {
                       ? 'automation'
                       : 'revenue'
                 }
-                imageSrc={service.image?.src ?? ''}
-                imagePosition={service.image?.position ?? '50% 50%'}
               >
                 <service.icon strokeWidth={1.75} aria-hidden="true" />
               </ShowcaseCard>
             ))
           }
         </div>
-        <div style="text-align: center; margin-top: clamp(1.6rem, 3vw, 2.4rem);">
-          <a class="button button--primary" href="/services/" data-event="showcase_all_services">
-            Explore all services
-          </a>
-        </div>
+        <a class="all-services-link" href="/services/" data-event="showcase_all_services"
+          >Compare all services <ArrowRight size={19} aria-hidden="true" /></a
+        >
       </div>
     </section>
 
@@ -234,7 +258,7 @@ const schema = {
       <div class="shell editorial-grid">
         <div class="section-intro" data-reveal>
           <p class="eyebrow">Practical answers</p>
-          <h2 id="home-insights-heading">When your numbers disagree.</h2>
+          <h2 id="home-insights-heading">Good questions. Clear answers.</h2>
           <a class="text-link" href="/insights/">Explore the insights</a>
         </div>
         <div class="home-insights">
@@ -289,7 +313,11 @@ const schema = {
       </div>
     </section>
 
-    <FinalCTA />
+    <FinalCTA
+      heading="Let’s find your next advantage."
+      body="Bring your growth challenge. Leave with a clear scope and a practical next step."
+      label="Start a conversation"
+    />
   </div>
   <script>
     const filters = document.querySelector<HTMLElement>('[data-service-filters]');
@@ -313,77 +341,5 @@ const schema = {
         }),
       );
     }
-
-    /* Hero platform rotator: pauses off-screen, on hidden tab and under reduced motion */
-    (function () {
-      const rotator = document.querySelector<HTMLElement>('[data-rotator]');
-      if (!rotator) return;
-      const words = Array.from(rotator.querySelectorAll<HTMLElement>('.rotator__word'));
-      if (!words.length) return;
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let current = 0;
-      let timer: number | null = null;
-      let inView = true;
-
-      words.forEach((word) => {
-        word.hidden = false;
-      });
-
-      const show = (index: number) => {
-        const previousWord = words[current];
-        const nextWord = words[index];
-        if (!previousWord || !nextWord) return;
-        previousWord.classList.remove('is-current');
-        current = index;
-        nextWord.classList.add('is-current');
-        rotator.dataset.platform = nextWord.dataset.platform || 'chatgpt';
-      };
-
-      if (reduced.matches) {
-        show(0);
-        return;
-      }
-
-      const start = () => {
-        if (timer !== null || reduced.matches || !inView || document.hidden) return;
-        timer = window.setInterval(() => show((current + 1) % words.length), 2200);
-      };
-      const stop = () => {
-        if (timer !== null) {
-          window.clearInterval(timer);
-          timer = null;
-        }
-      };
-
-      const io = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if (!entry) return;
-        inView = entry.isIntersecting;
-        if (inView) start();
-        else stop();
-      });
-      io.observe(rotator);
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stop();
-        else start();
-      });
-      show(0);
-      start();
-    })();
   </script>
 </BaseLayout>
-
-<style>
-  @media (max-width: 767px) {
-    .hero {
-      min-height: 0;
-      padding-bottom: calc(clamp(270px, 40svh, 330px) + 1rem);
-    }
-    .hero .hero__title--rotator {
-      font-size: clamp(2.3rem, 9.6vw, 3.2rem);
-    }
-    .hero__title--rotator .line:not(.rotator) {
-      font-size: 0.68em;
-    }
-  }
-</style>

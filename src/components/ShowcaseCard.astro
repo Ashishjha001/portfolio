@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight } from 'lucide-astro';
+import { ArrowUpRight, Search, Sparkles } from 'lucide-astro';
 interface Props {
   href: string;
   index: string;
@@ -7,42 +7,95 @@ interface Props {
   body: string;
   label: string;
   tone: string;
-  imageSrc: string;
-  imagePosition?: string;
   group?: string;
 }
-const {
-  href,
-  title,
-  body,
-  label,
-  imageSrc,
-  imagePosition = '50% 50%',
-  group = 'all',
-} = Astro.props;
+const { href, title, body, label, tone, group = 'all' } = Astro.props;
+const primary = ['search', 'visibility', 'measurement'].includes(tone);
 ---
 
-<a class="capability-card" href={href} data-service-group={group}>
-  <div class="capability-card__art" aria-hidden="true">
-    <img
-      src={imageSrc}
-      alt=""
-      width="1120"
-      height="1120"
-      loading="lazy"
-      decoding="async"
-      style={`object-position:${imagePosition}`}
-    />
-    <span class="capability-card__icon"><slot /></span>
-  </div>
+<a
+  class:list={['capability-card', { 'capability-card--primary': primary }]}
+  href={href}
+  data-service-group={group}
+>
+  {
+    primary && (
+      <div class="capability-card__art" aria-hidden="true">
+        {tone === 'search' && (
+          <div class="mini-search">
+            <div class="mini-search__query">
+              <Search size={14} /> Your next customer is searching
+            </div>
+            <div class="mini-search__result">
+              <span class="mini-dot" />
+              <div>
+                <i />
+                <i />
+              </div>
+              <ArrowUpRight size={19} />
+            </div>
+            <div class="mini-search__tags">
+              <span>Technical SEO</span>
+              <span>Content</span>
+              <span>Intent</span>
+            </div>
+          </div>
+        )}
+        {tone === 'visibility' && (
+          <div class="mini-answer">
+            <div class="mini-answer__head">
+              <Sparkles size={17} />
+              <span>From question to consideration</span>
+            </div>
+            <div class="mini-answer__lines">
+              <i />
+              <i />
+              <i />
+            </div>
+            <div class="mini-answer__source">
+              <span class="mini-dot" /> Your brand, in the conversation <ArrowUpRight size={15} />
+            </div>
+          </div>
+        )}
+        {tone === 'measurement' && (
+          <div class="mini-measure">
+            <div class="mini-measure__path">
+              <span>Search</span>
+              <span>CRM</span>
+              <span>Pipeline</span>
+            </div>
+            <div class="mini-measure__bars">
+              {[30, 50, 40, 72, 62, 90, 78, 100].map((height) => (
+                <i style={'--bar:' + height + '%'} />
+              ))}
+            </div>
+            <span class="mini-measure__caption">Connect the signals. See the gaps.</span>
+          </div>
+        )}
+      </div>
+    )
+  }
   <div class="capability-card__copy">
-    <span class="capability-card__label">{label}</span>
-    <div class="capability-card__heading">
-      <h3>{title}</h3><span class="capability-card__arrow" aria-hidden="true"
-        ><ArrowUpRight size={22} /></span
-      >
+    <div class="capability-card__label">
+      <span class="capability-card__icon"><slot /></span>{label}<ArrowUpRight
+        class="capability-card__arrow"
+        size={20}
+        aria-hidden="true"
+      />
     </div>
-    <p>{body}</p>
+    <h3>{title}</h3><p>{body}</p>
+    <span class="capability-card__action"
+      >Explore {
+        tone === 'visibility'
+          ? 'AI visibility'
+          : tone === 'measurement'
+            ? 'measurement'
+            : tone === 'search'
+              ? 'SEO'
+              : 'the service'
+      }
+      <span aria-hidden="true">→</span></span
+    >
   </div>
 </a>
 <style>
@@ -51,119 +104,272 @@ const {
     flex-direction: column;
     min-width: 0;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid var(--home-line);
     border-radius: 16px;
-    background: var(--panel);
     color: var(--ink);
+    background: var(--warm-white);
     text-decoration: none;
     transition:
-      transform 200ms ease,
-      border-color 200ms ease,
-      box-shadow 200ms ease;
+      transform 200ms,
+      border-color 200ms,
+      box-shadow 200ms;
   }
   .capability-card[hidden] {
     display: none;
   }
   .capability-card__art {
-    position: relative;
-    height: clamp(150px, 14vw, 200px);
-    overflow: hidden;
-    background: var(--deep-green);
-  }
-  .capability-card__art img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 450ms ease;
-  }
-  .capability-card__icon {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
-    color: var(--deep-green);
-    background: var(--warm-white);
-    border-radius: 10px;
-  }
-  .capability-card__icon :global(svg) {
-    width: 21px;
-    height: 21px;
+    height: 190px;
+    padding: 1.5rem;
+    background: #e8eddf;
+    overflow: hidden;
   }
   .capability-card__copy {
-    padding: 1.25rem 1.35rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
   }
   .capability-card__label {
-    color: var(--green);
-    font-size: 0.73rem;
-    font-weight: 600;
-  }
-  .capability-card__heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.7rem;
-    margin-top: 0.6rem;
+    gap: 0.55rem;
+    font-size: 0.71rem;
+    color: var(--green);
+    font-weight: 600;
+  }
+  .capability-card__icon :global(svg) {
+    width: 17px;
+    height: 17px;
+  }
+  .capability-card__label :global(.capability-card__arrow) {
+    margin-left: auto;
   }
   .capability-card h3 {
-    margin: 0;
-    font: 600 clamp(1.2rem, 1.7vw, 1.55rem)/1.2 var(--font-body);
-    letter-spacing: -0.03em;
-  }
-  .capability-card__arrow {
-    display: grid;
-    place-items: center;
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    color: var(--green);
-    background: var(--green-pale);
-    transition:
-      background 200ms,
-      color 200ms;
+    margin: 1.15rem 0 0.7rem;
+    font: 600 clamp(1.25rem, 1.8vw, 1.65rem)/1.16 var(--font-body);
+    letter-spacing: -0.035em;
   }
   .capability-card p {
-    margin: 0.85rem 0 0;
+    margin: 0 0 1.5rem;
     color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.55;
-    max-width: 40ch;
+    font-size: 0.87rem;
+    line-height: 1.6;
+  }
+  .capability-card__action {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--home-line);
+    font-size: 0.77rem;
+    font-weight: 600;
+    color: var(--green);
   }
   .capability-card:hover,
   .capability-card:focus-visible {
     transform: translateY(-4px);
     border-color: var(--green);
-    box-shadow: 0 12px 30px -24px var(--deep-green);
-  }
-  .capability-card:hover img,
-  .capability-card:focus-visible img {
-    transform: scale(1.04);
-  }
-  .capability-card:hover .capability-card__arrow,
-  .capability-card:focus-visible .capability-card__arrow {
-    background: var(--green);
-    color: var(--warm-white);
+    box-shadow: 0 12px 25px -20px #0c4f3d66;
   }
   .capability-card:focus-visible {
-    outline: 3px solid var(--green);
+    outline: 2px solid var(--green);
     outline-offset: 4px;
   }
-  @media (max-width: 600px) {
+  .mini-search,
+  .mini-answer,
+  .mini-measure {
+    width: 100%;
+    max-width: 285px;
+    font: 400 0.62rem var(--font-body);
+  }
+  .mini-search,
+  .mini-answer {
+    padding: 1rem;
+    background: var(--warm-white);
+    border: 1px solid #c8d0c0;
+    border-radius: 10px;
+    box-shadow: 0 12px 18px -15px #0c4f3d70;
+    transform: rotate(-3deg);
+    transition: transform 250ms;
+  }
+  .mini-search__query {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--home-line);
+    border-radius: 5px;
+    padding: 0.55rem;
+    font-size: 0.56rem;
+    white-space: nowrap;
+  }
+  .mini-search__result {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 0.2rem;
+    color: var(--green);
+  }
+  .mini-dot {
+    display: block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    background: var(--green);
+  }
+  .mini-search__result > div {
+    flex: 1;
+  }
+  .mini-search__result i,
+  .mini-answer__lines i {
+    display: block;
+    height: 5px;
+    width: 85%;
+    background: #c6d6c6;
+    border-radius: 2px;
+    margin: 5px 0;
+  }
+  .mini-search__result i:last-child {
+    width: 57%;
+    background: #e0e6d9;
+  }
+  .mini-search__tags {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .mini-search__tags span {
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    background: #edf0e5;
+    font-size: 0.5rem;
+  }
+  .mini-answer {
+    transform: rotate(3deg);
+  }
+  .mini-answer__head {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.55rem;
+  }
+  .mini-answer__lines {
+    margin: 1rem 0;
+  }
+  .mini-answer__lines i {
+    height: 4px;
+    width: 100%;
+  }
+  .mini-answer__lines i:nth-child(2) {
+    width: 93%;
+  }
+  .mini-answer__lines i:last-child {
+    width: 66%;
+  }
+  .mini-answer__source {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.5rem;
+    padding: 0.5rem;
+    background: #e8eddf;
+    border-radius: 5px;
+  }
+  .mini-answer__source .mini-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+  }
+  .mini-answer__source :global(svg) {
+    margin-left: auto;
+  }
+  .mini-measure {
+    padding: 0.4rem 0.5rem;
+  }
+  .mini-measure__path {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .mini-measure__path span {
+    background: var(--warm-white);
+    border: 1px solid #c8d0c0;
+    border-radius: 5px;
+    padding: 0.35rem 0.6rem;
+    flex: 1;
+    text-align: center;
+    font-size: 0.55rem;
+  }
+  .mini-measure__bars {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    height: 68px;
+    margin: 0.9rem 0 0.6rem;
+    border-bottom: 1px solid #a9b8a2;
+  }
+  .mini-measure__bars i {
+    display: block;
+    flex: 1;
+    height: var(--bar);
+    background: #91b5a0;
+    border-radius: 3px 3px 0 0;
+  }
+  .mini-measure__bars i:nth-child(3n) {
+    background: var(--green);
+  }
+  .mini-measure__caption {
+    color: var(--muted);
+    font-size: 0.55rem;
+  }
+  .capability-card:hover .mini-search,
+  .capability-card:hover .mini-answer {
+    transform: rotate(0);
+  }
+  @media (max-width: 1100px) {
     .capability-card__art {
-      height: 170px;
+      padding: 1rem;
+      height: 165px;
+    }
+    .capability-card__copy {
+      padding: 1.2rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .capability-card__art {
+      height: 160px;
+      padding: 1rem 1.6rem;
+    }
+    .capability-card__copy {
+      padding: 1.3rem;
     }
     .capability-card h3 {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
+      margin-top: 1rem;
+    }
+    .capability-card p {
+      margin-bottom: 1rem;
+    }
+    .capability-card:not(.capability-card--primary) .capability-card__action {
+      display: none;
+    }
+    .capability-card:not(.capability-card--primary) p {
+      margin-bottom: 0;
     }
   }
   @media (prefers-reduced-motion: reduce) {
     .capability-card,
-    .capability-card img,
-    .capability-card__arrow {
+    .mini-search,
+    .mini-answer {
       transition: none;
+    }
+    .capability-card:hover,
+    .capability-card:focus-visible {
       transform: none;
     }
   }
