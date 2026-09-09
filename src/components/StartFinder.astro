@@ -1,0 +1,413 @@
+---
+import { Search, ChartNoAxesCombined, MousePointer2, ArrowUpRight } from 'lucide-astro';
+
+const paths = [
+  {
+    id: 'visibility',
+    label: 'Get found',
+    icon: Search,
+    question: 'Can AI find your website?',
+    body: 'Check crawler access before changing your content.',
+    tool: 'Check AI access',
+    href: '/tools/#crawler-heading',
+    guide: 'Build an AI visibility baseline',
+    guideHref: '/insights/build-ai-visibility-baseline/',
+    signal: 'Search → Access → Discovery',
+  },
+  {
+    id: 'measurement',
+    label: 'Trust your data',
+    icon: ChartNoAxesCombined,
+    question: 'Which numbers can you trust?',
+    body: 'Find the gaps between campaign tracking, your CRM and revenue.',
+    tool: 'Check attribution health',
+    href: '/tools/#attribution-health-check',
+    guide: 'When GA4 and your CRM disagree',
+    guideHref: '/insights/ga4-or-crm-source-of-truth/',
+    signal: 'Campaign → CRM → Revenue',
+  },
+  {
+    id: 'conversion',
+    label: 'Convert more',
+    icon: MousePointer2,
+    question: 'Where are you losing leads?',
+    body: 'Follow the funnel from first visit to customer. Find the biggest drop.',
+    tool: 'Explore your funnel',
+    href: '/tools/#funnel-leakage-calculator',
+    guide: 'Traffic is up. Demo bookings are down.',
+    guideHref: '/insights/traffic-up-demo-bookings-down/',
+    signal: 'Visit → Lead → Customer',
+  },
+];
+---
+
+<section class="start-finder" aria-labelledby="start-heading" data-start-finder>
+  <div class="shell">
+    <div class="start-finder__heading">
+      <div>
+        <p class="eyebrow">A useful place to start</p><h2 id="start-heading">
+          Less guessing.<br /><em>Try it yourself.</em>
+        </h2>
+      </div>
+      <p>Pick the problem you want to solve.<br />Start with a free tool. No signup.</p>
+    </div>
+    <div
+      class="start-finder__tabs"
+      data-finder-tabs
+      hidden
+      aria-label="What do you want to improve?"
+    >
+      {
+        paths.map((path) => (
+          <button type="button" id={'start-tab-' + path.id} data-finder-tab={path.id}>
+            <path.icon size={19} strokeWidth={1.6} aria-hidden="true" />
+            {path.label}
+            <span aria-hidden="true">↗</span>
+          </button>
+        ))
+      }
+    </div>
+    <div class="start-finder__panels">
+      {
+        paths.map((path) => (
+          <div
+            class="start-finder__panel"
+            id={'start-panel-' + path.id}
+            data-finder-panel={path.id}
+          >
+            <div class="start-finder__question">
+              <span class="mono start-finder__signal">{path.signal}</span>
+              <>
+                <h3>{path.question}</h3>
+                <p>{path.body}</p>
+              </>
+            </div>
+            <div class="start-finder__preview">
+              <div class="start-finder__preview-head">
+                <>
+                  <span class="mono">Start with a free tool</span>
+                  <path.icon size={24} strokeWidth={1.4} aria-hidden="true" />
+                </>
+              </div>
+              <a class="start-finder__cta" href={path.href} data-event="finder_tool_click">
+                {path.tool}
+                <ArrowUpRight size={20} aria-hidden="true" />
+              </a>
+              <a href={path.guideHref} data-event="finder_guide_click">
+                <>
+                  <span class="mono">Read the guide</span>
+                  <strong>{path.guide}</strong>
+                  <ArrowUpRight size={21} aria-hidden="true" />
+                </>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="start-finder__footer">
+      <a href="/tools/">Explore all six tools <span aria-hidden="true">↗</span></a><a
+        href="/methodology/"
+        data-event="methodology_cta_click">See how we measure <span aria-hidden="true">↗</span></a
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-start-finder]').forEach((finder) => {
+    const tablist = finder.querySelector<HTMLElement>('[data-finder-tabs]');
+    const tabs = Array.from(finder.querySelectorAll<HTMLButtonElement>('[data-finder-tab]'));
+    const panels = Array.from(finder.querySelectorAll<HTMLElement>('[data-finder-panel]'));
+    if (!tablist || !tabs.length) return;
+    const activate = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        const active = index === i;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        const panel = panels[i];
+        if (panel) panel.hidden = !active;
+      });
+      if (focus) tabs[index]?.focus();
+    };
+    tablist.setAttribute('role', 'tablist');
+    tabs.forEach((tab, i) => {
+      const panel = panels[i];
+      if (!panel) return;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', panel.id);
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tab.id);
+      tab.addEventListener('click', () => activate(i));
+      tab.addEventListener('keydown', (event) => {
+        let next = i;
+        if (event.key === 'ArrowRight') next = (i + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (i + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activate(next, true);
+      });
+    });
+    activate(0);
+    tablist.hidden = false;
+  });
+</script>
+
+<style>
+  .start-finder {
+    padding-block: clamp(2.75rem, 5vw, 5rem);
+    background: var(--paper-deep);
+    border-block: 1px solid var(--rule);
+  }
+  .start-finder__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .start-finder__heading h2 {
+    margin: 0.65rem 0 0;
+    font-size: clamp(2.3rem, 4vw, 3.6rem);
+    line-height: 1.02;
+  }
+  .start-finder__heading h2 em {
+    color: var(--green);
+    font-weight: 600;
+    font-style: normal;
+  }
+  .start-finder__heading > p {
+    margin: 0 0 0.2rem;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .start-finder__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .start-finder__tabs[hidden],
+  .start-finder__panel[hidden] {
+    display: none;
+  }
+  .start-finder__tabs button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 58px;
+    padding: 0.85rem 1.2rem;
+    font: 600 0.95rem var(--font-body);
+    color: var(--green);
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition:
+      background 180ms,
+      color 180ms;
+  }
+  .start-finder__tabs button span {
+    margin-left: auto;
+  }
+  .start-finder__tabs button:hover {
+    background: var(--green-pale);
+  }
+  .start-finder__tabs button[aria-selected='true'] {
+    color: var(--warm-white);
+    background: var(--deep-green);
+    border-color: var(--deep-green);
+  }
+  .start-finder__panel {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    padding: clamp(1.5rem, 3.5vw, 3.5rem);
+    gap: clamp(2rem, 5vw, 5rem);
+    background: var(--deep-green);
+    color: var(--warm-white);
+    border-radius: var(--radius);
+  }
+  .start-finder__panel + .start-finder__panel {
+    margin-top: 0.75rem;
+  }
+  .start-finder__panel[role='tabpanel'] {
+    animation: finder-enter 200ms ease-out;
+    margin-top: 0;
+  }
+  .start-finder__signal {
+    color: var(--mint-accent);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .start-finder__question {
+    align-self: center;
+  }
+  .start-finder__question h3 {
+    font-size: clamp(2rem, 3.4vw, 3.3rem);
+    line-height: 1.07;
+    max-width: 17ch;
+    margin: 1rem 0;
+    color: var(--warm-white);
+  }
+  .start-finder__question p {
+    color: var(--soft-green-text);
+    max-width: 30rem;
+    margin: 0;
+  }
+  .start-finder__cta {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: 1.6rem;
+    padding: 0.85rem 1.1rem;
+    min-height: 48px;
+    background: var(--warm-white);
+    color: var(--deep-green);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .start-finder__cta:hover {
+    background: var(--green-pale);
+  }
+  .start-finder__preview {
+    align-self: center;
+    padding: 1.5rem;
+    border: 1px solid var(--dark-border);
+    background: rgba(255, 255, 255, 0.045);
+    border-radius: var(--radius);
+  }
+  .start-finder__preview-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--mint-accent);
+  }
+  .start-finder__preview-head .mono {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .start-finder__preview a:not(.start-finder__cta) {
+    border-top: 1px solid var(--dark-border);
+    padding-top: 1.2rem;
+    margin-top: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.45rem 1rem;
+    color: var(--warm-white);
+    text-decoration: none;
+  }
+  .start-finder__preview a .mono {
+    grid-column: 1 / -1;
+    color: var(--mint-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .start-finder__preview a strong {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+  .start-finder__preview a:hover strong {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .start-finder__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .start-finder__footer a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    color: var(--green);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .start-finder__footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .start-finder a:focus-visible,
+  .start-finder button:focus-visible {
+    outline: 2px solid var(--mint-accent);
+    outline-offset: 4px;
+  }
+  .start-finder__tabs button:focus-visible,
+  .start-finder__footer a:focus-visible {
+    outline-color: var(--green);
+  }
+  @media (max-width: 720px) {
+    .start-finder__heading {
+      display: block;
+    }
+    .start-finder__heading > p {
+      margin-top: 1rem;
+      font-size: 0.92rem;
+    }
+    .start-finder__tabs button {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.75rem 0.3rem;
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+    .start-finder__tabs button span {
+      display: none;
+    }
+    .start-finder__panel {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.35rem;
+    }
+    .start-finder__question h3 {
+      font-size: 2rem;
+    }
+    .start-finder__question p {
+      font-size: 0.94rem;
+    }
+    .start-finder__cta {
+      width: 100%;
+      font-size: 0.85rem;
+    }
+    .start-finder__preview {
+      padding: 1rem;
+    }
+
+    .start-finder__footer {
+      flex-wrap: wrap;
+      gap: 0 1rem;
+    }
+  }
+  @keyframes finder-enter {
+    from {
+      opacity: 0.6;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .start-finder__panel[role='tabpanel'] {
+      animation: none;
+    }
+    .start-finder__tabs button {
+      transition: none;
+    }
+  }
+</style>

@@ -15,6 +15,7 @@ const poster = '/media/hero/decision-intelligence-poster.webp';
         fetchpriority="high"
       />
       <video
+        id="hero-animation"
         class="hero-media__video"
         data-hero-video
         autoplay
@@ -34,75 +35,49 @@ const poster = '/media/hero/decision-intelligence-poster.webp';
 </div>
 
 <script>
-  type SaveDataConnection = Navigator & {
-    connection?: { saveData?: boolean };
-  };
-
   document.querySelectorAll<HTMLElement>('[data-hero-media]').forEach((media) => {
     const hero = media.closest<HTMLElement>('.hero');
     const video = media.querySelector<HTMLVideoElement>('[data-hero-video]');
-    const sources = video ? Array.from(video.querySelectorAll<HTMLSourceElement>('source')) : [];
-    if (!hero || !video || !sources.length) return;
-
+    if (!hero || !video) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const compactScreen = window.matchMedia('(max-width: 767px)');
     const finePointer = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
-    const saveData = (navigator as SaveDataConnection).connection?.saveData === true;
-    let sourcesAttached = false;
-    let heroVisible = true;
-
-    const shouldPlayVideo = () => !reduceMotion.matches && !compactScreen.matches && !saveData;
-
-    const attachSources = () => {
-      if (sourcesAttached) return;
-      sources.forEach((source) => {
-        const src = source.dataset.src;
-        if (src) source.src = src;
-      });
-      sourcesAttached = true;
-      video.load();
-    };
-
-    const detachSources = () => {
-      video.pause();
-      media.classList.remove('is-video-ready');
-      if (!sourcesAttached) return;
-      sources.forEach((source) => source.removeAttribute('src'));
-      sourcesAttached = false;
-      video.load();
-    };
-
+    let playPending = false;
+    let blocked = false;
     const syncPlayback = () => {
-      if (!shouldPlayVideo()) {
-        detachSources();
+      if (document.hidden) {
+        video.pause();
         return;
       }
-
-      attachSources();
-      if (heroVisible && !document.hidden) {
-        void video.play().catch(() => {
-          media.classList.remove('is-video-ready');
+      if (playPending || !video.paused) return;
+      playPending = true;
+      video.muted = true;
+      void video
+        .play()
+        .then(() => {
+          blocked = false;
+        })
+        .catch(() => {
+          blocked = true;
+        })
+        .finally(() => {
+          playPending = false;
         });
-      } else {
-        video.pause();
-      }
     };
-
-    video.addEventListener('canplay', () => media.classList.add('is-video-ready'));
+    video.querySelectorAll<HTMLSourceElement>('source').forEach((source) => {
+      if (source.dataset.src) source.src = source.dataset.src;
+    });
+    video.load();
+    video.addEventListener('playing', () => media.classList.add('is-video-ready'));
     video.addEventListener('error', () => media.classList.remove('is-video-ready'));
-
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        heroVisible = entry?.isIntersecting ?? true;
-        syncPlayback();
-      },
-      { rootMargin: '120px 0px' },
-    );
-    visibilityObserver.observe(hero);
-
-    reduceMotion.addEventListener('change', syncPlayback);
-    compactScreen.addEventListener('change', syncPlayback);
     document.addEventListener('visibilitychange', syncPlayback);
+    // A normal interaction can unlock playback when a browser disallows autoplay.
+    const retryAfterInteraction = () => {
+      if (blocked) syncPlayback();
+    };
+    document.addEventListener('pointerup', retryAfterInteraction, { passive: true });
+    document.addEventListener('keydown', retryAfterInteraction);
+    window.addEventListener('pageshow', syncPlayback);
     syncPlayback();
 
     let pointerFrame = 0;
@@ -298,33 +273,17 @@ const poster = '/media/hero/decision-intelligence-poster.webp';
       --source-shift-x: 0%;
       inset: auto 0 0;
       width: 100%;
-      height: clamp(280px, 44svh, 360px);
+      height: clamp(270px, 40svh, 330px);
     }
 
     .hero-media__motion {
-      inset: -8% -7% -8% -18%;
+      inset: 0;
       transform: none;
     }
 
     .hero-media__frame {
-      -webkit-mask-image: radial-gradient(
-        ellipse 96% 104% at 92% 58%,
-        #000 44%,
-        rgba(0, 0, 0, 0.84) 65%,
-        rgba(0, 0, 0, 0.22) 84%,
-        transparent 100%
-      );
-      mask-image: radial-gradient(
-        ellipse 96% 104% at 92% 58%,
-        #000 44%,
-        rgba(0, 0, 0, 0.84) 65%,
-        rgba(0, 0, 0, 0.22) 84%,
-        transparent 100%
-      );
-    }
-
-    .hero-media__video {
-      display: none;
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 16%, #000 80%, transparent);
+      mask-image: linear-gradient(180deg, transparent, #000 16%, #000 80%, transparent);
     }
 
     .hero-media__poster {
@@ -358,11 +317,7 @@ const poster = '/media/hero/decision-intelligence-poster.webp';
     }
 
     .hero-media__video {
-      display: none;
-    }
-
-    .hero-media__poster {
-      opacity: 0.94;
+      transition: none;
     }
   }
 </style>

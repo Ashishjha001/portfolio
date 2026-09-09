@@ -21,15 +21,19 @@ const schema = {
   <header class="shell page-hero page-hero--compact">
     <div class="page-hero__copy" data-reveal>
       <p class="eyebrow">Data Decision Consulting / Free tools</p>
-      <h1>Six small tools we use on every engagement. Free, no signup.</h1>
-      <p class="lede">
-        The same checks the Data Decision Consulting team runs before campaigns launch and before
-        blaming content for weak AI visibility. They run entirely in your browser: nothing you enter
-        is stored or sent to us.
-      </p>
+      <h1>Find the gap. Try a free tool.</h1>
+      <p class="lede">Check visibility, tracking and conversion. Six tools, no signup.</p>
     </div>
   </header>
 
+  <nav class="shell tool-jump" aria-label="Choose a free tool">
+    <a href="#utm-heading">Campaign links</a>
+    <a href="#crawler-heading">AI access</a>
+    <a href="#snapshot-heading">Website audit</a>
+    <a href="#funnel-leakage-calculator">Funnel leakage</a>
+    <a href="#cac-calculator">Break-even CAC</a>
+    <a href="#attribution-health-check">Attribution health</a>
+  </nav>
   <!-- Tool 1: UTM builder + validator -->
   <section class="section section--compact tool-band" aria-labelledby="utm-heading">
     <div class="shell">
@@ -37,8 +41,7 @@ const schema = {
         <span class="evidence-label">Tool 01 / Campaign links</span>
         <h2 id="utm-heading">UTM builder &amp; validator</h2>
         <p class="tool-intro">
-          Build campaign links that follow the Data Decision Consulting taxonomy: or paste an
-          existing URL to check it against the same rules.
+          Build a campaign link or check an existing URL for tracking errors.
         </p>
       </div>
       <div class="tool-panel" data-reveal style="--reveal-delay:100ms">
@@ -96,11 +99,7 @@ const schema = {
       <div class="tool-head" data-reveal>
         <span class="evidence-label">Tool 02 / AI access</span>
         <h2 id="crawler-heading">AI crawler access checker</h2>
-        <p class="tool-intro">
-          Enter your domain and the checker reads your robots.txt and reports how the major AI
-          crawlers are treated: the verification the Data Decision Consulting team runs before
-          diagnosing weak AI visibility.
-        </p>
+        <p class="tool-intro">See how your robots.txt treats major AI crawlers.</p>
       </div>
       <div class="tool-panel tool-panel--deep" data-reveal style="--reveal-delay:100ms">
         <div class="utm-validate-row">
@@ -386,6 +385,27 @@ const schema = {
   </section>
 
   <style>
+    .tool-jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding-bottom: 2rem;
+    }
+    .tool-jump a {
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      color: var(--green);
+      font-size: 0.85rem;
+      text-decoration: none;
+      min-height: 44px;
+    }
+    .tool-jump a:hover,
+    .tool-jump a:focus-visible {
+      background: var(--green-pale);
+      border-color: var(--green);
+    }
+
     .tool-band {
       padding-block: clamp(2.2rem, 4.5vw, 3.4rem);
     }
